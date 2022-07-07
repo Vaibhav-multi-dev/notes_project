@@ -1,0 +1,247 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="css-sec-heading">Section 6: CSS Basics</h1>
+        <nav class="sec-nav-li" id="sec6-nav">
+            <ul>
+                <li><a href="#Lec57">Lecture 57</a></li>
+                <li><a href="#Lec58">Lecture 58</a></li>
+                <li><a href="#Lec59">Lecture 59</a></li>
+                <li><a href="#Lec60">Lecture 60</a></li>
+                <li><a href="#Lec61">Lecture 61</a></li>
+                <li><a href="#Lec62">Lecture 62</a></li>
+                <li><a href="#Lec63">Lecture 63</a></li>
+                <li><a href="#Lec64">Lecture 64</a></li>
+                <li><a href="#Lec65">Lecture 65</a></li>
+                <li><a href="#Lec66">Lecture 66</a></li>
+                <li><a href="#Lec67">Lecture 67</a></li>
+                <li>Coding Exercise Solutions -
+                    <ul>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex7">Exercise
+                                7</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex8">
+                                Exercise 8</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec57">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 57: What matters in this section?</span></h2>
+        </header>
+        <p class="sec-para-main">Pretty much everything is crucial in this section, It's an intro section to CSS
+            so
+            you will learn to
+            incorporate CSS into HTML in this section. This section covers getting to know the basic syntax of
+            CSS,
+            color system and some text properties.
+        </p>
+    </article>
+    <article id="Lec58">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 58: What is CSS?</span></h2>
+        </header>
+        <p class="sec-para-main">CSS is cascading stylesheet, it defines our page visual appreance. It is the
+            adjective of the page if we
+            compare it to Colt's Dino ideology. The basic syntax of styling a property with CSS is-</p>
+        <code class="code-snippet"><pre> selector{
+     property:value;
+}</pre></code>
+    </article>
+    <article id="Lec59">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 59: CSS is huge, don't panic</span></h2>
+        </header>
+        <p class="sec-para-main">CSS is quite big and contains a ton of properties, there is no need to remember
+            all
+            of them, you can
+            always consult MDN or do a google search about a specific propery and it will give you enough
+            information about what are you looking for.
+        </p>
+    </article>
+    <article id="Lec60">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 60: Including styles correctly</span></h2>
+        </header>
+        <p class="sec-para-main">There are three ways to style an HTML page-
+        <ul>
+            <li>Inline Styles
+                <p>Simplest of all, just put the CSS rule directly inside the HTML content you want to
+                    style. Even though it is the simplest, it is not recommended at all because it becomes quite
+                    a
+                    hassle
+                    if you want to change a style in multiple elements and also if you want to replicate the
+                    style
+                    in
+                    other elements because then you need to copy the same style to each of the elements.</p>
+            </li>
+            <li><code class="html-tags">&ltstyle></code> tag
+                <p>You include a style tag in your HTML page and put all your styles in there and it will be
+                    applied
+                    to
+                    the whole page.It is a bit better than inline style in the sense that you don't need to copy
+                    the
+                    style to every single element you want to apply to as long as you apply the style with the
+                    selector
+                    in the <code class="html-tags">&ltstyle></code> tag. Despite this advantage it is
+                    still
+                    not
+                    the best way to style the elements as it becomes quite some work if you want to share the
+                    same
+                    style
+                    with multiple pages.</p>
+            </li>
+            <li>External Stylesheet
+                <p>The best and recommended way to style your elements is to put them in an external stylesheet
+                    and
+                    link
+                    them to your HTML page using a link tag. It makes it easier to share the same style acros
+                    multiple
+                    pages and also to apply style to multiple elements at once.</p>
+            </li>
+        </ul>
+        </p>
+    </article>
+    <article id="Lec61">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 61: Color & Background-Color Properties</span></h2>
+        </header>
+        <p class="sec-para-main"> <span class="css-tags">color</span> property sets the color of the text while
+            <span class="css-tags">background-color</span> property sets the color of the background.
+            For block level elements, background-color is applied to the whole block rather than just the
+            content of
+            the element. There is also a <span class="css-tags">background</span> property but that does more
+            than
+            just changing the color of the background.
+        </p>
+    </article>
+    <article id="Lec62">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 62: Colors Systems-> RGB & Named Colors</span></h2>
+        </header>
+        <p class="sec-para-main">RGB stands for Red,Green,Blue it is a coloring format that CSS uses to define
+            how
+            the color in a browser
+            should look like. You can input the values from a range of 0 to 255, 0 being the minimum means
+            absence
+            of
+            that color while 255 being the highest means the highest value of the color. Named colors are what
+            they
+            sound like, they are colors whose names are recognised by the HTML but they are limited in number,
+            you will often find yourself using RGB,Hexadecimal or other color formats to display your desired
+            color more often.</p>
+    </article>
+    <article id="Lec63">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 63: Colors System-> Hexadecimals</span></h2>
+        </header>
+        <p class="sec-para-main">Hexadecimals follow 16 base numbering system, it uses a combination of letters
+            and
+            digits to display
+            colors,
+            numbers values range from 0-9 followed by letters ranging from A to F which equates to 10 to 15 (if
+            put
+            in numerical perspective). The hex color format contains 6 characters in total to display a color
+            and
+            have channel of red,green and blue(pair of two characters to display a single color).
+            <span class="article-example-para">For e.g. take
+                #00ff22 as it works in pair so first two characters(00)
+                displays
+                red next two(ff) blue and the couple of last characters(22) green </span>. Like RGB color
+            system,
+            the hex color
+            pairs have value from 0 to 255. Lowest being 00 and highest being ff which equates to 255. If you
+            see
+            just one character instead of two then it is implied that the other character in your code
+            will have the same value as the first one.
+            For e.g. if you see <span class="keyword">c</span> instead of <span class="keyword">cc</span> (see
+            what i did there ?) in your hex code then the other value in your color channel(RGB)
+            will also be <span class="keyword">c.</span> Read <a
+                href="https://www.developintelligence.com/blog/2017/02/rgb-to-hex-understanding-the-major-web-color-codes/">this
+                article</a> for more info.
+        </p>
+    </article>
+    <article id="Lec64">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 64: A Reminder On Semicolons & CSS</span></h2>
+        </header>
+        <p class="sec-para-main">Every CSS property must end with semicolon to take effect, if you miss a
+            semicolon
+            then that property
+            will
+            not be rendered by the browser.</p>
+    </article>
+    <article id="Lec65">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 65: Common Text Properties</span></h2>
+        </header>
+        <p class="sec-para-main">Some of the common text properties are-
+        <ul>
+            <li>text-align
+                <p>It aligns the text according to the container it is in, if you set it to right then the text
+                    inside
+                    will be aligned right according to the container it is inside in. It doesn't shift the
+                    element
+                    just
+                    the text inside it.</p>
+            </li>
+            <li>font-weight
+                <p>Used to specify how thick or light the font should look, it can be numberic values from 100
+                    to
+                    900 or
+                    values like light,bold etc. If the value you specified isn't present then the nearest value
+                    will
+                    be
+                    applied to the font.</p>
+            </li>
+            <li>text-decoration
+                <p>It is used to decorate the text; to give it a colored underline, strike through, increase the
+                    thickness
+                    of the line and other changes. You can read on <a
+                        href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration">MDN</a> about
+                    it.
+                </p>
+            </li>
+            <li>line-height
+                <p>It is used to adjust the height of the line of the text. See this <a
+                        href="https://stackoverflow.com/questions/4445133/css-line-height-property-how-it-works-simple">StackOverflow</a>
+                    post for more info about how line height works.</p>
+            </li>
+            <li>letter-spacing
+                <p>It is used to adjust the space between each individual letter.</p>
+            </li>
+        </ul>
+        </p>
+    </article>
+    <article id="Lec66">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 66: Font Size Basics With Pixels</span></h2>
+        </header>
+        <p class="sec-para-main">Pixels are an absolute unit and quite popular among all the absolute ones.
+            Absolute
+            values do not change
+            according to the container they are in, they look exactly of the same size everywhere on your
+            webpage.Although it is recommended to use relative units most of the time but there are times when
+            you
+            would
+            like to use pixels to design your pages.
+        </p>
+    </article>
+    <article id="Lec67">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 67: The Font Family Property</span></h2>
+        </header>
+        <p class="sec-para-main">Font-family is used to display other font from the same family if the font you
+            specified is not present
+            in
+            the user's browser or computer. As all font have different support depending on if the user is
+            opening
+            the
+            page on a MAC or a windows machine, it's always best practice to include a backup font-family in
+            case a
+            user
+            doesn't have the default font. The priority is from left to right, so if a font on left is present
+            on
+            user
+            machine then the font on the right won't be considered.</p>
+    </article>

@@ -1,0 +1,62 @@
+Coding exercise template -
+<article id="Ex">
+        <header>
+            <h2>Exercise :</h2>
+            <a href="#nav-bar-exercise">Go back to index</a>
+        </header>
+        <code class="code-snippet"><pre>
+            
+        </pre></code>
+    </article>
+
+Complete section and navbar template -
+section#sec16.js-section>header>h1.js-sec-heading{Section 16}+nav.sec-nav-li#sec16-nav>ul>(li>a[href=#Lec$@159]{Lecture $@159})*15
+
+Multiple section article builder -
+(article#Lec$@303>header.backend-article-header>h2>span.backend-lec-heading{Lecture $@303}^^p.sec-para-main)*11
+
+Mutiple coding article builder -
+(article#Ex$@25>header>h2{Exercise$@25}+a[href=#nav-bar-exercise]{Go back to index}^code.code-snippet>pre)*2
+
+Multiple article coding exercise builder -
+(li>a[href="#Ex$@35"]{Exercise $@35})*9 
+
+Navbar Template - 
+(li>a[href=#Lec$@120]{Lecture $@120})*9 
+
+Template for js article -
+article#Lec140>header.js-article-header>h2>span.js-lec-heading^a[href=#sec14]^p.sec-para-main
+
+Each lecture template
+<section id="Sec" class="-section">
+
+    <article id="Lec">
+        <header>
+            <h2>Lecture :</h2>
+        </header>
+        <p></p>
+    </article>
+
+    Emmet Schortcut - (article#Lec>header>h2{Lecture :}^p)*9
+
+Each section resource template-
+        <article id="sec27-summary">
+            <header>
+                <h2>Important links and Formulas</h2>
+            </header>
+            <h3>Important links -</h3>
+        </article>
+
+Coding in lecture template - 
+<code class="code-snippet"><pre>
+        </pre></code>
+
+
+CSS file template
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="D:\Web_Development\Notes_project\baseFile.css"> 
+
+

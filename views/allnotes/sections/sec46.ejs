@@ -1,0 +1,121 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 46: Yelp Camp - Adding the reviews model</h1>
+        <nav class="sec-nav-li" id="sec46-nav">
+            <ul>
+                <li><a href="#Lec463">Lecture 463</a></li>
+                <li><a href="#Lec464">Lecture 464</a></li>
+                <li><a href="#Lec465">Lecture 465</a></li>
+                <li><a href="#Lec466">Lecture 466</a></li>
+                <li><a href="#Lec467">Lecture 467</a></li>
+                <li><a href="#Lec468">Lecture 468</a></li>
+                <li><a href="#Lec469">Lecture 469</a></li>
+                <li><a href="#Lec470">Lecture 470</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec463">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 463: Defining the Review model</span></h2>
+        </header>
+        <p class="sec-para-main">We now add the review model to our campground, many reviews are attached to a
+            specific background. Hence it is a one to many relationship where we atttach multiple reviews to a
+            single campground. So to structure it we make a reference to a reviews array from inside the campground
+            schema.
+        </p>
+        <div class="extra-info">
+            <p>We also could have gone the other way i.e. refer to campground from the reviews but we didn't do it
+                because even if there are multiple reviews, only a handful of them are displayed at a time.</p>
+        </div>
+    </article>
+    <article id="Lec464">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 464: Adding the reviews form</span></h2>
+        </header>
+        <p class="sec-para-main">We add our logic to make a new review to our campground show page because all our
+            reviews will be associated to a campground only and will not be accessed alone. To make a review on a
+            campground, we add two fields one textarea and the other a range input. All the entries made for our
+            reviews are stored under the <span class="keyword">review[]</span> field like we did for campgrounds.
+            For e.g. The body part of review will be stored as review[body]</p>
+    </article>
+    <article id="Lec465">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 465: Creating reviews</span></h2>
+        </header>
+        <p class="sec-para-main">We now set up our logic to create a new review. So the route we make for submitting
+            a review should also contain the campground for which the review is being made. We setup a route
+            containg the campground ID and containing <span class="backend-tags">/review</span> after it so
+            the review can be attached to that specific campground. </p>
+    </article>
+    <article id="Lec466">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 466: Validating reviews</span></h2>
+        </header>
+        <p class="sec-para-main">We now add client side and JOI validation like we for our review route. A bit
+            similar to what we did with campground routes.</p>
+    </article>
+    <div class="article-example">
+        <code class="code-snippet"><pre>
+<p>JOI schema for our review model -</p>
+reviewSchema = Joi.object({
+    review: Joi.object({
+        body: Joi.string().required(),
+        rating: Joi.number().required()
+    }).required()
+})
+</pre></code>
+    </div>
+    <article id="Lec467">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 467: Displaying reviews</span></h2>
+        </header>
+        <p class="sec-para-main">After validating our review, now it's time to diaplay them on the campground page
+            .To do so we populate review using <span class="backend-tags">.populate()</span> on the show page for a
+            single campground. Then we loop over them and display them below the submit the review form.</p>
+    </article>
+    <article id="Lec468">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 468: Styling Reviews</span></h2>
+        </header>
+        <p class="sec-para-main">We now add some styling to our reviews, basically it's nothing much but we just add
+            a class of card around every review and separate the whole section of submitting and displaying a review
+            onto the side of the displayed campground.</p>
+    </article>
+    <article id="Lec469">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 469: Deleting Reviews</span></h2>
+        </header>
+        <p class="sec-para-main">Now we set a route to delete a review on a campground. To do so we set a delete
+            button to be displayed on every review on the campgrounds page. In the route to delete the review we use
+            the <span class="backend-tags">$pull</span> operator to update the instance of the campground so it
+            display an empty blank boxes for the review.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Route to delete the review -</p>
+app.delete('/campgrounds/:id/reviews/:reviewId', wrapAsync(async (req, res) => {
+    const { id, reviewId } = req.params;
+    await Campground.findByIdAndUpdate(id, { $pull: { review: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`campgrounds/${id}`)
+}))
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec470">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 470: Campground delete middleware</span></h2>
+        </header>
+        <p class="sec-para-main">Now we set up a middleware which deletes all the reviews associated with a
+            campground when the campground is deleted, It's similar to the the middleware which we setup in the
+            farmStand of previous section. Example of the middleware -</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+farmSchema.post('findOneAndDelete', async function (farm) {
+    if (farm.products.length) {
+        const res = await Product.deleteMany({ _$id: { $in: farm.products } })
+        console.log(res);
+    }
+})                      
+</pre></code>
+        </div>
+    </article>

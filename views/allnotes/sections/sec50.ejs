@@ -1,0 +1,270 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 50: Authentication from "Scratch"</h1>
+        <nav class="sec-nav-li" id="sec50-nav">
+            <ul>
+                <li><a href="#Lec492">Lecture 492</a></li>
+                <li><a href="#Lec493">Lecture 493</a></li>
+                <li><a href="#Lec494">Lecture 494</a></li>
+                <li><a href="#Lec495">Lecture 495</a></li>
+                <li><a href="#Lec496">Lecture 496</a></li>
+                <li><a href="#Lec497">Lecture 497</a></li>
+                <li><a href="#Lec498">Lecture 498</a></li>
+                <li><a href="#Lec499">Lecture 499</a></li>
+                <li><a href="#Lec500">Lecture 500</a></li>
+                <li><a href="#Lec501">Lecture 501</a></li>
+                <li><a href="#Lec502">Lecture 502</a></li>
+                <li><a href="#Lec503">Lecture 503</a></li>
+                <li><a href="#Lec504">Lecture 504</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec492">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 492: What matters in this section ?</span></h2>
+        </header>
+        <p class="sec-para-main">This section main focus is on learning basic concept of Authentication, how not to
+            store passwords and use a tool called bcrypt. Although colt also tells us about hashing functions and
+            password salts but they are not the main takeaway of this section.</p>
+    </article>
+    <article id="Lec493">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 493: Authentication VS Authorization</span></h2>
+        </header>
+        <p class="sec-para-main">Authentication is verifying who the user says he is, there are many ways to do that
+            but typically we do that by using a username and a password. Authorization is to check whether the user
+            is authorized to do certain things or not for e.g. If the user is a creator of a post then only he can
+            delete it and no one else, authorization usually takes place after authentication.</p>
+    </article>
+    <article id="Lec494">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 494: How to (not) store passwords</span></h2>
+        </header>
+        <p class="sec-para-main">We never store passwords directly in the database as it becomes vulnerable to
+            attacks instead we use something known as hashing functions. Hashing function takes your password and
+            gives back an output which consist of characters which doesn't easily make sense. Hashing function
+            always gives back a fixed sized output value doesn't matter whether the input was of 5 characters or 20.
+            Then when a user further logs in then that same hashing function is used to check if the user has
+            entered the correct password or not.</p>
+    </article>
+    <article id="Lec495">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 495: Cryptographic hashing functions</span></h2>
+        </header>
+        <p class="sec-para-main">Hashing functions takes an arbitrary size input and gives back a fixed sized
+            output. Hashing functions are used for various purposes, different hashing functions serves different
+            purposes. For the puropose of storing passwords we use cryptographic hashing functions. Cryptographic
+            hash function s have five properties -</p>
+        <ol>
+            <li>Infeasible to invert - The output produced by hashing functions can't be reversed to know the
+                original input that was provided to the function. </li>
+            <li>Small change in input yields different results - Any little change in the input gives a different
+                output, even a tiny change of a single letter in the input completely alters the output.
+            </li>
+            <li>Deterministic - Same input always gives back the same output.</li>
+            <li>Unlikely to find 2 inputs with same value - The chances of two inputs having a same hash value is
+                very very low.</li>
+            <li>Functions are deliberately slow - Hashing functions are made deliberately slow to prevent the
+                cyber attacks like brute force.</li>
+        </ol>
+    </article>
+    <article id="Lec496">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 496: Password Salts</span></h2>
+        </header>
+        <p class="sec-para-main">Password salts are random characters that are added either to the end or to the
+            start of the password to alter the output given by hashing functions. There are three reasons for using
+            salts -
+        </p>
+        <ul>
+            <li>Many users use the same password for their different accounts. So if any hacker cracks a hash output
+                and gets access to a user password then he can easily get access to his other accounts as well.
+            </li>
+            <li>There are some common passwords that are used by many users, for e.g. 123456 is one such password.
+                So if someone cracks the hash for this then he will get access to all the user accounts with that
+                password.</li>
+            <li>There are only a couple of hashing algorithms out there so it won't take much time for a hacker to
+                try all the possible combinations of passwords. Infact you can easily find such list online.</li>
+        </ul>
+        <ul>Benefits of using Salts -
+            <li>Prevents attack by reverse lookup table - If any hacker has made a table with precomputed hashes
+                then all he needs to do is match the hashes in his table and he will get access to the user's
+                password. To prevent these kind of attacks we use salts, so even if two users are having a same
+                password then their end hashes would still be different.</li>
+        </ul>
+    </article>
+    <article id="Lec497">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 497: Intro to Bcrypt</span></h2>
+        </header>
+        <p class="sec-para-main">Bcrypt is the hashing function that we are going to use. We use bcrypt methods
+            first to generate a salt and then to hash a password using that salt and after that we use
+            Brypt.compare() method to check if the password that the user entered is correct or not. We use the
+            async version of these methods over callback ones. Instead of generating a salt first and then hashing
+            the password, we can do both at the same time as well. The rounds of the salt determines the difficulty
+            levelof the hashing, higher the salt levels more time consuming it is to hash a password. Recommended
+            salt rounds is 12. The salt generation time doesn't depend on salt rounds. Salt rounds only affect the
+            actual hashing of password. </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Generating a hash password and a salt together -</p>
+const genPass = async(pw) => {
+const salt = await bcrypt.genSalt(saltRounds);
+const hash = await bcrypt.hash(pw, salt);
+}
+<p>Checking if the password is correct -</p>
+async function checkUser(userInput, hashedPw) {
+    const match = await bcrypt.compare(userInput, hashedPw);
+    if(match) {
+        console.log("Login successful");
+    }
+    else{
+        console.log("Wrong credentials;)
+    }
+}
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://github.com/kelektiv/node.bcrypt.js">Docs for Bcrypt</a></li>
+                <li>Also check <a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22346170#questions/13013216">Zarko's
+                        answer for more clarification on how salt works</a> in this thread.</li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec498">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 498: Auth Demo: Setup</span></h2>
+        </header>
+        <p class="sec-para-main">We setup the basics of our application, we install bcrypt, ejs, mongoose and
+            express in it. Make a model of User where it contain username and password and both are of String type.
+            We also make a form to ask for username and password.
+        </p>
+    </article>
+    <article id="Lec499">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 499: Auth Demo: Registering</span></h2>
+        </header>
+        <p class="sec-para-main">We now setup a route to display a form to register a user with username and a
+            password. We use Bcrypt to hash and store the password of the user in the database.</p>
+    </article>
+    <article id="Lec500">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 500: Auth Demo: Login</span></h2>
+        </header>
+        <p class="sec-para-main">We now make a form where a user can enter his credentials and then we check if the
+            details given by the user matches the details of the user registered in our database. We use
+            <span class="backend-tags">Bcrypt.compare</span> method to acheive this objective.
+        </p>
+    </article>
+    <article id="Lec501">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 501: Auth Demo: Staying logged in with session</span></h2>
+        </header>
+        <p class="sec-para-main">To stay logged in with the session we store the logged user ID into the session and
+            on subsequent request on the secret route we check if that session ID is there or not, if it's there we
+            give access to the secret route else we block them. We also add that user_id into the session
+            automatically when a user registers.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code to store user's id into the session object</p>
+req.session.user_id = user._id;
+<p>Logic for protecting secret route -</p>
+app.get('/secret', (req, res) => {
+    if (!req.session.user_id) {
+        req.flash('error', "Please login first");
+        res.redirect('/home')
+    }
+    else {
+        res.render('userpages/secret');
+    }
+})
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec502">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 502: Auth Demo: Logout</span></h2>
+        </header>
+        <p class="sec-para-main">We just remove the session ID which was associated with the user when we logged in
+            through a POST route.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code to set the id of the session to null</p>
+req.session._id = null;
+<p>Logic for route that I used -</p>
+<span class="code-comment">Note :This is different from Colt's route logic</span>
+app.post('/logout', (req, res) => {
+    if (!req.session.user_id) {
+        req.flash('error', 'Please login first');
+        return res.redirect('/home');
+    }
+    req.session.user_id = null;
+    req.flash('success', "Logged out, See you again");
+    res.redirect('/home');
+})
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec503">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 503: Auth Demo: Require Login Middleware</span></h2>
+        </header>
+        <p class="sec-para-main">We just put the whole login logic which was inside the route into a separate
+            middleware.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Logic for middleware -</p>
+const validateLogin = (req, res, next) => {
+    if (!req.session.user_id) {
+        req.flash('error', "Please login first");
+        return res.redirect('/home')
+    }
+    next();
+}
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec504">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 504: Auth Demo: Refactoring to Model Methods</span></h2>
+        </header>
+        <p class="sec-para-main">We now move the logic to validateUser and to hash the password of the user to the
+            Users Model rather than the index page. We use static methods and mongoose middleware to achieve this
+            objective. Static methods are attached to the Model rather than the document itself i.e. an instance of
+            the model (the object we get when we put a query in the database). On the other hand mongoose
+            middleware runs on Query, Model, Aggregate and Documents.</p>
+    </article>
+    <div class="article-example">
+        <code class="code-snippet"><pre>
+<p>Code to add in your User model -</p>
+<span class="code-comment">//Static methods are attached to the whole model rather than just the instance of model</span>
+
+userSchema.statics.findAndValidateUser = async function (username, password) {
+    const user = await this.findOne({ username });   <span class="code-comment">//this refers to the instance of a model here</span>
+    const verifiedUser = await bcrypt.compare(password, user.password);
+    return verifiedUser ? user : false;  <span class="code-comment">//Returning user is it is verified else return a false value</span>
+}
+
+userSchema.pre('save', async function (next) {
+    this.password = await bcrypt.hash(this.password, 12);
+    next();
+})
+</pre></code>
+    </div>
+    <div class="src-link">
+        <p>Sources -</p>
+        <ul>
+            <li><a href="https://mongoosejs.com/docs/middleware.html#pre">Docs for Pre middleware</a></li>
+            <li>Refer to Section45(Lecture462) for <a href="../section45/sec45.html#Lec462">explanation of mongoose
+                    middleware</a></li>
+            <li><a href="https://mongoosejs.com/docs/guide.html#statics">Docs for static methods</a></li>
+            <li>Refer to Section37(Lecture 392) for <a href="../section37/sec37.html#Lec392">explanation of static
+                    methods</a></li>
+            <li><a href="https://mongoosejs.com/docs/api.html#document_Document-isModified">Docs for mongoose
+                    isModified</a></li>
+        </ul>
+    </div>

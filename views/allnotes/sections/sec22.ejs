@@ -1,0 +1,419 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="js-sec-heading">Section 22: Callbacks & Array Methods</h1>
+        <nav class="sec-nav-li" id="sec22-nav">
+            <ul>
+                <li><a href="#Lec219">Lecture 219</a></li>
+                <li><a href="#Lec220">Lecture 220</a></li>
+                <li><a href="#Lec221">Lecture 221</a></li>
+                <li><a href="#Lec222">Lecture 222</a></li>
+                <li><a href="#Lec223">Lecture 223</a></li>
+                <li><a href="#Lec224">Lecture 224</a></li>
+                <li><a href="#Lec225">Lecture 225</a></li>
+                <li><a href="#Lec226">Lecture 226</a></li>
+                <li><a href="#Lec227">Lecture 227</a></li>
+                <li><a href="#Lec228">Lecture 228</a></li>
+                <li><a href="#Lec229">Lecture 229</a></li>
+                <li><a href="#Lec230">Lecture 230</a></li>
+                <li>
+                    <ul>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex47">Exercise
+                                47</a>
+                        </li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex48">Exercise
+                                48</a>
+                        </li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex49">Exercise
+                                49</a>
+                        </li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex50">Exercise
+                                50</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec219">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 219: What matters in this section?</span></h2>
+
+        </header>
+        <p class="sec-para-main">Array methods and Arrow functions are the main highlights of this section.</p>
+    </article>
+    <article id="Lec220">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 220: What is this section even about?</span></h2>
+        </header>
+        <p class="sec-para-main">This section is mainly about Array methods which take in function as an input and
+            also the introduction to arrow functions are they are mostly used with array methods.
+        </p>
+    </article>
+    <article id="Lec221">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 221: The forEach method</span></h2>
+        </header>
+        <p class="sec-para-main">The <span class="js-tags">forEach()</span> is an array method which can be called
+            on an array to execute a function on every element of an array. All the elements inside an array is
+            passed to the function.<span class="js-tags">forEach()</span> serve the same purpose as <span
+                class="js-tags">for..of</span> but is an older way of passing every element of an array through a
+            function. We mostly use an anonymous function in forEach() but we can use already defined functions
+            as well. Example -</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const myarr = [1,2,3];
+myarr.forEach(function square(item){
+  console.log(item**2);
+})
+<span class="code-comment">result - //1 4 9</span></pre></code>
+        </div>
+    </article>
+    <article id="Lec222">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 222: The map method</span></h2>
+        </header>
+        <p class="sec-para-main"><span class="js-tags">map</span> method executes a callback function on every
+            element of an
+            array and
+            returns a new array containg the result you get from that callback. It does not alter the
+            original
+            array, it just returns a new one containing the returned values.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const myarr = [1,2,3];
+const doubleIt = myarr.map(function(num){ 
+    return num*2
+})
+console.log(doubleIt) <span class="code-comment">//[2, 4, 6]</span>
+console.log(myarr)    <span class="code-comment">//[1, 2, 3]</span>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec223">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 223: Intro to arrow functions</span></h2>
+        </header>
+        <p class="sec-para-main">Arrow functions are just a cleaner and compact way of writing functions, they can
+            be used to
+            replace
+            function expressions. When you are writing anonymous functions which will only exist inside
+            a method
+            then arrow functions provides a compact way of doing so.</p>
+        <p class="sec-para-main">Map function from previous lecture with an arrow function.</p>
+        <code class="code-snippet"><pre>
+const myarr = [1,2,3];
+const doubleIt = myarr.map(num => { 
+    num*2
+})
+</pre></code>
+        <p class="notes"> When you are writing a arrow function with one
+            argument only then the parenthesis is optional, instead of curly braces we can also use
+            implicit return
+            in the above function.
+        </p>
+    </article>
+    <article id="Lec224">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 224: Arrow function implicit return</span></h2>
+        </header>
+        <p class="sec-para-main">If there is only one statement which is to be evaluated and returned from your
+            arrow function
+            then you
+            can implicit return that value. You can eliminate the <span class="keyword">return</span>
+            keyword,curly
+            braces and also write the expression to be evaluated on the same line. It only works for
+            single line
+            statements.</p>
+    </article>
+    <article id="Lec225">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 225: Arrow function wrapUp</span></h2>
+        </header>
+        <p class="sec-para-main">Arrow functions are mostly used when you are passing a function as a parameter to
+            another
+            function or
+            another method.</p>
+    </article>
+    <article id="Lec226">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 226: setTimeout and setInterval</span></h2>
+        </header>
+        <p class="sec-para-main"><span class='js-tags'>setTimeout</span> and <span class="js-tags">setInterval</span>
+            are two
+            functions which will execute a callback function after some specified duration. <span
+                class='js-tags'>setTimeout</span> will execute the callback function only once after the
+            time(in milliseconds) that you specified passes. On the other hand <span
+                class="js-tags">setInterval</span>executes the callback function repeatedly after the same time
+            duration that you specified in the function until <span class='js-tags'>clearInterval</span> is called
+            with the ID returned by the <span class="js-tags">setInterval</span> function.</p>
+        <p class="sec-para-main">This <span class='js-tags'>setTimeout</span> function will only execute once after
+            2000 milliseconds - </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+setTimeout(() => console.log("Hello"), 2000)
+</pre></code>
+        </div>
+        <p class="sec-para-main">This <span class='js-tags'>setInterval</span> function will keep on executing after
+            every
+            2000
+            milliseconds -
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const id = setInterval(() => console.log("Hello"), 2000)
+<h3>To stop it's execution use clearInterval with the id returned by setInterval</h3>
+clearInterval(id)
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec227">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 227: The filter method</span></h2>
+        </header>
+        <p class="sec-para-main"><span class="js-tags">filter</span> method when applied on an array returns a new
+            array with elements which satisfies the return condition with a boolean value of <span
+                class="value-tags">true</span>. <span class="js-tags">filter</span> method only takes condition
+            which evaluates to a boolean value. <span class="js-tags">filter</span> is often used with other methods
+            like <span class="js-tags">map</span>.
+        </p>
+        <p class="sec-para-main">Here <span class="js-tags">filter</span> is applied on numArr and result is stored
+            in evenNums which contains all the even numbers from the numArr and then <span class="js-tags">map</span> is
+            applied on it to square all the even numbers and store it in
+            evenNumSquare.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const numArr = [1,2,3,4,5,6,7,8,9,10]
+const evenNums = numArr.filter((num) => num%2===0)                              <span class="code-comment">//[2, 4, 6, 8, 10]</span>
+const evenNumSquare = numArr.filter((num) => num%2===0 ).map((num) => num**2)   <span class="code-comment">//[4, 16, 36, 64, 100]</span>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec228">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 228: Some & every methods</span></h2>
+        </header>
+        <p class="sec-para-main"><span class="js-tags">some</span> and <span class="js-tags">every</span> methods
+            returns a
+            boolean value.
+            <span class="js-tags">some</span> returns <span class="value-tags">true</span> even if a
+            single instance
+            of the array satisfies the return condition of the callback function. <span class="js-tags">every</span>
+            returns <span class="value-tags">true</span> if all the instances of the array satisfies the
+            return
+            condition of the callback function.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const marksheet = [89,87,90,71,80,75,99]
+marksheet.some(marks => marks > 95)      <span class="code-comment">//true</span>
+marksheet.some(marks => marks > 100)     <span class="code-comment">//false</span>
+marksheet.every(marks => marks > 70)   <span class="code-comment">//true</span>
+marksheet.every(marks => marks > 71)   <span class="code-comment">//false</span>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec229">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 229: The notorious reduce</span></h2>
+        </header>
+        <p class="sec-para-main"><span class="js-tags">Reduce</span> takes an array and gives us back a single value
+            depending
+            on
+            callback function we called upon the array. <span class="js-tags">Reduce</span> have a
+            callback function
+            which takes two parameters <span class="value-tags">accumulator and currentValue</span>. If
+            initial
+            value is not provided then accumulator starts with value of array at index[0] and
+            currentValue will
+            start with value of array at index[1]. After the initial call accumulator receives the
+            returned value from the callback function as the value for next accumulator and currentValue
+            will jump
+            to next element in the array. If an initial value is provided then accumulator start with
+            that value and
+            currentValue starts with value of array at index[0] and then the same process follows.
+        </p>
+        <p class="sec-para-main">This code snippet shows how reduce value uses the accumulator and currentValue -
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<h3>Summing up all the elements in an array -</h3>
+const myarr = [1,2,3,4,5];
+myarr.reduce((acc,val) => {
+console.log(acc,val, acc + val)
+    return acc + val
+})
+Output:<span class="code-comment">
+1 2 3
+3 3 6
+6 4 10
+10 5 15
+15    //The final returned value</span>
+<h3>Finding max value in an array</h3>
+const arr = [67,90,123,678,456]
+arr.reduce((acc,val) => {
+    if(acc > val){
+    return acc;
+    }
+    return val;
+})
+<span class="code-comment">Output: 678</span>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec230">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 230: The arrow function and 'this'</span></h2>
+        </header>
+        <p class="sec-para-main"> <span class="js-tags">this</span> keyword behaves differently for regular
+            functions and
+            arrow functions.
+            For regular functions <span class="js-tags">this</span> is bound to the <span class="keyword">execution
+                context</span> from where the function was called while the arrow functions <span
+                class="js-tags">this</span> is bound to the value of <span class="js-tags">this</span>
+            of enclosing
+            object. Arrow function inherit the value of <span class="js-tags">this</span> from lexical
+            scoping.</p>
+        <p class="sec-para-main"> If an arrow function is defined in the window object and called from window, then
+            <span class="js-tags">this</span> refers to the window object. Regular function will also give
+            the same
+            result in this scenario.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet">
+                    <pre>
+const myName = () => console.log(this)
+myName()    <span class="code-comment">//Window {…} Object</span>
+</pre></code>
+            <p class="sec-para-main">If a regular function is defined inside an object(also called method) and was
+                called as <span class="js-tags">object.function()</span> then <span class="js-tags">this</span>
+                inside
+                the method
+                refers to the object it was called upon.
+            </p>
+            <code class="code-snippet">
+                <pre>
+const myBook = {
+    title: 'Black Swan',
+    releaseYear : 2010,
+    bookInfo() {
+        console.log(this)
+        console.log(`${this.title} was released in ${this.releaseYear}`)
+    } 
+}
+myBook.bookInfo()
+<span class="code-comment"> Result//
+{title: "Black Swan", releaseYear: 2010, bookInfo: ƒ} myBook Object
+Black Swan was released in 2010</span>
+</pre></code>
+            <p class="sec-para-main">But for the arrow function in an object <span class="js-tags">this</span>
+                points to
+                the
+                window object as that it's lexically enclosing context. Value of <span class="js-tags">this</span>
+                in
+                myBook is window object.</p>
+            <code class="code-snippet">
+                <pre>
+const myBook = {
+    title: 'Black Swan',
+    releaseYear : 2010,
+    bookInfo : () => {
+        console.log(this)
+        console.log(`${this.title} was released in ${this.releaseYear}`)
+    } 
+}
+myBook.bookInfo()
+<span class="code-comment"> Result//
+{....} Window Object
+undefined was released in undefined</span>
+</pre></code>
+            <p class="sec-para-main">If you return an arrow function which exists inside a method in an object then
+                the
+                value of
+                <span class="js-tags">this</span> inside that arrow function will refer to the object from
+                which the
+                method was called upon.
+            </p>
+            <code class="code-snippet"><pre>
+const myBook = {
+    title: 'Black Swan',
+    releaseYear : 2010,
+    bookTime() { 
+        const bookInfo = () => {
+        console.dir(this)
+        console.log(`${this.title} was released in ${this.releaseYear}`)
+        }
+     return bookInfo
+    }
+}
+
+const book = myBook.bookTime()
+book()
+<span class="code-comment"> Result//
+Object
+Black Swan was released in 2010</span>
+
+let othBook = { title: 'Nothing'}
+othBook.newMethod = myBook.bookTime() 
+othBook.newMethod()
+<span class="code-comment"> Result//
+Object
+Black Swan was released in 2010</span>s
+</pre></code>
+            <p class="sec-para-main">The behaviour which we saw in the above example isn't replicated when you
+                replace
+                the arrow
+                function with
+                a regular one because <span class="js-tags">this</span> refers to the execution context of
+                the object
+                i.e what object comes to the left of the method while calling it.
+            </p>
+            <code class="code-snippet">
+    <pre>
+const myBook = {
+    title: 'Black Swan',
+    releaseYear : 2010,
+    bookTime() { 
+        function bookInfo () {
+        console.dir(this)
+        console.log(`${this.title} was released in ${this.releaseYear}`)
+        }
+     return bookInfo
+    }
+}
+
+const book = myBook.bookTime()
+book()
+<span class="code-comment"> Result//
+{....} Window Object
+undefined was released in undefined</span>
+
+let othBook = { title: 'Nothing'}
+othBook.newMethod = myBook.bookTime() 
+othBook.newMethod()
+<span class="code-comment">
+Object
+Nothing was released in undefined
+</span>
+</pre></code>
+        </div>
+        <ul>
+            <li><a href="https://www.javascripttutorial.net/javascript-this/">JStutorial</a></li>
+            <li><a href="https://www.javascripttutorial.net/javascript-execution-context/">Execution
+                    Context</a>
+            </li>
+            <li><a href="https://codeburst.io/all-about-this-and-new-keywords-in-javascript-38039f71780c">CodeBurst</a>
+                article</li>
+            <li><a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this#arrow_functions">MDN</a>
+                this for arrow functions</li>
+
+            <li><a
+                    href="https://www.freecodecamp.org/news/learn-es6-the-dope-way-part-ii-arrow-functions-and-the-this-keyword-381ac7a32881/">Free
+                    code camp</a></li>
+            <li><a href="https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/">Bind
+                    Smashing magazine</a></li>
+            <li><a
+                    href="https://stackoverflow.com/questions/31095710/methods-in-es6-objects-using-arrow-functions">SO</a>
+            </li>
+        </ul>
+    </article>

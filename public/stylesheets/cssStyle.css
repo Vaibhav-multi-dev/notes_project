@@ -1,0 +1,85 @@
+.css-sec-heading{
+    font-size: 20px;
+    background-color: rgb(223, 223, 245);
+    color: rgba(68, 73, 219, 0.8);
+    padding: 1em;
+    border: 3px solid gray;
+    border-left: none;
+    border-right: none;
+    margin-top: 2em;
+}
+
+.css-article-header{
+    background-color: #15abda;
+    border-radius: 10px;
+}
+
+.css-lec-heading{
+    font-size: 22px;
+    padding: 2px;
+    font-weight: 600;
+    background-color: rgb(175, 175, 243);
+    border-radius: 10%;
+}
+
+.css-tags{
+    background-color: rgb(167, 201, 235);
+}
+
+.inside-para{
+    margin: 0.5em;
+}
+
+/* Styles for multiple headings in a lecture */
+.sec-content-segregation h3{
+    margin-left: 1.8em;
+    color: rgb(186, 50, 204);
+}
+
+.sec-content-segregation p{
+    line-height: 1.5em;
+    margin: 1em 2em;
+}
+
+/* Styles for making a table in CSS sections */
+.css-article-table{
+    border: 3px solid rgb(62, 221, 23);
+    margin: 0 auto;
+    border-collapse: collapse;
+    margin-bottom: 1em;
+}
+
+.article-table-header{
+    padding: 1em;
+    border: 2px solid rgb(91, 223, 150);
+    color: rgb(0, 17, 255);
+}
+
+.article-table-content{
+    border-bottom: 2px solid darkcyan;
+    border-right: 2px solid darkcyan;
+    border-collapse: collapse;
+}
+
+.article-table-values{
+    text-align: right;
+    padding: 0.5em;
+    border: 2px solid rgb(236, 75, 75);
+    border-collapse: collapse;
+}
+
+
+/* Styles for "Back to Top" button */
+/* .css-article-header a{
+    display: inline-block;
+    margin-left: 2em;
+    background-color: rgb(204, 115, 100);
+    border: 2px solid rgb(159, 107, 211);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.5s linear;
+}
+
+.css-article-header a:hover{
+    background-color: rgb(42, 170, 202);
+} */

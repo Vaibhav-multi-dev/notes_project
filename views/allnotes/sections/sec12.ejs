@@ -1,0 +1,341 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="css-sec-heading">Section 12 CSS Framework: Bootstrap</h1>
+        <nav class="sec-nav-li" id="sec12-nav">
+            <ul>
+                <li><a href="#Lec119">Lecture 119</a></li>
+                <li><a href="#Lec120">Lecture 120</a></li>
+                <li><a href="#Lec121">Lecture 121</a></li>
+                <li><a href="#Lec122">Lecture 122</a></li>
+                <li><a href="#Lec123">Lecture 123</a></li>
+                <li><a href="#Lec124">Lecture 124</a></li>
+                <li><a href="#Lec125">Lecture 125</a></li>
+                <li><a href="#Lec126">Lecture 126</a></li>
+                <li><a href="#Lec127">Lecture 127</a></li>
+                <li><a href="#Lec128">Lecture 128</a></li>
+                <li><a href="#Lec129">Lecture 129</a></li>
+                <li><a href="#Lec130">Lecture 130</a></li>
+                <li><a href="#Lec131">Lecture 131</a></li>
+                <li><a href="#Lec132">Lecture 132</a></li>
+                <li>Coding Exercise Solutions -
+                    <ul>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex13">Exercise
+                                13</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex14">Exercise
+                                14</a></li>
+                    </ul>
+                </li>
+                <li><a href="#sec12-summary">Important links</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec119">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 119: What matters in this section</span></h2>
+
+        </header>
+        <p class="sec-para-main">This section is our introduction to bootstrap, the main focus of this section is
+            to learn what is bootstrap, how to integrate bootstrap or any other css framework in our webpage, pros
+            and cons of bootstrap. There are tons of bootstrap features to learn and some of them will be introduced
+            in this section but that won't be our main concern.
+        </p>
+    </article>
+    <article id="Lec120">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 120: What is Bootstrap?</span></h2>
+
+        </header>
+        <p class="sec-para-main">Bootstrap is a CSS library which lays a foundation for us to further build our site
+            upon, it's two main features are it's components like buttons,link etc. and other is it's grid system
+            which lays out the content in rows and columns and help us make responsive web pages easily.</p>
+    </article>
+    <article id="Lec121">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 121: Including Bootstrap & containers</span></h2>
+
+        </header>
+        <p class="sec-para-main">There are two ways to include Bootstrap in your website, one is by downloading the
+            bootstrap file onto your PC,another is by using a CDN link to use it on your webpage. Javascript files
+            are also needed in order for some components to work perfectly. They can be in bundle or in seperate
+            files <a href="https://getbootstrap.com/docs/4.6/getting-started/introduction/#js">Bootstrap docs for
+                js</a>. Downloading
+            bootstrap is preffered for people working on big projects to avoid any disturbances.</p>
+        <div class="sec-content-segregation">
+            <h3>Containers</h3>
+            <p>Container is basic layout class used in grid system in bootstrap, they have some margin and padding
+                by default. If you wish to cover whole page then use "container-fluid" class. Containers changes
+                their width according to the window size of the browser.
+                <a href="https://getbootstrap.com/docs/4.6/layout/overview/#containers">Botstrap docs for
+                    container</a>
+            </p>
+        </div>
+    </article>
+    <article id="Lec122">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 122: Bootstrap buttons</span></h2>
+
+        </header>
+        <p class="sec-para-main">Bootstrap uses <span class="css-tags">btn</span> class to denote a button with
+            bootstrap styling. <span class="css-tags">btn-primary</span>, <span class="css-tags">btn-secondary</span>
+            and
+            <a href="https://getbootstrap.com/docs/5.1/components/buttons/#examples">several other classes</a>
+            are used to display the purpose of button in bootstrap. It might seem that primary,secondary and other
+            values only
+            change the color of the buttons but that is not the case, they are used for semantic purposes and the
+            default values can be changed if one wishes to. Outlines can also be used instead of background color by
+            adding <span class="keyword">-outline-</span> in <span class="css-tags">btn-primary</span> or other
+            values, you can check <a
+                href="https://getbootstrap.com/docs/4.6/components/buttons/#outline-buttons">outline button examples
+            </a> on docs. Button states like "active" and "disabled" can also be used on buttons to give feedback to
+            user. Check <a href="https://getbootstrap.com/docs/4.6/components/buttons/#active-state">button state
+                examples here</a>. You can also <a
+                href="https://getbootstrap.com/docs/4.6/components/buttons/#sizes">change size of a button</a> with
+            bootstrap. Some other functionalities can also be done with button but thse were the topics that was
+            covered in Colt's lecture.
+        </p>
+    </article>
+    <article id="Lec123">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 123: Typography and utilities</span></h2>
+
+        </header>
+        <p class="sec-para-main">Bootstrap uses it's own font-setting, global settings and typography to style
+            things.You can see the <a href="https://getbootstrap.com/docs/4.6/content/typography/">docs for
+                typography</a> for more info.</p>
+        <div class="sec-content-segregation">
+            <h3>Display headings</h3>
+            <p>Display heading don't follow the orders like regular headings in HTML (<span
+                    class="html-tags">&lth1>&lth6></span>) and can be used in any order to style the
+                elements. <a href="https://getbootstrap.com/docs/4.6/content/typography/#display-headings">docs for
+                    display headings</a> </p>
+            <h3>Lead</h3>
+            <p>Lead class is used on a element to style it differently and make it stand out. <a
+                    href="https://getbootstrap.com/docs/4.6/content/typography/#lead">docs for lead</a> </p>
+            <h3>Blockquotes</h3>
+            <p> Blockquotes class is used to style quotes and blockquotes-footer class is used to indicate author of
+                the quote. <a href="https://getbootstrap.com/docs/4.6/content/typography/#blockquotes">docs for
+                    blockquotes</a> </p>
+            <h3>Utilities</h3>
+            <p>Utilities are not component on their own but they are added on to something for styling effects
+                the components. Colt discusses color utility in this lecture which can be used to change
+                background and text color. <a href="https://getbootstrap.com/docs/4.6/utilities/colors/">docs for
+                    color property</a> </p>
+        </div>
+    </article>
+    <article id="Lec124">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 124: Badges,alert and button groups</span></h2>
+
+        </header>
+        <div class="sec-content-segregation">
+            <h3>Badges</h3>
+            <p>Badges are used to show labels or for a count of something. For example- If you are using a signup
+                button
+                then
+                you can use a badge to see how many users have signed up. Check the <a
+                    href="https://getbootstrap.com/docs/4.6/components/badge/">badges Docs</a> here.</p>
+            <h3>Button groups</h3>
+            <p>Button groups can be used to wrap multiple buttons together. It will change the border radius of the
+                1st
+                and
+                last
+                button and it will also take away the margins from all the buttons. Check <a
+                    href="https://getbootstrap.com/docs/4.6/components/button-group/">button group Docs</a> for more
+                info</p>
+            <h3>Alerts</h3>
+            <p>Alerts can be used to give users feedback on some action they have done, like saved a form or
+                logged out of the system. To make the alert functionable classes of <span
+                    class="value-tags">alert-dismissable</span> <span class="value-tags">show</span> <span
+                    class="value-tags">fade</span> can be used but this requires you to add Bootstrap javascript
+                files. Use aria labels for screen reader accessibility. Check <a
+                    href="https://getbootstrap.com/docs/4.6/components/alerts/">alert Docs</a> for further info.
+            </p>
+        </div>
+    </article>
+    <article id="Lec125">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 125: Intro to Bootstrap Grid</span></h2>
+
+        </header>
+        <p class="sec-para-main">Bootstrap grid is used to layout content on the webpage and make it responsive to
+            screen size. Grid system only works with a <span class="css-tags">container</span>
+            class, container class can be applied on anything whether that be div, section, article main or any
+            other type of container. To further layout the page <span class="css-tags">row</span> class is used on
+            child element of container to denote a row which contain 12 unit spaces to deviate. row
+            class further have <span class="css-tags">col</span> class on it's child elements to layout the
+            content, col class is auto-sizing by default i.e if you
+            put two or three col in a row class then they will take equal space among the container. <span
+                class="css-tags">col</span> class can also be fixed to take up some specified space in browser
+            using class like <span class="value-tags">col-6</span> which will take up 6 columns of space in the
+            container and the remaining 6 columns of space will be divided equally among the rest of the
+            containers(if there are any) or will be left empty if there are none.
+        </p>
+    </article>
+    <article id="Lec126">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 126: Responsive Bootstrap Grid</span></h2>
+
+        </header>
+        <p class="sec-para-main">Grid system can be made responsive and change according to window
+            breakpoints(xs,sm,md,lg,xl). Syntax for that is <span class="keyword">[col-breakpoint-unitsize]</span>
+            <a href="https://getbootstrap.com/docs/4.6/layout/grid/#responsive-classes">Docs for responsive
+                classes</a> e.g., If we set
+            <span class="value-tags">col-md-4</span> class on col element then that col element will take 4 units of
+            space on window size medium and above of it's parent container, on lower window sizes it expands to fill
+            the size of parent container. Responsive images can also be designed using class <span
+                class="css-tags">img-fluid</span> on img elements, it makes sure that the image scales according to
+            the col container. You can read <a
+                href="https://getbootstrap.com/docs/4.6/content/images/#responsive-images">docs of responsive images
+            </a> for more info.
+        </p>
+    </article>
+    <article id="Lec127">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 127: Useful grid utilities</span></h2>
+
+        </header>
+        <p class="sec-para-main">Bootstrap is made on top of flexbox, so it is obvious it adopts some features of
+            flexbox in it as well like justify-content and align-items. We can use classes like
+            align-items-start,align-items-center on a row to style the content in boxes accordingly like we did in
+            flexbox in earlier section. You can read about <a
+                href="https://getbootstrap.com/docs/4.5/layout/grid/#vertical-alignment">bootstrap flex properties
+                here</a>.
+            Bootstrap also allows us to vertically and horizontally align our content according to browser window
+            size. <a href="../section 10/sec10.html#Lec106" target="_blank">Align items for flexbox</a> </p>
+    </article>
+    <article id="Lec128">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 128: Bootstrap & forms</span></h2>
+
+        </header>
+        <p class="sec-para-main"> <a href="../section5/sec5.html#Lec46" target="_blank">Forms</a> can also be styled
+            using
+            bootstrap, one of the
+            classes we use to style forms
+            in bootstrap is <span class="css-tags">form control</span> <a
+                href="https://getbootstrap.com/docs/4.5/components/forms/">Forms doc on bootstrap</a>. Colt covers
+            following points in his lecture - </p>
+        <div class="sec-content-segregation">
+            <h3>Form control</h3>
+            <p>Adds some styling to the input elements to give it a nicer look. Add <span
+                    class="value-tags">class="form-control"</span> to an element for it to take effect.</p>
+            <h3>Form group</h3>
+            <p> It is used to combine label and inputs together. It doesn't do much but adds some
+                margin to the bottom but it might behave a bit differently with form-inline class, see <a
+                    href="https://getbootstrap.com/docs/4.5/components/forms/#form-groups">form group docs </a> for
+                more info.
+                Add <span class="value-tags">class="form-group"</span> to a container which contain elements in it
+                to see it's effects.
+            </p>
+            <h3>Form row</h3>
+            <p>Behaves like basic row but with different gutter size. Syntax to add form row is <span
+                    class="value-tags">class="form-row"</span> to a container <a
+                    href="https://getbootstrap.com/docs/4.5/components/forms/#form-row">Docs for form row</a> </p>
+            <h3>Custom form elements</h3>
+            <p> We can use custom radio buttons, checkboxes instead of the default one with bootstrap. Basically it
+                works by overriding the default elements with their own styled components. <a
+                    href="https://getbootstrap.com/docs/4.5/components/forms/#checkboxes-and-radios">Docs for
+                    checkboxes and radios</a> </p>
+            <h3>Window breakpoint support</h3>
+            <p>Form elements also supports laying out content differently in respect with the browser window
+                breakpoint. Just add <span class="value-tags">col-md-6</span>, <span class="value-tags">col-sm-3</span>
+                like classes to an element for it to work.</p>
+        </div>
+    </article>
+    <article id="Lec129">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 129: Bootstrap Navbars</span></h2>
+
+        </header>
+        <p class="sec-para-main">Bootstrap can be used to create responsive navbars which stacks, shrinks or expands
+            the webpage according to the browser window. Check <a
+                href="https://getbootstrap.com/docs/4.6/components/navbar/">navbar docs</a> for detailed info on how
+            to implement it.
+        </p>
+        <div class="sec-content-segregation">
+            <h3>Navbar brand</h3>
+            <p>Navbar brand class i.e. <span class="css-tags">.navbar-brand</span> can be used to signify main
+                content of the navbar, you might also add an image beside it, it is added to the <span
+                    class="html-tags">&ltnav></span> tag. Navbar has two classes
+                <span class="value-tags">navbar-light</span> and <span class="value-tags">navbar-dark</span>
+                which indicates the text color of text inside navbars.
+            </p>
+            <h3>Navbar collapse</h3>
+            <p>Navbar might contain different links inside it which can be put inside a div containg anchor
+                links or ul's and li's. Navbar can also collapse and expand at specific screen size, set by the
+                user by applying <span class="css-tags">collapse navbar-collapse</span> and
+                <span class="css-tags">navbar-expand-screensize</span> where screen size could be (sm/md/lg)
+            </p>
+            <h3>Navbar toggle</h3>
+            <p>To enable the hamburger icon in the navbar, you need to add <span class="css-tags">navbar-toggler</span>
+                on a button and then set a data target which contains id
+                of the nav content you want to toggle. </p>
+            <h3>Navbar position</h3>
+            <p>Navbar can be positioned at different places by using bootstrap classes. To place it at the top use
+                <span class="css-tags">fixed-top</span> class on the navbar or to make it a sticky navbar at the top
+                you can use <span class="css-tags">sticky-top</span> class on navbar.
+            </p>
+            <p></p>
+        </div>
+    </article>
+    <article id="Lec130">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 130: Bootstrap icons</span></h2>
+
+        </header>
+        <p class="sec-para-main">Bootstrap icons are textual information that can be embedded in a HTML file to
+            display an icon on your webpage. Icons use svg format which stands for scalable vector graphics, they
+            are not an image element, they have path as an attribute which can be responsive in size and can be
+            styled with CSS. Website mentioned in the lecture - <a href="https://fontawesome.com/">Font awesome</a>
+        </p>
+    </article>
+    <article id="Lec131">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 131: Bootstrap utilities</span></h2>
+
+        </header>
+        <p class="sec-para-main">Bootstrap have a lot of utilities but we are covering border, shadow, padding and
+            margin in this lecture.
+        </p>
+        <div class="sec-content-segregation">
+            <h3>Bootstrap border</h3>
+            <p>Border can be added to an element in webpage by adding "border" class on it. Borders can also be put
+                at a
+                specific
+                position by using class like "border-top", "border-bottom" etc. They can be removed and styled using
+                bootstrap
+                border classes as well. See the <a href="https://getbootstrap.com/docs/4.6/utilities/borders/">Docs</a>
+                for
+                more information.</p>
+            <h3>Shadow</h3>
+            <p>Shadows can be added to an element in HTML by using "shadow" class. It supports four values
+                "shadow-none","shadow-sm","shadow" and "shadow-lg".See <a
+                    href="https://getbootstrap.com/docs/4.6/utilities/shadows/">Docs</a> for more information.</p>
+            <h3>Margin and Padding</h3>
+            <p>Bootstrap makes it easier to add and remove margins & padding from HTML elements by using classes.
+                They use the format {property}{sides}-{breakpoint}-{size} for all but xs screen size. Property can
+                be set to <span class="css-tags">m</span> which stands for margin or <span class="css-tags">p</span>
+                which stands for padding, sides can be <span class="value-tags">t(top), b(bottom), l(left),
+                    r(right), x(left & right), y(top & bottom)</span> or leave it blank to apply
+                to all sides. Size values can be set from 0-5 or auto. See the
+                <a href="https://getbootstrap.com/docs/4.6/utilities/spacing/">docs</a> to see how padding and
+                margin works.
+            </p>
+            <h3>Display</h3>
+            <p> Colt also covers the display property in bootstrap through which we can switch the display from
+                inline to block(or any other value) based on scrren sizes. <a
+                    href="https://getbootstrap.com/docs/4.6/utilities/display/">docs for display</a>.</p>
+        </div>
+    </article>
+    <article id="Lec132">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 132: Mix of bootstrap features</span></h2>
+
+        </header>
+        <p class="sec-para-main">Colt tells us a bit about Cards,Carousel, Dropdown menus and Spinner in this
+            lecture. See the <a href="https://getbootstrap.com/docs/4.6/getting-started/introduction/">bootstrap
+                docs</a> to read about them or watch Colt's lecture to review them. Colt doesn't go into much detail
+            about these as it is expected of the students to be comfortable by now on how to refer to the bootstrap
+            docs and implement features on your own.
+        </p>
+    </article>

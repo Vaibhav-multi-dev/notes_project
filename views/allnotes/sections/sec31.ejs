@@ -1,0 +1,108 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 31: Our first brush with node</h1>
+        <nav class="sec-nav-li" id="sec31-nav">
+            <ul>
+                <li><a href="#Lec314">Lecture 314</a></li>
+                <li><a href="#Lec315">Lecture 315</a></li>
+                <li><a href="#Lec316">Lecture 316</a></li>
+                <li><a href="#Lec317">Lecture 317</a></li>
+                <li><a href="#Lec318">Lecture 318</a></li>
+                <li><a href="#Lec319">Lecture 319</a></li>
+                <li><a href="#Lec320">Lecture 320</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec314">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 314: What matters in this section ?</span></h2>
+        </header>
+        <p class="sec-para-main">This section is our introduction to node. Our main focus will be to learn the
+            basics of Node and nothing else.
+        </p>
+    </article>
+    <article id="Lec315">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 315: Introducing Node JS</span></h2>
+        </header>
+        <p class="sec-para-main">Node is a javascript library which runs outside the browser but doesn't
+            contain some of the events like javascript does in browser like DOM selector, querySelector etc.
+            Node is one of the most popular library used for server-side applications. The advantage of using Node
+            is that we won't need to learn separate language for our backend part, javascript will be sufficient for
+            using node.</p>
+    </article>
+    <article id="Lec316">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 316: What is Node used for?</span></h2>
+        </header>
+        <p class="sec-para-main">Node is used to build server side web applications, command line tools, native
+            applications using electron ,video games etc. With Node we can make our own API and work with
+            databases, use command line tools that lack GUI, make applications that work in browser as well as
+            windows and mac. It also has several other purposes but our main focus will be on using node for server
+            side applications. </p>
+    </article>
+    <article id="Lec317">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 317: Installing Node</span></h2>
+        </header>
+        <p class="sec-para-main">Just follow the instructions in the Colt's lecture.</p>
+    </article>
+    <article id="Lec318">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 318: The node REPL</span></h2>
+        </header>
+        <p class="sec-para-main">Node REPL is used to test out small features of javascript application quickly. We
+            enter the node REPL by typing <span class="command-tags">node</span> in the terminal. REPL
+            stands for read, evaluate, print, loop. Instead of reading the whole script then evaluating and
+            executing it like javascript does in normal browsers, node repl functions a bit differently it does so
+            line
+            by line like a browser console. Node REPL doesn't have features and functions realted to DOM, it has
+            it's own global object which has methods of it's own. To exit the node REPL we use <span
+                class="keyword">.exit</span> command.</p>
+    </article>
+    <article id="Lec319">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 319: Running node files</span></h2>
+        </header>
+        <p class="sec-para-main">You can run javascript files using node <span class="keyword">filename</span> where
+            filename stands for name of your javascript file. You need to be in the directory where your javascript
+            file is to execute it using node or use a relative or absolute path to execute it.</p>
+    </article>
+    <article id="Lec320">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 320: Process and Argv</span></h2>
+        </header>
+        <p class="sec-para-main">Process is an object available in global scope, it contains bunch of properties and
+            methods. The method which is focus of this article is <span class="backend-tags">Process.argv()</span>
+            it is method which when executed without any arguments will give out an array containing the executable
+            path of the Node.js process
+            <a href="https://nodejs.org/docs/latest-v15.x/api/process.html#process_process_execpath">Docs for
+                execpath</a>. The second element will be the path to the JavaScript file being executed. The
+            remaining elements will be any additional command-line arguments which the user may provide. <a
+                href="https://nodejs.org/docs/latest-v15.x/api/process.html#process_process_argv">Docs for
+                process.argv</a>
+        </p>
+    </article>
+    <article id="Lec321">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 321: File system module crash course</span></h2>
+        </header>
+        <p class="sec-para-main">File system enables us to interact with file system in node. It is present as an
+            object in node. Colt introduces us to two methods in this lecture, one is to make a folder and other is
+            to make a file. Both of these methods have a synchronous and an asynchronous form. To make a folder we
+            use the method <span class="backend-tags">fs.mkdir</span>, in it's async form it accepts two arguments :
+            first is the folderName and other is a callback function. For it's sync method it just takes a folder
+            name as an argument, there are also optional arguments present in both the forms. To make a file we use
+            the method <span class="backend-tags">fs.writeFile</span> and <span
+                class="backend-tags">fs.writeFileSync</span> is it's synchronous form. It takes the name of the file
+            you want to create and it also takes an <span class="keyword">data</span> argument which will contain
+            the data you want to put in the file. </p>
+        <div class="src-link">
+            <p>Additional Info-</p>
+            <ul>
+                <li><a href="https://nodejs.org/api/fs.html#fsmkdirpath-options-callback">Docs for fs.mkdir</a></li>
+                <li><a href="https://nodejs.org/api/fs.html#fswritefilefile-data-options-callback">Docs for
+                        fs.writeFile</a></li>
+            </ul>
+        </div>
+    </article>

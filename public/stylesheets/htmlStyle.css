@@ -1,0 +1,31 @@
+.html-tags{
+    font-size: 0.9rem;
+    background-color: #b5e48c;
+}
+
+.html-sec-heading{
+    background-color: #f5af47;
+    font-size: 20px;
+    color: rgba(68, 73, 219, 0.8);
+    padding: 1em;
+    border: 3px solid rgb(27, 9, 9);
+    border-left: none;
+    border-right: none;
+    margin-top: 2em;
+}
+
+.html-article-header{
+    background-color: #f5a490;
+    border-radius: 10px;
+}
+
+.html-article-header h2{
+    display: inline;
+}
+
+.html-lec-heading{
+    font-size: 22px;
+    padding: 2px;
+    font-weight: 600;
+    background-color: #fb8500;
+}

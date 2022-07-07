@@ -1,0 +1,158 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 42: Handling Errors in Express Apps</h1>
+        <nav class="sec-nav-li" id="sec42-nav">
+            <ul>
+                <li><a href="#Lec432">Lecture 432</a></li>
+                <li><a href="#Lec433">Lecture 433</a></li>
+                <li><a href="#Lec434">Lecture 434</a></li>
+                <li><a href="#Lec435">Lecture 435</a></li>
+                <li><a href="#Lec436">Lecture 436</a></li>
+                <li><a href="#Lec437">Lecture 437</a></li>
+                <li><a href="#Lec438">Lecture 438</a></li>
+                <li><a href="#Lec439">Lecture 439</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec432">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 432: What matters in this section?</span></h2>
+        </header>
+        <p class="sec-para-main">This section is fully about handling errors in express, the important part in this
+            section is defining custom error handlers, handling async errors and defining custom error class.</p>
+    </article>
+    <article id="Lec433">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 433: Express built in error handler</span></h2>
+        </header>
+        <p class="sec-para-main">In this lecture Colt introduces us to the default error handler of the express, it
+            is always present there at the end of the middleware stack, whenever there is an error in your app
+            whether that error is in your code or whether it is thrown delibirately, it is handled by this default
+            express error handler. This default error handler sets the status code to 500 and sends back an HTTP
+            response with some error stack trace and the name of the error.</p>
+    </article>
+    <article id="Lec434">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 434: Defining custom error handlers</span></h2>
+        </header>
+        <p class="sec-para-main">To define our custom error handler we make a middleware function with four
+            arguments instead of three, by convention those arguments are <span
+                class="backend-tags">err,req,res,next</span>. Custom error handlers are placed at the end of the
+            application to be executed properly, it's also possible to call multiple error handler. In order to do
+            that we pass the <span class="keyword">err</span> object from our previous error handler to the next
+            error handler, we do that while calling <span class="keyword">next(err)</span> from inside the previous
+            error handler. If we don't pass the <span class="keyword">err</span> object while calling next then the
+            next error handler will be called but it won't contain the error message which was generated originally.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Example of a custom error handler -</p>
+app.use((err,req,res,next){
+    console.log("I am the custom error");
+    next(err)       <span class="code-comment">//Calling next error handler with err object</span>
+})
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec435">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 435: Our custom error class</span></h2>
+        </header>
+        <p class="sec-para-main">Custom error class is used to extend the default error class and add status object
+            onto it which can be further used for sending customized error page with status code and a
+            message. Custom error class extends the default error class and can add it's own stuff if we wish to,
+            right now we are adding status object onto it. If we don't make our own error class with status object
+            then by default the status code will be set to 500 which doesn't tell us much about the error we
+            encountered, on the other hand when we set status code while throwing an error from customized error
+            class we can know what kind of error it was, was the user not authorized(403), the user didn't have
+            permission(401) and other possibilities.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code to make the AppError class -</p>
+class AppError extends Error {
+    constructor(message, status) {
+        super();
+        this.message = message;
+        this.status = status;
+    }
+}
+
+module.exports = AppError;
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec436">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 436: Handling Async Errors</span></h2>
+        </header>
+        <p class="sec-para-main">Async errors are not handled like synchronous errors, to handle an asynchronous
+            error in a route we call the <span class="backend-tags">next(err)</span> from within the route whenever
+            there is an error. But only calling <span class="backend-tags">next()</span> with error won't suffice as
+            the execution of the rest of the code in route will still be on, to stop the execution of rest of the
+            code we have to return the <span class="keyword">next()</span> error call.</p>
+    </article>
+    <article id="Lec437">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 437: Handling more Async Errors</span></h2>
+        </header>
+        <p class="sec-para-main">In this lecture Colt teaches us to handle async errors not deliberately thrown by
+            us but rather thrown by mongoose or some wrong code. To handle these errors we wrap the whole async
+            route logic with try and catch which will prevent the further execution of the route logic and call the
+            error handler.</p>
+    </article>
+    <article id="Lec438">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 438: Defining an Asnyc Utility</span></h2>
+        </header>
+        <p class="sec-para-main">In this lecture we replace the <span class="backend-tags">try..catch</span> block
+            in each of the routes with a wrapper function that returns a function which in turn executes the
+            original function but with a catch block attached to it.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+function wrapAsync(fn) {
+     return function (req,res,next) {
+     fn(req,res,next).catch(e => next(e))
+    }
+}
+</pre></code>
+        </div>
+        <div class="extra-info">
+            <p>Okay, so this wrapper function has caused a lot of confusion for many students(myself included) as
+                evident from the udemy Q/A. I will try to explain what I could understand from reading Louli's reply
+                to two of the threads which I will be attaching below. </p>
+            <h3>Explanation -</h3>
+            <p>Wrapper function returns a powered function which then calls the function which we were originally
+                intending to call and then it attaches the catch block to that function. The function inside the
+                wrapAsync gets access to parameters <span class="keyword">req,res,next</span> because it is called
+                from inside the express route to which these parameters are passed every time a route is accessed.
+                We return a function from wrapAsync which calls the original intended function instead of directly
+                returning the intended function because if we directly return the intended function then it will be
+                executed in the runtime only and won't produce desirable results as our rest of the code won't run
+                on time. Note: It is also possible to just attach a catch block at the end of every route logic to
+                mimic the same behaviour but many people avoid doing that to maintain cleanliness of code.
+            </p>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li>See <a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22101650#questions/13071680">Louli's
+                        reply in this thread</a> for a better explanation
+                </li>
+                <li> <a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22101650#questions/13946084">Another
+                        thread to check out better explanations</a>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec439">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 439: Differentiating Mongoose Errors</span></h2>
+        </header>
+        <p class="sec-para-main">In this lecture Colt teaches us to single out the mongoose errors. We do that by
+            making use of <span class="backend-tags">err.name</span> which exists in every error handler. We then
+            make a function which only runs when we encounter a specific kind of error and handle it differently
+            than the rest of the error with a custom message and error code.</p>
+    </article>

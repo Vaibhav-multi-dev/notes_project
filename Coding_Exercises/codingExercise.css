@@ -1,0 +1,36 @@
+div{
+    margin: 0;
+}
+
+h4{
+    margin: 0;
+}
+
+pre{
+    margin:0;
+}
+
+code{
+    padding: 0.5rem;
+}
+
+#nav-bar-exercise > ul{
+    padding-left: 0;
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+}
+
+.sol-box{
+    padding: 0.5rem;
+    border: 3px solid orange;
+}
+
+.sol-author{
+    font-style: italic;
+    font-weight: lighter;
+}
+
+.cod-exer{
+    color: #b50938;
+}

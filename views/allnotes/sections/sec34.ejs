@@ -1,0 +1,143 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 34: Creating dynamic HTML with templating</h1>
+        <nav class="sec-nav-li" id="sec34-nav">
+            <ul>
+                <li><a href="#Lec339">Lecture 339</a></li>
+                <li><a href="#Lec340">Lecture 340</a></li>
+                <li><a href="#Lec341">Lecture 341</a></li>
+                <li><a href="#Lec342">Lecture 342</a></li>
+                <li><a href="#Lec343">Lecture 343</a></li>
+                <li><a href="#Lec344">Lecture 344</a></li>
+                <li><a href="#Lec345">Lecture 345</a></li>
+                <li><a href="#Lec346">Lecture 346</a></li>
+                <li><a href="#Lec347">Lecture 347</a></li>
+                <li><a href="#Lec348">Lecture 348</a></li>
+                <li><a href="#Lec349">Lecture 349</a></li>
+                <li><a href="#Lec350">Lecture 350</a></li>
+                <li><a href="#Lec351">Lecture 351</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec339">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 339: What matters in this section ?</span></h2>
+        </header>
+        <p class="sec-para-main">This section our focus will be on learning how to respond with templates instead of
+            just plain text or HTML pages. We will use ejs for that purpose, ejs stands for Embedded javascript
+            which basically means using javascript in HTML pages. </p>
+    </article>
+    <article id="Lec340">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 340: What is templating ?</span></h2>
+        </header>
+        <p class="sec-para-main">If there's some specific structure that your webpage follows then we make use of
+            templates. A template page changes some content dynamically by making use of conditionals. We use <span
+                class="keyowrd">ejs</span> as our templating language, there are also other languages that can be
+            used for templating but we opted for <span class="keyword">ejs</span> because it's popular and it's
+            syntax doesn't differ much from javascript. </p>
+    </article>
+    <article id="Lec341">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 341: Configuring Express for EJS</span></h2>
+        </header>
+        <p class="sec-para-main">To use ejs for our templates in our express app we first install the EJS package
+            and then use <span class="command-tags">app.set('view engine', 'ejs')</span> to set the view engine to
+            ejs. Then to render a page with ejs extension we use res.render() in our http request method instead of
+            res.send(). By default this method looks for the files inside the <span class="keyword">views</span>
+            directory but this can be changed as well. </p>
+        <p class="notes">Note: Make sure your files extension is .ejs otherwise it will have issues rendering the
+            page.</p>
+        <div class="src-link">
+            <p>Source -</p>
+            <ul>
+                <li><a href="https://expressjs.com/en/api.html#app.set">Docs for app.use()</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec342">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 342: Setting the views directory</span></h2>
+        </header>
+        <p class="sec-para-main">To make sure our app runs easily from wherever we call it and not just the folder
+            where our file exists, we set the views directory by using the <span class="command-tags">app.set('views',
+                path.join(__dirname, '/views'))</span> but to use this method
+            we need to require node module 'path' first.</p>
+    </article>
+    <article id="Lec343">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 343: EJS interpolation syntax</span></h2>
+        </header>
+        <p class="sec-para-main">To use ejs in our pages we use the format <span class="command-tags">&lt%=
+                %></span>, anything between this sign will be interpreted as javacript and embedded in our page.
+        </p>
+    </article>
+    <article id="Lec344">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 344: Passing data templates</span></h2>
+        </header>
+        <p class="sec-para-main">It is also possible to pass data into our template file by passing it off as second
+            parameter in <span class="backend-tags">res.render()</span> method, the data needs to be in object
+            format. </p>
+    </article>
+    <article id="Lec345">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 345</span></h2>
+        </header>
+        <p class="sec-para-main"></p>
+    </article>
+    <article id="Lec346">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 346: Conditionals in EJS</span></h2>
+        </header>
+        <p class="sec-para-main">To use logic in our EJS file, we wrap the conditional within <span
+                class="backend-tags">&lt% %></span>. We can use if-else conditional, for loop etc. within these tags
+            it won't be embedded in the page like <span class="backend-tags">&lt%= %></span> tag does. </p>
+    </article>
+    <article id="Lec347">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 347: Loops in EJS</span></h2>
+        </header>
+        <p class="sec-para-main">Colt just shows how do we use <span class="backend-tags">&lt% %></span> tag to
+            run loops in EJS file.</p>
+    </article>
+    <article id="Lec348">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 348</span></h2>
+        </header>
+        <p class="sec-para-main"></p>
+    </article>
+    <article id="Lec349">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 349: Serving static assets in Express</span></h2>
+        </header>
+        <p class="sec-para-main">To serve css, js or any other asset file in express we use <span
+                class="backend-tags">express.static</span> function with <span class="command-tags">app.use()</span>
+            so the files are served every time we make a request. We also need to use <span
+                class="backend-tags">path.join()</span> to eliminate the error which occurs when one calls the file
+            from outside the root directory i.e. the directory where files is located. You can put the following
+            code in your express app to serve the static files in a folder named public in your root directory.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+app.use(express.static(path.join(__dirname, 'public')))
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec350">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 350: Bootstrap + Express</span></h2>
+        </header>
+        <p class="sec-para-main">To include bootstrap in your express app, we download both the css and js files of
+            bootstrap and put them in public folder of our root directory and then serve it.</p>
+    </article>
+    <article id="Lec351">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 351: EJS & Partials</span></h2>
+        </header>
+        <p class="sec-para-main">Partials are kind of like sub templates which can be included in your EJS
+            templates, usually they are put in a folder called partials inside the views directory itself.
+            They help us to avoid wrting the code again and again (follow the <span class="keyword">DRY</span>
+            principle) . We use the tag <span class="backend-tags">&lt%-
+                include('filepath') %></span> to indicate the path of partials.
+        </p>
+    </article>

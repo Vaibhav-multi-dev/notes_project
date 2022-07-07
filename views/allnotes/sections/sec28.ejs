@@ -1,0 +1,183 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="js-sec-heading">Section 28: AJAX and API's</h1>
+        <nav class="sec-nav-li" id="sec28-nav">
+            <ul>
+                <li><a href="#Lec283">Lecture 283</a></li>
+                <li><a href="#Lec284">Lecture 284</a></li>
+                <li><a href="#Lec285">Lecture 285</a></li>
+                <li><a href="#Lec286">Lecture 286</a></li>
+                <li><a href="#Lec287">Lecture 287</a></li>
+                <li><a href="#Lec288">Lecture 288</a></li>
+                <li><a href="#Lec289">Lecture 289</a></li>
+                <li><a href="#Lec290">Lecture 290</a></li>
+                <li><a href="#Lec291">Lecture 291</a></li>
+                <li><a href="#Lec292">Lecture 292</a></li>
+                <li><a href="#Lec293">Lecture 293</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec283">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 283: What matters in this section?</span></h2>
+        </header>
+        <p class="sec-para-main">This section most crucial takeaway is to learn how to work with API's, JSON and
+            how to make HTTP requests with Axios.
+        </p>
+    </article>
+    <article id="Lec284">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 284: Intro to AJAX</span></h2>
+        </header>
+        <p class="sec-para-main">AJAX stands for asynchronous javascript and XML. It is used to load
+            information, fetch data or send some of your data to some database somewhere seamlessly behind the
+            scenes. It does so while the javacript file is loading or even after it has loaded. The data we
+            receive back is in JSON format and not like a typical webpage data which consists of HTML,CSS and
+            Javascript.</p>
+    </article>
+    <article id="Lec285">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 285: What is API</span></h2>
+        </header>
+        <p class="sec-para-main">API stands for application programming interface. When one piece of software
+            needs to interact with another piece of software, it does so by an interface. It could be possible
+            that we need some data on the page which updates on regular intervals or after our web page has
+            loaded. We usually extract this data from another site and to make the interaction easier the other
+            websites have made something called endpoints which only expose a certain part of a website to
+            interact with. The data we get back from it is of JSON object which just contains the information
+            and none of the styling or html tags, it is done so to reduce the overhead i.e. extra data which you
+            won't need. The API's are not just used to fetch or load data, they can also be used to send
+            automated responses like automated calls or messages and even more complicated stuff. Refer to <a
+                href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Introduction">MDN
+                intro to API</a> and <a href="https://developer.mozilla.org/en-US/docs/Glossary/API">MDN API</a>
+            to read more.</p>
+    </article>
+    <article id="Lec286">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 286: JSON intro</span></h2>
+        </header>
+        <p class="sec-para-main">JSON stands for javascript Object notation.JSON is the format in which we
+            usually get back our data when we make a request to third party API's, there is also XML but
+            that is quite rare nowadays. On the outset JSON object strikes a bit of resembalance with Javascript
+            but they are quite different. JSON also uses an object with key-value pair to store the data. keys
+            are always stored in double quotes while data could be of multiple formats. We also have a method
+            in javascript called <span class="js-tags">JSON.parse()</span> <a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">MDN
+                for JSON.parse()</a> which converts the JSON string
+            that we receive into a String object so that we can work with the received data easily, there is
+            also a method to do the reverse called <span class="js-tags">JSON.stringify()</span> <a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">MDN
+                for JSON.stringify()</a> which converts
+            the javacript object data into JSON so it could be sent back to the server.</p>
+    </article>
+    <article id="Lec287">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 287: Using postman</span></h2>
+        </header>
+        <p class="sec-para-main">Postman is a tool widely used for making HTTP requests, it doesn't add some
+            extra functionality just gives us an easy way to interact with differnet API's. We can make
+            different kind of requests with Postman like GET,POST,DELETE etc. Our main focus in this section
+            will be on GET requests only. GET is used to GET something from the webpage whereas POST is used to
+            send sometihng to a webpage. If you send a POST
+            request where a GET request is expected then it will give you an error, distinction between requests
+            is important. The response we receive is of prime importance and is the reason we use tools like
+            postman because it makes it easier to check the different parts of response, important parts which
+            are mentioned in this lecture are - header which contains information(metadata) about the request
+            sent or the response received, body which contains the body of the response it could be in
+            XML, HTML,JSON or any
+            other format, another important part of response is status code which indicates what happened to the
+            requests we made for e.g. a status code of <span class="value-tags">200</span> indicates OK which
+            means we have received the request successfully. different status code denote different meanings,
+            there is a slight pattern in status codes, codes starting with 2 indicates that there was no
+            problem, codes starting with 3 indicates redirection, codes starting with 4 indicates error
+            on our side, while codes starting with 5 indicates server side error. You can see the full list at
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">MDN status codes</a>
+        </p>
+    </article>
+    <article id="Lec288">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 288: Query string and headers</span></h2>
+        </header>
+        <p class="sec-para-main">Query strings are key-value pairs that we can provide to an API endpoint as
+            additional pieces of information which can modify the results we are getting, if there are more than
+            one query string to be provided then they are separated by <span class="value-tags">&</span>. To
+            provide a query to the API your query variable name should match with what the API was expecting
+            otherwise it will be ignored.It's a bit similar to what we have seen earlier in form submission. In
+            Postman you can use <span class="keyword">params</span> tab to add a query string.
+            Headers of the API can be used to modify the format and other properties of the data we are
+            receiving.</p>
+    </article>
+    <article id="Lec289">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 289: Making XHR's</span></h2>
+        </header>
+        <p class="sec-para-main">XHR stands for XMLHttpRequest, it is the oldest way of making requests and is
+            not recommended anymore as we have newer and better way of doing things. To make a XMLHttpRequest we
+            first create a XML object and then store it in a variable, after that we attach an <span
+                class="js-tags">.onload()</span> function on it to execute when the operation is successful and
+            <span class="js-tags">.onerror()</span> to execute when there is an error in our request. We then
+            open it using <span class="js-tags">.open()</span> method which expects two parameter first the
+            request method like GET,POST etc and second paramter is the url of the API you want to access. We
+            also need to call <span class="js-tags">JSON.parse()</span> on the data we get because it's in JSON
+            format.
+        </p>
+    </article>
+    <article id="Lec290">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 290: The fetch API</span></h2>
+        </header>
+        <p class="sec-para-main">Fetch API supports promises and is a better way than XHR to make API requests.
+            It returns a response which is a promise object which can be used to further attach <span
+                class="js-tags">.then()</span> to it. The response object is returned as soon as we get the
+            headers from the API, it doesn't wait for the whole data. The <span class="keyword">data</span>
+            we get from <span class="js-tags">fetch</span> is a promise itself we use the <span
+                class="js-tags">.json()</span> tag on the received data to convert it into JS object. fetch
+            method rarely fails mostly when there is a network issue or browser was somehow wasn't able to send
+            a request to the API.
+        </p>
+    </article>
+    <article id="Lec291">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 291: Intro to axios</span></h2>
+        </header>
+        <p class="sec-para-main">Axios is built over fetch and is a third party library, it just makes the work
+            of making API requests easy for us. With axios we only need to use <span class="js-tags">.get()</span>
+            method to receive the full data from API compared to fetch where
+            we could only get headers in the first place. Axios can be used on both client and server side but
+            our focus in this section will mainly be on client side of axios.</p>
+    </article>
+    <article id="Lec292">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 292: Setting header with axios</span></h2>
+        </header>
+        <p class="sec-para-main">Axios also accepts a second parameter which can be used to pass a query string
+            or a header. Usually we don't pass it directly rather we put the details we need to pass in an
+            object and then pass that object in the axios <span class="js-tags">.get()</span> method.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const config = { headers: { Accept: "application/json" } }
+
+axios.get("https://icanhazdadjoke.com/", config)
+</pre></code>
+        </div>
+        <p class="sec-para-main">In the above paragraph we use <span class="value-tags">application/json</span>
+            as value of Accept header and pass it into axios get method as an object.
+        </p>
+    </article>
+    <article id="Lec293">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 293: TV show search app</span></h2>
+        </header>
+        <p class="sec-para-main"></p>
+    </article>
+    <article id="sec28-summary">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Important links and Formulas</span></h2>
+        </header>
+        <h3>Important links -</h3>
+        <ul>
+            <li>Watch this video of <a href="https://www.youtube.com/watch?v=tgbRY96q-KM">WebDevSimplified</a>
+                for
+                explanation of API's</li>
+        </ul>
+    </article>

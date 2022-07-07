@@ -1,0 +1,184 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 38: Mongoose with Express</h1>
+        <nav class="sec-nav-li" id="sec38-nav">
+            <ul>
+                <li><a href="#Lec395">Lecture 395</a></li>
+                <li><a href="#Lec396">Lecture 396</a></li>
+                <li><a href="#Lec397">Lecture 397</a></li>
+                <li><a href="#Lec398">Lecture 398</a></li>
+                <li><a href="#Lec399">Lecture 399</a></li>
+                <li><a href="#Lec400">Lecture 400</a></li>
+                <li><a href="#Lec401">Lecture 401</a></li>
+                <li><a href="#Lec402">Lecture 402</a></li>
+                <li><a href="#Lec403">Lecture 403</a></li>
+                <li><a href="#Lec404">Lecture 404</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec395">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 395: What matters in this section ?</span></h2>
+        </header>
+        <p class="sec-para-main">This section our main focus is to learn how to integrate mongoose with express and
+            also
+            learn how to implement CRUD functionality while combining mongoose and express.</p>
+    </article>
+    <article id="Lec396">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 396: Express + Mongo Basic Setup</span></h2>
+        </header>
+        <p class="sec-para-main">In this lecture we just connect mongoose with express and nothing more. To do so
+            just
+            write the basic express logic and the basic mongoose logic in one js file.</p>
+    </article>
+    <article id="Lec397">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 397: Creating our model</span></h2>
+        </header>
+        <p class="sec-para-main">Uptil now we have created models in the same file where we connect to the mongoose
+            but
+            in this lecture we will be using a seperate file to store the models of our database to make sure that
+            if we
+            have more than two models then it doesn't get intermingled with each other. We also make a <span
+                class="keyword">seeds</span> file called seeds which contains some sample data we can work with.
+        </p>
+    </article>
+    <article id="Lec398">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 398: Products Index</span></h2>
+        </header>
+        <p class="sec-para-main">Products index page is meant to display all the products, to do so we follow the
+            REST
+            pattern and then use the <span class="backend tags">Product.find({})</span> method in a <span
+                class="keyword">GET</span> request to find all the products and then pass the found products to
+            <span class="backend-tags">res.render()</span> method to display all the products in the home page.
+        </p>
+    </article>
+    <article id="Lec399">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 399: Product Details</span></h2>
+        </header>
+        <p class="sec-para-main">To view a product details, we make a show page which identifies the product by it's
+            unique ID which is extracted from <span class="keyword">req.params</span> and then we use the method
+            <span class="backend-tags">Product.findById(id)</span> and then pass the result of this into the <span
+                class="backend-tags">res.render()</span> method where we can use the passed information to display
+            the
+            details of the single product.
+        </p>
+    </article>
+    <article id="Lec400">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 400: Creating Products</span></h2>
+        </header>
+        <p class="sec-para-main">We need to have two routes for creating a product, one which directs us to a form
+            for
+            creating a product and another to store the data into the database. The route for directing us to a form
+            is
+            <span class="backend-tags">app.get('/products/new')</span> and to form a product is <span
+                class="backend-tags">app.post('/products')</span>. Inside the post route we use <span
+                class="keyword">req.body</span> to form a new product.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Inside the post route -</p>
+app.post('/products', async (req, res) => {
+const newProduct = new Product({req.body});
+await newProduct.save();
+res.redirect('/products');
+}
+</pre></code>
+        </div>
+        <p class="notes">Note: Our code is still susceptible to errors as we haven't used any kind of error handling
+            yet.</p>
+    </article>
+    <article id="Lec401">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 401: Updating Products</span></h2>
+        </header>
+        <p class="sec-para-main">To update the products we create two routes <span class="keyword">GET</span> and
+            <span class="keyword">PUT</span>, GET is used to render a form in which all the details of the product
+            we are
+            editing is prefilled as we pass the product while rendering the form. On the PUT route we use <span
+                class="keyword">id</span> of the product we are editing to find the product and then use a method to
+            replace it's values wiht the ones we enetered in the form, the method we use in this lecture is <span
+                class="backend-tags">findByIdAndUpdate</span> but other methods can also be used in this place.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>One possible way to make these routes -</p>
+app.get('/products/:id/edit', async (req, res) => {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+    res.render('edit', { product });
+})
+
+app.put('/products/:id', async (req, res) => {
+    const { id } = req.params;
+    const { name, price, category } = req.body;
+    const updatedProduct = await Product.findByIdAndUpdate(id, { name: name, price: price, category: category });
+    res.redirect(`/products/${id}`);
+})</pre></code>
+        </div>
+    </article>
+    <article id="Lec402">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 402: Tangent on Category selector</span></h2>
+        </header>
+        <p class="sec-para-main">To have the category pre-selected of the product we are going to edit, we make an
+            array containing all the values of the category and then pass it in our edit file, from there we can
+            scroll
+            through all the available categories and then use the ternary operator to add the attribute <span
+                class="keyword">selected</span> to the category which matches the category of the product we are
+            going
+            to edit. A sample of how this is achieved - </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+&lt% for(category of categories) { %>
+    &ltoption value="<%=category%>" <%=category===product.category ? 'selected' : " " %>>
+        &lt%=category%>
+    &lt/option>
+&lt% } %></pre></code>
+        </div>
+    </article>
+    <article id="Lec403">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 403: Deleting Products</span></h2>
+        </header>
+        <p class="sec-para-main">To delete a product we use the method <span
+                class="backend-tags">Product.findByIdAndDelete(id)</span> where id of the product we are going to
+            delete
+            is extracted from the show route of the specific product where our logic to delete the product is
+            specified.
+            We use form with method-override to change the route method to delete to delete the product.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Logic to delete a product in show route -</p>
+&ltform action="/products/<%=foundProduct._id%>?_method=DELETE" method="POST">
+        &ltbutton>Delete&lt/button>
+    &lt/form>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec404">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 404: Filtering by Category</span></h2>
+        </header>
+        <p class="sec-para-main">To filter by category we attach a query named <span class="keyword">category</span>
+            in a link inside the show route of a specific product from where we can select the category of the
+            product
+            to view all the products of that specific category. Then in our <span class="backend-tags">/products</span>
+            route, we check if the query category contains something or not and display the products accordingly.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+                <p>Logic in our show route -</p>
+&lta href="/products?category=<%=foundProduct.category %>">
+    &lt%=foundProduct.category%>
+&lt/a>
+
+const { category } = req.query;     <span class="code-comment">//Extracting query in our route logic</span>
+</pre></code>
+        </div>
+    </article>

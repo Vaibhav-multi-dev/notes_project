@@ -1,0 +1,318 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="js-sec-heading">Section 23: Newer Javascript Features</h1>
+        <nav class="sec-nav-li" id="sec24-nav">
+            <ul>
+                <li><a href="#Lec231">Lecture 231</a></li>
+                <li><a href="#Lec232">Lecture 232</a></li>
+                <li><a href="#Lec233">Lecture 233</a></li>
+                <li><a href="#Lec234">Lecture 234</a></li>
+                <li><a href="#Lec235">Lecture 235</a></li>
+                <li><a href="#Lec236">Lecture 236</a></li>
+                <li><a href="#Lec237">Lecture 237</a></li>
+                <li><a href="#Lec238">Lecture 238</a></li>
+                <li><a href="#Lec239">Lecture 239</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec231">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 231: What matters in this section?</span></h2>
+        </header>
+        <p class="sec-para-main">There's not much new in this section, we are just learning new and modern
+            javascript syntax for doing things. Spread with arrays, spread with objects and destructuring are
+            crucial in this section.</p>
+    </article>
+    <article id="Lec232">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 232: Default Params</span></h2>
+        </header>
+        <p class="sec-para-main">When calling a function instead of supplying all the parameters with a value we can
+            use default
+            parameters which calls a function with some predefined values if no value is provided while
+            calling the function. Default parameters are defined while declaring the function. Order of the
+            parameters matter, if there are two parameters <span class="var-tags">(x,y)</span> in a function and
+            <span class="var-tags">x</span> is given a default value while <span class="var-tags">y</span>
+            is a normal parameter. Then if you call that function with only one argument then that value will be
+            given to <span class="var-tags">x</span> and <span class="var-tags">y</span> will be undefined.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+function add(x =10 ,y){
+    return x+y;
+}
+add(2)
+<span class="code-comment">//NaN
+</span></pre></code>
+        </div>
+        <p class="sec-para-main">In the above example you get NaN as result because when you call <span
+                class="js-tags">add(2)</span>
+            then
+            <span class="var-tags">x</span> receives the value of <span class="value-tags">2</span> and not
+            <span class="var-tags">y</span>.
+        </p>
+    </article>
+    <article id="Lec233">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 233: Spread in function calls</span></h2>
+        </header>
+        <p class="sec-para-main">Spread can be used on a function call to spread an iterable into separate
+            arguments. For e.g - A method <span class="js-tags">Math.max()</span> can accept many number as
+            arguments, so if there's an array which contain multiple numbers then you can use <span
+                class="js-tags">...</span> in front of the array to pass each element of the array as separate
+            argument. Example -
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const nums = [1,2,3,4,5,6,7];
+
+Math.max(nums)
+<span class="code-comment">//NaN</span>
+
+Math.max(...nums)
+<span class="code-comment">//7</span></pre></code>
+        </div>
+    </article>
+    <article id="Lec234">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 234: Spread with Array literals</span></h2>
+        </header>
+        <p class="sec-para-main">Spread in array literals works quite similarly as it does in function calls. Spread
+            in array literals is used to iterate over the contents of an array to make a quick copy of it or to
+            combine it's elements with another array/s to form a new array containing elements of both the arrays.
+            Spread operator can also be used to iterate over other iterable like strings, objects etc.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Combining two arrays using spread operator -</p>
+const arr1 = [56,78,12];
+const arr2 = [89,34,7];
+const combinedArr = [...arr1,...arr2];
+console.log(combinedArr) <span class="code-comment">//[56, 78, 12, 89, 34, 7]</span>
+<p>Making copy of an array -</p>
+const copyArr = [...arr1];
+</pre></code>
+        </div>
+        <p class="notes"> One can also combine two or more arrays using concat although both seem similar there are
+            a bit of differences. Check this <a
+                href="https://stackoverflow.com/questions/48865710/spread-operator-vs-array-concat">the difference
+                between using concat and spreading array</a> thread for details. (By <a
+                href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22003592#questions/13594838">Akshay</a>
+            in Udemy Q/A)
+        </p>
+    </article>
+    <article id="Lec235">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 235: Spread with Objects</span></h2>
+        </header>
+        <p class="sec-para-main">Spreading can also be done on objects, it basically follows the same pattern as
+            seen earlier of
+            copying
+            contents of one or more iterable into another iterable. Spreading can be done in objects when you
+            have some data coming from user and you want to add some of your own to make a new object. A code
+            snippet showing how spreading is done in objects -</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const obj1 = {
+    kindle : 'paperwhite',
+    battery : 'Good'
+}
+const obj2 = {
+    phone : 'vivo',
+    battery : 'bad'
+}
+let obj3 = {...obj1, ...obj2}
+console.log(obj3)
+<span class="code-comment">//   {kindle: "paperwhite", battery: "bad", phone: "vivo"}</span>
+<p>Here you can see that value of battery property of obj1 is replaced by obj2 because it comes later. 
+If you switch the order of spreading then battery value of obj1 will replace battery value of obj2.</p>
+let obj4 = {...obj2, ...obj1}
+console.log(obj4)
+<span class="code-comment">//   {phone: "vivo", battery: "Good", kindle: "paperwhite"}</span>
+</pre></code>
+        </div>
+        <p class="sec-para-main">If you include an array or an iterable like string in an object and use spreading
+            operator on it then
+            the
+            elements in the object are arranged with their following indices.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+let arrObj = {...[67,90,34,55,31,84]}
+console.log(arrObj)
+<span class="code-comment">// {0: 67, 1: 90, 2: 34, 3: 55, 4: 31, 5: 84}</span>
+
+let strObj = {...'thisWillSpread'}
+console.log(strObj)
+<span class="code-comment">// {0: 't', 1: 'h', 2: 'i', 3: 's', 4: 'W', 5: 'i', 6: 'l', 7: 'l', 8: 'S',
+9: 'p', 10: 'r', 11: 'e', 12: 'a', 13: 'd'}</span>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec236">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 236: Rest Params</span></h2>
+        </header>
+        <p class="sec-para-main">Every function contains an argument object which contains all the arguments passed
+            in an function while calling it, it looks like an array but doesn't contain all of the array properties
+            and methods. You can access elements inside an arguments object thorugh indices like array but you can't
+            use array methods like <span class="keyword">push()</span>, <span class="keyword">pop()</span> etc. <a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments">MDN for
+                arguments</a> </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+function addArr(){
+    console.log(arguments)
+    return arguments.reduce((total, elem) => total + elem)
+}
+addArr(11,22,33,44)
+<span class="code-comment">// Arguments(4) [11, 22, 33, 44, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+// Uncaught TypeError: arguments.reduce is not a function</span>
+</pre></code>
+            <p class="sec-para-main">Here you get an error as you are trying to use an array property on an non
+                array
+                object. <span class="keyword">rest parameter</span> can be used here to convert all the passed
+                parameters into an array. Rest parameter is denoted by <span class="js-tags">...</span> followed
+                by the array name which contains all the <i>passed arguments</i> as an array. <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters">Rest
+                    parameter MDN</a> </p>
+            <code class="code-snippet"><pre>
+function addArr(...elem){
+    return elem.reduce((total, elem) => total + elem)
+}
+addArr(11,22,33,44)
+<span class="code-comment">//   110</span>
+</pre></code>
+            <p class="sec-para-main">Here <span class="var-tags">elem</span> is an array which contains all the
+                passed
+                arguments.</p>
+            <p class="notes">One thing to keep in mind is that other parameters can also be passed along with rest
+                operator that means if there is one or more parameter defined in the function call then those should
+                be
+                placed before the rest parameter.
+            </p>
+            <code class="code-snippet"><pre>
+function addArr(singleElem, ...restBig){
+    console.log(singleElem);
+    return restBig.reduce((total,num) => total + num);
+}
+addArr(12, 1,2,3,4,5,6);
+12 // First parameter named singleElem
+21 // Remaining numbers in the rest parameter named restBig 
+<p>Declaring parameter after rest parameter</p>
+function combineRestParamArr(...restBig, singleElem){
+    console.log(singleElem);
+    return restBig.reduce((total,num) => total + num);
+}
+<span class="code-comment"> // Uncaught SyntaxError: Rest parameter must be last formal parameter</span>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec237">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 237: Destructuring Arrays</span></h2>
+        </header>
+        <p class="sec-para-main">You can single out some values from an array into an variable by using
+            destructuring. Below is the
+            code
+            snippet which demonstrates it clearly.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const students = ["Rohit", "Mohit", "Megha", "Vibhor", "Rahul", "Ashu", "Kartik", "Ayesha"];
+const [first, second, third, ...passStudents] = students;
+<span class="code-commnet"></span>
+console.log(first)
+<span class="code-comment">"Rohit"</span>
+console.log(second)
+<span class="code-comment">"Mohit"</span>
+console.log(passStudents)
+<span class="code-comment">["Vibhor", "Rahul", "Ashu", "Kartik", "Ayesha"]</span>
+<p>Although not common but you can also skip indices if you want by using , in destructuring. 
+(Advice given by <a href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22003676#questions/15086226">Lakshmi</a> in Udemy Q/A) </p>
+const[pass1, pass2 , , , , , ,fail] = students;
+console.log(fail) 
+<span class="code-comment">"Ayesha"</span>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec238">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 238: Destructuring Objects</span></h2>
+        </header>
+        <p class="sec-para-main">Destructuring objects is more common than destructuring arrays. To destructure an
+            object you use the property name inside the object as a separate variable name and the value of that
+            property in that object will be singled out, multiple values can be singled out this way. You can also
+            use an alias to use instead of the using the same property name as in object. It's also possible to
+            assign a default value to property you want to extract.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const myobj = {
+    name : "Bobby",
+    status : "Married",
+    haveKids : true,
+    age : 48
+}
+const { age, name: fullName , income = "unemployed", status : maritalStatus = "Single",} = myobj;
+
+console.log(age)           <span class="code-comment">// 48</span>
+console.log(fullName)      <span class="code-comment">// Bobby</span>
+console.log(name)          <span class="code-comment">// This is empty because we replaced name with fullName </span>
+console.log(income)        <span class="code-comment">// unemployed</span>
+console.log(maritalStatus) <span class="code-comment">// Married</span>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec239">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 239: Destructuring Params</span></h2>
+        </header>
+        <p class="sec-para-main">We can also destructure a parameter while passing them into a function. To do so
+            use curly braces inside a function parameter and the properties from the passed object will be extracted
+            and can be used inside the function. You can also give them default values while doing so.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+let person = { firstName: "Ayush", lastName : "Kumar" }
+function displayName({firstName, lastName}) {
+    return `${firstName} ${lastName}`
+}
+displayName(person)
+<span class="code-comment">// "Ayush Kumar"</span>
+const tvShows = [
+    {   
+        title : "House of Cards",
+        releaseYear : 2013,
+        rating : 7.1 
+    },
+    {
+        title: "Narcos",
+        releaseYear : 2015,
+        rating : 8.8
+    },
+    {
+        title: "Black Mirror",
+        releaseYear : 2011,
+        rating : 7.4
+    }
+]
+tvShows.map(({title, releaseYear})=> `${title} was released in ${releaseYear}`)
+<span class="code-comment">//   [  "House of Cards was released in 2013", 
+        "Narcos was released in 2015", 
+        "Black Mirror was released in 2011"   ]</span>
+tvShows.filter({rating} => rating > 7.5)
+<span class="code-comment">//   [{…}]
+    0: {title: "Narcos", releaseYear: 2015, rating: 8.8}
+    length: 1
+    __proto__: Array(0)  
+    It returns the array containing tvShow with rating greater than 7.5</span>
+</pre></code>
+        </div>
+    </article>
+    <article id="sec23-summary">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Important links and Formulas</span></h2>
+        </header>
+        <h3>Important links -</h3>
+        <ul>
+            <li>Difference between spreading and concating two arrays - <a
+                    href="https://stackoverflow.com/questions/48865710/spread-operator-vs-array-concat">SO</a>
+            </li>
+        </ul>
+    </article>

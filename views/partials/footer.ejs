@@ -1,0 +1,14 @@
+<!-- This footer is to put a next and previous section option at the bottom of every section page -->
+<% const nextSecId=parseInt(id) + 1; %>
+    <% const prevSecId=parseInt(id) - 1; %>
+        <div class="sec-jump-footer">
+            <a href="/section/<%=prevSecId%>" id="section-prev">&#x2190; Previous section</a>
+            <div>
+                <form action="/section/jump">
+                    <label for="secId">Jump to section:</label>
+                    <input type="text" name="secId">
+                    <button>Jump to page</button>
+                </form>
+            </div>
+            <a href="/section/<%=nextSecId%>" id="section-next">Next section &#x2192;</a>
+        </div>

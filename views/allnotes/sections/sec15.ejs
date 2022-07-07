@@ -1,0 +1,217 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="js-sec-heading">Section 15: Javascript Strings and more</h1>
+        <nav class="sec-nav-li" id="sec15-nav">
+            <ul>
+                <li><a href="#Lec151">Lecture 151</a></li>
+                <li><a href="#Lec152">Lecture 152</a></li>
+                <li><a href="#Lec153">Lecture 153</a></li>
+                <li><a href="#Lec154">Lecture 154</a></li>
+                <li><a href="#Lec155">Lecture 155</a></li>
+                <li><a href="#Lec156">Lecture 156</a></li>
+                <li><a href="#Lec157">Lecture 157</a></li>
+                <li><a href="#Lec158">Lecture 158</a></li>
+                <li>Coding Exercise Solutions -
+                    <ul>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex17">Exercise
+                                17</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex18">Exercise
+                                18</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex19">Exercise
+                                19</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex20">Exercise
+                                20</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec151">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 151: What matters in this section</span></h2>
+
+        </header>
+        <p class="sec-para-main">Every concept in this section is crucial except random number and math object. It
+            might take some time to learn String methods but if you have any prior experience with programming then
+            this section won't take much of your time.</p>
+    </article>
+    <article id="Lec152">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 152: Introducing Strings</span></h2>
+
+        </header>
+        <p class="sec-para-main">Strings are primitive type of data which contains textual information inside it.
+            They can be single or double quoted,they can contain no character to very long characters inside them. A
+            string starting with double quote can't end with single quote and vice-versa. A number inside a string
+            isn't same as a number typed separately.</p>
+    </article>
+    <article id="Lec153">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 153: Indices and length</span></h2>
+
+        </header>
+        <p class="sec-para-main">Strings are indexed that means that every character in a string correspond to a
+            number. String indexing starts at 0 and ends with 1 less than the total length of the string.</p>
+        <p>Demo -</p>
+        <code class="code-snippet"><pre>
+let name = "Rocky";
+name.length <span class="code-comment">//output: 5</span>    
+name[0] <span class="code-comment">//output: "R"</span>
+name[4] <span class="code-comment">//output: "y"</span>
+name[9] <span class="code-comment">//output: undefined</span></pre></code>
+        <p class="notes">We get undefined when we type name[9] because it exceeds the length of the String
+            and no character is present at that index. You can also add(concatenate) two strings together by using +
+            operator. If you concatenate a number and a string then number is coerced into a string type.</p>
+    </article>
+    <article id="Lec154">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 154: String methods</span></h2>
+
+        </header>
+        <p class="sec-para-main">Syntax for executing methods in JS is <span class="js-tags">thing.method()</span>
+            .They are different from property because they require a parenthesis to execute, without it JS will
+            indicate that the method exists but it won't execute it. Three of String methods we are gonna study in
+            this lecture are -
+        <ol>
+            <li>toLowerCase
+                <p>Changes every character in string to lowercase <a
+                        href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase">toLowerCase
+                        MDN</a>.</p>
+                <p>Example -</p>
+                <code class="code-snippet"><pre>
+let myFavSport = "CRICKET";
+myFavSport.toLowerCase() <span class="code-comment">//will give answer as "cricket"</span></pre></code>
+            </li>
+            <li>toUpperCase
+                <p>Changes every character in string to uppercase <a
+                        href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase">toUpperCase
+                        MDN</a> .</p>
+                <p>Example -</p>
+                <code class="code-snippet"><pre>
+let myFavShow = "friends";
+myFavShow.toUpperCase() <span class="code-comment">//will give answer as "FRIENDS"</span></pre></code>
+            </li>
+            <li>trim
+                <p>Trims the space in left and right side of the string. <a
+                        href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim">trim
+                        MDN</a></p>
+                <p>Example -</p>
+                <code class="code-snippet"><pre>
+let trimContent = " look at all the space I have ";
+trimContent.trim() //answer- "look at all the space I have"</pre></code>
+            </li>
+        </ol>
+        <span class="notes"> Note: All of these are non-destructive methods that means that they won't alter the
+            value
+            of original string.</span>
+        </p>
+    </article>
+    <article id="Lec155">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 155: String Methods With Arguments</span></h2>
+
+        </header>
+        <p class="sec-para-main">Some of the methods also require inputs inside them, these inputs alter the
+            behaviour of the method and are called arguments. Three of the methods which we can apply on string to
+            alter their behaviour are -</p>
+        <ol>
+            <li>indexOf() <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf">MDN</a>
+                <p>indexOf returns the index of the string placed inside the parenthesis. It only return the
+                    index of the first occurence of a string.</p>
+                <p>Example -</p>
+                <code class="code-snippet"><pre>
+let myPets = "I have a cat and a dog";
+myPets.indexOf("cat"); //will give 9 as answer because it is the
+index at which "cat" first appeared.</pre></code>
+            </li>
+            <li>slice() <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice">MDN</a>
+                <p>slice is used to extract a specific part of a string from the whole string, it can accept upto
+                    two
+                    arguments.
+                    When only one argument is specified then it takes that as a starting argument,
+                    if two are specified then it takes the latter one as the end index(not included in result)
+                <p>Example -</p>
+                <code class="code-snippet"><pre>
+let myIde = "I have a dark theme IDE";
+myIde.slice(9) //will give "dark theme IDE" as the result
+myIde.slice(9,13) //will give "dark" as the result</pre></code>
+            </li>
+            <li>replace() <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace">MDN</a>
+                <p>replace can be used to replace a string of character/s inside the string.
+                    It takes two argument- first one is the string to replace, second is the new string.
+                    It only changes the first occurence of the string.</p>
+                <p>Example -</p>
+                <code class="code-snippet"><pre>
+let stopIt = "Stop laughing at me, you are a laughing stock yourself";
+stopIt.replace("laughing", "screaming");
+//Result - "Stop screaming at me, you are a laughing stock yourself"</pre></code>
+            </li>
+            <li>repeat() <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat">MDN</a>
+                <p>repeat can be used to repeat a string the number of times as the user wish.
+                    It takes one argument- the number of times you want the string to repeat.
+                    It doesn't change the original string.</p>
+                <p>Example -</p>
+                <code class="code-snippet"><pre>
+let laugh = "HaHa";
+laugh.repeat(5);
+//Result - 'HaHaHaHaHaHaHaHaHaHa'</pre></code>
+            </li>
+        </ol>
+        </p>
+    </article>
+    <article id="Lec156">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 156: String Template Literals</span></h2>
+
+        </header>
+        <p class="sec-para-main">String template literals are used to include javascript expression inside of a
+            string. String literals uses backtick <span class="js-tags"> ` </span>instead of quotes to indicate
+            start and end of the string.
+            <span class="js-tags"> ${} </span> is used to include JS expressions inside a string literal, anything
+            inside the curly braces will be evaluated as a JS expression and then converted into string, methods and
+            properties can also be applied
+            inside the curly braces.
+        </p>
+        <p>Example -</p>
+        <code class="code-snippet"><pre>
+`There are ${5+2} primitve types in Javascript` 
+<span class="code-comment">// This will evaluate to
+// "There are 7 primitve types in Javascript"</span></pre></code>
+    </article>
+    <article id="Lec157">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 157: Null & Undefined</span></h2>
+
+        </header>
+        <p class="sec-para-main"><span class="js-tags">undefined</span> is JS way of saying that it
+            doesn't know what the variable is, it's not something which a user defines by himself. While <span
+                class="js-tags">null</span> can be set by the user and it states that the variable has
+            nothing inside it i.e it is null.</p>
+    </article>
+    <article id="Lec158">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 158: Random number & Math object</span></h2>
+
+        </header>
+        <p class="sec-para-main">JS have a Math object which contains properties and methods for mathematical
+            functions. You can read more about it on <a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math">MDN</a>
+            Math object contains PI,floor,ceil and many other properties.
+            Math.PI gives the value of pi, Math.floor removes the digits after decimal and
+            Math.ceil increases the number to the next largest integer.</p>
+        <p>Example</p>
+        <code class="code-snippet"><pre>
+Math.floor(9.9999) -> 9 //Will remove the decimal from the number
+Math.ceil(9.0001) -> 10 //Promotes a decimal to the next greatest integer </pre></code>
+        <p> You can also make a random number generator in JS using Math.random class and Math.floor together.</p>
+        <p>Example -</p>
+        <code class="code-snippet"><pre> 
+Math.floor(Math.random() * 5) + 1 // Gives a random no. b/w 1 and 5</pre></code>
+        <p class="notes">Note: We use Math.floor instead of ceil because with ceil chances of getting a 1
+            in this kind of equation is greatly diminished(It will only happen if Math.random() gives a
+            0).</p>
+    </article>

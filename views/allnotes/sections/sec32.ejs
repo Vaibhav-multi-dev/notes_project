@@ -1,0 +1,145 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 32: Exploring Modules & the NPM universe</h1>
+        <nav class="sec-nav-li" id="sec32-nav">
+            <ul>
+                <li><a href="#Lec322">Lecture 322</a></li>
+                <li><a href="#Lec323">Lecture 323</a></li>
+                <li><a href="#Lec324">Lecture 324</a></li>
+                <li><a href="#Lec325">Lecture 325</a></li>
+                <li><a href="#Lec326">Lecture 326</a></li>
+                <li><a href="#Lec327">Lecture 327</a></li>
+                <li><a href="#Lec328">Lecture 328</a></li>
+                <li><a href="#Lec329">Lecture 329</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec322">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 322: What matters in this section ?</span></h2>
+        </header>
+        <p class="sec-para-main">This section is a continuation of Node but in particular it focuses on modules and
+            NPM packages, how do we read docs, implement packages in our node file etc.</p>
+    </article>
+    <article id="Lec323">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 323: Working with module.exports</span></h2>
+        </header>
+        <p class="sec-para-main">On client side, when we require two or more scripts then the script which comes
+            later gets access to all the contents of the earlier script without any hassle but it's a bit
+            different with Node, we need to explicitly export the properties and methods of the file that we want to
+            access in another file. To export the properties we assign them to <span
+                class="backend-tags">module.exports</span> which is an empty object by default but can contain
+            exported properties. In other file we use <span class="keyword">require</span> to access the exported
+            properties, if the file you want to access is in the same directory then we use <span
+                class="backend-tags">./fileName</span> to access the file where <span class="keyword">./</span>
+            stands for current directory. We can also use the variable shortcut <span
+                class="backend-tags">exports</span> to export the properties but be a bit cautious while using it as
+            it is a variable and can be assigned a different value and hence it won't function as you expected it
+            to.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet">
+                    <pre>
+const add = (x, y) => x + y;
+
+<p>Different ways to export a function -</p>
+<ol>
+    <li>module.exports.add = add</li>
+    <li>exports.add = add</li>
+    <li>module.exports.add = (x, y) => x + y;</li>
+    <li>math = {add: add}
+module.exports = math
+    </li>
+</ol>
+                    </pre>
+                </code>
+        </div>
+        <div class="src-link">
+            <p>Source</p>
+            <ul>
+                <li><a href="https://nodejs.org/docs/latest-v15.x/api/modules.html#modules_exports_shortcut">Docs
+                        for exports variable</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec324">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 324: Requiring a directory</span></h2>
+        </header>
+        <p class="sec-para-main">It is also possible to require an entire directory. Inside the directory there can
+            be many scripts which share content with one another. The entry point or main file of a directory is a
+            file called <span class="keyword">index.js</span> and whatever content is exported from it is what will
+            be imported when we require the whole directory. If there is a situation where you have a file and a
+            folder with same name in the same directory then by using the usual format of require we will receive
+            the file export, for importing folder we put the <span class="keyword">/</span> at the end of the
+            location. <a
+                href="https://stackoverflow.com/questions/52634220/requiring-a-folder-with-same-name-as-file-in-node/55136021#55136021">SO
+                for requiring a folder and file with same name</a>
+        </p>
+    </article>
+    <article id="Lec325">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 325: Introducing NPM</span></h2>
+        </header>
+        <p class="sec-para-main">NPM stands for node package manager, it is a library of tons of packages that are
+            written by others which we can easily integrate in our projects. Packages are nothing but code that
+            others have written that we can use in our projects. NPM is also a command line tool which comes
+            pre-installed with Node which makes it easy to install and work with packages.
+        </p>
+    </article>
+    <article id="Lec326">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 326: Installing Packages - Jokes & Rainbow</span></h2>
+        </header>
+        <p class="sec-para-main">You can install NPM packages by using the command <span class="command-tags">npm
+                install pkg-name</span> where pkg-name stands for the name of the package that you are trying to
+            install that it is registered with. After installing the package you will get a folder called
+            Node_modules which contains all the files related to that package and also any other dependency which
+            that package requires. You just need to require that package with it's name in a file which exists in
+            the same directory without specifying the whole path.</p>
+    </article>
+    <article id="Lec327">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 327: Adding Global Packages</span></h2>
+        </header>
+        <p class="sec-para-main">The packages that we installed till now are all installed locally i.e. we won't be
+            able to access them outside the directory they were installed in. To use a package globally we add the
+            <span class="keyword">-g</span> flag to install it globally. Mostly packages which add to
+            command lines are installed globally otherwise most of them are installed locally because it might be
+            the case that you require differnet versions of the same package.
+        </p>
+    </article>
+    <article id="Lec328">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 328: The all important package.json</span></h2>
+        </header>
+        <p class="sec-para-main">Installing a package or making a project of your own require support of
+            several dependencies, so to keep a track of all the dependencies that your project may require we have a
+            file called package.json it contains all the metadata about your project i.e. information related to
+            your project. Although it's not essential to have a package.json file but having one makes it easier to
+            share your project with others and also to move your project around without moving all the dependencies
+            along with it. Package.json file is located in the root directory of the project and can be made easily
+            with the command <span class="command-tags">npm init</span> , this command will give you a template for
+            package.json file and fill it with info which you provide. </p>
+    </article>
+    <article id="Lec329">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 329: Installing all dependencies for a project</span></h2>
+        </header>
+        <p class="sec-para-main">When you are sharing your code with others, you don't include the node_modules
+            folder with it as it can be space consuming to do so. So to make the process of sharing the projects
+            easier we include a package.json file in each of our projects which contains the details of the
+            dependencies used. To install the dependencies from a project with a package.json file we use the
+            command <span class="command-tags">npm install</span> , this will install all the dependencies listed in
+            the package.json file.</p>
+        <p class="notes">Note: If there's a dependency that your project no longer requires then it's best to remove
+            it from package.json as well otherwise you will be installing dependencies which aren't needed anymore.
+        </p>
+    </article>
+    <article id="Lec330">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 330</span></h2>
+        </header>
+        <p class="sec-para-main"></p>
+    </article>

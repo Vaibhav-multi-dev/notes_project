@@ -1,0 +1,25 @@
+form {
+    text-align: center;
+}
+
+.new-form {
+    border: 3px solid rgb(227, 237, 107);
+    display: inline-flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.new-form label {
+    background-color: rgb(230, 158, 158);
+    padding: 0.8rem 0.5rem;
+    border-radius: 5px;
+}
+
+.new-form div:not([name="lectures"]) {
+    padding: 1em 0.5em;
+    margin-bottom: 0.5rem;
+}

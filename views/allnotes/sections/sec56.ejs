@@ -1,0 +1,198 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 56: YelpCamp-Fancy Cluster Map</h1>
+        <nav class="sec-nav-li" id="sec56-nav">
+            <ul>
+                <li><a href="#Lec548">Lecture 548</a></li>
+                <li><a href="#Lec549">Lecture 549</a></li>
+                <li><a href="#Lec550">Lecture 550</a></li>
+                <li><a href="#Lec551">Lecture 551</a></li>
+                <li><a href="#Lec552">Lecture 552</a></li>
+                <li><a href="#Lec553">Lecture 553</a></li>
+                <li><a href="#Lec554">Lecture 554</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec548">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 548: Intro to our Cluster Map</span></h2>
+        </header>
+        <p class="sec-para-main">Colt introduces us to Cluster map, when there are multiple camp located
+            somewhere around a single location then you indicate them by a cluster(single point only) on zooming in
+            we can see location of each individual map. The code for this is quite confusing and Colt just check the
+            Mapbox docs and search around the internet to implement this functionality.</p>
+    </article>
+    <article id="Lec549">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 549: Adding Earthquake Cluster map</span></h2>
+        </header>
+        <p class="sec-para-main">Nothing much in this lecture we just copy the code from the MapBox docs for cluster
+            map.</p>
+        <div class="extra-info">
+            <p>Note: Don't forget to replace the token key in the code you copy from docs with your own Mapbox token
+                key.</p>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://docs.mapbox.com/mapbox-gl-js/example/cluster/">Docs for MapBox cluster</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec550">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 550: Reseeding our database</span></h2>
+        </header>
+        <p class="sec-para-main">Now we change our seeds index file a little bit so that when reseed our database
+            then our show page map contains the actual coordinates of each of the campgrounds rather than the
+            hardcoded coordinates of a location like we did before.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code to put in our seeds index file -</p>
+ geometry: {
+                type: 'Point',
+                coordinates: [cities[random1000].longitude, cities[random1000].latitude]
+            },
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec551">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 551: Basic clustering campgrounds</span></h2>
+        </header>
+        <p class="sec-para-main">In this lecture we edit our clusterMap javascript so it uses our campground data
+            instead of the default data. We pass our data to the clusterMap javascript through the campgrounds index
+            page like we did earlier for show page campgrounds. We store all campgrounds of the index page under
+            features object becuase the geoJSON data that Mapbox retreives have stored all their data under features
+            key.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code for cluster javascript -</p>
+map.on('load', () => {
+    map.addSource('earthquakes', {
+        type: 'geojson',
+        data: campgrounds,
+        cluster: true,
+        clusterMaxZoom: 14, // Max zoom to cluster points on
+        clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+    });
+<p>Code for campgrounds index page -</p>
+&ltscript>
+    const mapToken = '&lt%-process.env.MAPBOX_TOKEN %>'
+    const campgrounds = {features: &lt%-JSON.stringify(allCamps)%>}
+&lt/script>
+<p>Default geoJSON data of of Mapbox -</p>
+"features": [
+{ "type": "Feature", 
+"properties": { "id": "ak16994521", "mag": 2.3, "time": 1507425650893, "felt": null, "tsunami": 0 }, 
+"geometry": { "type": "Point", "coordinates": [ -151.5129, 63.1016, 0.0 ] } },
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson">Docs for geoJSON data
+                        for mapbox</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec552">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 552: Tweaking clustering code</span></h2>
+        </header>
+        <p class="sec-para-main">Colt just goes through the clusterMap javascript and explain us bit by bit what
+            different line of code means. He also changes the sources of all the places in clusterJavscript to
+            'campgrounds'</p>
+    </article>
+    <article id="Lec553">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 553: Changing cluster size and colour</span></h2>
+        </header>
+        <p class="sec-para-main">Colt just changed the size of the boxes of the cluster and also the color to show
+            us that it is editable and nothing much. Here Colt make changes to the two properties namely
+            'circle-color' and 'circle-radius'</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+map.addLayer({
+        id: 'clusters',
+        type: 'circle',
+        source: 'campgrounds',
+        filter: ['has', 'point_count'],
+        paint: {
+            'circle-color': [
+                'step',
+                ['get', 'point_count'],
+                'red',
+                30,
+                'magenta',
+                50,
+                'blue'
+            ],
+            'circle-radius': [
+                'step',
+                ['get', 'point_count'],
+                15,
+                30,
+                20,
+                50,
+                30
+            ]
+        }
+    });
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec554">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 554: Adding custom popups</span></h2>
+        </header>
+        <p class="sec-para-main">Now we add a popupmarker on a unclustered point on our index page map. On clicking
+            the unclustered point we should see the information related to that specific campground and we can also
+            set a link to visit the campground's show page. To include our campground data into the map we need to
+            follow the format which MapBox accepts that is it takes all of it's data in a feature object which have
+            different fields inside it, one of the fields is geometry coordinates which we have used already but to
+            add other data into the map we need to put them under an object called <span
+                class="keyword">properties</span>, only then we will get access to our data in the mapbox. To add
+            popup marker text property inside our campground we make use of virtual and to make the virtual
+            accessible to all the views we use <span class="backend-tags">opts = { toJSON: { virtuals: true }
+                }</span> as our document is JSON and JSON virtuals by default are not placed in the response object
+            by mongoose.
+        </p>
+    </article>
+    <div class="article-example">
+        <code class="code-snippet"><pre>
+<p>Changes in the campground schema -</p>
+const opts = { toJSON: { virtuals: true } };
+
+const CampgroundSchema = new Schema({
+<span class="code-comment">//Campground schema here</span>
+}, opts)
+
+CampgroundSchema.virtual('properties.popupText').get(function () {
+    return `&ltb>&lta href="/campgrounds/${this._id}">${this.title}&lt/a>&lt/b>&ltp>${this.description.substring(1, 20)}`&lt/p>;
+})
+<p>Code for cluster map -</p>
+map.on('click', 'unclustered-point', (e) => {
+    const textToPop = e.features[0].properties.popupText;
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
+    new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML(textToPop)
+        .addTo(map);
+});
+</pre></code>
+    </div>
+    <div class="src-link">
+        <p>Sources -</p>
+        <ul>
+            <li><a href="https://datatracker.ietf.org/doc/html/rfc7946#section-3.2">Feature object specs</a></li>
+            <li><a href="https://docs.mapbox.com/api/maps/datasets/#the-feature-object">MapBox feature object</a>
+            </li>
+            <li><a
+                    href="https://mongoosejs.com/docs/tutorials/virtuals.html#:~:text=by%20default%2C%20mongoose%20does%20not%20include%20virtuals%20when%20you%20convert%20a%20document%20to%20json">Mongoose
+                    docs for virtuals</a></li>
+        </ul>
+    </div>

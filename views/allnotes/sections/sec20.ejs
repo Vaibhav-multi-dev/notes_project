@@ -1,0 +1,145 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="js-sec-heading">Section 20: Introducing functions</h1>
+        <nav class="sec-nav-li" id="sec20-nav">
+            <ul>
+                <li><a href="#Lec203">Lecture 203</a></li>
+                <li><a href="#Lec204">Lecture 204</a></li>
+                <li><a href="#Lec205">Lecture 205</a></li>
+                <li><a href="#Lec206">Lecture 206</a></li>
+                <li><a href="#Lec207">Lecture 207</a></li>
+                <li><a href="#Lec208">Lecture 208</a></li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex35">Exercise
+                        35</a>
+                </li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex36">Exercise
+                        36</a>
+                </li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex37">Exercise
+                        37</a>
+                </li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex38">Exercise
+                        38</a>
+                </li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex39">Exercise
+                        39</a>
+                </li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex40">Exercise
+                        40</a>
+                </li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex41">Exercise
+                        41</a>
+                </li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex42">Exercise
+                        42</a>
+                </li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex43">Exercise
+                        43</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec203">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 203: What matters in this section</span></h2>
+
+        </header>
+        <p class="sec-para-main">Everything in this section is pretty crucial, functions are an integral part of
+            javascript and
+            one of the
+            core fundamentals that you should master if you want to master JavaScript.</p>
+    </article>
+    <article id="Lec204">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 204: Intro to functions</span></h2>
+        </header>
+        <p class="sec-para-main">Functions are used to wrap up chunk of code that you want to repeat over time
+            so that your program becomes more readable and concise. They also give you versatility by providing
+            different result based on different arguments that you pass in them.</p>
+    </article>
+    <article id="Lec205">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 205: Our first function</span></h2>
+        </header>
+        <p class="sec-para-main"> Functions have the format of <span class="js-tags">function funcName() {
+                //function body }</span>. Functions do not execute right away, anything inside the function body
+            will execute only when you call them with <span class="keyword">funcName()</span>.
+            Example of a how a rollDie function would look like which Colt shows in <a href="#Lec204">previous</a>
+            lecture -</p>
+        <code class="code-snippet">
+                <pre>
+function rollDieSix() {
+    console.log(Math.floor(Math.random() * 6) + 1);
+}</pre>
+            </code>
+        <p class="sec-para-main">This comes handy whenever you want to roll a dice in a game, instead of writing
+            the
+            whole code
+            again you can use <span class="b-word">rollDieSix()</span> function to output a random
+            number from 1 to 6.</p>
+    </article>
+    <article id="Lec206">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 206: Arguments Intro</span></h2>
+        </header>
+        <p class="sec-para-main">Arguments are variables(inputs) that you pass into a function which may
+            alter the final output of the function. Arguments are variables that you put when you call a function
+            <span class="js-tags">func(argument)</span> while parameters are variables that you put in a
+            function while
+            defining them <span class="js-tags">function(parameter){ //chunk of code }</span>. A
+            sample of how
+            rollDie function would look like if we defined it with a parameter
+        </p>
+        <code class="code-snippet">
+                <pre>
+function rollDieCustom(sides) {
+    console.log(Math.floor(Math.random() * sides) + 1);
+}
+
+rollDieCustom(12); <span class="code-comment">//This will output a random number between 1 to 12</span> </pre>
+            </code>
+        <p class="sec-para-main">In the above function you can replace 12 with any other number and the function
+            will generate a
+            random
+            number between 1 and the number(argument) you specify while calling the function.</p>
+    </article>
+    <article id="Lec207">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 207: Functions with multiple arguments</span></h2>
+        </header>
+        <p class="sec-para-main">Functions can also have multiple arguments inside them. The order of the
+            arguments
+            matter and
+            they can
+            alter the final output you get while calling the function.</p>
+        <div class="article-example">
+            <code class="code-snippet"> <pre>
+function repeat(str, numRepeat) {
+    let endRes = "";
+    for (let i = 0; i < numRepeat; i++) {
+        endRes += str;
+    }
+    console.log(endRes);
+}</pre> </code>
+        </div>
+    </article>
+    <article id="Lec208">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 208: The Return keyword</span></h2>
+        </header>
+        <p class="sec-para-main">The return keyword is used to return an output whenever you call a function.
+            The
+            returned output
+            can be
+            stored in a variable and be used later. A important difference to note between <span
+                class="js-tags">return</span> and <span class="js-tags">console.log()</span> is that the value
+            is only
+            printed with console.log and cannot be used later if desired, while returned values can be
+            stored and
+            used whenever we want to. Returning a function also breaks the function loop and returns the
+            value but only if return statement is executed while you call the function i.e If you have
+            defined a function to return a value in an <i>if</i> conditional then that function
+            will only return when that if condition is satisfied or else it will run normally as expected. One thing
+            more to keep in mind is that return keyword can only return one value, that value can be an array,
+            object or a string but it has to be one value only.</p>
+    </article>

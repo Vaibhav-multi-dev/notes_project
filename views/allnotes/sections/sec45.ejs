@@ -1,0 +1,222 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 45: Mongo Relationships with Express</h1>
+        <nav class="sec-nav-li" id="sec45-nav">
+            <ul>
+                <li><a href="#Lec455">Lecture 455</a></li>
+                <li><a href="#Lec456">Lecture 456</a></li>
+                <li><a href="#Lec457">Lecture 457</a></li>
+                <li><a href="#Lec458">Lecture 458</a></li>
+                <li><a href="#Lec459">Lecture 459</a></li>
+                <li><a href="#Lec460">Lecture 460</a></li>
+                <li><a href="#Lec461">Lecture 461</a></li>
+                <li><a href="#Lec462">Lecture 462</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec455">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 455: What matters in this section?</span></h2>
+        </header>
+        <p class="sec-para-main">This section's primary focus is on how to integrate mongo relationships with
+            express. The specifics of the models doesn't matter much as the relationships between different models
+            do. We also learn how to delete with mongoose middleware that helps us to delete all the instances of
+            schema that is stored in relation with another schema.</p>
+    </article>
+    <article id="Lec456">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 456: Defining our Farm and Product Models</span></h2>
+        </header>
+        <p class="sec-para-main">Now we copy our product model that we created from couple of sections ago and add
+            farm model to that as well. So to link the two models together we reference a single farm inside the
+            productSchema and we refer to multiple products in a farm by setting up an array of products in a
+            farmSchema.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Reference to product in farm model -</p>
+    products: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Products'
+        }
+    ]
+
+<p>Reference to farm in product model -</p>
+farm: {
+    type: Schema.Types.ObjectId,
+    ref: 'Farm'
+}
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec457">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 457</span></h2>
+        </header>
+        <p class="sec-para-main"></p>
+    </article>
+    <article id="Lec458">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 458: Creating new farms</span></h2>
+        </header>
+        <p class="sec-para-main">We now make three routes for our farm model, one to render the home page where all
+            the farms are displayed. One to display a form through which we can add a farm and another route to
+            actually post the farm that you have created. To ease the process just copy what you did with products
+            page and edit it to suit the farm routes.</p>
+        <div class="extra-info">
+            <p>Note: For extra practice you can try adding JOI schema validation when we are creating a new farm.
+                Just a tip to practice what you have learned previously.</p>
+        </div>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>A sample of JOI validation -</p>
+const farmSchema = Joi.object({
+    name: Joi.string().required(),
+    city: Joi.string().required(),
+    email: Joi.string().email().required()
+})
+
+const validateSchema = (req, res, next) => {
+    const { error } = farmSchema.validate(req.body);
+    if (error) {
+        console.log(error);
+        const errMessage = error.details[0].message;
+        return next(new AppError(errMessage, 400));
+    }
+    else {
+        next();
+    }
+}
+
+<span class="code-comment">//Same can be done for products model</span>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec459">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 459: Farms show page</span></h2>
+        </header>
+        <p class="sec-para-main">Nothing much , we just make show page for the farms and make a link on the main
+            page beside every farm to direct it to show page of the specific farm.</p>
+    </article>
+    <article id="Lec460">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 460: Creating products for a farm</span></h2>
+        </header>
+        <p class="sec-para-main">Now we don't create our products in isolation. Whenever we create a product we
+            associate it with a farm. To do so we attach the farmID in the route for creating a new product and link
+            them together. While saving a product in the post route, we get both farm and product ,farm from the
+            id obtained from <span class="keyword">req.params</span> and product from <span
+                class="keyword">req.body</span> ,before saving them to the database we link them together by saving
+            the farm in the product and pushing an instance of the product in the array of the farm. </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>One possible way to create the routes -</p>
+app.get('/farms/:farmID/products/new', async (req, res, next) => {
+    const { farmID } = req.params;
+    const farm = await Farm.findById(farmID);
+    res.render('products/new', { farm, categories });
+})
+
+app.post('/farms/:farmID/products', async (req, res, next) => {
+    const { farmID } = req.params;
+    const farm = await Farm.findById(farmID);
+    const { name, price, category } = req.body;
+    const newProduct = new Product({ name, price, category });
+    newProduct.farm = farm;
+    farm.products.push(newProduct);
+    await newProduct.save();
+    await farm.save();
+    res.redirect('/products');
+})
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec461">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 461: Finishing touches</span></h2>
+        </header>
+        <p class="sec-para-main">We now make some changes to our show page of the farm,so that all the products
+            associated with a farm are also displayed alongside the farm, to do so we use the <span
+                class="backend-tags">populate()</span> method to populate the products while displaying a single
+            farm. We also make the products of the farm page clickable so it redirects to the specific product
+            page. Changes are also made to the page where we add a new product so the farm with which it is
+            associated with is also displayed at the top.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+app.get('/farms/:id', async (req, res) => {
+    const { id } = req.params;
+    const foundFarm = await Farm.findById(id).populate('products');
+    console.log(foundFarm);
+    res.render('farms/show', { foundFarm });
+})
+</pre></code>
+        </div>
+        <div class="extra-info">
+            <p>Note: Some people are having issues while displaying products with a farm, the most common solution
+                to
+                this problem as seen in Udemy Q/A is to check whether you refer to the farm and products schema with
+                the
+                same name that you used in mongoose.model
+            </p>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li> Check <a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22117220#questions/14367336">Louli's
+                        answer on Udemy Q/A</a> for more clarification</li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec462">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 462: Deletion mongoose middleware</span></h2>
+        </header>
+        <p class="sec-para-main">We now set up a middleware to delete every product associated with a farm while
+            deleting a farm. To do so we set up a post query middleware in the farmSchema which runs when the method
+            <span class="backend-tags">.findbyIdAndDelete()</span> is called inside the route. <span
+                class="backend-tags">.findbyIdAndDelete()</span> triggers the <span
+                class="backend-tags">.findOneAndDelete()</span> query middleware which we set up in our
+            farmSchema so that it runs every time anyone makes a call to delete by using <span
+                class="backend-tags">.findbyIdAndDelete()</span> method.
+        </p>
+        <div class="extra-info">
+            <p>Note: Some students are having trouble understanding why are we using mongoose middleware instead of
+                functions like we did earlier, this is because deleting using a middleware in mongoose is a
+                standardized
+                approach and will allow you to read your code properly when your code database grows large in size.
+                Also
+                it makes it easier for other to read your code as well and if you need to reuse the delete
+                functionality
+                in any other route then you don't need to put middleware again like you need to pass the custom
+                function
+                in every route whereever you want to mimic this delete behaviour.</p>
+            <p>There are four kinds of middleware in mongoose -</p>
+            <ul>
+                <li>Query -</li>
+                <p>Query middleware runs when a specific query is called.</p>
+                <li>Document -</li>
+                <p>Document is something which we get in return when we pass a query in a database, i.e. when you
+                    use a
+                    query to find something in database then the returned object is a document.</p>
+                <li>Model -</li>
+                <p>Model refers to the Schema and the whole collection in the database.</p>
+                <li>Aggregates -</li>
+                <p>These are methods which are used to get documents from the database.</p>
+            </ul>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li>Check Zarko's answer on this thread to know why we use<a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22117222#questions/14705804">
+                        mongoose middleware to delete</a> and not a custom function.</li>
+                <li>Check this thread on Uudemy Q/A to know <a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22117222#questions/15539198">different
+                        types of middleware</a> which exist in mongoose.
+                </li>
+            </ul>
+        </div>
+    </article>

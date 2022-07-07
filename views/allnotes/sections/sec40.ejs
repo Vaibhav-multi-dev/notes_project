@@ -1,0 +1,112 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 40: Middleware - The Key to Express</h1>
+        <nav class="sec-nav-li" id="sec40-nav">
+            <ul>
+                <li><a href="#Lec415">Lecture 415</a></li>
+                <li><a href="#Lec416">Lecture 416</a></li>
+                <li><a href="#Lec417">Lecture 417</a></li>
+                <li><a href="#Lec418">Lecture 418</a></li>
+                <li><a href="#Lec419">Lecture 419</a></li>
+                <li><a href="#Lec420">Lecture 420</a></li>
+                <li><a href="#Lec421">Lecture 421</a></li>
+                <li><a href="#Lec422">Lecture 422</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec415">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 415: What matters in this section?</span></h2>
+        </header>
+        <p class="sec-para-main">This section is all about middleware, what is the concept of it and how to define
+            your own custom middleware.</p>
+    </article>
+    <article id="Lec416">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 416: Intro to Express Middleware</span></h2>
+        </header>
+        <p class="sec-para-main">Middlewares functions are functions that have access to request and response
+            object. They can modify the req and res object, call the next() middleware to call the next middleware
+            which are chained together or even end the request - response cycle. They can be used for several
+            puropeses like routing, error handling etc.</p>
+        <div class="src-link">
+            <p>To read more -</p>
+            <ul>
+                <li> Check <a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22101606#questions/14015450">Louli's
+                        answer on Will's question</a> in udemy Q/A.</li>
+                <li> <a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22101606#questions/13389152">Thas
+                        R. answer in this Udemy Q/A</a> is also worth checking out</li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec417">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 417: Using Morgan logger middleware</span></h2>
+        </header>
+        <p class="sec-para-main">Morgan logger middleware helps us to log information about the HTTP requests. The
+            morgan middleware can give us info about our request like it's path, status code and the response time
+            of the request. Colt also tells us that morgan middleware calls <span class="keyword">next()</span> by
+            itself to run the next callback function in the stack without explicitly calling the <span
+                class="keyword">next()</span> function yourself. We use the morgan middleware with <span
+                class="backend-tags">app.use()</span> so it runs on every request.</p>
+    </article>
+    <article id="Lec418">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 418: Defining our own middleware</span></h2>
+        </header>
+        <p class="sec-para-main">In this lecture, we learn about the <span class="keyword">next()</span> parameter
+            in our middleware. It is used to call out the next route handler or next middleware in queue. <span
+                class="keyword">next()</span> is the third parameter of our route handler (it comes after req and
+            res). If we do not call next() then our request might just get stuck on a single route only and won't
+            continue to run the next rote handler in queue (if there are two or more routes chained together in
+            sequence). There are some middleware where you do not have to call next() explicitly as it runs by
+            default.
+        </p>
+    </article>
+    <article id="Lec419">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 419: More middleware practice</span></h2>
+        </header>
+        <p class="sec-para-main">It is also possible to make modifications to the req object in a middleware
+            function that can be transferred to the the next middleware function in queue. Methods like <span
+                class="backend-tags">req.method</span> and <span class="backend-tags">req.path</span> can be used to
+            partly imitate what we did with morgan middleware. One thing to remember while using middlewares is that
+            order is important if you place a route that make changes to the <span class="keyword">req</span> object
+            after the route in which you intended to use it then it won't have those changes afflicted inside that
+            route.</p>
+    </article>
+    <article id="Lec420">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 420: Setting up a 404 Route</span></h2>
+        </header>
+        <p class="sec-para-main">This lecture introduces us to another use of <span
+                class="backend-tags">app.use()</span> middleware when it is placed at the end of the routes and none
+            of the above routes stops the request-response cycle then this middleware runs as a last resort with a
+            <span class="backend-tags">404</span> status code. <span class="backend-tags">app.use()</span> can also
+            be used to run on a specific routes only it doesn't matter whether it is a GET,POST, DELETE or any other
+            kind of request.
+        </p>
+    </article>
+    <article id="Lec421">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 421: Password Middleware Demo (NOT REAL AUTH)</span></h2>
+        </header>
+        <p class="sec-para-main">To fake up an authentication we use <span class="keyword">req.query</span> in
+            our <span class="backend-tags">app.use()</span> route to check whether that matches that password we
+            expected it to be or not using an if-else statement. We attach a <span class="keyword">?</span> after
+            the route followed by the expected password to access the protected path. Although this is not how a
+            real app authentication works.</p>
+    </article>
+    <article id="Lec422">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 422: Protecting specific routes</span></h2>
+        </header>
+        <p class="sec-para-main">To protect a specific route rather than all the available routes we use a callback
+            function in our <span class="keyword">GET</span> route handler rather than using them in<span
+                class="backend-tags">app.use()</span> which will run on every request. By using our middleware
+            function as a callback in our GET route handler we can make sure that our middleware only runs when that
+            specific route is called and if the middleware calls <span class="backend-tags">next()</span> inside it
+            then it runs the route next inside which it is called.</p>
+    </article>

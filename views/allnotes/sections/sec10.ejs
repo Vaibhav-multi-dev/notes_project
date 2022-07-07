@@ -1,0 +1,451 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="css-sec-heading">Section 10:Responsive CSS & Flexbox</h1>
+        <nav class="sec-nav-li" id="sec10-nav">
+            <ul>
+                <li><a href="#Lec101">Lecture 101</a></li>
+                <li><a href="#Lec102">Lecture 102</a></li>
+                <li><a href="#Lec103">Lecture 103</a></li>
+                <li><a href="#Lec104">Lecture 104</a></li>
+                <li><a href="#Lec105">Lecture 105</a></li>
+                <li><a href="#Lec106">Lecture 106</a></li>
+                <li><a href="#Lec107">Lecture 107</a></li>
+                <li><a href="#Lec108">Lecture 108</a></li>
+                <li><a href="#Lec109">Lecture 109</a></li>
+                <li><a href="#Lec110">Lecture 110</a></li>
+                <li><a href="#Lec111">Lecture 111</a></li>
+                <li><a href="#sec10-summary">Important links</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec101">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 101: What matters in this section?</span></h2>
+        </header>
+        <p class="sec-para-main">We will be learning flexbox in this section and our main focus will be on learning
+            concepts and how
+            different things fit together rather than just learning the syntax, all the topics in this section
+            are
+            crucial epecially media queries. <a
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Typical_Use_Cases_of_Flexbox">MDN
+                on when to use flexbox</a> <a href="https://brolik.com/blog/when-to-use-flexbox/">article on use of
+                flexbox</a> </p>
+    </article>
+    <article id="Lec102">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 102: What is flexbox?</span></h2>
+
+        </header>
+        <p class="sec-para-main">Flexbox is used to create flexible layouts i.e a container within which different
+            elements take up specified amount of space, the space assigned to elements and the way layout is
+            arranged (stacked side to side <span class="keyword">row</span> or on top of each other <span
+                class="keyword">column</span>) can also be adjusted according to the screen size.</p>
+    </article>
+    <article id="Lec103">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 103: Flex-direction</h2>
+
+        </header>
+        <p class="sec-para-main">You declare a container as flexbox by setting display as <span
+                class="css-tags">flex</span>, flexbox have two axis <span class="keyword">main and cross</span>.
+            Whenever you declare a container as flex then by default it's main axis will stack items from left to
+            right. <span class="css-tags">Flex-direction</span> have 4 possible values
+            <span class="value-tags">row,row-reverse,column,column-reverse</span> which decides the flow of the
+            main-axis. Default is <span class="value-tags">row</span> which places
+            content from left to right,
+            <span class="value-tags">row-reverse</span> places content from right to left. <span
+                class="value-tags">column</span> places it from top
+            to bottom, <span class="value-tags">column-reverse</span>
+            places content from bottom to top. One thing to notice in flexbox is that if the element size
+            exceeds
+            the container size in main axis then they are compressed to fit in the container.
+        </p>
+        <table class="css-article-table">
+            <caption>Different possible values of flex-direction</caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="article-table-header">Flex-Value</th>
+                    <th scope="col" class="article-table-header">Direction</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="article-table-content">row</td>
+                    <td class="article-table-values">left to right</td>
+                </tr>
+                <tr>
+                    <td class="article-table-content">row-reverse</td>
+                    <td class="article-table-values">right to left</td>
+                </tr>
+                <tr>
+                    <td class="article-table-content">column</td>
+                    <td class="article-table-values">top to bottom</td>
+                </tr>
+                <tr>
+                    <td class="article-table-content">column-reverse</td>
+                    <td class="article-table-values">bottom to top</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="notes">Note: The element might still overflow in cross-axis. You can read about <a
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/overflow">Overflow property on MDN</a> and to
+            read in a bit detailed way of how it works then read this <a
+                href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Overflowing_content">article
+                on overflow</a></p>
+    </article>
+    <article id="Lec104">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 104: Justify-content</span></h2>
+
+        </header>
+        <p class="sec-para-main"><span class="css-tags">Justify-content</span> is used to align content in the
+            main-axis. <span class="css-tags">justify-content</span> common values consist of <span
+                class="value-tags">flex-start(default), flex-end, center, space-around, space-evenly,
+                space-between</span>.If the flex-direction is of default value i.e row, then <span
+                class="value-tags">flex-start</span>(default value) will place the content from left to right.
+            <span class="value-tags">flex-end</span> will place the last element at the end of the container.
+            <span class="value-tags">center</span> will center the content. <span class="value-tags">space-around</span>
+            will put equal space between each of the elements(not the
+            edge of the container). <span class="value-tags">space-evenly</span> will distribute space evenly
+            between all the elements in the container as well the edge of the container. <span
+                class="value-tags">space-between</span> will share the space between the elements of the
+            container(the elements on the edge of the container doesn't get equal space as compared to the
+            container). <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content">MDN for
+                justify-content</a>
+        </p>
+        <table class="css-article-table">
+            <caption>Different possible values of justify content</caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="article-table-header">Justify content</th>
+                    <th scope="col" class="article-table-header">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="article-table-content">flex-start</td>
+                    <td class="article-table-values">beggining of container</td>
+                </tr>
+                <tr>
+                    <td class="article-table-content">flex-end</td>
+                    <td class="article-table-values">end of container</td>
+                </tr>
+                <tr>
+                    <td class="article-table-content">center</td>
+                    <td class="article-table-values">center of container</td>
+                </tr>
+                <tr>
+                    <td class="article-table-content">space-between</td>
+                    <td class="article-table-values">distributes space between the elements</td>
+                </tr>
+                <tr>
+                    <td class="article-table-content">space-around</td>
+                    <td class="article-table-values">distributes equal space between elements(excluding container)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="article-table-content">space-evenly</td>
+                    <td class="article-table-values">distributes equal space between elements including container
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </article>
+    <article id="Lec105">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 105: Flex-wrap</span></h2>
+
+        </header>
+        <p class="sec-para-main"><span class="css-tags">flex-wrap</span> is used to define whether the content in
+            the flexbox will
+            shift
+            to next line in the <span class="css-tags">flex-direction</span> or shrink to fit in the container,
+            it
+            also defines in which direction the content wraps. <span class="css-tags">flex-wrap</span> has three
+            values - <span class="value-tags">wrap</span>, <span class="value-tags">wrap-reverse</span> and
+            <span class="value-tags">nowrap</span>.
+        </p>
+        <p class="inside-para">For default <span class="css-tags">flex-direction</span> (flex-start)-
+        </p>
+        <p class="inside-para"> <span class="value-tags">wrap</span> wraps the content in cross-axis(vertical)
+            froms
+            top to bottom, it also allows the content to shift into next line if they exceed the width of the
+            line.
+        </p>
+        <p class="inside-para"> <span class="value-tags">wrap-reverse</span> works much like wrap but changes
+            the
+            cross-axis from bottom to top for default flex-direction.</p>
+        <p class="inside-para"> <span class="value-tags">nowrap</span> specifies no content will be wrapped.</p>
+        <p class="notes">Note: In colt's lecture some are confused as to why the elements are not fitting
+            in the container. This is because of the fixed height specified by colt in his code and he is getting
+            different
+            results because he has zoomed out of the screen. In this case elements are <strong>overflowing</strong>
+            the container. You can read about <a
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/overflow">Overflow property on MDN</a> and to
+            read in a bit detailed way of how it works then read this <a
+                href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Overflowing_content">article
+                on overflow</a></p>
+    </article>
+    <article id="Lec106">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 106: Align-items</span></h2>
+
+        </header>
+        <p class="sec-para-main"><span class="css-tags">align-items</span> is used to align the items along the
+            cross-axis. <span class="css-tags">align-items</span> has four values - <span class="value-tags">flex-start,
+                flex-end, center & baseline</span>.</p>
+        <p class="inside-para imp-para">For default <span class="css-tags">flex-direction</span> (flex-start)-
+        </p>
+        <p class="inside-para"><span class="value-tags">flex-start</span> will shift all
+            the elements to the top vertically.</p>
+        <p class="inside-para"> <span class="value-tags">flex-end</span> will shift the elements to the bottom
+            of
+            the container</p>
+        <p class="inside-para"><span class="value-tags">center</span> will center all the items vertically in
+            the
+            container.</p>
+        <p class="inside-para"><span class="value-tags">baseline</span> will adjust the content according to the
+            baseline of
+            the text inside it. Every letter has a baseline on which it sits upon, this will arrange your
+            elements
+            according to the letter baseline.</p>
+        <table class="css-article-table">
+            <caption>Different possible values of align items</caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="article-table-header">Align Items</th>
+                    <th scope="col" class="article-table-header">Position of elements</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="article-table-content">flex-start</td>
+                    <td class="article-table-values">beggining of cross-axis</td>
+                </tr>
+                <tr>
+                    <td class="article-table-content">flex-end</td>
+                    <td class="article-table-values">end of cross-axis</td>
+                </tr>
+                <tr>
+                    <td class="article-table-content">center</td>
+                    <td class="article-table-values">center of cross-axis</td>
+                </tr>
+                <tr>
+                    <td class="article-table-content">baseline</td>
+                    <td class="article-table-values">places elements according to the baseline of letters</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Read the <a
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container">MDN</a>
+            intro to aligning items in a flexbox to understand more about it or just check the properties page
+            of
+            the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items">align-items</a> on MDN. <a
+                href="https://css-tricks.com/almanac/properties/a/align-items/">CSS tricks on align items</a> Check
+            <a
+                href="https://stackoverflow.com/questions/62350959/what-are-the-default-values-for-justify-content-align-content">SO
+                question on default value of align items</a> for more info.
+        </p>
+        <p class="notes"><span class="css-tags">flex-wrap</span> also affects how the elements are aligned along the
+            cross-axis.</p>
+    </article>
+    <article id="Lec107">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 107: Align-Content & Align-Self</span></h2>
+
+        </header>
+        <p class="sec-para-main"><span class="css-tags">Align-content</span> is used to align multiple lines of
+            content on the
+            cross-axis. It doesn't work with single line flex-containers i.e <span class="css-tags">wrap</span>
+            set
+            to <span class="value-tags">nowrap</span>. Align-content can have these possible values-
+            <span class="value-tags">flex-start, flex-end, center, space-around, space-evenly, space-between
+            </span>
+        </p>
+        <p class="inside-para imp-para">For default <span class="css-tags">flex-direction</span> (flex-start)-
+        </p>
+        <p class="inside-para"><span class="value-tags">flex-start</span> will shift all the content on the top
+            of
+            the container with no space in between.</p>
+        <p class="inside-para"><span class="value-tags">flex-end</span> will shift all the content at the bottom
+            of
+            the container with no space in between.</p>
+        <p class="inside-para"><span class="value-tags">center</span> will place all the contents in the center
+            of
+            the container.</p>
+        <p class="inside-para"><span class="value-tags">space-between</span> distributes equal space to the
+            multiple
+            lines in the container but the first and last line of the container are packed to the edges.</p>
+        <p class="inside-para"><span class="value-tags">space-around</span> distributes equal space to the
+            multiple
+            lines in the container but this can cause the first and list line of container to have smaller space
+            than the other lines as lines are distributed equally within the container elements not from the
+            edge of
+            the container.</p>
+        <p class="inside-para"><span class="value-tags">space-evenly</span> distributes equal space to the
+            multiple
+            lines in the container even including the elements on the edges of the container i.e first and last
+            line
+            of container.</p>
+        <p><span class="css-tags">Align-self</span> works much like <a href="#Lec106"><span
+                    class="css-tags">align-items</span></a>, the
+            only difference being is that it aligns the individual <span class="keyword">flex-item</span> rather
+            than the whole container.
+        </p>
+        <table class="css-article-table">
+            <caption>Different possible values of align content</caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="article-table-header">Align Content</th>
+                    <th scope="col" class="article-table-header">Position of elements</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="article-table-content">flex-start</td>
+                    <td class="article-table-values">top of container</td>
+                </tr>
+                <tr>
+                    <td class="article-table-content">flex-end</td>
+                    <td class="article-table-values">end of container</td>
+                </tr>
+                <tr>
+                    <td class="article-table-content">center</td>
+                    <td class="article-table-values">center of container</td>
+                </tr>
+                <tr>
+                    <td class="article-table-content">space-between</td>
+                    <td class="article-table-values">distributes space to different rows</td>
+                </tr>
+                <tr>
+                    <td class="article-table-content">space-around</td>
+                    <td class="article-table-values">distributes equal space between rows(excluding container)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="article-table-content">space-evenly</td>
+                    <td class="article-table-values">distributes equal space between rows including container
+                    </td>
+            </tbody>
+        </table>
+        <p class="notes">Click the following link to <a
+                href="https://stackoverflow.com/questions/42613359/how-does-flex-wrap-work-with-align-self-align-items-and-align-content">
+                read about how flex-wrap affects align-content, align-self and align-items</a></p>
+    </article>
+    <article id="Lec108">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 108: Flex-basis, Grow & Shrink</span></h2>
+
+        </header>
+        <p class="sec-para-main"><span class="css-tags">Flex-basis</span> is used to set the size of the <span
+                class="keyword">flex-items</span> in the container main-axis ;width for the default <span
+                class="css-tags">flex-direction</span>(row) or height when <span class="css-tags">flex-direction</span>
+            is set to <span class="value-tags">column</span> <a
+                href="https://www.freecodecamp.org/news/flexboxs-flex-basis-explained-83d1a01413b7/">Explanation1</a>,
+            <a href="https://mastery.games/post/the-difference-between-width-and-flex-basis/">Explanation2</a>,
+            <a href="https://codepen.io/litonfiredesign/pen/OaZLWd">CodePen</a> for demonstration.
+        </p>
+        <p class="sec-para-main"><span class="css-tags">flex-grow</span> is used on <span
+                class="keyword">flex-items</span> to
+            indicate
+            how much should they grow if there is free space available. It is a unitless value, you use numbers
+            like
+            <span class="value-tags">1, 2 ,3</span> to indicate the growth ratio of <span
+                class="keyword">flex-items</span>.For e.g. an element with <span class="css-tags">flex-grow</span>
+            value of <span class="value-tags">2</span> will grow twice in size as compared to a <span
+                class="keyword">flex-item</span> with <span class="css-tags">flex-grow</span> value of
+            <span class="value-tags">1</span>. Default value of <span class="css-tags">flex-grow</span> is 0 for
+            every <span class="keyword">flex-item</span>, if you set it to 1 then that <span
+                class="keyword">flex-item</span> will cover all the free space available in the container.
+        </p>
+        <p class="sec-para-main"><span class="css-tags">flex-shrink</span> is used to shrink <span
+                class="keyword">flex-items</span>
+            when
+            <span class="keyword">flex-items</span> overflow the <span class="keyword">flex-container</span>.
+            Like
+            <span class="css-tags">flex-grow</span>, <span class="css-tags">flex-shrink</span> also uses
+            unitless
+            values to indicate the ratio of shrinking. Default value is 0.
+        </p>
+        <p>To know more read <a
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Controlling_Ratios_of_Flex_Items_Along_the_Main_Ax">MDN
+                article on flex-basis,grow & shrink</a> </p>
+    </article>
+    <article id="Lec109">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 109: Flex Shorthand</span></h2>
+
+        </header>
+        <p class="sec-para-main">Flex properties like <span class="css-tags">flex-grow,shrink and basis</span> can
+            be defined by using
+            shorthand <span class="css-tags">flex</span> which indicate <span class="css-tags">flex-grow,shrink
+                and
+                basis</span> of a <span class="keyword">flex-item</span> respectively.</p>
+    </article>
+    <article id="Lec110">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 110: Responsive Design & Media Queries Intro</span></h2>
+
+        </header>
+        <p class="sec-para-main">Responsive design refers to the fact that you make your website responsive to
+            different screen sizes, different devices etc. Instead of making a separate website for mobile and pc
+            you just make one website which is responsive and looks good on all the devices, not just a zoomed out
+            version of your original website. You use something know as <span class="keyword">media queries</span>
+            to accomplish this task which adjusts the elements on your website according to the size of the screen
+            you are on. Check this <a
+                href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design">article on
+                MDN to read more about responsive design.</a>
+        </p>
+    </article>
+    <article id="Lec111">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 111: The power of Media Queries</span></h2>
+
+        </header>
+        <p class="sec-para-main">Media queries can be used to change website layout on change in specific parameters
+            of the
+            website,most
+            common changes are in screen width and orientation.When using media queries with width it's more
+            common
+            to use min-width and max-width rather than just a single width value.For e.g. To change color of
+            <span class="keyword">h1</span> when the screen size is between <span class="value-tags">600px &
+                800px</span>, we would do something like this. Read this <a
+                href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Media_queries">beginner's guide
+                on Media queries</a>
+            to know how to use them. You can also read <a
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries">this</a>
+            and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media">this</a> on MDN to know more
+            about
+            media queries. To further test your skills you can do <a
+                href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/rwd_skills">a test
+                for media queries</a>
+        </p>
+        <code><pre class="code-snippet">
+@media (min-width:600px) and (max-width:800px){
+    h1{
+        color: green;
+    }
+}</pre></code>
+    </article>
+    <article id="sec10-summary">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Important links and Formulas</span></h2>
+
+        </header>
+        <section class="imp-links">
+            <h3>Important links -</h3>
+            <ul>
+                <li>See this <a
+                        href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Typical_Use_Cases_of_Flexbox">article</a>
+                    on MDN to get an idea of when to use flexbox.</li>
+                <li> <a href="https://codepen.io/enxaneta/full/adLPwv/">CodePen</a> for understanding FlexBox.
+                </li>
+                <li><a href="https://flexboxfroggy.com/">FlexBox Froggy</a> - a game you could play to better
+                    understand flexbox</li>
+                <li><a href="https://www.youtube.com/watch?v=qZv-rNx0jEA">Colt's flexbox youtube</a></li>
+                <li><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">Css tricks - Guide to
+                        flexbox</a>
+                </li>
+            </ul>
+        </section>
+    </article>

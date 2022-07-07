@@ -1,0 +1,210 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="js-sec-heading">Section 17: Javascript Arrays</h1>
+        <nav class="sec-nav-li" id="sec17-nav">
+            <ul>
+                <li><a href="#Lec174">Lecture 174</a></li>
+                <li><a href="#Lec175">Lecture 175</a></li>
+                <li><a href="#Lec176">Lecture 176</a></li>
+                <li><a href="#Lec177">Lecture 177</a></li>
+                <li><a href="#Lec178">Lecture 178</a></li>
+                <li><a href="#Lec179">Lecture 179</a></li>
+                <li><a href="#Lec180">Lecture 180</a></li>
+                <li><a href="#Lec181">Lecture 181</a></li>
+                <li><a href="#Lec182">Lecture 182</a></li>
+                <li><a href="#Lec183">Lecture 183</a></li>
+                <li> Coding exercise solutions -
+                    <ul>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex25">Exercise
+                                25</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex26">Exercise
+                                26</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex27">Exercise
+                                27</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex28">Exercise
+                                28</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec174">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 174: What matters in this section ?</span></h2>
+
+        </header>
+        <p class="sec-para-main">This section introduces us to arrays which allows us to hold multiple values in a
+            single variable and is an important data structure to learn if one wants to work with javascript. We
+            will be learning only the basics here so it won't be that tough to work with.</p>
+    </article>
+    <article id="Lec175">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 175: Introducing Arrays</span></h2>
+
+        </header>
+        <p class="sec-para-main">Arrays are ordered collection of values that can contain single or multiple data
+            type of values inside them. You can also nest an arrays inside another array. Some examples of array-
+        </p>
+        <section class="article-example">
+            <code class="code-snippet">
+                        <pre>
+let myArr = [];                                 <span class="code-comment">//Declaring an empty array</span>
+let numArr = [1,6,12,76,88];                    <span class="code-comment">//Declaring a numbers array</span>
+let mixArr = ["hello", 90, null, false, "bye"]; <span class="code-comment">//Declaring an array of mix data types</span>
+                        </pre>
+                    </code>
+        </section>
+    </article>
+    <article id="Lec176">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 176: Array random access</span></h2>
+
+        </header>
+        <p class="sec-para-main">Arrays are indexed objects and their elements can be accessed by using indices.
+            The way you access them is similar to how you would access a character in a string,
+            difference is that instead of a character you get the element at that position in the array. Array
+            elements are accessed by the indices, array indexing starts at 0. You can also modify an element of an
+            array to have a different value. If you try to access an index which doesn't exist in array then you
+            will get undefined as a result.</p>
+        <p>
+            To access 2nd element of an array with 5 elements inside it we do-</p>
+        <section class="article-example">
+            <code class="code-snippet"><pre>
+let myArr = ["first","second","third","fourth","fifth"]; <span class="code-comment"> //Declaring array</span>
+myArr[1]
+<span class="code-comment">//It will give us "second" as answer because array indexing starts at 0</span></pre></code>
+        </section>
+    </article>
+    <article id="Lec177">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 177: Push & Pop</span></h2>
+
+        </header>
+        <p class="sec-para-main">Push is used to put an element inside an Array, it pushes an element at the end of
+            the array and returns the new length of the array.
+            Syntax for pushing an element inside an Array is <span class="js-tags">arrName.push()</span> . You can
+            put the element you desire to push inside an array in the parenthesis.
+            Pop removes the last element of an Array and it returns the removed element.
+            Syntax for removing an element inside an Array is <span class="js-tags">arrName.pop()</span> .
+            Pop and push in action -</p>
+        <section class="article-example">
+            <code class="code-snippet"><pre>
+let adjustingArr = [12, "i3", "i5", "i7", "i9"]; 
+adjustingArr.push("i10"); <span class="code-comment">Pushing an element inside the array, it return the new length of the array which is 6</span>
+adjustingArr.pop(); <span class="code-comment">It returns "i10" as result</span>
+adjustingArr <span class="code-comment">Array now contains [12, "i3", "i5", "i7", "i9"]</span></pre></code>
+        </section>
+    </article>
+    <article id="Lec178">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 178: Shift & Unshift</span></h2>
+
+        </header>
+        <p class="sec-para-main">Unshift is used to put element on the first index of the array.
+            Shift is used to remove the first element from the aray.</p>
+    </article>
+    <article id="Lec179">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 179: Concat, indexOf, includes & reverse</span></h2>
+
+        </header>
+        <p class="sec-para-main">Concat is used to concatenate two arrays together, syntax is
+            <span class="js-tags">firstArr.concat(othArr)</span> It will combine
+            the elements of both the arrays with elements of othArr preceding firstArr.
+            <span class="js-tags">indexOf()</span>is used to check the index of an element in an array, a value of
+            -1 represents that the
+            value is not in the array. Includes also does the same work as indexOf except it doesn't give us the
+            index valueof the element in the array. Reverse is used to reverse the order of elements in the array,
+            it is a destructive method means it changes the original array.
+        </p>
+    </article>
+    <article id="Lec180">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 180: Slice & Splice</span></h2>
+
+        </header>
+        <p class="sec-para-main">We get introduced to three array methods here - Slice, Splice and sort.</p>
+        <div class="sec-content-segregation"">
+                <h3>Slice</h3>
+               <p>Slice is used to extract a portion of an array, syntax for slice is <span
+                    class=" js-tags">Array.slice()</span>. It can have two arguments, one start index and another end
+            index(Both optional). start index indicates from where to start extracting elements from the array and
+            end point indicates the index before which to stop. <a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice">Slice
+                MDN</a> </p>
+            <p>Example-</p>
+            <section class="article-example">
+                <code class="code-snippet"><pre>
+let myArr = [45,74,33,68,22,99,126,55];
+let modArr = myArr.slice(2,5) <span class="code-comment">//result -[33, 68, 22]</span>
+</pre></code>
+            </section>
+            <h3>Splice</h3>
+            <p>Splice is used to replace, delete and/or add new element on a index in an array. It can have three
+                arguments the index from where to start, the number of elements you want to remove starting from
+                that index and then any number of element/s you want to add to that array. <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice">Splice
+                    MDN</a> </p>
+            <p>Example-</p>
+            <section class="article-example">
+                <code class="code-snippet"><pre>
+let myArr = [45,74,33,68,22,99,126,55];
+myArr.splice(2,3,"Removed 33,68,22");
+console.log(myArr) <span class="code-comment">//result - [45, 74, 'Removed 33,68,22', 99, 126, 55]</span>
+</pre></code>
+            </section>
+            <h3>Sort</h3>
+            <p>Sort is used to sort an array in ascending order but it only does so by comparing the value of the
+                element's first character UTF-16 code unit values. It does the sorting of array in place. <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort">Sort
+                    MDN</a> </p>
+            <p>Example-</p>
+            <section class="article-example">
+                <code class="code-snippet"><pre>
+let myArr = [45,74,33,68,22,99,126,55];
+myArr.sort() <span class="code-comment">//result - [126, 22, 33, 45, 55, 68, 74, 99]</span>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec181">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 181: Reference Types & Equality Testing</span></h2>
+
+        </header>
+        <p class="sec-para-main">Two arrays with similar contents won't be shown as equal in the javascript because
+            arrays
+            are not stored by values but rather by references.Hence while being same in content they both
+            point to the different memory address. <a
+                href="https://stackoverflow.com/questions/28185877/difference-between-identifier-and-variable-in-javascript">Difference
+                between identifier and variable</a> <a
+                href="https://stackoverflow.com/questions/11439735/what-is-the-difference-between-an-identifier-and-variable">Difference
+                between identifier and variable 2</a> <a
+                href="https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript">Comparing
+                arrays in javascript</a> <a href="https://medium.com/@ethannam/javascripts-memory-model-7c972cd2c239">JS
+                memory model</a> <a
+                href="https://codeburst.io/explaining-value-vs-reference-in-javascript-647a975e12a0">Value vs
+                Reference in JSCodeBurst</a> <a
+                href="https://academind.com/tutorials/reference-vs-primitive-values">Value vs reference in JS
+                academind</a></p>
+    </article>
+    <article id="Lec182">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 182: Arrays + const</span></h2>
+
+        </header>
+        <p class="sec-para-main">
+            Arrays are always declared using const to prevent reassigning them by mistakes.
+            You can still alter the contents of the array because arrays points to the address
+            storing the contents rather than directly storing it like a primitve value.
+        </p>
+    </article>
+    <article id="Lec183">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 183: Multi-Dimensional Arrays</span></h2>
+
+        </header>
+        <p class="sec-para-main">You can also have an array or an object inside an Array. To access the innermost
+            element of an
+            array you need to use double [] brackets with the specific position of the element you want to access.
+        </p>
+    </article>

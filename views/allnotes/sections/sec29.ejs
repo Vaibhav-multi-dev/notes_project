@@ -1,0 +1,239 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="js-sec-heading">Section 29: Prototypes,Classes & OOP</h1>
+        <nav class="sec-nav-li" id="sec29-nav">
+            <ul>
+                <li><a href="#Lec294">Lecture 294</a></li>
+                <li><a href="#Lec295">Lecture 295</a></li>
+                <li><a href="#Lec296">Lecture 296</a></li>
+                <li><a href="#Lec297">Lecture 297</a></li>
+                <li><a href="#Lec298">Lecture 298</a></li>
+                <li><a href="#Lec299">Lecture 299</a></li>
+                <li><a href="#Lec300">Lecture 300</a></li>
+                <li><a href="#Lec301">Lecture 301</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec294">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 294: What matters in this section?</span></h2>
+        </header>
+        <p class="sec-para-main">This section is quite tough compared to rest of the javascript sections. It's not
+            necessary to watch it right away as it contains concepts which will only be used when use use express
+            and do error handling. The main focus of this section is to understand Object prototypes, classes,
+            extend and super.</p>
+    </article>
+    <article id="Lec295">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 295: What On Earth Are Prototypes</span></h2>
+        </header>
+        <p class="sec-para-main">Prototypes are template objects(blueprint) which contain properties and methods
+            upon which other objects are build. For e.g. For an array we have an <span
+                class="keyword">Array.protoype</span> object which contain all the properties and methods that we
+            can use on an array but it isn't present in the array itself it is rather referenced inside every single
+            array we create. It is also possible to add functions and properties on our own to an array or to
+            replace an existing property or method inside the array but it is not recommended to do so. Inside every
+            object you will find the reference to the <span class="keyword">template object</span> on <span
+                class="js-tags">[[Prototype]]</span> property.</p>
+        <p class="notes">Note: Colt's video shows __proto__ (dunder proto) as reference to the prototype inside the
+            object but it has been updated and now replaced with [[Prototype]] atleast in chrome.</p>
+    </article>
+    <article id="Lec296">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 296: Intro to Object Oriented Programming</span></h2>
+        </header>
+        <p class="sec-para-main">When an object works as a template for other objects to be build upon then the
+            object upon which this other object is build is known as template object. Template objects makes it
+            easier to make multiple instances of an object easily and contains properties and methods which can
+            be inherited by other objects. Template objects are like cookie cutter, they can be used to make
+            different instances of an object by inheriting properties from it and adding some properties
+            and methods of it's own. Altough two instances of a class refers a single common object, they can still
+            give a different outcomes on defined properties and methods.
+        </p>
+    </article>
+    <article id="Lec297">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 297: Factory Functions</span></h2>
+        </header>
+        <p class="sec-para-main">Factory functions are one way to make objects from a template object. Factory
+            functions contains an empty object, and on that newly created object we assign different properties
+            whose values could be those which are passed as parameters or their values could be defined
+            inside that factory function and attached to the object only, functions declared inside the
+            factory function can also use those properties declared inside the factory function if they want
+            to without the need to pass them off as parameters. </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Example taken from Colt's lecture</p>
+function makeColor(r, g, b) {
+	const color = {};
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	color.rgb = function() {
+		const { r, g, b } = this;
+		return `rgb(${r}, ${g}, ${b})`;
+	};
+	color.hex = function() {
+		const { r, g, b } = this;
+		return ('#' + ((1 << 24) + (r << 16) + (g << 8) + b)
+                    .toString(16).slice(1)
+		);
+	};
+	return color;
+}</pre></code>
+        </div>
+        <p class="sec-para-main">In the example above we make an empty object named color and then add properties
+            <span class="value-tags">r,g,b</span> inside it which will ultimately be added to a newly created object
+            from it. There are two methods <span class="keyword">.rgb()</span> and <span class="keyword">.hex()</span>
+            as well which will be added to the object created from this template
+            object.
+        </p>
+    </article>
+    <article id="Lec298">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 298: Constructor functions</span></h2>
+        </header>
+        <p class="sec-para-main">Constructor functions are a bit better than the factory functions because unlike
+            factory functions they don't make a copy of the methods in each of the instances created from the
+            template object, they refer to the methods from the prototype object itself. Constructor functions name
+            always start with a capital letter to signify that they are different from regular functions. The
+            constructor function is made functional by the use of <span class="keyword">new</span> keyword.
+            "new" keyword does the following things for us -</p>
+        <ul>
+            <li>Creates a new empty object for us and set value of <span class="keyword">this</span> to the newly
+                created object rather than the window which is default behaviour as it's the closest object to the
+                constructor function. </li>
+            <li>Links the [[Prototype]] back to the constructor function. This behaviour helps us to add methods to
+                the constructor function and then be used by instances of the object by reference only.</li>
+            <li>It sets the value of <span class="keyword">this</span> to the newly created object rather than the
+                window which is default behaviour as it's the closest object to the constructor function.</li>
+            <li>Return this object if there isn't any other value to be returned at the end.</li>
+        </ul>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Example taken from Colt's lecture -</p>
+function Color(r, g, b) {
+	this.r = r;
+	this.g = g;
+	this.b = b;
+}
+
+Color.prototype.rgb = function() {
+	const { r, g, b } = this;
+	return `rgb(${r}, ${g}, ${b})`;
+};
+
+const color1 = new Color(40, 255, 60);
+</pre></code>
+        </div>
+        <p class="sec-para-main">To add a method to the constructor function rather than the instance of the
+            Constructor function, we need to declare it separately on the <em>Constructor.prototype</em> where
+            constructor stands for the constructor function name to be passed as reference else the methods will be
+            passed as copy in all the instances.</p>
+    </article>
+    <article id="Lec299">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 299: Javascript Classes</span></h2>
+        </header>
+        <p class="sec-para-main">Classes are syntactic sugar for prototype and constructor function. Classes name
+            starts with a capital letter by convention. There is a <span class="js-tags">constructor()</span>
+            function inside every class which always run automatically whenever a class instance is declared.
+            Inside this constructor function properties are usually declared and added to the instance of the class.
+            We directly define the method inside the class without making use of any <span
+                class="keyword">.Prototype</span> object like we did in case of constructor functions separately.
+            The advantage of using class over factory function is that the defined methods are
+            referenced by the instances of the class whereas a copy of methods is made to the instances of class
+            when objects are made with constructor function. The advantage over constructor
+            functions is that we don't need to define the methods separately, we can declare them directly inside
+            the class. It is also possible to call a method declared in a class inside another method defined in the
+            same class. Example -
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>(Example taken from Colt's lecture)</p>
+class Color {
+	constructor(r, g, b, name) {
+		this.r = r;
+		this.g = g;
+		this.b = b;
+		this.name = name;
+	}
+	innerRGB() {
+		const { r, g, b } = this;
+		return `${r}, ${g}, ${b}`;
+	}
+	rgb() {
+		return `rgb(${this.innerRGB()})`;
+	}
+	rgba(a = 1.0) {
+		return `rgba(${this.innerRGB()}, ${a})`;
+	}
+	hex() {
+		const { r, g, b } = this;
+		return (
+			'#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+		);
+	}
+}
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec300">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 300: More classes practice</span></h2>
+        </header>
+        <p class="sec-para-main">In this lecture Colt introduces us to the fact that it is also possible to add some
+            properties to instances of your class even if it's not directly included in the constructor function.It
+            can be done by having a method which contains properties inside it and it will only be added to the
+            instance of the class when you call that method you can also instantiate some properties inside your
+            class by calling them inside a method, using classes.</p>
+    </article>
+    <article id="Lec301">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 301: Extends and super</span></h2>
+        </header>
+        <p class="sec-para-main">Extends is used to extend a class functionality to another class, by using the
+            <span class="js-tags">extend</span> keyword a class can inherit the properties and methods from another
+            class, the class which inherits is called child class and the class from which properties and methods
+            are inherited from is called parent class. <span class="js-tags">super</span> keyword is used when you
+            want to add some own properties of the child class while retaining the properties of the parent class.
+            super is called inside the constructor of the child class and then new properties to be added to the
+            child class are defined under the constructor of the child class.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Example taken from Colt's slides -</p>
+class Pet {
+	constructor(name, age) {
+		console.log('IN PET CONSTRUCTOR!');
+		this.name = name;
+		this.age = age;
+	}
+	eat() {
+		return `${this.name} is eating!`;
+	}
+}
+
+class Cat extends Pet {
+	constructor(name, age, livesLeft = 9) {
+		console.log('IN CAT CONSTRUCTOR!');
+		super(name, age);
+		this.livesLeft = livesLeft;
+	}
+	meow() {
+		return 'MEOWWWW!!';
+	}
+}
+
+class Dog extends Pet {
+	bark() {
+		return 'WOOOF!!';
+	}
+	eat() {
+		return `${this.name} scarfs his food!`;
+	}
+}</pre></code>
+        </div>
+        <p class="notes">Note: If there are two methods with same name in child and parent class, then the child
+            class method will take precedence over the parent class method.</p>
+    </article>

@@ -1,0 +1,215 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 36: Our First Database: MongoDB</h1>
+        <nav class="sec-nav-li" id="sec36-nav">
+            <ul>
+                <li><a href="#Lec366">Lecture 366</a></li>
+                <li><a href="#Lec367">Lecture 367</a></li>
+                <li><a href="#Lec368">Lecture 368</a></li>
+                <li><a href="#Lec369">Lecture 369</a></li>
+                <li><a href="#Lec370">Lecture 370</a></li>
+                <li><a href="#Lec371">Lecture 371</a></li>
+                <li><a href="#Lec372">Lecture 372</a></li>
+                <li><a href="#Lec373">Lecture 373</a></li>
+                <li><a href="#Lec374">Lecture 374</a></li>
+                <li><a href="#Lec375">Lecture 375</a></li>
+                <li><a href="#Lec376">Lecture 376</a></li>
+                <li><a href="#Lec377">Lecture 377</a></li>
+                <li><a href="#Lec378">Lecture 378</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec366">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 366: What matters in this section ?</span></h2>
+        </header>
+        <p class="sec-para-main">This section is our introduction to databases. The crucial part of this section
+            would be learning how to achieve CRUD functionality through MongoDB. Mongo has some similarities with
+            javascript but it has it's differences as well.
+        </p>
+    </article>
+    <article id="Lec367">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 367: Introduction to databases</span></h2>
+        </header>
+        <p class="sec-para-main">Databases are used mainly for data persistence i.e. (changes made to data exists
+            even after we quit the app) but that's not the only reason we use it for. Following are some of the
+            reasons we use databases for - </p>
+        <ul>
+            <li>Databases are used to store large amount of data in a compact way and also in a way that makes
+                them more accessible.</li>
+            <li>They make searching, filtering for a query easier.</li>
+            <li>They add security layer on top of your data.</li>
+            <li>They scale well.</li>
+        </ul>
+    </article>
+    <article id="Lec368">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 368: SQL vs No-SQL Databases</span></h2>
+        </header>
+        <p class="sec-para-main">SQL stands for structured query language. These are databses which have a
+            pre-defined schema to follow that is some sort of structure that you need to adhere to everytime. They
+            work on relational tables, for e.g. assume that you have two tables of separate information you want to
+            store and link them with one another then in SQL databases you do so by linking them with one another
+            using an entity. </p>
+        <p class="sec-para-main">NO-SQL databases are those which do not have pre-defined schemas and hence doesn't
+            need to follow a rigid structure while storing data. You can have different pieces of information while
+            storing an instance of a resource which could differ from the previous stored instance of the same
+            resource.</p>
+    </article>
+    <article id="Lec369">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 369: Why we're learning mongo ?</span></h2>
+        </header>
+        <p class="sec-para-main">We are learning mongo because it's a popular database and commonly used with Node
+            and Express. It's basics are easy to learn and it play perfectly well with javascript.</p>
+    </article>
+    <article id="Lec370">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 370</span></h2>
+        </header>
+        <p class="sec-para-main"></p>
+    </article>
+    <article id="Lec371">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 371</span></h2>
+        </header>
+        <p class="sec-para-main"></p>
+    </article>
+    <article id="Lec372">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 372: The mongo shell</span></h2>
+        </header>
+        <p class="sec-para-main">To work with the mongo shell we need to have <span class="keyword">mongod</span>
+            running in background. For accessing the shell we type <span class="backend-tags">mongo</span> in the
+            shell which gives us access to the mongo shell here you can type simple javascript commands and some of
+            mongoDB commands as well. To make a database to work with mongo we need to use the command <span
+                class="backend-tags">use dbName</span> where dbName stands for name of the database. If there's
+            already a databse with that name it switches to it otherwise a new database with that name will be
+            created.</p>
+    </article>
+    <article id="Lec373">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 373: What is BSON ?</span></h2>
+        </header>
+        <p class="sec-para-main">BSON stands for binary JSON. We use this instead of JSON because it's more compact
+            and takes up less space in memory, it's parsing is faster when compared to JSON and it also supports
+            more data types than JSON. </p>
+    </article>
+    <article id="Lec374">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 374: Inserting with Mongo</span></h2>
+        </header>
+        <p class="sec-para-main">To insert a document in a database we use a collection. A collection is nothing but
+            a similar group of data linked together. There are three methods to insert a document/documents into a
+            collection - </p>
+        <ul>
+            <li>db.collection.insertOne()</li>
+            <li>db.collection.insertMany()</li>
+            <li>db.collection.insert()</li>
+        </ul>
+        <p class="sec-para-main"> <span class="backend-tags">.insertOne</span> is used when you want to add a single
+            document to the collection. <span class="backend-tags">.insertMany()</span> is used when you want to
+            insert multiple documents into a collection. <span class="backend-tags">.insert()</span> can be used to
+            insert a single or multiple documents in a collection. The inserted documents needs to be in javascript
+            Object format. Example - db.mouse.insert({company: "Logitech", qty: 2, wireless: true}) will insert a
+            document into the collection mouse. After insertion it will also add an ID of it's own which is unique
+            to each document of the collection.</p>
+    </article>
+    <article id="Lec375">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 375: Finding with Mongo</span></h2>
+        </header>
+        <p class="sec-para-main">Often times we need to filter the database results based on queries to display our
+            content accordingly. To match all the queries of a collection, we use
+            <span class="backend-tags">db.collection.find()</span> and it will give out all the document of a
+            collection. We can also use a query inside the <span class="keyword">.find()</span> method to filter the
+            results according to the query, multiple queries can also be used to filter the results. There's also
+            <span class="keyword">.findOne()</span> method which only gives out first matching document of the find
+            query.
+        </p>
+        <p class="notes">Note: .findOne() returns the object while .find() returns the cursor to the object.</p>
+    </article>
+    <article id="Lec376">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 376: Updating with Mongo</span></h2>
+        </header>
+        <p class="sec-para-main">We have three methods to update a field in mongo -</p>
+        <ul>
+            <li>db.collection.updateOne()</li>
+            <li>db.collection.updateMany()</li>
+            <li>db.collection.replaceOne()</li>
+        </ul>
+        <p class="sec-para-main">Updating a document in mongo takes two parameters, first is the query to match like
+            the one we do when finding a document and another is the field to update, we update the field of a
+            document by using <span class="backend-tags">$set</span> operator. Example - </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+db.dogs.updateOne({breed: "Corgi"}, {$set: {isAvailable: true}})
+db.dogs.updateMany({breed: "Corgi"}, {$set: {age: 7}})
+</pre></code>
+        </div>
+        <p class="notes">Note: If we try to use a field in $set operator that doesn't exist then it will make it
+            on the go.</p>
+    </article>
+    <article id="Lec377">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 377: Deleting with Mongo</span></h2>
+        </header>
+        <p class="sec-para-main">We have two methods to delete a document in a collection -</p>
+        <ul>
+            <li>db.collection.deleteOne()</li>
+            <li>db.collection.deleteMany()</li>
+        </ul>
+        <p class="sec-para-main">We provide a selector in each of the methods to delete document/documents <span
+                class="backend-tags">.deleteOne()</span> deletes first matching document while <span
+                class="backend-tags">.deleteMany()</span> deletes multiple matching documents. To delete all the
+            documents in a collection use <span class="backend-tags">.deleteMany({})</span> without any query, to
+            delete the collection altogether use <span class="backend-tags">.drop()</span>.</p>
+    </article>
+    <article id="Lec378">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 378: Additional Mongo operators</span></h2>
+        </header>
+        <p class="sec-para-main">In this lecture Colt introduces us to some new operators that we can use in mongo
+            to refine our searches.</p>
+        <div class="list-content">
+            <h3>Operators-</h3>
+            <ul>
+                <li>Nested Operator - This operator will help you search for a nested key inside a document. Syntax
+                    - <span class="keyword">db.collection.find({'outerkey.innerkey': value})</span> Example - </li>
+                <div class="article-example">
+                    <code class="code-snippet"><pre>
+db.dogs.find({'personality.catFriendly' : true})
+</pre></code>
+                </div>
+                <li>Comparison Operators($lt, $lte, $gt, $gte) are used to find a document where query is less,
+                    greater, less equal or greater equal to some value. Syntax - <span
+                        class="keyword">db.collection.find({ query: {comparisonOperator:value }}) </span>
+                    Example - </li>
+                <div class="article-example">
+                    <code class="code-snippet"><pre>
+({'age': {$gt:7}})
+</pre></code>
+                </div>
+                <li>In operator($in) is used when you want to search a document with a query that can have any value
+                    in the specified array. Syntax - <span class="keyword">db.collection.find({ field: { $in:
+                        [value1, value2 ... valueN] }})</span>
+                    Example -</li>
+                <div class="article-example">
+                    <code class="code-snippet"><pre>
+db.dogs.find({age: {$in:[ 3, 10]}})
+</pre></code>
+                </div>
+                <li>Logical Query Operator($and, $or, $not, $nor) are used when you want to search a document by two
+                    or more queries. Example - </li>
+                <div class="article-example">
+                    <code class="code-snippet"><pre>
+db.dogs.find({ $or:[{age:{$in:[ 3, 1]}} , {'weight': 7}]})
+</pre></code>
+                </div>
+                Above command will search the dogs database and give back the results where age is either 3 or 1 or
+                where weight is 7.</li>
+            </ul>
+        </div>
+    </article>

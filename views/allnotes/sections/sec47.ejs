@@ -1,0 +1,148 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 47: Express Router & Cookies</h1>
+        <nav class="sec-nav-li" id="sec47-nav">
+            <ul>
+                <li><a href="#Lec471">Lecture 471</a></li>
+                <li><a href="#Lec472">Lecture 472</a></li>
+                <li><a href="#Lec473">Lecture 473</a></li>
+                <li><a href="#Lec474">Lecture 474</a></li>
+                <li><a href="#Lec475">Lecture 475</a></li>
+                <li><a href="#Lec476">Lecture 476</a></li>
+                <li><a href="#Lec477">Lecture 477</a></li>
+                <li><a href="#Lec478">Lecture 478</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec471">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 471: What matters in this section ?</span></h2>
+        </header>
+        <p class="sec-para-main">This section main focus is on express router and cookies. It's a small section
+            won't take much of your time.</p>
+    </article>
+    <article id="Lec472">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 472: Express Router Intro</span></h2>
+        </header>
+        <p class="sec-para-main">Express router is used to separate all the routes with same functionality into a
+            separate router file and it also helps us to prevent repeating the same logic in all the related routes.
+            We use a <span class="keyword">prefix</span> with router to attach all the routes with that specific
+            prefix into a single file. It is kind of like a mini-application, you can have multiple of them to form
+            a full fledged application. You attach the logic of all the routers into a single file by importing them
+            and using the method <span class="backend-tags">app.use()</span> wiht router name in the main index
+            file.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code to add the router in the router file -</p>
+const express = require('express');
+const router = express.Router();
+<p>Logic to attach the route in the main index file -</p>
+app.use('/prefix', routerName);
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec473">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 473: Express router and middleware</span></h2>
+        </header>
+        <p class="sec-para-main">It is also possible to attach a middleware to all routes with a specific
+            starting route only, earlier we did so by passing the middleware as a second argument to the routes but
+            now we define them in the router file where we want to have all the logic attached to all the
+            routes inside that router file. </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Logic for adding middleware to router -</p>
+router.use((req, res, next) => {
+    if (req.query.isLoggedIn) {
+        console.log("Logged in user")
+        next()
+    }
+    else {
+        res.send("Please login first");
+    }
+})
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec474">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 474: Introducing Cookies</span></h2>
+        </header>
+        <p class="sec-para-main">Cookies are tiny pieces of information that is sent by server to user's browser to
+            remember some details about a user and is sent back to server by client's browser on
+            subsequent request. It gives the ability to remember some information (theme preference, shopping cart
+            etc.) about a particular user to the server side and make some changes to the page accordingly to better
+            suit the user needs. Cookies add statefulness to the HTTP requests i.e. it
+            gives every HTTP request access to information that was sent by the request prior to the current
+            request.
+        </p>
+    </article>
+    <article id="Lec475">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 475: Sending Cookies</span></h2>
+        </header>
+        <p class="sec-para-main">We can also send cookies through express using the method <span
+                class="backend-tags">res.cookie()</span>. The cookies sent using this method will be available to
+            all the routes present in the current application. <span class="backend-tags">res.cookie()</span> takes
+            a name and value as argument.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Example of sending a cookie -</p>
+res.cookie("theme", "black")
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec476">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 476: Cookie Parser middleware</span></h2>
+        </header>
+        <p class="sec-para-main">Now to retreive the information stored in cookies we use cookie parser. Cookie
+            parser is a npm-package that we have to install to extract the values of the cookies. Cookie parser
+            makes a <span class="keyword">req.cookies</span> object which will contain the values of the stored
+            cookies.
+        </p>
+        <div class="artile-example">
+            <code class="code-snippet"><pre>
+<p>Basics to use the cookie parser middleware -</p>
+const cookieParser = require('cookie-parser')
+app.use(cookieParser());
+const { name } = req.cookies; <span class="code-comment">//Extracting name from req.cookies object</span>
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources-</p>
+            <ul>
+                <li><a href="https://www.npmjs.com/package/cookie-parser">Docs for cookie-parser</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec477">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 477: Signing cookies</span></h2>
+        </header>
+        <p class="sec-para-main">Cookies are signed to ensure the integrity of the data and to make sure that it is
+            not tampered with. Signing is not done to hide or encrypt the data but just to simply verify if it's
+            been tampered with. To sign a cookie we use a secret code with the cookie parser middleware, for this
+            example it's just a plain string but usually we use an environment variable to store the secret
+            variable.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Signing cookies using cookie parser middleware -</p>                    
+app.use(cookieParser('hideMeIfYouCan')); <span class="code-comment">//Here "hideMeIfYouCan" stands for the secret value assigned to sign the cookie</span>
+res.cookie('color', 'blue', { signed: true });
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec478">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 478: Optional HMAC signing</span></h2>
+        </header>
+        <p class="sec-para-main">HMAC stands for hash based message authentication code. It is a code generated by
+            SHA-256 encryption algorithm. When you provide the cookie-parser a secret it combines with the value of
+            the cookie and signs it i.e. use a encyption on the combined value retrieved from the cookie and the
+            secret. To unsign it we just use the value of cookie and try to encrypt it with the same encryption
+            method and the same secret key that was used while signing it to check whether it has been tampered
+            with or not.
+        </p>
+    </article>

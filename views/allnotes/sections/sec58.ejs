@@ -1,0 +1,183 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 58: YelpCamp- Common Security Issues</h1>
+        <nav class="sec-nav-li" id="sec58-nav">
+            <ul>
+                <li><a href="#Lec562">Lecture 562</a></li>
+                <li><a href="#Lec563">Lecture 563</a></li>
+                <li><a href="#Lec564">Lecture 564</a></li>
+                <li><a href="#Lec565">Lecture 565</a></li>
+                <li><a href="#Lec566">Lecture 566</a></li>
+                <li><a href="#Lec567">Lecture 567</a></li>
+                <li><a href="#Lec568">Lecture 568</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec562">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 562: Mongo Injection</span></h2>
+        </header>
+        <p class="sec-para-main">This section is all about security and the security issues we might face in our
+            App. In this lecture Colt introduces us to the <span class="keyword">Mongo injection</span> attack.
+            Mongo injection attack is one where users interfere with how our queries works and use characters which
+            might actually interfere with our mongo Database characters like "$ . $where" etc are characters which
+            are reserved in mongo database and might cause issues is are a part of a user query. To prevent that we
+            use a package called <span class="keyword">Express Mongo Sanitize</span> which prevent the users to use
+            reserved characters to make change to our database.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Example of a mongo injection attack -</p>
+db.users.find({username: {"$gt":"" } })
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://www.npmjs.com/package/express-mongo-sanitize">Docs for mongo sanitize</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec563">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 563: Cross Site Scripting (XSS)</span></h2>
+        </header>
+        <p class="sec-para-main">Cross site scripting refers to the attack which happens when someone injects their
+            own script to execute in someone else's application. Script can be used to retrieve information about
+            the user which is confidential to them only and shouldn't be leaked.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code to check cross site scripting -</p>
+&ltscript>alert("I am a alert")&lt/script>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec564">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 564: Sanitizing HTML with JOI</span></h2>
+        </header>
+        <p class="sec-para-main">Now we prevent submission of unauthorized scripts in our campgrounds that might
+            happen while making or editing a new campground or review. In our <span class="keyword">index</span> and
+            <span class="keyword">show</span> page we stringify our campground object at the end which doesn't
+            esacpe the HTML characteers and that might make it possible to put script tag in the campgrounds. To
+            prevent this we make use of custom extension in JOI validation which checks if there is any HTML,CSS or
+            Javascript tags in the campground and prevent submission of it (if there is any).
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code in show route -</p>
+&ltscript>
+        const mapToken = '&lt%-process.env.MAPBOX_TOKEN %>'
+        const campground = &lt%-JSON.stringify(camp)%>  <span class="code-comment">//Here we are not escaping the camp value</span>
+                                                       <span class="code-comment">,we are using &lt%- whereas to escape html we use &lt%=</span>
+&lt/script>
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://joi.dev/api/?v=17.6.0#extensions">Docs for JOI extensions</a></li>
+                <li><a
+                        href="https://joi.dev/api/?v=17.6.0#validationerror:~:text=label%20of%20the%20value%20that%20erred">Value
+                        of JOI label</a></li>
+                <li><a href="https://joi.dev/api/?v=17.6.0#expressiontemplate-options---aliases-x">Docs for JOI
+                        expressions</a></li>
+                <li><a href="https://www.npmjs.com/package/sanitize-html">Docs for sanitize-html</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec565">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 565: Minor changes to session/cookies</span></h2>
+        </header>
+        <p class="sec-para-main">Now we make some minor changes to our session/cookie object. First off we set the
+            value of secure property in cookie to true and later comment it out, it break things up but Colt did it
+            to show that in production environment that should always be the case. After this we change the default
+            name of the cookie to make it a bit harder for hackers to gain access to our cookies becuase if someone
+            has written a script to grab default cookie name then it will easily be caught by the script.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Cookie details -</p>
+const sessionConfig = {
+    name: 'hulk',  <span class="code-comment">//New name of the cookie</span>
+    secret: "boost",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        // secure: true,   <span class="code-comment">//Using secure, so cookies are only accessible through HTTPS</span>
+        maxAge: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        expires: 1000 * 60 * 60 * 24 * 7,
+        httpOnly: true
+    }
+}
+
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec566">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 566: Hiding errors</span></h2>
+        </header>
+        <p class="sec-para-main">Now we put some logic in our error file so it doesn't show the error stack when our
+            app is on production mode as it could give some potential information about our website and also it is a
+            unpleasent exprience for an average user.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code to put in your terminal to allow it to run your app in production mode -</p>
+NODE_ENV=production node index.js
+<p>Logic for our error file -</p>
+&lt% if(process.env.NODE_ENV !=='production' ){ %>
+    &ltp>
+        &lt%= err.stack %>
+    &lt/p>
+    &lt% } %>
+<p>Code for your main index file -</p>
+// if (process.env.NODE_ENV !== 'production') {   <span class="code-comment">//Comment this code just for example's sake</span>
+//     require('dotenv').config();
+// }
+    require('dotenv').config();
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec567">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 567: Using Helmet</span></h2>
+        </header>
+        <p class="sec-para-main">Now we are using a npm package called helmet for our app. It modifies the HEADERS
+            of our application to make it more secure. Here we set the content security policy to <span
+                class="keyword">false</span> to skip the check for content-security-policy.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code for our index file -</p>
+app.use(helmet( {contentSecurityPolicy: false} ));
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://helmetjs.github.io/">Docs for helmet</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec568">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 568: Content security policy fun</span></h2>
+        </header>
+        <p class="sec-para-main">Content security policy is used to define from where we can load our resources from
+            they could be self(you app only) or some specific URL's only. In this lecture Colt defines the code for
+            security policy and recommends us to copy and deploy it in our application.</p>
+        <div class="extra-info">Note: Many students are facing issues with campground images or maps not showing up.
+            To solve that below I have attached two threads which were useful to me. Do check these out if you are
+            facing the same issue.</div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22348128#questions/16568084/">Udemy
+                        Q/A CORS issue</a></li>
+                <li><a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22348128#questions/13218072">Fix
+                        Styling error Udemy Q/A</a></li>
+            </ul>
+        </div>
+    </article>

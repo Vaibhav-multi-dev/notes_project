@@ -1,0 +1,136 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 39: YelpCamp: Campgrounds CRUD</h1>
+        <nav class="sec-nav-li" id="sec39-nav">
+            <ul>
+                <li><a href="#Lec405">Lecture 405</a></li>
+                <li><a href="#Lec406">Lecture 406</a></li>
+                <li><a href="#Lec407">Lecture 407</a></li>
+                <li><a href="#Lec408">Lecture 408</a></li>
+                <li><a href="#Lec409">Lecture 409</a></li>
+                <li><a href="#Lec410">Lecture 410</a></li>
+                <li><a href="#Lec411">Lecture 411</a></li>
+                <li><a href="#Lec412">Lecture 412</a></li>
+                <li><a href="#Lec413">Lecture 413</a></li>
+                <li><a href="#Lec414">Lecture 414</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec405">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 405: Introducing YelpCamp- Our Massive Project</span></h2>
+        </header>
+        <p class="sec-para-main">This section is our introduction to yelpcamp, this is a massive project in which we
+            will implement many features some of which we have already learned and many we will learn in upcoming
+            lectures. </p>
+    </article>
+    <article id="Lec406">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 406: How to Access YelpCamp Code</span></h2>
+        </header>
+        <p class="sec-para-main">Yelp Camp code is located in first lecture of every section, every section contain
+            changes made to the yelp camp upto the end of that section.</p>
+    </article>
+    <article id="Lec407">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 407: Creating the basic express App</span></h2>
+        </header>
+        <p class="sec-para-main">Nothing new here, we just setup our basic express App and integrate logic to render
+            ejs files in located in views directory.</p>
+    </article>
+    <article id="Lec408">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 408: Campground Model Basics</span></h2>
+        </header>
+        <p class="sec-para-main">In this lecture we connect mongoose to our application and make a campgrounds model
+            in the models directory and then export it to use in the index file and in our index file we make a new
+            campground on one of the routes and then await to save it.</p>
+    </article>
+    <article id="Lec409">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 409: Seeding Campgrounds</span></h2>
+        </header>
+        <p class="sec-para-main">To test that our app is working as we expected we use some seedData. In this
+            lecture Colt uses two files named <span class="keyword">cities.js and seedHelpers.js</span> to help us
+            generate the data. We make another file called <span class="keyword">index.js</span> which imports the
+            content of both the files and use it to generate dummy camp data. Main logic of the seed file- </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const randElemArr = arr => arr[Math.floor(Math.random() * arr.length)];
+
+<p>Adding data to the database -</p>
+const seedDB = async () => {
+    await Campground.deleteMany({});
+    for (let i = 0; i < 50; i++) {
+        const random1000 = Math.floor(Math.random() * 1000);
+        const camp = new Campground({
+            title: `${randElemArr(descriptors)}, ${randElemArr(places)}`,
+            location: `${cities[random1000].city} , ${cities[random1000].state}`
+        })
+        await camp.save();
+    }
+}
+
+seedDB().then(() => {
+    mongoose.connection.close();    <span class="code-comment">//Closing connection</span>
+});
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec410">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 410: Campgrounds Index</span></h2>
+        </header>
+        <p class="sec-para-main">We now setup our main campgrounds page which displays all the campgrounds we
+            have created till now. To do so we make a route which waits to find all the campgrounds and then pass it
+            off to display the campgrounds in the index page. </p>
+    </article>
+    <article id="Lec411">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 411: Campgrounds Show</span></h2>
+        </header>
+        <p class="sec-para-main"></p>
+    </article>
+    <article id="Lec412">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 412: Campgrounds New & Create</span></h2>
+        </header>
+        <p class="sec-para-main">We create two routes, one to display a form which will display fields required to
+            make a new campground and other route to actually create a new campground and save it. We save the
+            required fields to create a new campground under the campground heading in the form on top of using
+            title, location and other information about the campground. A sample of which is shown below: </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+    &ltdiv>
+            &ltlabel for="title">Title:&lt/label>
+            &ltinput type="text" id="title" name="campground[title]" placeholder="Enter title here">
+    &lt/div>
+    &lt&ltdiv>
+            &ltlabel for="price">Price:&lt/label>
+            &ltinput type="number" name="campground[price]" id="price" placeholder="0.00$">
+    &lt/div>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec413">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 413: Campgrounds Edit & Update</span></h2>
+        </header>
+        <p class="sec-para-main">We make an edit page to edit the campground where we use the <span
+                class="keyword">value</span> attribute to display the current values of the campground we are going
+            to edit. Then after submitting the edit form we make use of <span
+                class="backend-tags">req.body.campground</span> in the <span class="keyword">PUT</span> route which
+            contains all the data of the campground to update the details of the campground using the method
+            <span class="backend-tags">findByIdAndUpdate()</span>.
+        </p>
+    </article>
+    <article id="Lec414">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 414: Campgrounds Delete</span></h2>
+        </header>
+        <p class="sec-para-main">To delete a campground we add a form with the action of <span
+                class="keyword">POST</span> set to DELETE using the <span class="backend-tags">method_override</span>
+            functionality. Then in the <span class="keyword">DELETE</span> route we use the method <span
+                class="backend-tags">Campground.findByIdAndDelete()</span> to delete the campground with that
+            specific ID.</p>
+    </article>

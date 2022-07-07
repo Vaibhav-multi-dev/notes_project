@@ -1,0 +1,241 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="css-sec-heading">Section 8: The CSS box model</h1>
+        <nav class="sec-nav-li" id="sec8-nav">
+            <ul>
+                <li><a href="#Lec82">Lecture 82</a></li>
+                <li><a href="#Lec83">Lecture 83</a></li>
+                <li><a href="#Lec84">Lecture 84</a></li>
+                <li><a href="#Lec85">Lecture 85</a></li>
+                <li><a href="#Lec86">Lecture 86</a></li>
+                <li><a href="#Lec87">Lecture 87</a></li>
+                <li><a href="#Lec88">Lecture 88</a></li>
+                <li><a href="#Lec89">Lecture 89</a></li>
+                <li><a href="#Lec90">Lecture 90</a></li>
+                <li>Coding Exercise Solutions -
+                    <ul>
+                        <li><a href="D:\Web Development\Notes project\Coding Exercises\codingExer.html#Ex12">Exercise
+                                12</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec82" class="css-sec-article">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 82: What matters in this section?</span></h2>
+        </header>
+        <p class="sec-para-main">This section is about the CSS box model, you learn various aspects of box
+            model-
+            padding, margin, width, height, border etc. and how display properties affect the box model. Popular
+            relative units like em, rem and percentage is also discussed.</p>
+    </article>
+    <article id="Lec83">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 83: Box model-Width & Height</span></h2>
+        </header>
+        <p class="sec-para-main">For inline elements width is set to be the width of the content by default and
+            for
+            block level elements
+            width
+            is set to be equal to width of the parent element. Height is equal to height of the content by
+            default
+            for
+            both inline and block level elements. You can set width and height to be of different size than the
+            default
+            value.</p>
+    </article>
+    <article id="Lec84">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 84: Box model-Border & Border-radius</span></h2>
+        </header>
+        <p class="sec-para-main"><span class="css-tags">Border</span> property is used to set size,color and
+            style
+            of the border on an
+            element. Each border aspect can also be styled individually and also styled differently for a
+            particular
+            side.For e.g., to style every h1 to have solid black border of 3 px we would do something like this.
+        </p>
+        <code class="code-snippet"><pre>h1{
+    border: 3px solid black;
+}</pre></code>
+        <p>Then if we wish to only change the left border color of <span class="html-tags">&lth1></span> to
+            yellow,
+            we
+            will style it like this-></p>
+        <code class="code-snippet"><pre>h1{
+    border-left-color: yellow;
+}</pre></code>
+        <p>Border-radius is used to define the curvature of the border, it accepts length or percentage values.
+            Percentages can be used to make elliptical corner while length gives curve to the border corner.
+            Check <a href="https://www.w3.org/TR/css-backgrounds-3/#the-border-radius">W3C</a> and this <a
+                href="https://stackoverflow.com/questions/29966499/border-radius-in-percentage-and-pixels-px-or-em">answer</a>
+            on Stackoverflow for more info. To draw a circle with text check this <a
+                href="https://stackoverflow.com/questions/16615403/how-to-draw-a-circle-with-text-in-the-middle">draw
+                a circle with text in middle</a> and to change font according to container size check this <a
+                href="resize font size to fit container size">resize font to fit container</a> SO answer.</p>
+    </article>
+    <article id="Lec85">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 85: Box model- Padding</span></h2>
+        </header>
+        <p class="sec-para-main">Padding is the space between the border and content box of the element.<span
+                class="css-tags">Padding</span>
+            can be set for all sides or individually as desired. To set 10px padding on each <span
+                class="html-tags">&ltp></span> tag we would use something like this.</p>
+        <code class="code-snippet"><pre>p{
+    padding: 10px;
+}</pre></code>
+        <p>Sometimes the desired effect of padding can be achieved by setting width and height of the content
+            but it
+            also have it's own ups and downs. Read more about this on <a
+                href="https://stackoverflow.com/questions/28688248/css-padding-vs-height/33812725#:~:text=Use%20padding%20when%20you%20don,increase%20the%20container%27s%20vertical%20size.">Stackoverflow</a>
+        </p>
+    </article>
+    <article id="Lec86">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 86: Box model- Margin</span></h2>
+        </header>
+        <p class="sec-para-main">Margin is the space between the border of an element to another content border.
+            Border is always there in
+            CSS
+            box model even when not clearly visible. Like padding <span class="css-tags">margin</span>
+            can also be set for all sides or individually as desired.</p>
+        <p class="notes">Note: If there are two elements with colliding margins then only the bigger margin is
+            applied.
+            This is called margin collapsing.
+            <span class="src-link">
+                <span>Source -</span>
+                <a href="https://www.sitepoint.com/collapsing-margins/">Sitepoint</a>
+                <a href="https://css-tricks.com/what-you-should-know-about-collapsing-margins/">CSStricks</a>
+            </span>
+        </p>
+    </article>
+    <article id="Lec87">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 87: The display property</span></h2>
+        </header>
+        <p class="sec-para-main"><span class="css-tags">Display</span> property values which will be discussed
+            in
+            this section are <span class="keyword">block,inline-block and inline</span>. You can change an
+            element
+            display to be block, inline or inline-block.
+            Block level elements breaks the flow of the document and respects padding,margin, width and height.
+            Inline elements does not respect width and height, only horizontal padding and margin are respected.
+            Inline-block elements behaves like inline elements except the fact that height,width,padding and
+            margin
+            properties are respected.
+        </p>
+        <p class="notes">Note: The whitespace in a HTML document matters e.g., when you place one div after
+            another
+            on
+            next line then that will be shown as a actual space in the rendered document. To get around this
+            place
+            both
+            the elements on the same line or comment out the rest of the space in your markup.</p>
+    </article>
+    <article id="Lec88">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 88: CSS units revisited(Percentages)</span></h2>
+        </header>
+        <p class="sec-para-main">Percentages are relative units, when you set a property to be of percentage
+            value
+            then it becomes a
+            percentage of something, it could be percentage of element's parent or of some other property of the
+            same
+            element.</p>
+    </article>
+    <article id="Lec89">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 89: CSS units- ems</span></h2>
+        </header>
+        <p class="sec-para-main">Ems changes the element's size based on a property of the parent element or
+            some
+            other property of the
+            same
+            element.For e.g., If an element font-size is set to be of 2em then it will be of twice the size of
+            the
+            parent element font-size. It is a good idea to set padding and margin with em to make them
+            responsive
+            webpage which change according to the font-size of the element.</p>
+    </article>
+    <article id="Lec90">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 90: CSS units- rems</span></h2>
+        </header>
+        <p class="sec-para-main">Rems is related to the size of the root element <span class="html-tags">&lthtml></span>
+            element in this
+            case.
+            If an element font-size is set to be of 2rem then it will be of twice the size of the root
+            element(html)
+            font-size. Rems is preferred over ems in the case when you have same elements embedded in your
+            document
+            multiple times or in a nested fashion and you want all of them to have a similar size relative to
+            root
+            element. Rems and Ems can also be used together to create a responsive webpage. To know when to use
+            ream
+            and em read this article <a href="https://www.digitalocean.com/community/tutorials/css-rem-vs-em-units">When
+                to use rem and
+                em?</a> </p>
+    </article>
+    <article id="sec8-summary">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Important links and Formulas</span></h2>
+        </header>
+        <section class="imp-links">
+            <h3>Important links -</h3>
+            <ul>
+                <li>Em, rems & percentage -
+                    <ul>
+                        <li><a href="https://zellwk.com/blog/rem-vs-em/">article</a></li>
+                        <li><a href="https://www.loom.com/share/4a39ddef93f34d8cbb9ccb14d57bcfa5">video</a></li>
+                        <li><a href="https://kyleschaeffer.com/css-font-size-em-vs-px-vs-pt-vs-percent">article</a>
+                        </li>
+                        <li><a
+                                href="https://webdesign.tutsplus.com/tutorials/comprehensive-guide-when-to-use-em-vs-rem--cms-23984">Guide
+                                for usage</a></li>
+                        <li><a href="https://www.hsrtech.com/css/understanding-ems-and-rems/">article</a></li>
+                    </ul>
+                </li>
+                <li>Line height vs Padding -
+                    <ul>
+                        <li><a href="https://www.sitepoint.com/community/t/line-height-vs-padding/7115">article</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>Replaced elements -
+                    <ul>
+                        <li><a href="https://www.sitepoint.com/replaced-elements-html-myths-realities/">SitePoint</a>
+                        </li>
+                        <li><a href="https://html.spec.whatwg.org/multipage/rendering.html#widgets">W3C</a></li>
+                    </ul>
+                </li>
+                <li>Margin collapse -
+                    <ul>
+                        <li><a href="https://css-tricks.com/what-you-should-know-about-collapsing-margins/">CSS
+                                tricks</a></li>
+                        <li><a href="https://www.sitepoint.com/collapsing-margins/">SitePoint</a></li>
+                    </ul>
+                </li>
+                <li>Color generator
+                    <ul>
+                        <li><a href="https://coolors.co/">Coolors</a></li>
+                    </ul>
+                </li>
+                <li>Border-Radius-
+                    <ul>
+                        <li><a
+                                href="https://stackoverflow.com/questions/29966499/border-radius-in-percentage-and-pixels-px-or-em">StackOverflow</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>Padding VS height -
+                    <ul>
+                        <li><a
+                                href="https://stackoverflow.com/questions/28688248/css-padding-vs-height/33812725#:~:text=Use%20padding%20when%20you%20don,increase%20the%20container%27s%20vertical%20size.">StackOverflow</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </article>

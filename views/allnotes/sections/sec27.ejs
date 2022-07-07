@@ -1,0 +1,242 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="js-sec-heading">Section 27: Asynchronous Javascript</h1>
+        <nav class="sec-nav-li" id="sec27-nav">
+            <ul>
+                <li><a href="#Lec272">Lecture 272</a></li>
+                <li><a href="#Lec273">Lecture 273</a></li>
+                <li><a href="#Lec274">Lecture 274</a></li>
+                <li><a href="#Lec275">Lecture 275</a></li>
+                <li><a href="#Lec276">Lecture 276</a></li>
+                <li><a href="#Lec277">Lecture 277</a></li>
+                <li><a href="#Lec278">Lecture 278</a></li>
+                <li><a href="#Lec279">Lecture 279</a></li>
+                <li><a href="#Lec280">Lecture 280</a></li>
+                <li><a href="#Lec281">Lecture 281</a></li>
+                <li><a href="#Lec282">Lecture 282</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec272">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 272: What matters in this section?</span></h2>
+        </header>
+        <p class="sec-para-main">This section main focus will be working with promises and to learn how to use async
+            functions. This section increases the complexity quite a bit, so don't feel discouraged if you don't
+            catch all the concepts in one go rather supplement your learning with other material than just the Colt
+            lectures. Take your time, it's okay everyone moves at a different pace. Just don't give up, remember
+            <strong>persistence</strong> is the key.
+        </p>
+    </article>
+    <article id="Lec273">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 273: The call stack</span></h2>
+        </header>
+        <p class="sec-para-main">Call stack is the mechanism which Javascript interpreter uses to keep track of
+            where it is currently.
+            When
+            you execute a nested function then the inside function gets added last to the stack and is the first
+            one
+            to be removed, this is called LIFO principle (Last In First Out). The main execution thread of
+            Javascript is
+            denoted as (anonymous) and it is replaced by function context whenever there is a function call.
+            Read
+            more
+            about execution context in a JS tutorial <a
+                href="https://www.javascripttutorial.net/javascript-call-stack/">article</a></p>
+    </article>
+    <article id="Lec274">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 274: WebAPIs & Single Threaded</span></h2>
+        </header>
+        <p class="sec-para-main">Javascript is single threaded that means JS can only handle one line of code at a
+            time , it can't
+            handle
+            multiple things together. So when there are multiple functions to handle then call stack recognises
+            the
+            function which can be handled by browser and pass it onto them .Browser comes bundled with Web API's
+            and
+            are
+            able to handle functions sent by Javascript. Read <a
+                href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Introduction">this</a>
+            on MDN to know more about Web APIs. Also read answer by Ian in this <a
+                href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22051318#questions/15489688">Udemy
+                Q/A</a>
+        </p>
+    </article>
+    <article id="Lec275">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 275: Callback Hell</span></h2>
+        </header>
+        <p class="sec-para-main">Callback hell happens when there are many callback functions nested inside one
+            another, sometimes they need to be executed after a certain interval of time which may make the code
+            very cluttered and hard to read and on top of this the code becomes more complex to read when
+            conditionals are added onto it based on the success or failure of the function before it.
+            <a href="https://developer.mozilla.org/en-US/docs/Glossary/Callback_function">callback function MDN</a>
+            <a href="https://www.javascripttutorial.net/javascript-callback/">callback JStutorial</a>. To avoid this
+            kind of problem we use promises.
+        </p>
+        <section class="extra-info">
+            <h3>Lecture's common doubt -</h3>
+            <p> Many people are struggling to understand why did Colt use <span class="keyword">doNext &&
+                    doNext()</span> inside the function and that is because he wanted to verify if the doNext
+                function exists when he passes it as a parameter while nesting it inside another doNext function
+                call, if he didn't do it then it would lead to an error. He uses <span class="keyword">&&</span> to
+                shortcircuit the condition he wanted to check.
+                <a href="https://www.jstips.co/en/javascript/short-circuit-evaluation-in-js/">Short circuit in
+                    JS</a> (Source - <a
+                    href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22051324#questions/12917170">Udemy
+                    Q/A</a>)
+            </p>
+        </section>
+    </article>
+    <article id="Lec276">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 276: Demo- Fake Request using callbacks</span></h2>
+        </header>
+        <p class="sec-para-main">When you make a request to a server for some files, then there is a chance that the
+            operation might
+            fail.
+            So you might want to run different code based on whether your operation was successful or not. For
+            that,
+            in this lecture we will use callbacks for making request. While making a request, we pass two
+            different
+            callback functions as arguments - namely success and failure, out of them one will be called if the
+            promise was successful or not. But this is not an ideal way to make a request as it needs a lot of
+            nesting to make another request after the first one and then another. It can become quite confusing
+            and
+            can lead to <a href="#Lec275">callback hell</a>.</p>
+        <p class="sec-para-main">In the Colt's lecture many people are struggling to understand how does success and
+            failure callback
+            receives the value passed to them in the fake promise made by Colt. For more clarification on that you
+            can watch<a href="https://www.youtube.com/watch?v=zLwSr0mT7tQ">Ian youtube video here</a>. Also read
+            <a href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22051328#questions/13684202">Lakshmi
+                Manasa answer to Chee Ming</a> in the Udemy Q/A
+        </p>
+    </article>
+    <article id="Lec277">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 277: Demo- Fake Request using promises</span></h2>
+        </header>
+        <p class="sec-para-main">Promise is an object which represents the promise of running specific piece of code
+            on eventual failure or success of an async operation. Promise
+            initial value is <span class="value-tags">pending</span> and will eventually change to <span
+                class="value-tags">resolved</span> or
+            <span class="value-tags">rejected</span> based on the result of the operation where resolved represents
+            success of the operation while rejected means failure of the operation. You can attach <span
+                class="js-tags">.then()</span> and <span class="js-tags">.catch()</span> method which is called
+            when the promise is resolved or rejected respectively, <span class="js-tags">.then()</span> contains the
+            code which will run when the promise resolves while <span class="js-tags">.catch()</span> contains the
+            code to run when the promise is rejected. If you wish to make another request on successful completion
+            of first operation then you need to make it inside the <span class="js-tags">.then()</span>
+            method of the first promise which will further leads to nesting of requests. The workaround to this
+            nesting problem is discussed in next lecture.
+        </p>
+    </article>
+    <article id="Lec278">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 278: The magic of promises</span></h2>
+        </header>
+        <p class="sec-para-main">When you want to make multiple requests then instead of nesting a request inside
+            <span class="js-tags">.then()</span> you can
+            chain multiple <span class="js-tags">.then()</span> together without nesting them by returning a
+            promise
+            from inside of a <span class="js-tags">.then()</span> method. As it returns a promise so you will be
+            able to chain another <span class="js-tags">.then()</span> on the request you made, a single <span
+                class="js-tags">.catch()</span> method can be used to catch the error in any of the requests.
+            Read
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then">MDN
+                on .then()</a> to know more about it.
+        </p>
+        <p class="notes">One thing to note here is that <span class="js-tags">.then()</span> method itself
+            returns a
+            promise object even if you don't return a promise exlusively. For e.g. In the Colt's lecture we
+            returned
+            a promise exclusively in the <span class="js-tags">.then()</span> method with <span
+                class="keyword">return</span> keyword but we would have received a promise object regardless of
+            if
+            we returned the promise or not. But when you return a promise inside a <span class="js-tags">.then()</span>
+            method then that <span class="js-tags">.then()</span> receives
+            the
+            value of that returned promise.</p>
+    </article>
+    <article id="Lec279">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 279: Creating our own promises</span></h2>
+        </header>
+        <p class="sec-para-main">Promises can be made using a promise constructor and passing a callback function to
+            it which takes two function arguments <span class="js-tags">resolve</span> and <span
+                class="js-tags">reject</span>(both are optional)
+            , it could be named anything else but these functions are named so because they signify the <span
+                class="keyword">resolved</span> and <span class="keyword">rejected</span> state of a promise. A
+            promise always return a value and if it is not resolved or rejected then it is pending by default. Check
+            <a href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22051340#questions/13122536">Zarko's
+                explanation</a> on why did Colt receive <span class="value-tags">resolved</span> while most of us
+            received <span class="value-tags">fulfilled</span> by a promise successful callback.
+        </p>
+    </article>
+    <article id="Lec280">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 280: The Async keyword</span></h2>
+        </header>
+        <p class="sec-para-main">The <span class="keyword">async</span> keyword is added to a function to signify
+            that it is a
+            promise.
+            The value which you return from inside the function is termed as resolved. You get rejected promise
+            when
+            there is an error thrown explicitly or something goes wrong in the function. You can use <span
+                class="js-tags">.then()</span> and <span class="js-tags">.catch()</span> method on async
+            functions
+            as they behave like normal promises.</p>
+        <p class="notes">To read about difference between throwing an error vs throwing a string read <a
+                href="https://stackoverflow.com/questions/11502052/throwing-strings-instead-of-errors">this</a>
+            SO
+            post.</p>
+    </article>
+    <article id="Lec281">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 281: The await keyword</span></h2>
+        </header>
+        <p class="sec-para-main">The <span class="js-tags">await</span> keyword is mostly used with a async
+            function to await the execution of the promise. If there are two promise calls simultaneously then <span
+                class="js-tags">await</span> keyword waits for the execution of the previous promise before
+            executing the next one. check example of <a
+                href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await#the_await_keyword">await
+                on MDN</a></p>
+    </article>
+    <article id="Lec282">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 282: Handling errors in async functions</span></h2>
+        </header>
+        <p class="sec-para-main">We use <span class="keyword">try</span> and <span class="keyword">catch</span> on
+            async functions to handle rejections by a promise state.</p>
+    </article>
+    <article id="sec27-summary">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Important links and Formulas</span></h2>
+        </header>
+        <h3>Important links -</h3>
+        <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous">MDN guide on
+                    asynchronous</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">MDN
+                    on promise</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Callback_function">MDN on callback
+                    function</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then">.then()
+                    MDN</a>
+            </li>
+            <li><a href="https://javascript.info/promise-chaining">Promise-Chaining-JSinfo</a></li>
+            <li><a href="https://www.javascripttutorial.net/es6/promise-chaining/">Promise-Chaining-JStutorial</a>
+            </li>
+            <li> <a href="https://www.javascripttutorial.net/es6/javascript-promises/">GuideToPromises-JStutorial</a>
+            </li>
+            <li><a
+                    href="https://stackoverflow.com/questions/40046657/when-or-who-does-pass-resolve-and-reject-functions-to-js-promises/61905844#61905844">SOpost
+                    on resolve and reject</a>
+            </li>
+            <li><a href="https://stackoverflow.com/questions/11502052/throwing-strings-instead-of-errors">Throwing
+                    string instead of a proper error SO</a>
+            </li>
+        </ul>
+    </article>

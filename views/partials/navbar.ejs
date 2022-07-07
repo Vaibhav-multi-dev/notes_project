@@ -1,0 +1,23 @@
+<header>
+    <h1 class="backend-sec-heading">Section 41: Yelp Camp - Adding Basic Styles</h1>
+    <!-- Pass a variable from ejs which contains possible values of sec-heading that could be [backend,html,css,js] -->
+    <nav class="sec-nav-li" id="sec41-nav">
+        <!-- Generate id with ejs tag and grab the section number from the route -->
+        <ul>
+            <!-- Generate each lecture link tag by looping over an array of lectures
+                 which exist in the section Model containing lecture id(derived fro lecture model)-->
+            <li><a href="#Lec423">Lecture 423</a></li>
+            <li><a href="#Lec424">Lecture 424</a></li>
+            <li><a href="#Lec425">Lecture 425</a></li>
+            <li><a href="#Lec426">Lecture 426</a></li>
+            <li><a href="#Lec427">Lecture 427</a></li>
+            <li><a href="#Lec428">Lecture 428</a></li>
+            <li><a href="#Lec429">Lecture 429</a></li>
+            <li><a href="#Lec430">Lecture 430</a></li>
+            <li><a href="#Lec431">Lecture 431</a></li>
+            <!-- Check if there are any coding exercises with section.codingExercises.length conditional -->
+            <!-- Generate coding exercise solutions by looping over a field called codingExercise which exist 
+                in section Model and generating links according to that -->
+        </ul>
+    </nav>
+</header>

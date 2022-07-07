@@ -1,0 +1,107 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 44: Data Relationships with Mongo</h1>
+        <nav class="sec-nav-li" id="sec44-nav">
+            <ul>
+                <li><a href="#Lec447">Lecture 447</a></li>
+                <li><a href="#Lec448">Lecture 448</a></li>
+                <li><a href="#Lec449">Lecture 449</a></li>
+                <li><a href="#Lec450">Lecture 450</a></li>
+                <li><a href="#Lec451">Lecture 451</a></li>
+                <li><a href="#Lec452">Lecture 452</a></li>
+                <li><a href="#Lec453">Lecture 453</a></li>
+                <li><a href="#Lec454">Lecture 454</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec447">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 447: What matters in this section ?</span></h2>
+        </header>
+        <p class="sec-para-main">This section crucial part is introduction to multiple types of one to many
+            realtionships which exists in Mongo.</p>
+    </article>
+    <article id="Lec448">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 448: Introduction to Mongo relationships</span></h2>
+        </header>
+        <p class="sec-para-main">Colt tells us in this lecture that how we are going to learn to model our
+            relationships between different entities of our model. Almost all of the entities of our model are
+            interconnected and rarely it exists in isolation.</p>
+    </article>
+    <article id="Lec449">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 449: SQL realtionships overview</span></h2>
+        </header>
+        <p class="sec-para-main">SQL forms relationships between different entity of a model by storing every entity
+            in separate tables with rigid structure which are then linked together by the use of a field usually
+            <span class="keyword">id</span>. It helps us to have one to many or many to many relationships between
+            different entities. For e.g. A user can have multiple posts associated with him and on the other hand
+            (Example of many to many relationships).
+        </p>
+    </article>
+    <article id="Lec450">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 450: One to few</span></h2>
+        </header>
+        <p class="sec-para-main">Colt tells us about <span class="keyword">one to few</span> relationships
+            of data in this lecture. One to few realtionships are used when you want to link two different entities
+            and one entity can have multiple instances of the other entity but not vice-versa. Esentially it is used
+            when you have piece of data that you do not want to access independently but only in association with
+            other entity. For e.g. - Address of a user, it is useless on it's own without personal details of the
+            user.
+        </p>
+    </article>
+    <article id="Lec451">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 451: One to Many</span></h2>
+        </header>
+        <p class="sec-para-main">One to many is the generic name used to describe different kinds of one to many
+            relationships that may exist between different types of data. In wake of that knowledge the one
+            Colt is talking in this lecture is when you have medium amount of data that needs to be linked with
+            other entity. Instead of storing the childSchema in the parentSchema like we did earlier, we make two
+            separate models and store a reference of the childSchema in the parentSchema usually referred to by it's
+            ObjectID rather nesting them like we did earlier.</p>
+    </article>
+    <article id="Lec452">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 452: Mongoose populate</span></h2>
+        </header>
+        <p class="sec-para-main">We use <span class="backend-tags">populate()</span> when you want to populate a
+            collection with the actual product(instance of another schema) which is referenced within the schema by
+            <span class="keyword">ObjectID</span>. The process is made easier by use of <span class="keyword">ref</span>
+            keyword which references the ObjectID of another schema.
+        </p>
+    </article>
+    <article id="Lec453">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 453: One to bajillions</span></h2>
+        </header>
+        <p class="sec-para-main">When there are too many instances of childSchema then instead of storing the ID of
+            the instance of the childSchema inside the parentSchema, we store the id of the parentSchema inside the
+            childSchema.</p>
+    </article>
+    <article id="Lec454">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 454: Mongoose schema design</span></h2>
+        </header>
+        <p class="sec-para-main">Mongo Schema design personally boilds down to what you prefer and how you wan to
+            present and access the data but there are still some guidilens that can be followed.</p>
+        <ul>
+            <li>Try to embed the data if possible.</li>
+            <li>If embedding is not possible then give the reference of childSchema in the parentSchema.</li>
+            <li>If instances of childSchema are too much then make a reference to parentSchema inside the
+                childSchema.</li>
+            <li>Some times you may even need to denormalize the shema i.e. store smae information in multiple places
+                to avoid using populate everytime for an information that we access frequently.</li>
+            <li>It is also possible to store the ID of childSchema in parentSchema and the ID of childSchema in
+                parentSchema.</li>
+        </ul>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li> <a href="https://www.mongodb.com/blog/post/6-rules-of-thumb-for-mongodb-schema-design-part-3">Article
+                        on monogDesign</a> which Colt mentioned in his lecture.</li>
+            </ul>
+        </div>
+    </article>

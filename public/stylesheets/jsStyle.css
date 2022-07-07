@@ -1,0 +1,52 @@
+.js-sec-heading{
+    background-color: #fff3b0;
+    font-size: 20px;
+    color: rgba(68, 73, 219, 0.8);
+    padding: 1em;
+    border: 3px solid rgb(27, 9, 9);
+    border-left: none;
+    border-right: none;
+    margin-top: 2em;
+}
+
+.js-article-header{
+    background-color: #eec39b;
+    border-radius: 10px;
+}
+
+.js-article-header h2{
+    display: inline;
+}
+
+.js-lec-heading{
+    font-size: 22px;
+    padding: 2px;
+    font-weight: 600;
+    background-color: #FFD60A;
+}
+
+.sec-para-main{
+    margin: 1.5em 2em 2em 2em;
+}
+
+.list-content{
+    padding: 0 1.5rem;
+}
+
+.list-content li{
+    padding: 0.4rem 0;
+}
+
+.js-tags{
+    background-color: rgba(234, 240, 152, 0.863);
+}
+
+.sec-content-segregation h3{
+    margin-left: 2.5em;
+    color: rgb(186, 50, 204);
+}
+
+.sec-content-segregation p{
+    line-height: 1.5em;
+    margin: 1em 2em;
+}

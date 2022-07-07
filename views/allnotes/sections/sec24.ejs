@@ -1,0 +1,314 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="js-sec-heading">Section 24: Introduction to DOM</h1>
+        <nav class="sec-nav-li" id="sec24-nav">
+            <ul>
+                <li><a href="#Lec240">Lecture 240</a></li>
+                <li><a href="#Lec241">Lecture 241</a></li>
+                <li><a href="#Lec242">Lecture 242</a></li>
+                <li><a href="#Lec243">Lecture 243</a></li>
+                <li><a href="#Lec244">Lecture 244</a></li>
+                <li><a href="#Lec245">Lecture 245</a></li>
+                <li><a href="#Lec246">Lecture 246</a></li>
+                <li><a href="#Lec247">Lecture 247</a></li>
+                <li><a href="#Lec248">Lecture 248</a></li>
+                <li><a href="#Lec249">Lecture 249</a></li>
+                <li><a href="#Lec250">Lecture 250</a></li>
+                <li><a href="#Lec251">Lecture 251</a></li>
+                <li><a href="#Lec252">Lecture 252</a></li>
+                <li><a href="#Lec253">Lecture 253</a></li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex51">Exercise
+                        51</a></li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex52">Exercise
+                        52</a></li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex53">Exercise
+                        53</a></li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex54">Exercise
+                        54</a></li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex55">Exercise
+                        55</a></li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex56">Exercise
+                        56</a></li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex57">Exercise
+                        57</a></li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex58">Exercise
+                        58</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec240">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 240: What matters in this section?</span></h2>
+        </header>
+        <p class="sec-para-main">This is a very dense section and pretty much everything is important here. We start
+            integrating HTML,CSS and JS together in this section, introduction to DOM and different way of selecting
+            HTML elements is the most important part here.</p>
+    </article>
+    <article id="Lec241">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 241: Introducing DOM</span></h2>
+        </header>
+        <p class="sec-para-main">DOM stands for document object model. DOM is representation of whole webpage into a
+            javascript
+            object.
+            Through this we can make changes to a page by using javascript to interact with HTML and CSS of a
+            webpage. It defines a logical structure of the document. You can read more about DOM on<a
+                href="https://www.w3.org/TR/WD-DOM/introduction.html">W3org </a> and <a
+                href="https://eloquentjavascript.net/14_dom.html">this</a> article on eloquent javascript.</p>
+    </article>
+    <article id="Lec242">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 242: The Document Object</span></h2>
+        </header>
+        <p class="sec-para-main">Whenever a webpage is rendered then corresponding objects are made for their HTML
+            elements by the
+            browser. Every created object contains properties and methods related to the element. Objects are
+            linked
+            to each other in a tree like structure. Document Object is the root object of all the objects, it
+            contains all the objects of a webpage plus a bunch of properties and methods of it's own. Through
+            document object we can access and change any element inside a webpage.</p>
+    </article>
+    <article id="Lec243">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 243: getElementById</span></h2>
+        </header>
+        <p class="sec-para-main">You can select objects in a webpage that have similar tag, class or Id or some
+            other relation which
+            they
+            share together and then modify them by using specific DOM methods.To select element by Id we use
+            <span class="js-tags">document.getElementById()</span> which will give us the DOM object of the
+            selected
+            Id. It is important to note that it gives us the Object representation of the element and not just
+            the
+            HTML content.
+        </p>
+    </article>
+    <article id="Lec244">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 244: getElementsByTagName & className</span></h2>
+        </header>
+        <p class="sec-para-main">To select multiple elements at once by using tag or class we use <span
+                class="js-tags">document.getElementsByTagName()</span> and <span
+                class="js-tags">document.getElementsByClassName()</span>. It gives us back a HTML collection
+            which
+            contains all the selected elements, a HTML collection is an array like object which has some array
+            like
+            properties and methods, elements inside the HTML collection have properties and methods of their
+            own.
+            You can read more about the HTML collection <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection">here</a>.
+        </p>
+    </article>
+    <article id="Lec245">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 245: querySelector & querySelectorAll</span></h2>
+        </header>
+        <p class="sec-para-main"><span class="js-tags">querySelector</span> and <span
+                class="js-tags">querySelectorAll</span> is a
+            modern
+            replacement for selecting elements by <span
+                class="js-tags">document.getElementsBy(ClassName)/(Id)/(TagName)</span>. It uses syntax as same
+            as
+            CSS query selectors, in addition to selecting by TagName,Id and ClassName you can also select by
+            other
+            complex queries like we did in css selectors. Syntax - <span
+                class="js-tags">attribute.querySelector()</span>
+            gives us back the first occurence of the selected query while <span
+                class="js-tags">querySelectorAll()</span> gives us back all the occurences of the selected query
+            in the form of a node list. To select by Id use hash<span class="keyword">#</span> followed by ID, for
+            class use dot <span class="keyword">.</span> followed by class to select and for tag just use tag name.
+            It give us back a NodeList compared to document.getElementBy() methods which gives us back a HTML
+            collection. Two main differences between the two is that HTML collection is live while NodeList is a
+            non-live i.e a snapshot of the entities inside it and HTML collection contains only Element type
+            objects as children while NodeList contain different type of nodes as children. Check <a
+                href="https://stackoverflow.com/questions/15763358/difference-between-htmlcollection-nodelists-and-arrays-of-objects/15763707#15763707">thread
+                on SO</a>
+            and <a href="https://hackernoon.com/htmlcollection-nodelist-and-array-of-objects-da42737181f9">Hackernoon
+                article</a> for more info (By <a
+                href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22003772#questions/15591260">Akshay
+                in Udemy Q/A</a>
+            )
+        </p>
+    </article>
+    <article id="Lec246">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 246: innerHTML, textContent, & innerText</span></h2>
+        </header>
+        <div class="list-content">
+            <ul>
+                <li><span class="keyword">innerText</span> - only shows the rendered text inside an element, if
+                    some text is hidden then it isn't displayed in <span class="keyword">innerText</span>.</li>
+                <li><span class="keyword">textContent</span> - even shows the hidden text of an element and also put
+                    spaces after the line wherever there was new line in your editor.</li>
+                <li><span class="keyword">innerHTML</span> - It contains not only the text but also any tags that
+                    might
+                    be inside the selected element. It is mostly used for updating some element rather than
+                    getting text value inside of one.</li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec247">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 247: Attributes</span></h2>
+        </header>
+        <p class="sec-para-main">You can also access attributes of an HTML element created JS object like you would
+            normally access a
+            property in JS object. For example to access an attribute <span class="keyword">href</span> of a
+            link
+            element and direct it to google, you would use -
+        </p>
+        <code class="code-snippet"><pre>
+const mylink = document.querySelector('a');
+mylink.href = "www.google.com"
+</pre></code>
+        <p class="sec-para-main">There are also <span class="js-tags">.getAttribute</span> and <span
+                class="js-tags">.setAttribute</span>
+            methods on these objects which can be used to get or set a property. There are only minor
+            differences
+            between setting a property directly or by using getters and setters. To know more, read <a
+                href="https://stackoverflow.com/questions/3919291/when-to-use-setattribute-vs-attribute-in-javascript">setattribute
+                vs attribute in JS</a> (By <a
+                href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22003782#questions/14207032">Louli
+                in Udemy Q/A</a>
+            ) .
+        </p>
+    </article>
+    <article id="Lec248">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 248: Changing Styles</span></h2>
+
+        </header>
+        <p class="sec-para-main">We can also modify the style of the selected element by using javascript. There is
+            a style object present on every element you select thorugh javascript, the style object contain all the
+            CSS properties which are associated with the selected element. One thing to keep in mind is that all the
+            names of CSS properties are written in camelCase even the ones which are normally written with hypen in
+            CSS for e.g. font-size is present as fontSize in style object. This object does not contain the styles
+            you may have applied to the element through external stylesheet but will have the value of inline
+            styles you may have applied to the element. To modify a property on a selected elemented we use -
+        </p>
+        <div class="article-example">
+            <code class="code-snippet">
+                    <pre>
+const h1 = document.querySelector("h1"); 
+h1.style.color = "red"; <span class="code-comment">// will change the h1 color to red</span>
+</pre></code>
+        </div>
+        <p class="sec-para-main">If you wish to obtain the styles currently applied on an element then you can use
+            <span class="js-tags">window.getComputedStyle("elem").styleProperty</span> where "elem" stands for the
+            name of the element and .styleProperty refers to style property whose value you want to find. For e.g.
+            to find the font size of <span class="html-tags">&lth1></span> we would do something like this-
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+window.getComputedStyle(h1).fontSize
+'48.832px'
+</pre> </code>
+        </div>
+        <p class="notes"><span class="js-tags">window.getComputedStyle("elem").styleProperty</span> only works for a
+            single element. To apply multiple properties at once you can also use cssText property see <a
+                href="https://www.w3schools.com/jsref/prop_style_csstext.asp">W3Schools on cssText</a> to know more
+            about it.(By <a
+                href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/quiz/5031936#questions/13514974">Mauricio
+                in Udemy Q/A</a>)</p>
+    </article>
+    <div class="article-example">
+        <code class="code-snippet"><pre>
+<p>A sample of how cssText works -</p>
+h1.style.cssText = "font-size:12px; color: pink;"
+<span class="code-comment"> //This will change the h1 font-size to 12px and color to pink</span> 
+</pre></code>
+    </div>
+    <article id="Lec249">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 249: Class list</span></h2>
+        </header>
+        <p class="sec-para-main">A better way to add styles to your HTML element is through javascipt classes
+            rather than using dot notation to change inline styles of the element. We use <span
+                class="js-tags">classList</span> for this purpose, it is a better way than using setAttribute
+            because you can apply multiple classes with this compared to setAttribute where you can't add classes
+            easily to the existing classes. <span class="js-tags">classList</span> also allows us to remove or
+            toggle the classes on an element, hence making it more versatile than modifying inline styles of an
+            element directly.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+p.classList.add("pinkbg redText");
+p.classList.remove("pinkbg");
+p.classList.toggle("pinkbg redText");        
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec250">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 250: Traversing Parent/Child/Sibling</span></h2>
+        </header>
+        <p class="sec-para-main">You can access an element parent/child or sibling for styling by using
+            <span class="js-tags">.parentElement, .children and .nextElementSibling and
+                .previousElementSibling</span>. There are also <span class="js-tags">.nextSibling &
+                .previousSibling</span> methods but they are different from their similar element sibling
+            methods in the sense that they gives you the next or previous node instead of element. To know the
+            difference between the two read
+            <a
+                href="https://stackoverflow.com/questions/9979172/difference-between-node-object-and-element-object/9979779#9979779">Difference
+                between node and element</a> (By <a
+                href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22003792#questions/15338942">Louli
+                in Udemy Q/A</a>) .
+        </p>
+    </article>
+    <article id="Lec251">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 251: Append & AppendChild</span></h2>
+
+        </header>
+        <p class="sec-para-main">We are introduced to <i> .append() .appendChild()
+                .prepend() .insertAdjacentElement() .after() .before() </i> to add elements/node into the DOM
+            in this lecture. <span class="js-tags">.appendChild()</span> is used to append a node as a child to the
+            end of the selected element. <span class="js-tags">.append()</span> works similarly as .appendChild()
+            but there are a few differences .append() can be used to add multiple
+            elements at a time, does not return
+            anything hence it is possible to chain methods on to it, can also be used to append String objects while
+            .appendChild() is restricted to adding one element, return the added node
+            and can't be used to add String object. <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild">MDN for .appendChild()</a>,
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/append">MDN for .append()</a>
+            <span class="js-tags">.prepend()</span> functions like append
+            but adds before the selected element <span class="js-tags">.insertAdjacentElement()</span> can be used
+            to insert elements adjacent to the selected element whether that be before or after the selected
+            element. <a href="https://mdn.github.io/dom-examples/insert-adjacent/insertAdjacentElement.html">see
+                demo of .insertAdjacentElement() on MDN</a> and <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentElement">MDN on
+                .insertAdjacentElement()</a> to understand it better. <span class="js-tags">.after()
+                .before()</span> can be used to insert an element after or before the selected element. <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/Element/after">MDN for .after()</a> and <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/Element/before">MDN for before()</a>
+        </p>
+    </article>
+    <article id="Lec252">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 252: removeChild & remove</span></h2>
+        </header>
+        <p class="sec-para-main">To remove an element from the DOM we have two methods - <span
+                class="js-tags">.removeChild() and .remove()</span> .removeChild() removes the child of the parent
+            not the element itself for e.g. to delete a paragraph inside a div we will first select the div and then
+            pass paragraph inside the .removeChild() whereas .remove() will remove the element itself on whccih it
+            is called upon. Example on how to remove a paragraph - </p>
+        <div class="article-example">
+            <code class="code-snippet">
+                        <pre>
+document.querySelector('p').parentElement.remove('p');
+document.querySelector('p').remove()
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec253">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 253: Pokemon Sprites Demo</span></h2>
+        </header>
+        <p class="sec-para-main"></p>
+    </article>
+    <article id="sec24-summary">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Important links and Formulas</span></h2>
+        </header>
+        <h3>Important links -</h3>
+    </article>

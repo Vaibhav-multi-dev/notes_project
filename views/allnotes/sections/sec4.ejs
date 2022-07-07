@@ -1,0 +1,138 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="html-sec-heading">Section 4: HTML semantics</h1>
+        <nav class="sec-nav-li" id="sec4-nav">
+            <ul>
+                <li><a href="#Lec31">Lecture 31</a></li>
+                <li><a href="#Lec32">Lecture 32</a></li>
+                <li><a href="#Lec33">Lecture 33</a></li>
+                <li><a href="#Lec34">Lecture 34</a></li>
+                <li><a href="#Lec35">Lecture 35</a></li>
+                <li><a href="#Lec36">Lecture 36</a></li>
+                <li><a href="#Lec37">Lecture 37</a></li>
+                <li><a href="#Lec38">Lecture 38</a></li>
+                <li><a href="#Lec39">Lecture 39</a></li>
+                <li>Coding Exercise Solutions -
+                    <ul>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex4">
+                                Exercise 4</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec31">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 31: What matters in this section</span></h2>
+        </header>
+        <p class="sec-para-main">In this section - HTML 5, semantic elements & block and inline-elements are crucial
+            to understand.
+            We will also study about <code class="html-tags">&ltsup></code>, <code class="html-tags">&ltsub></code>,
+            <code class="html-tags">&lthr></code> and <code class="html-tags">&ltbr></code> but they are not that
+            important.
+        </p>
+    </article>
+    <article id="Lec32">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 32: What is HTML 5?</span></h2>
+        </header>
+        <p class="sec-para-main">HTML is set of rules which defines how an element would look like, you can see the
+            standard at <a href="https://html.spec.whatwg.org/">HTML spec</a>.Specs is followed by every browser and
+            implemented
+            accordingly. HTML 5 defines the new version of the HTML standard that contains new attributes, elements
+            and
+            other things like 2d/3d animation which aren't exactly HTML but helps to build a better webpage.You
+            can't go
+            back to a previous HTML version, even if you define a document type as HTML4 or older but put an HTML5
+            element inside it, then it will still be implemented by the browser. </p>
+    </article>
+    <article id="Lec33">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 33: Block vs Inline elements - Divs and Spans</span></h2>
+        </header>
+        <p class="sec-para-main"><span class="keyword">Inline elements</span> does not break the document flow and
+            just takes the space
+            required by the content inside
+            it,
+            any content placed after it will be placed right next to it.
+            <span class="keyword">Block level elements</span> break the document flow and take the whole space for
+            themselves, any element placed
+            after block level element will be placed in the next line.
+            <span class="keyword">Divs</span> acts like a container of the content and helps to wrap things up
+            together which you may want to
+            style
+            differently than rest of the document, it is a block level element hence any element placed after div
+            will
+            start in a new line. <span class="keyword">Span</span> also works similarly like div the only
+            difference is that it is a inline level element and hence doesn't break the document flow.
+        </p>
+    </article>
+    <article id="Lec34">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 34: HR,BR,sub and sup</span></h2>
+        </header>
+        <p class="sec-para-main"><code class="html-tags">&lthr></code> stands for horizontal rule basically it puts
+            a horizontal line
+            through
+            the document. <code class="html-tags">&ltbr></code> stands for break which breaks the document flow and
+            anything which comes after it starts from a new line.<code class="html-tags">&ltsub></code> is useful if
+            you
+            want to place an element below the baseline(line where all other elements are placed).<code
+                class="html-tags">&ltsup></code> places the element above the baseline.
+            Proper use of <code class="html-tags">&ltbr></code> can be read on <a
+                href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-br-element">HTMLspec</a>
+        </p>
+    </article>
+    <article id="Lec35">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 35: Entity Codes</span></h2>
+        </header>
+        <p class="sec-para-main">Entity codes starts with <code class="html-tags">&amp;</code> followed by some
+            characters and ends with <code class="html-tags">&semi;</code>
+            They are used to represent reserved characters or some symbols which you won't be able to type easily.
+        </p>
+        <div class="src-link">
+            <p>Websites for reference-</p>
+            <ul>
+                <li><a href="https://entitycode.com/">EntityCode.com</a></li>
+                <li><a href="https://dev.w3.org/html5/html-author/charref">w3org</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec36">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 36: Intro to semantic Markup</span></h2>
+        </header>
+        <p class="sec-para-main">Semantic markup gives meaning to our HTML document so it makes more sense to the
+            browser, assist screnreaders and boost SEO rating. For e.g People will
+            understand if you made a div tag with class-nav but for browser it doesn't make much sense it still
+            thinks
+            that it is div with a class, it isn't able to identify that this is used to indicate that this is a
+            navigation bar. To make our elements make sense to browser, we use semantic elements. A browser may not
+            be
+            able to identify that a div with class <mark>nav</mark> is a navigation bar but when you use <code
+                class="html-tags">&ltnav></code> tag then it becomes clear to browser that you are trying to
+            indicate
+            that it is a navigation bar.</p>
+    </article>
+    <article id="Lec37">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 37: Playing with semantic elements</span></h2>
+        </header>
+        <p class="sec-para-main"> <code class="html-tags">&ltmain></code>,<code
+                class="html-tags">&ltsection></code>,<code class="html-tags">&ltarticle></code>,<code
+                class="html-tags">&ltnav></code> and <code class="html-tags">&ltaside></code>
+            which function like container and can be used to replace <code class="html-tags">&ltdiv></code> to
+            provide semantic meaning to the document were introduced in this lecture. </p>
+    </article>
+    <article id="Lec38">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 38: Screen reader demo</span></h2>
+        </header>
+        <p class="sec-para-main">Nothing to note here. It's just Colt giving a demo of how screen reader works.</p>
+    </article>
+    <article id="Lec39">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 39: VS code tip:Emmet</span></h2>
+        </header>
+    </article>

@@ -1,0 +1,286 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 55: YelpCamp:Adding Maps</h1>
+        <nav class="sec-nav-li" id="sec55-nav">
+            <ul>
+                <li><a href="#Lec541">Lecture 541</a></li>
+                <li><a href="#Lec542">Lecture 542</a></li>
+                <li><a href="#Lec543">Lecture 543</a></li>
+                <li><a href="#Lec544">Lecture 544</a></li>
+                <li><a href="#Lec545">Lecture 545</a></li>
+                <li><a href="#Lec546">Lecture 546</a></li>
+                <li><a href="#Lec547">Lecture 547</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec541">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 541: Registring for Mapbox</span></h2>
+        </header>
+        <p class="sec-para-main">In this section we will start to integrate Maps in our app, so when a user gives a
+            location while making a camp it is used to display a location on a map beside the campground. We will
+            use an API to get latitude and longitude from the location provided and then pass it to Mapbox to
+            display the location on a Map. Mapbox gives us a Token to use it's services which we put in our <span
+                class="keyword">.env</span> file. Token is not something to be kept as a secret but we keep it in
+            the .env file just so it's get easier when our app is in production mode.</p>
+    </article>
+    <article id="Lec542">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 542: Geocoding our locations</span></h2>
+        </header>
+        <p class="sec-para-main">Now we add Geocoding in our application to get the coordinates of the location of
+            the campground for that purpose we use an npm package called <span class="keyword">mapbox-sdk-js</span>
+            to ease our work. Mapbox gives us two methods for geocode but we will only be using forwardGeocode to
+            get the coordinates of the location provided by the user.
+        </p>
+        <div class="extra-info">
+            <p>Note: We get our results in this order <span class="keyword">longitude,latitude</span> but usually in
+                map applications latitude comes first followed by longitude.</p>
+        </div>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mapboxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapboxToken });
+
+<p>Route to make a new cmapground -</p>
+module.exports.makeNewCampground = async (req, res) => {
+    const geoData = await geocoder.forwardGeocode({
+        query: req.body.campground.location,
+        limit: 1
+    }).send();
+    console.log(geoData.body.features[0].geometry.coordinates);
+    res.send("It's working");
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://docs.mapbox.com/api/search/geocoding/#forward-geocoding">Docs for Mapbox
+                        geocoding</a></li>
+                <li><a href="https://github.com/mapbox/mapbox-sdk-js#creating-and-sending-requests">Docs for
+                        mapbox-sdk-js</a></li>
+                <li><a href="https://github.com/mapbox/mapbox-sdk-js/blob/main/docs/services.md#geocoding">Docs for
+                        geocoding services</a></li>
+                <li><a href="https://docs.mapbox.com/api/search/geocoding/#:~:text=geometry.coordinates">Docs for
+                        geometry coordinates</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec543">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 543: Working with GeoJSON</span></h2>
+        </header>
+        <p class="sec-para-main">Now we make changes to our campgroundSchema so it can store the coordinates that
+            we get from Mapbox. We store the data in a GeoJSON format only because this format is also supported by
+            mongo and many of the mongo queries can then be applied on the data that we receive back from Mapbox.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>New campground Schema -</p>
+const CampgroundSchema = new Schema({
+    title: String,
+    price: Number,
+    geometry: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    },
+    images: [ImageSchema],
+    description: String,
+    location: String,
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    review: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Review'
+        }
+    ]
+})
+<p>Changes in our makeNewCampground route -</p>
+module.exports.makeNewCampground = async (req, res) => {
+    const geoData = await geocoder.forwardGeocode({
+        query: req.body.campground.location,
+        limit: 1
+    }).send();
+    const camp = new Campground(req.body.campground);
+    camp.geometry = geoData.body.features[0].geometry;
+    camp.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    camp.author = req.user._id;
+    await camp.save()
+    console.log(camp);
+    req.flash('success', "Successfully made a new campground");
+    res.redirect(`/campgrounds/${camp._id}`)
+}
+
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://mongoosejs.com/docs/geojson.html#using-geojson">Mongoose docs for GeoJSON
+                        data</a>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec544">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 544: Displaying a Map</span></h2>
+        </header>
+        <p class="sec-para-main">Now we write code to display a map on the campgrounds show page. We mostly go to
+            the Mapbox GL docs and copy paste stuff and nothing much to add from our side. One thing to keep in mind
+            is that in our application we just copied the cdn link for stylesheet and script from MapBox GL
+            and put it in our layout file but you might also add a conditional to check if you require it or not as
+            it's a heavy file.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code to include in our show page -</p>
+&ltscript>
+    const mapToken = '&lt%-process.env.MAPBOX_TOKEN %>'
+&lt/script>
+&ltdiv id="map" style="width:400px; height:290px">&lt/div>
+&ltscript src="/scripts/showMap.js">&lt/script> <span class="code-comment">//Attaching script with code for Map to the show page</span>
+<p>JavaScript to put in your public directory -</p>
+mapboxgl.accessToken = mapToken;
+const map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v11', // style URL
+    center: [-74.5, 40], // starting position [lng, lat]
+    zoom: 5 // starting zoom
+})
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://stackoverflow.com/questions/20727910/what-is-escaped-unescaped-output">SO for
+                        unescaped and escaped values</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec545">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 545: Centering the Map on a Campground</span></h2>
+        </header>
+        <p class="sec-para-main"></p>
+        <div class="extra-info">
+            <p>Note: Many students are facing trouble saving their EJS file, windows user can try using Ctrl+K then
+                Ctrl+Shift+S (recommneded by Bill in Udemy Q/A)</p>
+        </div>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code to add in our script file -</p>
+new mapboxgl.Marker()
+    .setLngLat(campground.geometry.coordinates)
+    .addTo(map);
+<p>Code to add in our show page -</p>
+&ltscript>
+    const mapToken = '&lt%-process.env.MAPBOX_TOKEN %>'
+    const campground = &lt%-JSON.stringify(camp)%> 
+&lt/script>
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Source -</p>
+            <ul>
+                <li>Read answers on <a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22346286#questions/13228722">ejs
+                        error
+                        in this Udemy thread</a>
+                </li>
+                <li><a href="https://docs.mapbox.com/mapbox-gl-js/example/add-a-marker/">MapBox docs for marker</a>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec546">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 546: Fixing our Seeds Bug</span></h2>
+        </header>
+        <p class="sec-para-main">Now we make some change to our seeds file to that it adds geolocation to each of
+            the campgrounds when we run them. We hardcode the geolocation for now but later on we will add them
+            dynamically. We also make changes to our campground index file so it doesn't break if we forget to
+            include an image of the cmapground with it.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code for campground index file -</p>
+&lt% if(camp.images.length){ %>
+    &ltdiv class="col-md-4">
+        &ltimg src="&lt%=camp.images[0].url%>" class="img-fluid" alt="">
+    &lt/div>
+    &lt% } else{ %>
+        &ltimg src="" class="img-fluid" alt="">
+        &lt% } %>
+<p>Code for our seeds index file -</p>
+const seedDB = async () => {
+    await Campground.deleteMany({});
+    for (let i = 0; i < 50; i++) {
+        const random1000 = Math.floor(Math.random() * 1000);
+        const price = Math.floor(Math.random() * 30) + 9;
+        const camp = new Campground({
+            author: '62b35d4001debe36837aa567',
+            title: `${randElemArr(descriptors)}, ${randElemArr(places)} `,
+            location: `${cities[random1000].city} , ${cities[random1000].state} `,
+            geometry: {
+                type: 'Point',
+                coordinates: [28.653458, 77.123767]
+            },
+            images: [{
+                url: 'https://res.cloudinary.com/diot5a1zi
+                /image/upload/v1655802672/yelpCamp/yj5xdp9yosduixbmdoys.jpg',
+                filename: 'yelpCamp/yj5xdp9yosduixbmdoys'
+            },
+            {
+                url: 'https://res.cloudinary.com/diot5a1zi
+                /image/upload/v1655802674/yelpCamp/g0gwftmgywhzildizgsh.jpg',
+                filename: 'yelpCamp/g0gwftmgywhzildizgsh'
+            }],
+            description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit
+            .Eius autem, rerum nostrum quasi, voluptate praesentium
+            necessitatibus illum inventore culpa corporis omnis distinctio
+             placeat cum! Expedita consequuntur voluptatibus nam
+            quidem perferendis.`,
+            price
+        })
+        await camp.save();
+    }
+}
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec547">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 547: Customizing map Popup</span></h2>
+        </header>
+        <p class="sec-para-main">Now we add some code to popup a marker on click.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code for adding a popup to our marker on map -</p>
+new mapboxgl.Marker()
+    .setLngLat(campground.geometry.coordinates)
+    .setPopup(
+        new mapboxgl.Popup()
+            .setHTML(`<h3>${campground.title}</h3><p>${campground.location}</p>`)
+    )
+    .addTo(map);
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://docs.mapbox.com/mapbox-gl-js/example/?search=popup">Mapbox docs for Popup</a>
+                </li>
+                <li><a href="https://docs.mapbox.com/mapbox-gl-js/example/setstyle/">Mapbox style docs</a></li>
+            </ul>
+        </div>
+    </article>

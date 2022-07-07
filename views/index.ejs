@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="app.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <h1>Welcome to Web Development Notes</h1>
+    <nav id="right-side-nav">
+        <a href="">Signup</a>
+    </nav>
+    <div id="coding-jokes">
+        <p></p>
+    </div>
+    <nav id="center-nav">
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Notes</a></li>
+            <li><a href="tips.html">Tips</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="">About me</a></li>
+        </ul>
+    </nav>
+    <!-- <p>Jokes API -
+    <ul>
+        <li>
+            <a href="https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,explicit&type=single">API_request</a>
+            <a href="https://sv443.net/jokeapi/v2/#url-parameters">Homepage</a>
+        </li>
+        <li>
+            <a href="https://github.com/15Dkatz/official_joke_api">GitRepo</a> of coding jokes. This is different than
+            the first one
+        </li>
+    </ul> -->
+    </p>
+    <p>
+        <label for="topic">Display sections by topic:</label>
+        <select name="topic" id="topic">
+            <option value="">---Select One---</option>
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="js">Javascript</option>
+            <option value="front">Frontend</option>
+        </select>
+    </p>
+    <a href="https://stackoverflow.com/questions/16015933/how-can-i-show-a-hidden-div-when-a-select-option-is-selected">Show
+        a hidden div on select element</a>
+    <a href="https://www.sitepoint.com/community/t/display-element-when-specific-option-is-selected/226616/2">SitePoint
+        for hide and show element</a>
+    <div class="section-selector">
+        <a href="section3/sec3.html" class="html-section" target="_blank" rel="noreferrer noopener">Section 3</a>
+        <a href="section4/sec4.html" class="html-section" target="_blank" rel="noreferrer noopener">Section 4</a>
+        <a href="section5/sec5.html" class="html-section" target="_blank" rel="noreferrer noopener">Section 5</a>
+        <!-- CSS starts -->
+        <a href="section6/sec6.html" class="html-section" target="_blank" rel="noreferrer noopener">Section 6</a>
+        <a href="section7/sec7.html" class="html-section" target="_blank" rel="noreferrer noopener">Section 7</a>
+        <a href="section8/sec8.html" class="html-section" target="_blank" rel="noreferrer noopener">Section 8</a>
+        <a href="section9/sec9.html" class="html-section" target="_blank" rel="noreferrer noopener">Section 9</a>
+        <a href="section10/sec10.html" class="html-section" target="_blank" rel="noreferrer noopener">Section 10</a>
+        <a href="section11/sec11.html" class="css-section" target="_blank" rel="noreferrer noopener">Section 11</a>
+        <a href="section12/sec12.html" class="css-section" target="_blank" rel="noreferrer noopener">Section 12</a>
+        <a href="section13/sec13.html" class="css-section" target="_blank" rel="noreferrer noopener">Section 13</a>
+        <!-- Javascript starts -->
+        <a href="section14/sec14.html" class="js-section" target="_blank" rel="noreferrer noopener">Section 14</a>
+        <a href="section15/sec15.html" target="_blank" rel="noreferrer noopener">Section 15</a>
+        <a href="section16/sec16.html" target="_blank" rel="noreferrer noopener">Section 16</a>
+        <a href="section17/sec17.html" target="_blank" rel="noreferrer noopener">Section 17</a>
+        <a href="section18/sec18.html" target="_blank" rel="noreferrer noopener">Section 18</a>
+        <a href="section19/sec19.html" target="_blank" rel="noreferrer noopener">Section 19</a>
+        <a href="section20/sec20.html" target="_blank" rel="noreferrer noopener">Section 20</a>
+        <a href="section21/sec21.html" target="_blank" rel="noreferrer noopener">Section 21</a>
+        <a href="section22/sec22.html" target="_blank" rel="noreferrer noopener">Section 22</a>
+        <a href="section23/sec23.html" target="_blank" rel="noreferrer noopener">Section 23</a>
+        <a href="section24/sec24.html" target="_blank" rel="noreferrer noopener">Section 24</a>
+        <a href="section25/sec25.html" target="_blank" rel="noreferrer noopener">Section 25</a>
+        <a href="section26/sec26.html" target="_blank" rel="noreferrer noopener">Section 26</a>
+        <a href="section27/sec27.html" target="_blank" rel="noreferrer noopener">Section 27</a>
+        <a href="section28/sec28.html" target="_blank" rel="noreferrer noopener">Section 28</a>
+        <a href="section29/sec29.html" target="_blank" rel="noreferrer noopener">Section 29</a>
+        <a href="section30/sec30.html" target="_blank" rel="noreferrer noopener">Section 30</a>
+        <a href="section31/sec31.html" target="_blank" rel="noreferrer noopener">Section 31</a>
+        <a href="section32/sec32.html" target="_blank" rel="noreferrer noopener">Section 32</a>
+        <a href="section33/sec33.html" target="_blank" rel="noreferrer noopener">Section 33</a>
+        <a href="section34/sec34.html" target="_blank" rel="noreferrer noopener">Section 34</a>
+        <a href="section35/sec35.html" target="_blank" rel="noreferrer noopener">Section 35</a>
+        <a href="section36/sec36.html" target="_blank" rel="noreferrer noopener">Section 36</a>
+        <a href="section37/sec37.html" target="_blank" rel="noreferrer noopener">Section 37</a>
+        <a href="section38/sec38.html" target="_blank" rel="noreferrer noopener">Section 38</a>
+        <a href="section39/sec39.html" target="_blank" rel="noreferrer noopener">Section 39</a>
+        <a href="section40/sec40.html" target="_blank" rel="noreferrer noopener">Section 40</a>
+        <a href="section41/sec41.html" target="_blank" rel="noreferrer noopener">Section 41</a>
+        <a href="section42/sec42.html" target="_blank" rel="noreferrer noopener">Section 42</a>
+        <a href="section43/sec43.html" target="_blank" rel="noreferrer noopener">Section 43</a>
+        <a href="section44/sec44.html" target="_blank" rel="noreferrer noopener">Section 44</a>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

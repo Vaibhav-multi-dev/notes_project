@@ -1,0 +1,495 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="js-sec-heading">Section 19: Loops</h1>
+        <nav class="sec-nav-li" id="sec19-nav">
+            <ul>
+                <li><a href="#Lec190">Lecture 190</a></li>
+                <li><a href="#Lec191">Lecture 191</a></li>
+                <li><a href="#Lec192">Lecture 192</a></li>
+                <li><a href="#Lec193">Lecture 193</a></li>
+                <li><a href="#Lec194">Lecture 194</a></li>
+                <li><a href="#Lec195">Lecture 195</a></li>
+                <li><a href="#Lec196">Lecture 196</a></li>
+                <li><a href="#Lec197">Lecture 197</a></li>
+                <li><a href="#Lec198">Lecture 198</a></li>
+                <li><a href="#Lec199">Lecture 199</a></li>
+                <li><a href="#Lec200">Lecture 200</a></li>
+                <li><a href="#Lec201">Lecture 201</a></li>
+                <li><a href="#Lec201">Lecture 202</a></li>
+                <li>Coding Exercise solutions -
+                    <ul>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex31">Exercise
+                                31</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex32">Exercise
+                                32</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex33">Exercise
+                                33</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex34">Exercise
+                                34</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec190">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture:190 What matters in this section</span></h2>
+
+        </header>
+        <p class="sec-para-main">We will take a look at for loops,for..of loop,while loop and how to iterate over
+            arrays and objects in this section. If you don't have experience in any programming language then for
+            loop might take some time to wrap your head around, while loop is comparatively simpler compared to for
+            loops. </p>
+    </article>
+    <article id="Lec191">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 191: Intro to for loops</span></h2>
+
+        </header>
+        <p class="sec-para-main"><span class="js-tags">for</span> loops are used to repeat a code over a set number
+            of times. Instead of writing your code multiple times, you can use for loop to run your code while a
+            condition(which you specify) is true. A simple <span class="js-tags">for</span> for loop looks like this
+            -</p>
+        <code class="code-snippet"><pre>
+for(let int i=0; i < 10; i++){
+    //Block of code
+}</pre></code>
+        <p class="sec-para-main">In the above example we set int <span class="var-tags">i = 0</span> this is
+            called initialization of the loop,it
+            can be any other variable than i but using i is very common. In the second part when we set i < 10, we are
+                setting a condition of the loop, loop will run till that condition is true. In the third part we are
+                incrementing the variable i by 1, this is done so the loop condition ultimately becomes false and loop
+                stops executing. We can also change values in each part of the loop according to our , this is just a
+                boilerplate to work from. </p>
+    </article>
+    <article id="Lec192">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 192: More examples of for loops</span></h2>
+
+        </header>
+        <p class="sec-para-main">Nothing new here, just Colt telling us about different arithemetic operations that
+            could be used with for loop conditions.</p>
+    </article>
+    <article id="Lec193">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 193: The perils of infinite loops</span></h2>
+
+        </header>
+        <p class="sec-para-main">One thing to keep in mind while using <span class="imp-words">For loops</span> is
+            that you should always
+            design your loop such that it's condition becomes false and it stops executing otherwise you
+            might encounter what is know as infinte loop. Infinite loops never stops executing, well not exactly
+            never,
+            it runs till the memory of your pc and the browser isn't full. You should always design your program
+            beforehand to ensure that you don't run into an infinite loop.</p>
+    </article>
+    <article id="Lec194">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 194: Looping over arrays</span></h2>
+
+        </header>
+        <p class="sec-para-main">In this lecture we are introduced to two ways to loop over an array methods -</p>
+        <div class="article-example">
+            <code class="code-snippet">
+        <pre>
+const piedPiper =["Richard", "Erlich", "Jared", "Gilfoyle", "Dinesh"];
+
+<p>First way</p>
+for(let i =0; i < piedPiper.length; i++){
+    console.log(i, piedPiper[i]);
+}
+
+ 0 'Richard'
+ 1 'Erlich'
+ 2 'Jared'
+ 3 'Gilfoyle'
+ 4 'Dinesh'
+
+ <p>Second way</p>
+for(let i = piedPiper.length-1; i >= 0;  i--){
+    console.log(i, piedPiper[i]);
+}
+
+ 4 'Dinesh'
+ 3 'Gilfoyle'
+ 2 'Jared'
+ 1 'Erlich'
+ 0 'Richard'
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec195">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 195: Nested loops</span></h2>
+
+        </header>
+        <p class="sec-para-main">Loop nesting can be useful if you want to access the inner
+            element of a nested
+            array(or any
+            other
+            iterable). A sample of how nesting works in <span class="imp-words">for loops</span>-</p>
+        <div class="article-example">
+            <code class="code-snippet"> <pre>
+const categorisedDishes = [
+    ["Pizza", "Burger", "Fries"],                                                         <span class="code-comment">//Declaring a nested array</span>
+    ["Quinoa", "Kale", "Oats", "Spinach"],
+    ["Curry", "Rice", "Chapati"]
+]
+
+for (let i = 0; i < categorisedDishes.length; i++) {                                      <span class="code-comment">//First array(Outer)</span>
+    for (let j = 0; j < categorisedDishes[i].length; j++) {                               <span class="code-comment">//Second array(inner)</span>
+        console.log(`${i + 1} row ${j + 1} column contains ${categorisedDishes[i][j]}`);  <span class="code-comment">//Printing elements of the array</span>
+    }
+}
+
+Result -
+1 row 1 column contains Pizza
+1 row 2 column contains Burger
+1 row 3 column contains Fries
+2 row 1 column contains Quinoa
+2 row 2 column contains Kale
+2 row 3 column contains Oats
+2 row 4 column contains Spinach
+3 row 1 column contains Curry
+3 row 2 column contains Rice
+3 row 3 column contains Chapati
+</pre> </code>
+        </div>
+        <p class="sec-para-main">In the above <span class="imp-words">for loop</span> we made a nested array
+            categorisedDishes and accessed the elements of the array using <span class="imp-words">for loop</span>.
+            For each iteration of the outer loop, inner loop is executed till it's condition is false. So on the
+            first iteration on the outer loop we get it's element at 0th index which is also an array(["Pizza",
+            "Burger", "Fries"]) and then we accessed each element of the inner array using another <span
+                class="imp-words">for loop</span>.</p>
+    </article>
+    <article id="Lec196">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 196: Another loop- While loop</h2>
+
+        </header>
+        <p class="sec-para-main">While loops are somewhat similar to <span class="imp-words">for loops</span> in the
+            sense
+            that they also
+            executes till a condition a true but they are mostly used when the condition of the loop is
+            not
+            fixed. An example of how <span class="imp-words">while loop</span> works -
+        </p>
+        <code class="code-snippet">
+            <pre>
+const password = "superSecret";
+let userAttempt = 0;
+userInput = prompt("Please enter your password: ");     <span class="code-comment">//Prompting user for input</span>
+userAttempt++;                                         
+while (userInput !== password) {                        <span class="code-comment">//setting condition for while loop</span>
+    userInput = prompt("Please enter your password: ");
+    userAttempt++;
+    if (userAttempt > 5) {                              <span class="code-comment">//Nesting 'if' conditional in a while loop</span>
+        console.log("You are out of tries");
+        break;                                          
+    }
+    else if (userInput === password) {
+        console.log("You are logged in");
+    }
+}   </pre>
+        </code>
+        <p class="sec-para-main">We are making a program which asks for password from the user and keeps on
+            prompting until
+            the user gets
+            it
+            right, user gets a maximum of 5 tries to enter the correct password. We start off by storing
+            the correct
+            password in a variable and storing the number of user attempts in a variable and
+            incrementing it by 1
+            everytime the user gets it wrong and while the user inputs wrong password, we keep on
+            prompting to enter
+            the
+            correct password using a <span class="imp-words">while loop</span> which
+            repeats for a total of 5 times and then exited using using <span class="imp-words">if</span>
+            conditional.
+            If the user inputs the correct password then he is logged in and the message "You are logged
+            in" is
+            printed.
+        </p>
+    </article>
+    <article id="Lec197">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 197: Break keyword</h2>
+
+        </header>
+        <p class="sec-para-main"><span class="imp-words">Break</span> is used to break out of a loop on a specific
+            condition.
+            If you have
+            a
+            loop which never becomes false like <span class="imp-words">while(true)</span> then you can
+            use <span class="imp-words">break</span> statement to break out of the loop on a certain
+            condition. A quick
+            demo
+            of how <span class="imp-words">break</span> works -</p>
+        <code class="code-snippet">
+                <pre>
+const ans = "stop it"
+let input = prompt("Come on man, say something");
+while (true) {
+    if (input.toLowerCase() === ans) break;
+    input = prompt(input);
+}</pre>
+            </code>
+        <p>Here we are prompting the user to input something and then repeating it to the user until he
+            inputs "stop
+            it"
+            using a <span class="imp-words">while loop</span>. If the user inputs "stop it" then we
+            break out of the
+            <span class="imp-words">while loop</span> using <span class="imp-words">break</span> on a
+            <span class="imp-words">if</span> conditional.
+        </p>
+    </article>
+    <article id="Lec198">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 198: Guessing game</h2>
+
+        </header>
+        <p class="sec-para-main">My way of making the guessing game -</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+let maxNumber;
+while (true) {
+    maxNumber = Number(prompt("Enter your max number"));
+    if (maxNumber) {
+        if (maxNumber <= 0) {
+            alert("Negative numbers not allowed");
+            continue;
+        }
+        break;
+    }
+    alert("Enter a valid Number");
+}
+let randomNum = Math.floor(Math.random() * maxNumber) + 1;
+console.log(randomNum);
+let userAttempt = 0;
+let quitCondition = "q"
+while (true) {
+    let userGuess = prompt("Enter your guess, press q to quit");
+    if (userGuess === quitCondition) {
+        alert(`You are quitting and you took ${userAttempt} tries`);
+        break;
+    }
+    let userGuessInNumber = Number(userGuess);
+    userAttempt++;
+    if (!userGuessInNumber) {
+        alert("Enter a valid number");
+    }
+    else if (userGuessInNumber === randomNum) {
+        if (userAttempt === 1) {
+            alert(`Woahh, You got it right on the first try`);
+            break;
+        }
+        alert(`Congrats, you got it right!. It took you ${userAttempt} tries`);
+        break;
+    }
+    else if (userGuessInNumber > randomNum) {
+        alert("Your guess is higher than the number");
+    }
+    else if (userGuessInNumber < randomNum) {
+        alert("Your guess is lower than the number");
+    }
+}           </pre></code>
+        </div>
+        <p class="notes">Note: My solution is different from what Colt shows in the video. I made this
+            on my own and although I have tested it with different inputs, it might still be susceptible to some
+            unforeseen errors. I have used Number instead of parseInt, if you are interested to know the difference
+            between the two then check out SO answer on <a
+                href="https://stackoverflow.com/questions/4564158/what-is-the-difference-between-parseintstring-and-numberstring-in-javascript/4564199#4564199">
+                difference b/w parseInt and Number</a>. For official solution watch the Colt's video.</p>
+    </article>
+    <article id="Lec199">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 199: For...of loop</h2>
+
+        </header>
+        <p class="sec-para-main"><span class="imp-words">For...of</span> loop is a simpler version of <span
+                class="imp-words">For
+                loop</span>
+            which can be used to iterate over an array. The advantage of using this is that the syntax
+            is a bit
+            smaller
+            and it makes your code more readable. Disadvantage of using <span class="imp-words">For..of</span>
+            loop
+            is
+            that it doesn't support internet explorer, also if you need to access the index of the
+            element in the
+            array
+            then you can't do that.</p>
+        <p class="sec-para-main"> A demo of <span class="imp-words">For..of</span> loop - </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const categorisedDishes = [
+    ["Pizza", "Burger", "Fries"],
+    ["Quinoa", "Kale", "Oats", "Spinach"],
+    ["Curry", "Rice", "Chapati"]
+]
+
+for (let row of categorisedDishes) {
+    for (let column of row) {
+        console.log(column);
+    }                                   
+}
+
+<span class="code-comment">//Output: Pizza Burger Fries Quinoa Kale Oats Spinach Curry Rice Chapati</span>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec200">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 200: Iterating over objects</h2>
+
+        </header>
+        <p class="sec-para-main">You can iterate over an Object by using <span class="imp-words">for...in</span>
+            loop.It iterates over the object in an orderless manner and is not recommended to use on an array where
+            the indexing is crucial. See the below example of <span class="imp-words">for..in</span> loop in action
+            -</p>
+        <div class="article-example">
+            <code class="code-snippet"> <pre>
+const marks = {
+"Mukul": 99,
+"Rakul": 66,
+"Harsh": 70,
+"Rohit": 84,
+"Sparsh": 73
+}
+
+for (num in marks) {
+    console.log(`${num} has scored ${marks[num]}`);
+}
+<span class="code-comment">
+//Expected Output:
+// Mukul has scored 99
+// Rakul has scored 66
+// Harsh has scored 70
+// Rohit has scored 84
+// Sparsh has scored 73
+</span>
+<h4>Replacing bracket notation with dot notation to access the element.</h4>
+for (num in marks) {
+    console.log(`${num} has scored ${marks.num}`);
+}
+<span class="code-comment">
+Expected Output:
+// Mukul has scored undefined
+// Rakul has scored undefined
+// Harsh has scored undefined
+// Rohit has scored undefined
+// Sparsh has scored undefined
+</span> </pre> </code>
+            <p class="sec-para-main">While seeing the above code,a question might arise as when you use <span
+                    class="imp-words">for..in</span>
+                loop with bracket notation it gave expected output but when using dot notation it returns
+                undefined and
+                that
+                is because <span class="imp-words">for...in</span> loop return keys as strings. See what we
+                get when we
+                print the type of the returned key alongside the key.
+            </p>
+            <code class="code-snippet"><pre>
+for (num in marks) {
+    console.log(num, typeof (num));
+}
+<span class="code-comment">
+//Expected Output:
+// Mukul string
+// Rakul string
+// Harsh string
+// Rohit string
+// Sparsh string
+</span> </pre> </code>
+            <p class="sec-para-main"> You can read more about it on <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in">MDN</a>
+            </p>
+            <p class="sec-para-main">Another way of printing the keys of object is by converting it into an array by
+                using <span class="imp-words">Object.key(objName)</span> where objName stands for name
+                of your object. You can also print <span class="imp-words">values</span> by using <span
+                    class="imp-words">Object.values(objName)</span> and both <span class="imp-words">key&values</span>
+                together by using
+                <span class="imp-words">Object.entries(objName)</span>, Object.entries gives us a nested
+                array. A sample of how it works-
+            </p>
+            <code class="code-snippet"><pre>
+let sum = 0;
+let allMarks = Object.values(marks)
+for (num of allMarks) {
+    sum += num;
+}
+
+console.log(`Average marks is ${sum / allMarks.length}`);
+<span class="code-comment">//Average marks is 78.4</span> </pre></code>
+        </div>
+
+        <p class="notes">Note: It's more common to iterate over an array rather than an object.</p>
+    </article>
+    <article id="Lec201">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 201 & 202: To do project</h2>
+
+        </header>
+        <p>My way of making the To do project -</p>
+        <p class="notes">Note: My solution is different from what Colt shows in the video. I made this
+            on my own and
+            although I have tested it with different inputs, it might still be susceptible to some
+            unforeseen
+            errors.
+            For official solution watch the Colt's video.</p>
+        <h3>Solution -</h3>
+        <p><a href="https://codepen.io/vaibhav-multi-dev/pen/MWpLBzL">CodePen</a></p>
+        <div class="code-div">
+            <button class="show-hide-code">Raw Code</button>
+            <code class="code-snippet" id="my-code-201">
+            <pre>
+const possibleValues = ["new", "list", "delete", "quit"];
+const todoList = [];
+let userInput;
+while (true) {
+    userInput = prompt("Enter what you want to do?");
+    while (possibleValues.indexOf(userInput.toLowerCase()) === -1) {
+        alert('Not a valid value, possible values are "new", "list", "delete" and "quit"');
+        userInput = prompt("Enter what you want to do?");               //Can also be replaced by continue
+    }
+    if (userInput.toLowerCase() === "new") {
+        const addElement = prompt("What would you like to add?");
+        todoList.push(addElement);
+        console.log(`${addElement} was added to the list`);
+    }
+
+    else if (userInput.toLowerCase() === "list") {
+        console.log(`${"*".repeat(18)}`);
+        for (i = 0; i < todoList.length; i++) {
+            console.log(`${i}: ${todoList[i]}`);
+        }
+        console.log(`${"*".repeat(18)}`);
+    }
+
+    else if (userInput.toLowerCase() === "delete") {
+        let idx;
+        while (true) {
+            idx = parseInt(prompt("Specify the index of the element you want to remove from the list"));
+            if (idx || idx === 0) {
+                if (idx >= 0 && idx < todoList.length) {
+                    console.log(`${todoList[idx]} was removed from the list`)
+                    break;
+                }
+                else {
+                    alert("Enter a valid list index");
+                    continue;
+                }
+            }
+            alert("Enter a valid Number");
+        }
+        todoList.splice(idx, 1);
+    }
+
+    else if (userInput.toLowerCase() === "quit") {
+        console.log("You are quitting the app");
+        break;
+    }
+} </pre>
+        </code>
+        </div>
+    </article>

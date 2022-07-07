@@ -1,0 +1,168 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 49: YelpCamp - Restructuring & Flash</h1>
+        <nav class="sec-nav-li" id="sec49-nav">
+            <ul>
+                <li><a href="#Lec485">Lecture 485</a></li>
+                <li><a href="#Lec486">Lecture 486</a></li>
+                <li><a href="#Lec487">Lecture 487</a></li>
+                <li><a href="#Lec488">Lecture 488</a></li>
+                <li><a href="#Lec489">Lecture 489</a></li>
+                <li><a href="#Lec490">Lecture 490</a></li>
+                <li><a href="#Lec491">Lecture 491</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec485">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 485: Breaking out Campground Routes</span></h2>
+        </header>
+        <p class="sec-para-main">We just separate the logic we have written for our campgrounds into a separate
+            file and store it in a directory named routes and then make use of Router object to attach all the
+            campground routes to that and then export it to be used by index file.</p>
+        <div class="extra-info">
+            <p>Note: Make sure to import the campground model, JOIschema for campground and the function to validate
+                the campground details to check if the campground meets the specified condition to update or make a
+                new campground.</p>
+        </div>
+    </article>
+    <article id="Lec486">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 486: Breaking out Review Routes</span></h2>
+        </header>
+        <p class="sec-para-main">Same as we did in previous lecture but this time for review routes. One thing to
+            keep in mind is that if you are following along Colt and are using the same routes as he did, then you
+            might not get access to <span class="keyword">:id</span> parameter defined in the index file and you
+            have to set the property <span class="keyword">mergeParams</span> to true on the router object that you
+            are using in the reviews file to get access to the <span class="keyword">:id</span> parameter defined in
+            the index file.</p>
+    </article>
+    <article id="Lec487">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 487: Serving static assets</span></h2>
+        </header>
+        <p class="sec-para-main">To serve static assests (stylesheets, scripts, images etc.) we make a directory
+            called <span class="keyword">public</span> and inside that we make subdirectories to store assets
+            belonging to that specific category. Then in our main index file we use the middleware to serve the
+            public folder so that we can use our static files.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Middleware to serve the static assets -</p>
+app.use(express.static(path.join(__dirname, 'public')))
+</pre></code>
+        </div>
+        <div class="extra-info">
+            <p>Extra info: We use path.join here so that we can serve our static files regardless of from where our
+                app was called without it the files won't be served if you call it from outside of the yelpCamp
+                folder. </p>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a
+                        href="https://expressjs.com/en/starter/static-files.html#:~:text=%20use%20the%20absolute%20path%20of%20the%20directory">Docs
+                        for serving static files</a>
+                </li>
+                <li><a href="https://github.com/expressjs/express/tree/master/examples/static-files">Example of
+                        serving static files</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec488">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 488: Configuring session</span></h2>
+        </header>
+        <p class="sec-para-main">We now add session to our YelpCamp app. We do so that we can give flash message
+            to the user and set up authentication(will be covered later on in the course). We just set up the
+            session basics as we did earlier in the section but also add the cookies object to it and add
+            expiryDate, maxAge and httpOnly attributes to it to modify our session. We set maxAge and expiryDate so
+            that our session doesn't stay forever on the server side and httpOnly was set to true to prevent
+            Cross-site scripting attacks.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+cookie: {
+    maxAge: Date.now() + 1000 * 60 * 60 * 24 * 7;
+    expires: 1000 * 60 * 60 * 24 * 7;
+    httpOnly : true
+}
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li>How <a href="https://dev.to/clerk/how-httponly-cookies-help-mitigate-xss-attacks-14af">httpOnly
+                        cookie prevent XSS attacks</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec489">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 489: Setting up Flash</span></h2>
+        </header>
+        <p class="sec-para-main">We now implement the flash feature that like we did in the previous section so it
+            displays a message whenever a new campground is created.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Setting flash for success key -</p>
+req.flash('success', "Successfully made a new campground");
+<p>Setting locals with a local variable for success message -</p>
+app.use((req, res, next) => {
+    res.locals.successMsg = req.flash('success');
+    next();
+})
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec490">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 490: Flash success partial</span></h2>
+        </header>
+        <p class="sec-para-main">We now make a flash partial and include it in our boilerplate to flash a message
+            whenever we make a new campground, edit one, delete one and we repeat the same functionality for
+            reviews. We also add some bootstrap classes so that the flash message is dismissable with a X button.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code for the success partial -</p>
+&lt% if(successMsg.length){ %>
+    &ltdiv class="alert alert-success alert-dismissible fade show" role="alert">
+        &ltstrong>Success!&lt/strong>
+        &lt%= successMsg %>
+            &ltbutton type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&lt/button>
+    &lt/div>
+    &lt% } %>
+<p>Logic inside route for making a new campground -</p>
+router.post('/', validateCamp, wrapAsync(async (req, res) => {
+    console.log(req.body.campground);
+    const camp = new Campground(req.body.campground);
+    await camp.save()
+    req.flash('success', "Successfully made a new campground");
+    res.redirect(`/campgrounds/${camp._id}`)
+}))
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://getbootstrap.com/docs/5.2/components/alerts/#dismissing">Bootstrap class for
+                        dismissing alert</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec491">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 491: Flash errors partial</span></h2>
+        </header>
+        <p class="sec-para-main">We now set up flash for errors that we may encounter in our app. We copy that logic
+            that we used for success partial just change the bootstrap classes to danger and set up logic that the
+            message is only flashed whenever we face an error in retreiving a campground that no longer, editing one
+            or other situations where an error might persist.</p>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/14415988">Why
+                        error partial doesn't make our wrapAsync function useless</a></li>
+            </ul>
+        </div>
+    </article>

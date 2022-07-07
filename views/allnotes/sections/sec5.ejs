@@ -1,0 +1,331 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="html-sec-heading">Section 5: HTML - Forms & Tables</h1>
+        <nav class="sec-nav-li" id="sec5-nav">
+            <ul>
+                <li><a href="#Lec40">Lecture 40</a></li>
+                <li><a href="#Lec41">Lecture 41</a></li>
+                <li><a href="#Lec42">Lecture 42</a></li>
+                <li><a href="#Lec43">Lecture 43</a></li>
+                <li><a href="#Lec44">Lecture 44</a></li>
+                <li><a href="#Lec45">Lecture 45</a></li>
+                <li><a href="#Lec46">Lecture 46</a></li>
+                <li><a href="#Lec47">Lecture 47</a></li>
+                <li><a href="#Lec48">Lecture 48</a></li>
+                <li><a href="#Lec49">Lecture 49</a></li>
+                <li><a href="#Lec50">Lecture 50</a></li>
+                <li><a href="#Lec51">Lecture 51</a></li>
+                <li><a href="#Lec52">Lecture 52</a></li>
+                <li><a href="#Lec53">Lecture 53</a></li>
+                <li><a href="#Lec54">Lecture 54</a></li>
+                <li><a href="#Lec55">Lecture 55</a></li>
+                <li>Coding Exercise Solutions -
+                    <ul>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex5">Exercise
+                                5</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex6">
+                                Exercise 6</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec40">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 40: What matters in this section</span></h2>
+        </header>
+        <p class="sec-para-main"> In this section we will start by learning how to make tables in HTML and then
+            we will move to focus on making forms using HTML because almost every webpage contains a form and
+            understanding of them is crucial in order to move forward. To learn more about table you can read
+            this <a
+                href="https://www.freecodecamp.org/news/html-tables-all-there-is-to-know-about-them-d1245980ef96/">article
+                on FCC</a> and <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Tables/Basics">this
+                on MDN</a> (By Mateus Both in Udemy Q/A). For forms you can check out <a
+                href="https://html.com/forms/">HTML.com article on form</a></p>
+    </article>
+    <article id="Lec41">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 41: Unit Goals</span></h2>
+        </header>
+        <p class="sec-para-main">Nothing new here.</p>
+    </article>
+    <article id="Lec42">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 42: Introducing HTML tables</span></h2>
+        </header>
+        <p class="sec-para-main">Simply said tables consist of rows and columns and are used to represent data
+            that
+            makes sense in a tabular
+            form. Historically
+            tables were used to layout content on the page but this practice is not followed anymore. <a
+                href="https://sarahmhigley.com/writing/grids-part1/">Article on grids and table</a> (By Mateus
+            Both
+            in
+            Udemy Q/A)
+            <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Tables/Advanced#the_id_and_headers_attributes">Id
+                and headers for table</a>
+            <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Tables/Advanced#the_scope_attribute">Scope
+                attribute for table</a>
+            <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Styling_tables">Styling
+                tables</a>
+            <a href="https://css-tricks.com/fixing-tables-long-strings/">Table layouts</a>
+            <a href="https://www.w3.org/TR/CSS22/tables.html#tables-intro">W3C working draft on tables</a>
+            <a href="https://drafts.csswg.org/css2/#tables">W3C editor's draft on tables</a>
+        </p>
+    </article>
+    <article id="Lec43">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 43: TR,TD and TH elements</span></h2>
+        </header>
+        <p class="sec-para-main">You make a table in HTML by using <span class="html-tags">&lttable></span> tag,
+            it by itself doesn't do much. It need to be combined with other elements like <span
+                class="html-tags">&lttd></span>,<span class="html-tags">&lttr></span> and <span
+                class="html-tags">&ltth></span>to make sense. <span class="html-tags">&lttd></span> represents a
+            single data cell, <span class="html-tags">&lttr></span> represents a single data row while <span
+                class="html-tags">&ltth></span> represents table header. <span class="html-tags">&lttd></span>
+            and <span class="html-tags">&ltth></span> needs to be inside a <span class="html-tags">&lttr></span>
+            to represent data in a single row. </p>
+        <img src="example.png" alt="image showing table elements" class="article-image">
+        <section class="extra-info">
+            <h3>Extra Info-</h3>
+            <p>In the above image, you can see that the animal is centered while Ostrich, emu are left aligned
+                that is because <span class="html-tags">&ltth></span> elements are center aligned by default in
+                Chrome, while <span class="html-tags">&lttd></span> elements are left aligned. You can see that
+                for yourself, by inspecting the table from Colt's lecture and then go to computed tab next to
+                style, select show all(Chrome) and then scrolling down you will see that text-align is set to be
+                center by default. This happens because of Chrome puts his own styles on the element if the user
+                doesn't define any style by default.</p>
+            <div class="src-link">
+                <p>Source -</p>
+                <ul>
+                    <li> <a
+                            href="https://stackoverflow.com/questions/11321065/th-text-align-compatibility/28307524">SO1</a>
+                    </li>
+                    <li><a
+                            href="https://stackoverflow.com/questions/28306885/default-text-align-for-th-in-google-chrome">SO2</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </article>
+    <article id="Lec44">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 44:Thead,Tbody and Tfoot elements</span></h2>
+        </header>
+        <p class="sec-para-main"><span class="html-tags">&ltThead></span>, <span class="html-tags">&ltTbody></span>
+            and
+            <span class="html-tags">&ltTfoot></span> doesn't change much in the aspect of formatting the table
+            but
+            they
+            do add semantic meaning to our table and also make it more accessible.
+        </p>
+    </article>
+    <article id="Lec45">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 45: Colspan & rowspan</span></h2>
+        </header>
+        <p class="sec-para-main">Colspan defines how many columns should your element take while rowspan defines
+            how
+            many rows should your
+            element take.</p>
+    </article>
+    <article id="Lec46">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 46: The form element</span></h2>
+        </header>
+        <p class="sec-para-main">Form by itself doesn't do much and is a container which is used to group
+            different
+            kinds of inputs and label
+            together and define how and where that group of data should be send. Forms have an action attribute
+            which
+            define where the data should be send. When a form is submitted, a HTTP request is fired up and the
+            form
+            data
+            is sent to the path in the action attribute.</p>
+    </article>
+    <article id="Lec47">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 47: Common Input types</span></h2>
+        </header>
+        <p class="sec-para-main">One of the most common element of form is <span class="html-tags">&ltinput></span>
+            .It is a self closing tag, by default it makes a text input
+            if no <span class="keyword">type</span> attribute is specified. However what makes <span
+                class="keyword">type</span> attribute extremely versatile is that you can specify what kind of
+            input do you want. There are various kinds of input like text,password,color,date etc. Another
+            useful attribute is <span class="keyword">placeholder</span> which displays text while there is no
+            value present in the box.
+        </p>
+        <section class="article-example">
+            <code class="code-snippet"><pre>
+<p> Example -</p>
+&ltinput type = "color"> 
+                    <p>The above example will give you a color picker.</p>
+</pre></code>
+        </section>
+    </article>
+    <article id="Lec48">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 48: The all important label</span></h2>
+        </header>
+        <p class="sec-para-main">Lables are used to link some text(caption) with a form element. The advantage
+            of using label over <code class="html-tags">&ltp></code> and <code class="html-tags">&ltspan></code>
+            tags is that it makes the text clickable i.e. we will be able to interact with the form element by
+            clicking the label and more accessible to screen readers. To link a label with a form element we
+            need to use a <span class="keyword">for</span> attribute in label element whose value should match
+            the <span class="keyword">id</span> of the form element. An example of label is-
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"> <pre>
+&ltlabel for="username">Enter your name:&lt/label>
+&ltinput type="text" placeholder="Enter some text" id="username" name="username">
+                </pre> </code>
+        </div>
+        <p class="sec-para-main">Other way to make an input with label is to nest them together. The syntax for
+            doing so is-</p>
+        <div class="article-example">
+            <code class="code-snippet"> <pre>
+&ltlabel>Enter some label text:
+    &ltinput type="Enter a type">
+&lt/label> </pre> </code>
+        </div>
+        <p class="notes">IMO and Colt's too, putting labels and inputs separately is better for reading and
+            styling purposes than nesting the input with labels.</p>
+    </article>
+    <article id="Lec49">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 49: HTML buttons</span></h2>
+        </header>
+        <p class="sec-para-main">Buttons can be embedded inside or outside of a form in HTML. Inside the form,
+            buttons
+            default behaviour is to
+            submit if not specified otherwise, while outside the form they act as normal buttons. There are two
+            ways
+            that
+            button can be made in HTML- </p>
+        <div class="article-example">
+            <code class="code-snippet"> <pre>
+1. &ltbutton>Some button text&lt/button>
+2. &ltinput type="button" value="text for button"> </pre> </code>
+        </div>
+        <p class="sec-para-main">To change text in button when declared with <code class="html-tags">&ltbutton></code>
+            tag is to put some text
+            inside the opening and closing tag of button, when declared with <code
+                class="html-tags">&ltinput type="button"></code> you can change the button inside text by giving
+            it a value. To know more about the differences between the two you can <a
+                href="https://html.com/attributes/button-type/">read this article</a></p>
+    </article>
+    <article id="Lec50">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 50: The name attribute</span></h2>
+        </header>
+        <p class="sec-para-main">The name attribute is a way to refer to the input value which can be then
+            submitted
+            to
+            the server.
+            The name and value pair of different inputs is separated by &.
+        </p>
+        <p class="sec-para-main">Consider this example for more clarification,here my data is sent to the server
+            nachos and in this username=blaaaa and password = 1234 is separated by &. Rest of the name value
+            pair also follows the same pattern.</p>
+        <div class="article-example">
+            <code class="code-snippet">
+            <pre>
+nachos/?username=blaaaa&password=1234&date=2021-02-03&time=15%3A29&number=12
+            </pre>
+        </code>
+        </div>
+    </article>
+    <article id="Lec51">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 51: Hijacking searches</span></h2>
+        </header>
+        <p class="sec-para-main">It is also possible to mimick search engine of google,youtube etc in your own
+            form
+            by just copying the URL of website after submitting the data and putting it into
+            <span class="html-tags">&ltform action="website URL"></span>(omitting the terms after ?). You should
+            match the name of the search input box with the name of your input box. For example to search
+            youtube
+            you can copy the below code -
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+&ltform action="https://www.youtube.com/results">
+    &ltlabel for="mysearch">Search&lt/label>
+    &ltinput type="text" name="search_query" id="mysearch">
+    &ltbutton>Search&lt/button>
+&lt/form>
+</pre></code>
+        </div>
+        <p class="sec-para-main">As you can see in the above code the action attribute of the form contains the
+            youtube URL and the name of the input box ("search_query") matches the name of the youtube search
+            box.</p>
+    </article>
+    <article id="Lec52">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 52: Radio button,Checkboxes and Select</span></h2>
+        </header>
+        <p class="sec-para-main">Radio buttons gives us an option to pick one choice from multiple options, only
+            one
+            choice can be selected
+            at a time because Radio buttons are linked together by <span class="keyword">name</span> attribute
+            and
+            their
+            value is send to the server by <span class="keyword">value</span> attribute. Checkboxes on the other
+            hand
+            gives us the option to tick/untick some option, they can be multiple or single checkboxes ticked at
+            a
+            time,
+            you can also start with a checkbox ticked in by using <mark>checked</mark> on a checkbox.
+            <span class="html-tags">&ltselect></span> works in conjuction with <span class="html-tags">&ltoption></span>
+            to
+            give
+            us
+            a dropdown menu from which to select a single or multiple values from. You can also use the
+            attribute
+            <span class="keyword">selected</span> to start with a default selected value.
+        </p>
+        <p class="notes">The "value" you put in <span class="keyword">value</span> attribute of <span
+                class="keyword">option</span> element doesn't need to
+            match the text inside the inputs. It is nicer to keep the values short. <a
+                href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select">MDN for &ltselect></a>
+        </p>
+    </article>
+    <article id="Lec53">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 53: Range & TextArea</span></h2>
+        </header>
+        <p class="sec-para-main">Range input is used to specify a range by means of a slider. Range may contain
+            <span class="keyword">min</span>, <span class="keyword">max</span> and <span class="keyword">step</span>
+            attribute. <span class="keyword">min</span> defines the min value of the range, <span
+                class="keyword">max</span> defines max value while <span class="keyword">step</span> defines how
+            much
+            increase/decrease we get when we use the slider to adjust the value. <span class="keyword">max</span>
+            and
+            <span class="keyword">min</span> attribute can also be usend with numbers input. <span
+                class="html-tags">&lttextarea></span> is used to specify a text box of free size. You can define
+            the
+            <span class="keyword">col</span> and <span class="keyword">row</span> attribute to change the size
+            of
+            the
+            initial textarea box.
+        </p>
+    </article>
+    <article id="Lec54">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 54: HTML5 form Validation</span></h2>
+        </header>
+        <p class="sec-para-main">Form validaton is used to constrain an input and verify if your inputs follow
+            a certain pattern or not. Some constraints are put in the form of attributes, other inputs have
+            constraints of their own. <span class="keyword">required</span> attribute on a tag makes
+            it mandatory to fill the input. <span class="keyword">maxlength</span> and <span
+                class="keyword">minlength</span> keyword in input specifies the min and max length of an input.
+            <span class="keyword">email</span> and <span class="keyword">URL</span> have form validation of
+            their
+            own, they do so using a regex pattern.
+        </p>
+    </article>
+    <article id="Lec55">
+        <header class="html-article-header">
+            <h2>Lecture 55: Marathon registration form intro</h2>
+        </header>
+    </article>

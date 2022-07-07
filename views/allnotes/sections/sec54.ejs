@@ -1,0 +1,491 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 54: YelpCamp - ImageUpload</h1>
+        <nav class="sec-nav-li" id="sec54-nav">
+            <ul>
+                <li><a href="#Lec527">Lecture 527</a></li>
+                <li><a href="#Lec528">Lecture 528</a></li>
+                <li><a href="#Lec529">Lecture 529</a></li>
+                <li><a href="#Lec530">Lecture 530</a></li>
+                <li><a href="#Lec531">Lecture 531</a></li>
+                <li><a href="#Lec532">Lecture 532</a></li>
+                <li><a href="#Lec533">Lecture 533</a></li>
+                <li><a href="#Lec534">Lecture 534</a></li>
+                <li><a href="#Lec535">Lecture 535</a></li>
+                <li><a href="#Lec536">Lecture 536</a></li>
+                <li><a href="#Lec537">Lecture 537</a></li>
+                <li><a href="#Lec538">Lecture 538</a></li>
+                <li><a href="#Lec539">Lecture 539</a></li>
+                <li><a href="#Lec540">Lecture 540</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec527">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 527: Intro to Image Upload Process</span></h2>
+        </header>
+        <p class="sec-para-main">Now we start to integrate the feature of uploading images for our campgrounds,
+            we use Cloudinary for that purpose. We don't use mongoDB as it has a size limit of 16MB. We make changes
+            to our HTML form so it can accept image files as input and then we store it in a cloudinary server which
+            gives us back a URL which corresponds to the image stored on the cloudinary server.</p>
+    </article>
+    <article id="Lec528">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 528: The Multer middleware</span></h2>
+        </header>
+        <p class="sec-para-main">The default HTML form won't be able to decode files as input because of
+            incompatible <span class="keyword">enctype</span> so we change our form enctype to <span
+                class="keyword">multipart/form-data</span> instead of the default one.
+            To parse the form of this enctype we use <span class="keyword">Multer</span> middleware, which stores
+            the text data of the form under <span class="backend-tags">req.body</span> and file/files data under
+            <span class="backend-tags">req.file/req.files</span>. We are currently storing our
+            files in local storage but normally we would use some service like AWS, cloudinary etc.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Form to make a new campground  -</p>
+&ltform action="/campgrounds" method="POST" novalidate class="validate-form" enctype="multipart/form-data">
+&ltdiv class="mb-3">
+    &ltinput type="file" name="image" id="campground[image]">
+&lt/div>
+<p>Using multer in our campground routes -</p>
+const multer = require('multer')
+const upload = multer({ dest: 'uploads/' })
+router.route('/')
+.get(campgrounds.index)
+.post(upload.single('image'), (req, res) => {   <span class="code-comment">//Here 'image' refers to the name of the input</span>
+        console.log(req.body, req.file);
+        res.send("It's working");
+    })
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-enctype">Docs for
+                        form enctype</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec529">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 529: Cloudinary Registration</span></h2>
+        </header>
+        <p class="sec-para-main">We just register our account on Cloudinary.</p>
+    </article>
+    <article id="Lec530">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 530: Enviornmental variables with dotenv</span></h2>
+        </header>
+        <p class="sec-para-main">Now we setup our app to use Cloudinary, we start by installing a package called
+            <span class="keyword">dotenv</span> and then we create a new file called <span class="keyword">.env</span>
+            which will contain keys which will only be available to us, we don't
+            push this file to github as it contains sensitive information and shouldn't be made public. We then put
+            some logic at the beginning of our index file to check if our app is in 'production' or 'development'
+            mode and if it's in development mode then make the variables stored inside <span
+                class="backend-tags">process.env</span> available to us.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code to put in our main file -</p>
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+<p>code for our .env file -</p>
+CLOUDINARY_CLOUD_NAME=****
+CLOUDINARY_KEY=****
+CLOUDINARY_SECRET=****
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://github.com/motdotla/dotenv">Docs for dotenv</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec531">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 531: Uploading to Cloudinary basics</span></h2>
+        </header>
+        <p class="sec-para-main">Now we install two new dependencies called <span
+                class="keyword">multer-storage-cloudinary</span> and <span class="keyword">cloudinary</span> both of
+            which makes it easier to collaborate cloudinary and multer together. We then setup configuration of
+            cloudinary and make an instance of CloudinaryStorage using that configuration. Then we setup our
+            multer to use Cloudinary to store data instead of localStorage.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Configuring Cloudinary-</p>
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_KEY,
+    api_secret: process.env.CLOUDINARY_SECRET
+});
+
+const storage = new CloudinaryStorage({
+    cloudinary,
+    folder: 'yelpCamp',
+    allowed_formats: ['jpg', 'jpeg', 'png']
+})
+
+module.exports = {
+    cloudinary,
+    storage
+}
+<p>Code for main index file -</p>
+const { storage } = require('../cloudinary'); <spa class="code-comment">// Not specifying index because index is automatically looked for by Node app</spa>
+const upload = multer({ storage })
+</pre></code>
+        </div>
+        <div class="extra-info">
+            <p>Note: In the lecture Colt has used <span class="keyword">allowedFormats</span> while making instance
+                of Cloudinary Storage but it's actually <span class="keyword">allowed_formats</span>. You can check
+                the docs for more info.</p>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://github.com/affanshahid/multer-storage-cloudinary">Docs for
+                        multer-storage-cloudinary</a></li>
+                <li><a
+                        href="https://cloudinary.com/documentation/node_integration#setting_configuration_parameters_globally">Parameters
+                        for cloudinary</a>
+                </li>
+                <li><a
+                        href="https://cloudinary.com/documentation/image_upload_api_reference#:~:text=Additional%20options%3A-,allowed_formats,-String">Docs
+                        for allowed_formats Cloudinary</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec532">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 532: Storing Uploaded Image Links in Mongo</span></h2>
+        </header>
+        <p class="sec-para-main">Now we edit our app to allow user to submit the images for the campground. We make
+            changes to our Campground Schema in the images field so it requires an array containing two fields
+            namely url and filename(both string type). We also turn off the validation from our JoiSchema for
+            campgrounds so our images can be submitted without any issue. To display the uploaded images for the
+            campground we also loop over the array of images and display it in the campground.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code for our POST campground route -</p>
+camp.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+<p>Show page of the campgrounds -</p>
+&lt% for(image of camp.images) {%>
+    &ltimg src="&lt%= image.url %>" alt="">
+&lt% } %>
+<p>Change in image field of our Schema -</p>
+images: [
+        {
+            url: String,
+            filename: String
+        }
+    ],
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a
+                        href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map">MDN
+                        for map</a></li>
+                <li>Also refer Section22 <a
+                        href="file:///D:/Web_Development/Notes_project/section22/sec22.html#Lec222">Lecture222</a>
+                    for more clarification
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec533">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 533: Displaying images in a Carousel</span></h2>
+        </header>
+        <p class="sec-para-main">Now we display our images in a carousel, we copy the carousel with controls from
+            the bootstrap docs and paste it in our campground show page. Then we loop through our images array using
+            <span class="backend-tags">forEach</span> and
+            set up src attribute in <span class="backend-tags">&ltimg src="" alt=""></span> as <span
+                class="keyword">img.url</span>. We also make a condition to display the carousel controls only when
+            there are multiple images in the carousel.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code for showing images in campground show page -</p>
+&ltdiv id="carouselControls" class="carousel slide" data-bs-ride="carousel">
+                &ltdiv class="carousel-inner">
+                    &lt% camp.images.forEach((img, idx)=> {%>
+                        &lt%= console.log(img, idx) %>
+                            &ltdiv class="carousel-item &lt%=(idx===1) ? 'active' : '' %>">
+                                &ltimg src="&lt%=img.url%>" class="d-block w-100" alt="">
+                            &lt/div>
+                            &lt% }) %>
+                &lt/div>
+                &lt% if(camp.images.length> 1) {%>
+                    &ltbutton class="carousel-control-prev" type="button" data-bs-target="#carouselControls"
+                        data-bs-slide="prev">
+                        &ltspan class="carousel-control-prev-icon" aria-hidden="true">&lt/span>
+                        &ltspan class="visually-hidden">Previous&lt/span>
+                    &lt/button>
+                &lt&ltbutton class="carousel-control-next" type="button" data-bs-target="#carouselControls"
+                        data-bs-slide="next">
+                        &ltspan class="carousel-control-next-icon" aria-hidden="true">&lt/span>
+                        &ltspan class="visually-hidden">Next&lt/span>
+                    &lt/button>
+                    &lt% } %>
+            &lt/div>
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a
+                        href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach">MDN
+                        forEach</a></li>
+                <li><a href="https://getbootstrap.com/docs/5.2/components/carousel/#with-controls">Docs for
+                        bootstrap carousel controls</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec534">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 534: Fixing our Seeds</span></h2>
+        </header>
+        <p class="sec-para-main">We make changes to our seeds file now, so it contains the images array of any of
+            our newly created campgrounds instead of the singular image like it did earlier. We also fix our index
+            page to show an image beside every campground.</p>
+        <div class="article-exampl">
+            <code class="code-snippet"><pre>
+<p>Code for our seeds index file -</p>
+images: [{
+                url: 'https://res.cloudinary.com/diot5a1zi/image/upload/v1655802672/yelpCamp/yj5xdp9yosduixbmdoys.jpg',
+                filename: 'yelpCamp/yj5xdp9yosduixbmdoys'
+            },
+            {
+                url: 'https://res.cloudinary.com/diot5a1zi/image/upload/v1655802674/yelpCamp/g0gwftmgywhzildizgsh.jpg',
+                filename: 'yelpCamp/g0gwftmgywhzildizgsh'
+            }],
+<p>Code for our index campground page to dislay image beside every campground -</p>
+&ltimg src="&lt%= camp.images[0].url %>" class="img-fluid" alt="">
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec535">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 535: Adding upload to Edit Page</span></h2>
+        </header>
+        <p class="sec-para-main">Now we make changes to our edit page of the campgrounds so that we can add images
+            to the campground. In the edit form we make changes to the form to add the images in the campground
+            similar to what we did in campgrounds new form for adding the image. In the PUT route to update the
+            campground, we add <span class="backend-tags">upload.array('image')</span> to get access to images
+            in our updateCampground route.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code for updating our campground -</p>
+module.exports.updateCampground = async (req, res) => {
+    const { id } = req.params;
+    const updatedCamp = await Campground.findByIdAndUpdate(id, { ...req.body.campground });
+    const addedImages = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    for (image of addedImages) {
+        updatedCamp.images.push(image);
+    }
+    await updatedCamp.save()
+    req.flash('success', "Successfully updated the campground");
+    res.redirect(`/campgrounds/${id}`);
+}
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec536">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 536: Customizing File input</span></h2>
+        </header>
+        <p class="sec-para-main">Bootstrap has been updated since Colt shot the video, so we don't need to do all
+            that stuff to customize our file input. Just go to bootstrap docs for file input and copt it in your new
+            and edit form, also don't forget to add the <span class="keyword">name</span> attribute to new file
+            inputs.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code to put in our New and Edit form -</p>
+&ltdiv class="mb-3">
+    &ltlabel for="formFileMultiple" class="form-label">Add more images:</label>
+    &ltinput class="form-control" type="file" id="formFileMultiple" name="image" multiple>
+&lt/div>
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://getbootstrap.com/docs/5.2/forms/form-control/#file-input">Bootstrap docs for
+                        file input</a></li>
+                <li>If you want to add more features, also check <a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22346316#questions/14790932">Bill's
+                        answer on udemy</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec537">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 537: A word of Warning </span></h2>
+        </header>
+        <p class="sec-para-main">Colt tells us about the shortcoming of uploading the images for our cmapgrounds.
+            Right now a user can upload as many images as they want which is not okay as someone could span an
+            image over and over. Also, there is no size restriction on the images being uploaded so a user can
+            upload heavy images which could be problematic as the images you store online takes a considerable
+            amount of space hence slower load time for campgrounds and it also costs money to buy online storage.
+        </p>
+    </article>
+    <article id="Lec538">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 538: Deleting Images form</span></h2>
+        </header>
+        <p class="sec-para-main">Now we make changes to our edit form, so it also able to delete the images as well.
+            We display the images in our Edit form and attach checkbox to each of the image with a delete label.</p>
+        <div class="extra-info">
+            <p>Note: Many people are getting confused as to how the checkbox value were added to name array in
+                checkbox. For that read <a
+                    href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22346322#questions/14589574">Zarko</a>
+                and <a
+                    href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22346322#questions/14560148">Ian's
+                    answer</a> on Udemy.
+            </p>
+        </div>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code to add into for our edit campground page -</p>
+<% camp.images.forEach((image, idx)=> {%>
+    &ltimg src="&lt%=image.url%>" class="img-thumbnail" name="&lt%=image.filename%>" alt="">
+    &ltdiv class="form-check-inline">
+        &ltinput class="form-check-input" type="checkbox" name="deleteImages[]" id="image-&lt%=idx%>"
+            value="&lt%=image.filename%>">
+        &ltlabel class="form-check-label" for="image-&lt%=idx%>">Delete</label>
+    &lt/div>
+    &lt% }) %>
+<p>Field to add in our Joi Schema for campground -</p>
+module.exports.campgroundSchema = Joi.object({
+    campground: Joi.object({
+        title: Joi.string().required(),
+        price: Joi.number().required().min(0),
+        // image: Joi.string().required(),
+        description: Joi.string().required(),
+        location: Joi.string().required()
+    }).required(),
+    deleteImages: Joi.array()
+})
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec539">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 539: Deleting Images backend</span></h2>
+        </header>
+        <p class="sec-para-main">Now we implement the logic for our form which we created in the last lecture to
+            delete the images on the cloudinary and our mongo server. We make use of <span class="keyword">$pull</span>
+            operator in our updateCampground route to delete the images from our
+            mongo server which we selected in the edit form under the array deleteImages. We also use <span
+                class="backend-tags">cloudinary.uploader.destroy()</span> method to delete the images from
+            cloudinary as well.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code for Edit page -</p>
+<% camp.images.forEach((image, idx)=> {%>
+    &ltimg src="&lt%=image.url%>" class="img-thumbnail" name="&lt%=image.filename%>" alt="">
+    &ltdiv class="form-check-inline">
+        &ltinput class="form-check-input" type="checkbox" name="deleteImages[]" id="image-&lt%=idx%>"
+            value="&lt%=image.filename%>">
+        &ltlabel class="form-check-label" for="image-&lt%=idx%>">Delete&lt/label>
+    &lt/div>
+    &lt% }) %>
+<p>Code for updateCampground route -</p>
+if (req.body.deleteImages) {
+        for (let filename of req.body.deleteImages) {
+            await cloudinary.uploader.destroy(filename);
+        }
+        await updatedCamp.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } })
+    }
+<p>Code for show campground page -</p>
+&ltdiv class="carousel-inner">
+    &lt% camp.images.forEach((img, idx)=> {%>
+        &lt%=console.log(img)%>
+            &ltdiv class="carousel-item &lt%=(idx===1) ? 'active' : '' %>">
+                &ltimg src="&lt%=img.url%>" class="d-block w-100" alt="">
+            &lt/div>
+    &lt% }) %>
+&lt/div>
+</pre></code>
+        </div>
+        <div class="extra-info">
+            <p>Note: Be wary of the white spaces in your ejs files as they are problematic for most of the
+                students. Also, if you copy my code and run it directly you might run into some errors as I have
+                used different names for my camps.</p>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a
+                        href="https://cloudinary.com/documentation/node_asset_administration#upload_api_example_delete_a_single_asset">Docs
+                        for cloudinary delete</a>
+                </li>
+                <li><a href="https://www.mongodb.com/docs/manual/reference/operator/update/pull/#-pull">Docs for
+                        pull operator</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec540">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 540: Adding a Thumbnail Virtual Property</span></h2>
+        </header>
+        <p class="sec-para-main">Now we add a virtual property to display thumbnail version of our images in the
+            edit page instead of their full size. To do so we make changes to our campground Schema and separate the
+            images field into a schema of it's own and add a virtual property to it to replace the parameter <span
+                class="keyword">upload</span> in imageURL with <span class="keyword">upload/w_300</span>, here w
+            stands for width and 300 is it's value in pixels. Now in our views we get access to another
+            property called 'thumbnail' which will be available to us like other image properties.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Changes to our Campground Schema -</p>
+const ImageSchema = new Schema({
+    url: String,
+    filename: String
+})
+
+ImageSchema.virtual('thumbnail').get(function () {
+    return this.url.replace('/upload', '/upload/w_300');
+})
+
+const CampgroundSchema = new Schema({
+    title: String,
+    price: Number,
+    images: [ImageSchema],
+    description: String,
+    location: String,
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    review: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Review'
+        }
+    ]
+})
+</pre></code>
+        </div>
+        <div class="extra-info">
+            <p> Note: Here we use virtuals instead of using CSS to style our images because it will take a lot of
+                time to load the images and size them down, using cloudinary transformation is a much easier and
+                faster alternative.</p>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://cloudinary.com/documentation/transformation_reference#w_width">Cloudinary width
+                        transformation Docs</a></li>
+                <li><a href="https://mongoosejs.com/docs/guide.html#virtuals">Docs for virtuals guide</a></li>
+                <li>Another <a href="https://mongoosejs.com/docs/tutorials/virtuals.html">Doc page for virtuals</a>
+                </li>
+            </ul>
+        </div>
+    </article>

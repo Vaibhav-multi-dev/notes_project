@@ -1,0 +1,129 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 41: Yelp Camp - Adding Basic Styles</h1>
+        <nav class="sec-nav-li" id="sec41-nav">
+            <ul>
+                <li><a href="#Lec423">Lecture 423</a></li>
+                <li><a href="#Lec424">Lecture 424</a></li>
+                <li><a href="#Lec425">Lecture 425</a></li>
+                <li><a href="#Lec426">Lecture 426</a></li>
+                <li><a href="#Lec427">Lecture 427</a></li>
+                <li><a href="#Lec428">Lecture 428</a></li>
+                <li><a href="#Lec429">Lecture 429</a></li>
+                <li><a href="#Lec430">Lecture 430</a></li>
+                <li><a href="#Lec431">Lecture 431</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec423">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 423: A New EJS Tool For Layouts</span></h2>
+        </header>
+        <p class="sec-para-main">We now use a common boilerplate for all the pages that we are going to display, to
+            achieve that we use <span class="keyword">ejs-mate</span> , ejs-mate is an ejs engine different from our
+            default one to render our ejs files. To integrate it in our application we make another directory under
+            the views called layouts, in it we store our boilerplate.ejs file which will serve as the boilerplate
+            for all our campground pages and then from within those pages we use <span
+                class="backend-tags">layout('layouts/boilerplate')</span> to serve the whole page as body to the
+            boilerplate which is stored under the <span class="keyword">layouts/views</span> directory.
+            The advantage of using <span class="keyword">ejs-mate</span> is that it makes it easier to work with
+            partials, rather than attaching header and footer as partials separately to all our campground pages we
+            just add them in single boilerplate page which is reffered to by all the campground pages.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>To include ejs-mate in our application we use -</p>
+<p>In our index page -</p>
+const ejsMate = require('ejs-mate');
+app.engine('ejs', ejsMate);
+<p>In our campground pages -</p>
+&lt% layout('layouts/boilerplate')%>
+<p>In our boilerplate page -</p> 
+&lt%- body %>
+enclosed within our body tag</pre></code>
+        </div>
+    </article>
+    <article id="Lec424">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 424: Bootstrap 5! Boilerplate</span></h2>
+        </header>
+        <p class="sec-para-main">We just add <a
+                href="https://getbootstrap.com/docs/5.1/getting-started/introduction/#css">bootstrap</a>
+            to our project and wrap our body content with main element which contains the <span
+                class="keyword">container</span> class.</p>
+    </article>
+    <article id="Lec425">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 425: Navbar Partial</span></h2>
+        </header>
+        <p class="sec-para-main">We add navbar to our layout boilerplate while making some changes to the default
+            navbar provided by the bootstrap. We change the links provided by the bootstrap, one to direct to our
+            all campgrounds page and another to make a new campground page. At the same time we also separate the
+            navbar into a partial and add it our boilerplate file.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>In our navbar file we use -</p>
+&lt%- include('../partials/navbar.ejs')%>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec426">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 426: Footer Partial</span></h2>
+        </header>
+        <p class="sec-para-main">We now add footer to our boilerplate as a partial and then to push it to the end
+            of the page by making the body a flex container and adding top margin to the footer.</p>
+    </article>
+    <article id="Lec427">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 427: Adding Images</span></h2>
+        </header>
+        <p class="sec-para-main">To add images to all of our campgrounds, we use unsplash source API to generate a
+            new image every time you access a campground (Images might be repeated). To integrate it in our
+            application we add a image field with type as String in our campground schema and reseed the database
+            with image field set to the link of the UnsplashAPI.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Add this in our seeds index file - </p>
+image: 'https://source.unsplash.com/collection/483251'
+<p>Add this in your show page to display images -</p>
+&ltimg src="&lt%= camp.image %>" alt="">
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec428">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 428: Styling Campgrounds Index</span></h2>
+        </header>
+        <p class="sec-para-main">To style the campground index page, we use grid system which comes with
+            bootstrap. We further use grid system to divide our content in two parts, one to show up the image and
+            rest of the space to display the information related to the campground.
+        </p>
+    </article>
+    <article id="Lec429">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 429: Styling the new form</span></h2>
+        </header>
+        <p class="sec-para-main">We now modify the the page to make a new campground, for this purpose we make use
+            of grid system classes which comes with bootstrap. We start off by making a div with row class and then
+            centering the content we need to display by using <span class="keyword">&div class="col-6
+                offset-3">&/div></span> and inside this div we place all the inputs we need with lables required to
+            make a new campground.
+        </p>
+    </article>
+    <article id="Lec430">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 430: Styling Edit form</span></h2>
+        </header>
+        <p class="sec-para-main">To style our edit page, we copy the whole form for making a new campground and
+            include the values of the campground we are editing with the <span class="keyword">value</span>
+            attribute in the respective form inputs. Only difference being the description because it's a text area
+            and it's value must be included within the opening and closing tags of text area. </p>
+    </article>
+    <article id="Lec431">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 431: Styling Show page</span></h2>
+        </header>
+        <p class="sec-para-main">We use the bootstrap card with the format of kitchen sink to display show page
+            of our campground.</p>
+    </article>

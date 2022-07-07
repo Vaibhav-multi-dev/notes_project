@@ -1,0 +1,274 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="js-sec-heading">Section 16: Javascript decision making</h1>
+        <nav class="sec-nav-li" id="sec16-nav">
+            <ul>
+                <li><a href="#Lec159">Lecture 159</a></li>
+                <li><a href="#Lec160">Lecture 160</a></li>
+                <li><a href="#Lec161">Lecture 161</a></li>
+                <li><a href="#Lec162">Lecture 162</a></li>
+                <li><a href="#Lec163">Lecture 163</a></li>
+                <li><a href="#Lec164">Lecture 164</a></li>
+                <li><a href="#Lec165">Lecture 165</a></li>
+                <li><a href="#Lec166">Lecture 166</a></li>
+                <li><a href="#Lec167">Lecture 167</a></li>
+                <li><a href="#Lec168">Lecture 168</a></li>
+                <li><a href="#Lec169">Lecture 169</a></li>
+                <li><a href="#Lec170">Lecture 170</a></li>
+                <li><a href="#Lec171">Lecture 171</a></li>
+                <li><a href="#Lec172">Lecture 172</a></li>
+                <li><a href="#Lec173">Lecture 173</a></li>
+                <li>Coding Exercise Solutions -
+                    <ul>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex21">Exercise
+                                21</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex22">Exercise
+                                22</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex23">Exercise
+                                23</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex24">Exercise
+                                24</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec159">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 159: What matters in this section ?</span></h2>
+
+        </header>
+        <p class="sec-para-main">This section will teach us how to make decisions with our code. If,else-if, else
+            statements, comparison and logical operators are the crux of this section.</p>
+    </article>
+    <article id="Lec160">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 160: Decision making with code</span></h2>
+
+        </header>
+        <p class="sec-para-main">
+            Decision making is a very important aspect of programming. It determines what path
+            the program should take take if a specified condition is met or not.
+        </p>
+    </article>
+    <article id="Lec161">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 161: Comparison operators</span></h2>
+
+        </header>
+        <p class="sec-para-main">You can use comparison operators to compare if two values are greater, smaller or
+            equal to one another. Generally comparison operators are used to compare <span class="keyword">Number</span>
+            type but
+            they can also be used on String characters, although it doesn't make much sense to
+            use them in that context as they are compared with their unicode values rather then the
+            way they appear in alphabetical order althoufg they work fine in this case but it could be different
+            in some other language. You can see the <a href="https://unicode.org/charts/">unicode charts</a>,
+            for further info. Also take a look at <a
+                href="https://unicode-table.com/en/#spacing-modifier-letters">unicode table.com</a> to filter by
+            categories.
+        </p>
+    </article>
+    <article id="Lec162">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 162: Equality: Triple Vs. Double Equals</span></h2>
+
+        </header>
+        <p class="sec-para-main">There are two types of equality operators in JS <span class="js-tags">==</span>
+            and <span class="js-tags">===</span>, double equal compares if the
+            values on either side is equal to one another or not, it can also coerce data type of a variable to
+            match
+            with the data type on the other side, it is not very stable as it might give some unexpected results
+            , it also has a not-equal operator as well written as <span class="js-tags">!=</span>
+            Triple equals, also known as strict equality operator compares the values on either sides of
+            the equation without compromising on the data type, it's not-equal operator is <span
+                class="js-tags">!==</span> </p>
+        <section class="article-example">
+            <code class="code-snippet"><pre>
+<p>Unexpected results with == & !=</p>
+0 == ""  <span class="code-comment">//true</span>
+2 == "2"  <span class="code-comment">//true</span>
+0 != "0" <span class="code-comment">//false</span>
+</pre></code>
+        </section>
+    </article>
+    <article id="Lec163">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 163: Console,Alert and prompt</span></h2>
+
+        </header>
+        <p class="sec-para-main">Console is a global object in the javascript window which contains many methods
+            most common of them is
+            <span class="js-tags">console.log()</span>. Inside the parenthesis you can type things you want to print
+            out in the console. Alert gives us a pop-up box on your webpage stating a message that you type it while
+            declaring, it might be useful in situations where you want to tell the user if they are logged in or
+            not. Prompt is a bit similar to alert in the sense that it also shows up as a popup window containing
+            message but it also asks for user input rather than just displaying a message, one thing to keep in mind
+            while using prompt is that if you need to do arithmetic operations with the received input then you need
+            to convert it into a number type as we receive a string type by default.
+        </p>
+    </article>
+    <article id="Lec164">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 164: Running Javascript from a script</span></h2>
+
+        </header>
+        <p class="sec-para-main">To run javascript from a script you make a js file with all your javascript code
+            and link it in
+            your HTML file by using script tag,usually script tags goes at the end of the HTML document so that
+            it has HTML elements rendered already to interact with. </p>
+    </article>
+    <article id="Lec165">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 165: If statements</span></h2>
+
+        </header>
+        <p class="sec-para-main">If statements runs a block of code when a condition is met following the <span
+                class="js-tags">if</span> keyword. In the case condition is not met then that block of code is
+            ignored and the program runs from the next line. It is used if you want to run a block of code on
+            certain condition or skip it to next line if that condition is not met. The syntax for 'If' conditional
+            is -</p>
+        <section class="article-example">
+            <code class="code-snippet"><pre>
+if(condition ==true){
+    //Block of code
+}</pre></code>
+        </section>
+    </article>
+    <article id="Lec166">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 166: Else-if</span></h2>
+
+        </header>
+        <p class="sec-para-main"> <span class="js-tags">else if</span> is an extension to 'If' conditional, like
+            'if' it also runs a block of code when it meets a specific criteria but 'Else-if' only works in
+            conjuction with 'if'. In case the criteria of 'if' condition is not met then the criteria of "Else-if"
+            is evaluated and executed if it is met. You can chain as many 'Else-if' you want with the 'if'
+            conditional. Syntax for "Else-if" conditional is -</p>
+        <section class="article-example">
+            <code class="code-snippet">
+                    <pre>
+if(condition ==true){
+    //Block of code
+}
+else if(condition ==true){
+    //Block of code
+}</pre></code>
+        </section>
+        <p class="notes">In case both if and else if conditions are met, then only if statement is executed.</p>
+    </article>
+    <article id="Lec167">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 167: Else</span></h2>
+
+        </header>
+        <p class="sec-para-main">Else condition only works in conjuction with <a href="#Lec165">'if'</a>
+            conditional, it is only executed when the criteria of
+            'if' conditional and <a href="#Lec166">'Else-if'</a> (if any) is not met. Syntax for 'else' conditional
+            is -</p>
+        <section class="article-example">
+            <code class="code-snippet">
+                    <pre>
+if(condition ==true){
+    //Block of code
+}
+else {
+    //Block of code
+}</pre></code>
+        </section>
+    </article>
+    <article id="Lec168">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 168: Nesting conditionals</span></h2>
+
+        </header>
+        <p class="sec-para-main">You can also nest <a href="#Lec165">If</a>, <a href="#Lec166">Else if</a> and
+            <a href="#Lec167">Else</a> inside one another to make more complex decisions in your program.
+        </p>
+    </article>
+    <article id="Lec169">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 169: Truth-y and false-y values</span></h2>
+
+        </header>
+        <p class="sec-para-main">Every value in javascript have some inherent true or false values associated with
+            them. Falsy values in javascript are -</p>
+        <div class="list-content">
+            <ul>
+                <li>NaN</li>
+                <li>undefined</li>
+                <li>null</li>
+                <li>0</li>
+                <li>""</li>
+                <li>false</li>
+            </ul>
+        </div>
+        <p class="sec-para-main">Rest all of them are truthy. Read <a
+                href="https://stackoverflow.com/questions/19839952/all-falsey-values-in-javascript/19839953#19839953">SO
+                on all falsy values in JS</a>, <a href="https://developer.mozilla.org/en-US/docs/Glossary/Truthy">Truthy
+                MDN</a> and <a href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy">Falsy MDN</a> for more
+            detailed
+            information. </p>
+    </article>
+    <article id="Lec170">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 170: Logical AND</span></h2>
+
+        </header>
+        <p class="sec-para-main">Logical operators is used to link two or more expressions together. AND operator
+            is used when you want to take some action if both sides of the expression evaluates to true. Example-
+        </p>
+        <section class="article-example">
+            <code class="code-snippet"><pre>
+if (5 < 6 && 9 > 4){
+    console.log("AND operator working");
+}</pre></code>
+            <p>The above <span class="js-tags">if</span> statement will only execute if both sides of the
+                expressions are evaluated as true. </p>
+        </section>
+    </article>
+    <article id="Lec171">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 171: Logical OR</span></h2>
+
+        </header>
+        <p class="sec-para-main">Logical OR operator executes a statement if either one side of the expression is
+            evaluated as true.</p>
+        <section class="article-example">
+            <code class="code-snippet"><pre>
+if (5 < 6 || 2 > 4){
+    console.log("OR operator working");
+}</pre></code>
+            <p>The above <span class="js-tags">if</span> statement will execute even if one side of the
+                expression is true compared to AND which requires both expression to be true. </p>
+        </section>
+    </article>
+    <article id="Lec172">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 172: Logical NOT</span></h2>
+
+        </header>
+        <p class="sec-para-main">NOT just negates the whole equation, if a condition is coming out to be true then
+            it converts it to false and vice-versa. </p>
+    </article>
+    <article id="Lec173">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 173: The Switch statement</span></h2>
+
+        </header>
+        <p class="sec-para-main">Switch statement is used when you want to execute different outcomes based on the
+            value of a single condition. Break keyword is always needed at the end of case statement to prevent
+            further cases execution in the switch statement, without break all the cases after the selected case
+            will also execute. You can also execute a single code on some cases in succession by leaving the cases
+            blank before the case whose code you want to be applied to the cases above him as well.
+            Syntax for switch is-</p>
+        <section class="article-example">
+            <code class="code-snippet"><pre>
+switch (condition):
+case 1:
+    //Block of code
+break
+default:
+    //Block of code
+break</pre></code>
+        </section>
+    </article>

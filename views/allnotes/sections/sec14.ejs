@@ -1,0 +1,219 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="js-sec-heading">Section 14:Javascript Basics</h1>
+        <nav class="sec-nav-li" id="sec14-nav">
+            <ul>
+                <li><a href="#Lec141">Lecture 141</a></li>
+                <li><a href="#Lec142">Lecture 142</a></li>
+                <li><a href="#Lec143">Lecture 143</a></li>
+                <li><a href="#Lec144">Lecture 144</a></li>
+                <li><a href="#Lec145">Lecture 145</a></li>
+                <li><a href="#Lec146">Lecture 146</a></li>
+                <li><a href="#Lec147">Lecture 147</a></li>
+                <li><a href="#Lec148">Lecture 148</a></li>
+                <li><a href="#Lec149">Lecture 149</a></li>
+                <li><a href="#Lec150">Lecture 150</a></li>
+                <li>Coding Exercise Solutions -
+                    <ul>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex15">Exercise
+                                15</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex16">Exercise
+                                16</a></li>
+                    </ul>
+                </li>
+                <li><a href="#sec14-summary">Important links</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec140">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 140: What matters in this section</span></h2>
+
+        </header>
+        <p class="sec-para-main">This is the introductory section to javascript and most of the concepts covered in
+            this section will be crucial to understand for making further progress in the course. Keep <a
+                href="https://developer.mozilla.org/en-US/docs/Web/javascript">Javascript guide by MDN</a> handy to
+            refer whenever in trouble. </p>
+    </article>
+    <article id="Lec141">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 141: Why Javascript is awesome</span></h2>
+
+        </header>
+        <p class="sec-para-main">Javascript is part of every webpage we encounter and it is what we can say <span
+                class="keyword">verb</span> of a webpage. We can style our content and add slight animations to our
+            content using HTML and CSS but it is javascript which makes the page functional (e.g. Javascript can
+            be used to live updating the content on our webpage).</p>
+    </article>
+    <article id="Lec142">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 142: Primitives and the console</span></h2>
+
+        </header>
+        <p class="sec-para-main">To interact with a webpage i.e. the information that is displayed (e.g. textual,
+            numerical etc.) we need a way to refer and change their properties, to achieve that information is
+            stored in the form of data. Data can be of different types. The type of data which is natively
+            understood by javascript is know as primitive data type. There are 7 primitives types in JS-</p>
+        <div class="list-content">
+            <ul>
+                <li>Commonly used
+                    <ul>
+                        <li>Numbers</li>
+                        <li>Strings</li>
+                        <li>Booleans</li>
+                        <li>Undefined</li>
+                        <li>Null</li>
+                    </ul>
+                </li>
+                <li>Rarely used
+                    <ul>
+                        <li>Symbol</li>
+                        <li>BigInt</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <p class="sec-para-main">Before commencing on connecting <span class="keyword">html,css and js</span>
+            together and making
+            functional web pages, we need to learn few basics of javascript and for that purpose we are going to use
+            chrome console which follows the <span class="keyword">REPL</span> pattern (Read,evaluate, print, loop).
+            It makes it easier to learn and practice the basics of javascript, later we will learn how to link the
+            scripts to our webpage for bigger applications.
+        </p>
+    </article>
+    <article id="Lec143">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 143: Javascript Numbers</span></h2>
+
+        </header>
+        <p class="sec-para-main">Javascript numbers type contains +ve numbers,-ve numbers, whole numbers and decimal
+            numbers. You can do
+            math
+            operations like addition,subtraction,multiplication,divison on numbers type in JS. JS follows PEDMAS for
+            math
+            operations -</p>
+        <div class="list-content">
+            <ul>
+                <li>P stands for Parentheses <span class="js-tags">()</span></li>
+                <li>E for exponent <span class="js-tags">**</span></li>
+                <li>D for divison <span class="js-tags">/</span></li>
+                <li>M for multiplication <span class="js-tags">*</span></li>
+                <li>A for addition <span class="js-tags">+</span></li>
+                <li>S for subtraction <span class="js-tags">-</span></li>
+            </ul>
+        </div>
+        <p class="sec-para-main">Math operations are applied from left to right order in JS. Although Division
+            comes before
+            multiplication in
+            PEDMAS
+            they both share the same order of precedence and hence whoever is on the leftest side will be solved
+            first,
+            same
+            goes for addition and subtraction.</p>
+        <p class="notes">Note: There is one more operator in javascript to work with numbers and that is modulo
+            <span class="js-tags">%</span> .It gives the remainder of two number when divided by each other, it's
+            common usage is to identify if the number is even or odd.
+        </p>
+    </article>
+    <article id="Lec144">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 144:NaN intro</span></h2>
+
+        </header>
+        <p class="sec-para-main"> <span class="js-tags">NaN</span> stands for "Not a number" although it's
+            considered a number in javascript itself. Any arithmetic operation involving NaN will always result in
+            NaN as the final outcome. Read <a
+                href="https://stackoverflow.com/questions/2801601/why-does-typeof-nan-return-number">why does typeof
+                nan return number</a> for more info(Provided by TA-Louli) .</p>
+    </article>
+    <article id="Lec146">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 146: Variables and Let</span></h2>
+
+        </header>
+        <p class="sec-para-main">Variables are used to store a value which you might refer to in the future. Syntax
+            for storing a value in variable is - <span class="js-tags">let varName = value</span> e.g. let age = 22
+            will declare the variable age with the value of 22 . After declaration, values inside a
+            variable will only change if you assign the variable to be equal to a specific value e.g. age = 25;
+            or make changes to the variable's value and then assign it to the same variable in the same line e.g.
+            age = age + 3; You can also add two variables together and store their value in a third one e.g.
+            letTotal = sum1 + sum2; </p>
+        <p class="notes">Note: Always use let, const or var to declare your variables, if you don't use these
+            keywords then these variables will be stored as global which is something you want to avoid.</p>
+    </article>
+    <article id="Lec147">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 147: Updating variables</span></h2>
+
+        </header>
+        <p class="sec-para-main">It is also possible to update the value of a variable we have several ways to do
+            so. To add or subtract a specified number from the variable we use shorthand <span class="js-tags">var
+                += valueToAdd </span> (+ can be replaced by other arithmetic operator). Adding
+            and
+            subtracting
+            variables by 1 is so common in JS that there is a shorthand
+            for that.
+            Adding 1- <span class="js-tags">varName++; </span>
+            Subtracting 1- <span class="js-tags">varName--; </span>
+        </p>
+        <section class="article-example">
+            <p>Demo Code -</p>
+            <code class="code-snippet"><pre>
+let score = 10;
+score++;
+//Score value will be 11 now.
+score--;
+//Score value will be 10 now. 
+score += 5
+//Score value will be 15 now.</pre></code>
+        </section>
+    </article>
+    <article id="Lec148">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 148: Const and Var</span></h2>
+
+        </header>
+        <p class="sec-para-main"> <span class="js-tags">const</span> are fixed value variables which cannot be
+            changed, they need to be
+            initialized in the same line as you declare them. <span class="js-tags">var</span> is the oldest
+            method of declaring variables, one
+            should always use let and const over var.
+        </p>
+        <section class="extra-info">
+            <h3>Extra info -</h3>
+            <p><a href="https://www.youtube.com/watch?v=dzEieWaOJE0">Colt's youtube video</a> for explanation of
+                differences between Let,const & var (This video might not make sense to some at this point as it
+                contains some topics which we haven't covered yet).
+                Another great <a href="https://www.youtube.com/watch?v=9WIJQDvt4Us">WebDevSimplified video</a>, it
+                covers this concept in great detail. One <a
+                    href="https://stackoverflow.com/questions/762011/whats-the-difference-between-using-let-and-var">SO
+                    post on let and var difference</a> also covers this topic.
+            </p>
+        </section>
+    </article>
+    <article id="Lec149">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 149: Booleans</span></h2>
+
+        </header>
+        <p class="sec-para-main">Booleans have two possible values - <span class="js-tags">true</span> and <span
+                class="js-tags">false</span> both in lowercase, it is used for applying logic in javascript
+            programs. It is also possible to change the data type of a variable from one to another in JS. E.g. If
+            you assigned a variable to an integer value then it's possible to change it to string.</p>
+        <div class="article-example">
+            <h3>Demo Code:</h3>
+            <code class="code-snippet"><pre>
+let myNum = 5; //We are assigning myNum a value of 5
+myNum = "five"; //Now myNum value is "five"</pre></code>
+        </div>
+    </article>
+    <article id="Lec150">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 150: Variable Naming and Conventions</span></h2>
+
+        </header>
+        <p class="sec-para-main">Ideal naming convention of JS is lowerCaseCamel characters, in this first letter of
+            every word is capital except the first word. JS variables can contain numbers in it but they
+            can't start with a number. You can also do snake_casing in JS but it is not that common to do so. Always
+            write meaningful variable names than short ones with no particular meaning.</p>
+    </article>

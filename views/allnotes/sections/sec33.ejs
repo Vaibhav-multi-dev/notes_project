@@ -1,0 +1,139 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 33: Creating servers with Express</h1>
+        <nav class="sec-nav-li" id="sec33-nav">
+            <ul>
+                <li><a href="#Lec331">Lecture 331</a></li>
+                <li><a href="#Lec332">Lecture 332</a></li>
+                <li><a href="#Lec333">Lecture 333</a></li>
+                <li><a href="#Lec334">Lecture 334</a></li>
+                <li><a href="#Lec335">Lecture 335</a></li>
+                <li><a href="#Lec336">Lecture 336</a></li>
+                <li><a href="#Lec337">Lecture 337</a></li>
+                <li><a href="#Lec338">Lecture 338</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec331">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 331: What matters in this section?</span></h2>
+        </header>
+        <p class="sec-para-main">This section is our introduction to express, express is a framework written by
+            other people that we primarily use to build servers using node. Pretty much everything we learn here is
+            important.
+        </p>
+    </article>
+    <article id="Lec332">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 332: Introducing express</span></h2>
+        </header>
+        <p class="sec-para-main">Express is a framework which is written to be used for running servers using node.
+            Basically it helps us to set up a server to listen to requests, also particular routes on which requests
+            can be made and craft our response accordingly. This lecture introduces two concepts, frameworks and
+            library. Library gives us more charge on to what feature we want to implement and how, on the other hand
+            framework has a defined structure on it's own and we need to follow the rules it is set up with. The
+            advantage of using library over framework is that it gives us more flexibility while advantage of using
+            framework over library is that it makes creating new web applications easier by following a rigid
+            structure.
+        </p>
+        <div class="src-link">
+            <p>Extras -</p>
+            <ul>
+                <li> <a
+                        href="https://stackoverflow.com/questions/148747/what-is-the-difference-between-a-framework-and-a-library">SO
+                        on difference between framework and library</a>
+                </li>
+                <li> <a
+                        href="https://stackoverflow.com/questions/3057526/framework-vs-toolkit-vs-library">FrameworkVStoolkitVSlibrary</a>
+                </li>
+                <li> <a
+                        href="https://stackoverflow.com/questions/5453011/api-vs-toolkit-vs-framework-vs-library">API,toolkit,Framework,Library</a>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec333">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 333: First express app</span></h2>
+        </header>
+        <p class="sec-para-main">To use express in our application, we first require it and then execute the
+            function <span class="backend-tags">express()</span> which gives us back an object with multiple methods
+            inside it and store it in a variable which is usually named app. To start listening to the requests we
+            use the method <span class="backend-tags">app.listen</span>, it requires a port
+            number (3000 is quite common) and a callback function. To access the page we type <span
+                class="keyword">localhost:3000</span> in the browser where 3000 stands for port number. Browser
+            runs this application locally on your machine and on the specified port number i.e. it can't be accessed
+            by someone else from other computer or with another port number. Then we add an <span
+                class="backend-tags">app.use()</span> method which will run everytime we make a request to the
+            server. </p>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://expressjs.com/en/4x/api.html#app.use">ExpressDocs for app.use()</a></li>
+                <li><a href="https://stackoverflow.com/questions/11321635/nodejs-express-what-is-app-use">SO for
+                        app.use</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec334">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 334: The Request & Response Objects</span></h2>
+        </header>
+        <p class="sec-para-main">On every incoming request we get two objects that express automatically passes for
+            us, first is request and the other is response object. These objects have properties and methods of
+            their own. HTTP request usually are just text based information but express parses it and turns it into
+            a JS object for us and this object contains all the information related to the request made. Response
+            object also have several methods and properties but the one we will be using here is <span
+                class="backend-tags">res.send()</span>, it is used to send response to the server. It can contain
+            string, Javascript object and even HTML as the response. </p>
+        <div class="src-link">
+            <p>Sources -
+            <ul>
+                <li><a href="https://expressjs.com/en/4x/api.html#req">Docs for req</a></li>
+                <li><a href="https://expressjs.com/en/4x/api.html#res">Docs for res</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec335">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 335: Express Routing Basics</span></h2>
+        </header>
+        <p class="sec-para-main">Routing is the process where we direct to run a specific piece of code on a
+            particular HTTP request. For a <span class="keyword">GET</span> HTTP request we use the <span
+                class="backend-tags">app.get()</span> method which accepts a path parameter and a callback function.
+            Same goes for <span class="keyword">POST</span> HTTP request, for that we use <span
+                class="backend-tags">app.post()</span> method. One thing to keep in mind is that we can only send
+            one response per request i.e. only one <span class="backend-tags">res.send()</span> can be executed on a
+            HTTP request. POST and GET methods are different from one another, even if you have same path on both
+            the methods they will be executed separately. If there's a case where you want a method to run
+            irrespective of the path then we use <span class="backend-tags">*</span> as the path parameter, it will
+            execute everytime any made request doesn't match with any of the previous routes, we generally put this
+            at the end to avoid interference with other routes.</p>
+    </article>
+    <article id="Lec336">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 336: Express path parameters</span></h2>
+        </header>
+        <p class="sec-para-main">Express path parameters can also match a variable rather than a fixed path. To
+            make a variable path we use <span class="backend-tags">:varName</span> in the path where varName stands
+            for variable name which could change as per the user's input, to access the parameters value inside the
+            callback function we use <span class="backend-tags">req.params</span> which contains the key value pair.
+        </p>
+    </article>
+    <article id="Lec337">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 337: Working with query Strings</span></h2>
+        </header>
+        <p class="sec-para-main">To work with queries in HTTP requests, we use
+            <span class="backend-tags">req.query</span> which is automatically created for us by Express. It
+            contains all the queries which were passed while typing the URL. Usually we don't directly type the
+            queries in the URL it is rather passed on by form or by links.
+        </p>
+    </article>
+    <article id="Lec338">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 338: Auto restart with Nodemon</span></h2>
+        </header>
+        <p class="sec-para-main">Nodemon is used to restart the server while making changes to the code. To use
+            nodemon we install it by using the command <span class="backend-tags">npm i -g nodemon</span> </p>
+    </article>

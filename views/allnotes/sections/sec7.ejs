@@ -1,0 +1,293 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="css-sec-heading">Section 7: The world of CSS selectors</h1>
+        <nav class="sec-nav-li" id="sec7-nav">
+            <ul>
+                <li><a href="#Lec68">Lecture 68</a></li>
+                <li><a href="#Lec69">Lecture 69</a></li>
+                <li><a href="#Lec70">Lecture 70</a></li>
+                <li><a href="#Lec71">Lecture 71</a></li>
+                <li><a href="#Lec72">Lecture 72</a></li>
+                <li><a href="#Lec73">Lecture 73</a></li>
+                <li><a href="#Lec74">Lecture 74</a></li>
+                <li><a href="#Lec75">Lecture 75</a></li>
+                <li><a href="#Lec76">Lecture 76</a></li>
+                <li><a href="#Lec77">Lecture 77</a></li>
+                <li><a href="#Lec78">Lecture 78</a></li>
+                <li><a href="#Lec79">Lecture 79</a></li>
+                <li><a href="#Lec80">Lecture 80</a></li>
+                <li><a href="#Lec81">Lecture 81</a></li>
+                <li>Coding Exercise Solutions -
+                    <ul>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex9">Exercise
+                                9</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex10">Exercise
+                                10</a>
+                        </li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex11">
+                                Exercise 11</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec68">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 68: What matters in this section</span></h2>
+        </header>
+        <p class="sec-para-main">Selecting by class,id and descendant selector will be the most important aspect
+            of this section. Although selecting by other measures is also important but this forms the crux of this
+            section.</p>
+    </article>
+    <article id="Lec69">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 69: Universal and element selectors</span></h2>
+        </header>
+        <p class="sec-para-main">Universal selector starts with * and any style applied to universal selector is
+            applied to every element
+            on
+            the
+            HTML page. It is not recommended to use universal selector as it can cause
+            problems when styling your page in a certain way. Element selector is used to styles a specific
+            element
+            only.
+            You can combine multiple element selectors by using <span class="keyword"> , </span> between element
+            selectors.
+        </p>
+    </article>
+    <article id="Lec70">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 70: The id selector</span></h2>
+        </header>
+        <p class="sec-para-main">ID's are used to uniquely style an element and they can't be repeated on a
+            page.
+            To style by id use the symbol <span class="keyword"> # </span> following the id of the element you
+            want
+            to style. Although ID's are useful but it is recommended to only use a handful of them to style the
+            desired element.</p>
+        <code class="code-snippet"><pre>#idName{
+    background-color: red;
+}</pre></code>
+        <p>This will set the element with id <span class="keyword">#idName</span> background color to red.</p>
+    </article>
+    <article id="Lec71">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 71: The class selector</span></h2>
+        </header>
+        <p class="sec-para-main">Class selector is used to style a group of similar elements, they are useful
+            when
+            you want to make similar changes to multiple elements. You can style by class by using <span
+                class="keyword"> .
+            </span> symbol following the class of the element you want to style.
+            You can style multiple elements with class while with
+        </p>
+        <code class="code-snippet"><pre>.className{
+            color: yellow;
+}</pre></code>
+        <p>This will set all the elements with class <span class="keyword">.className</span> color to yellow.
+        </p>
+    </article>
+    <article id="Lec72">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 72: The descendant selector</span></h2>
+        </header>
+        <p class="sec-para-main">Descendant selector is used to select element inside another element, it could
+            be a
+            direct child of the element or nested inside another elements. Descendant selector can also be used
+            with
+            a class selector with which you can change elements inside a class without creating too many
+            classes.
+        </p>
+        <code class="code-snippet"><pre>
+p a{
+    text-decoration: none;
+}
+</pre></code>
+        <p>The above code snippet will remove the underline from all the link tags <span class="html-tags">&lta></span>
+            which exists inside a <span class="html-tags">&ltp></span> tag.
+        </p>
+    </article>
+    <article id="Lec73">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 73: The adjacent and direct-descendant selector</span>
+            </h2>
+        </header>
+        <h3>Adjacent Selector</h3>
+        <p>Adjacent selector selects the element which comes right after the other element. Not in it but just
+            next
+            to
+            it.
+            Syntax for Adjacent selector is -</p>
+        <code class="code-snippet"><pre>h2 + p{
+    font-size: 20px;
+}</pre></code>
+        <p>This will turn all the <span class="html-tags">&ltp></span> tag elements which comes after h2 to be
+            of
+            20px
+            font-size.</p>
+        <h3>Direct descendant Selector</h3>
+        <p>Direct descendant selector is used to select element which is direct child of another element, not
+            nested
+            inside other elements but the direct child. Syntax for Direct descendant selector is -</p>
+        <code class="code-snippet"><pre>nav > a{
+        text-decoration: none;
+    }</pre></code>
+        <p>This will make all the link tags with <span class="html-tags">&ltnav></span> as parent to don't have
+            any
+            text-decoration of any kind (most commonly used to remove underline in the link tags). But if a are
+            nested
+            inside a list then they won't be affected by this tag.</p>
+    </article>
+    <article id="Lec74">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 74: The attribute selector</span></h2>
+        </header>
+        <p class="sec-para-main">Attribute selector is used to select elements based on their attributes. For
+            example if you want to style
+            an
+            input element with "text" type then it would be done in this way.</p>
+        <code class="code-snippet"><pre>input[type="text"]{
+        color: blue;
+    }</pre></code>
+        <p>This won't affect the other inputs on your page. Just the one set to type as <span
+                class="keyword">"text"</span>.
+        </p>
+    </article>
+    <article id="Lec75">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 75: Pseudo classes</span></h2>
+        </header>
+        <p class="sec-para-main">Pseudo classes is used to style an element based upon their state. It's kind of
+            like a keyword or
+            modifier of
+            an
+            element.For example - To style a button differently on hover we would do something like this.</p>
+        <code class="code-snippet"><pre>button:hover{
+        background-color: yellow;
+    }</pre></code>
+        <p>This will change the background-color of the button to be yellow when being hovered upon. You can see
+            the
+            whole
+            list of pseudo classes on <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes">MDN</a>
+        </p>
+    </article>
+    <article id="Lec76">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 76: Pseudo elements</span></h2>
+        </header>
+        <p class="sec-para-main"> Pseduo elements are used to style a specific part of an element. They are
+            different from Pseduo classes
+            in
+            the
+            sense that they do not style based on state but on specific part of an element. To change the
+            background
+            color
+            when selecting <span class="keyword">p</span> element you might do something like this.</p>
+        <code class="code-snippet"><pre>p::selection{
+            background-color:orange;
+}</pre></code>
+        <p>Before and after weren't covered in the Colt's video so I though why not go ahead and learn it on my
+            own.
+            <span class="keyword">::before</span> and <span class="keyword">::after</span> will style the
+            element
+            which
+            comes
+            before and after the content inside the element. It doesn't style above the element or after the
+            element but after or before the content of the element. For example the below code will put a <span
+                class="keyword">30x30</span> darkviolet box after the content of the element with class <span
+                class="keyword">"post"</span>
+        </p>
+        <code class="code-snippet"><pre>.post::after{
+    content: "";
+    background-color: darkviolet;
+    height: 30px;
+    width: 30px;
+    display: block;
+}</pre></code>
+        <p class="notes">Note: putting <span class="keyword">content</span> tag is essential to use <span
+                class="keyword">::before</span> and <span class="keyword">::after</span>.
+            Also they don't work on <span class="html-tags">&ltimg></span> tags.</p>
+        <p> You can watch this video on <a href="https://www.youtube.com/watch?v=zGiirUiWslI">Youtube</a> to
+            learn
+            how
+            to
+            use <span class="keyword">::before</span> and <span class="keyword">::after</span></p>
+    </article>
+    <article id="Lec77">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 77: CSS cascade</span></h2>
+        </header>
+        <p class="sec-para-main">If you have apply two conflicting styles on the same element then the one to
+            appear
+            later will precede
+            over
+            the
+            earlier one, this is called cascading and is followed by CSS in every document. The order in which
+            you
+            put
+            your
+            CSS stylesheet will also matters, the stylesheet declared later will take precedence over one
+            attached
+            earlier.
+            In some conditions the style earlier would be applied over the later one if the earlier one is more
+            specific,
+            you can read about specificty
+            <a href="Lec78">here</a>.
+        </p>
+    </article>
+    <article id="Lec78">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 78: Specificity</span></h2>
+        </header>
+        <p class="sec-para-main">Specificity defines which styles to apply on the element depending on how
+            specific
+            the selector is. ID
+            slector
+            takes precedence over class selector and class selector takes precedence over element selector.
+            Simply put, ID > Class > element</p>
+        <p>It doesn't matter how many <span class="keyword">class</span> or <span class="keyword">element</span>
+            selector
+            you have but if there is a conflicting style with <span class="keyword">ID</span>
+            selector then that <span class="keyword">ID</span> selector will win every time.</p>
+    </article>
+    <article id="Lec79">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 79: Chrome Dev tools & CSS</span></h2>
+        </header>
+        <p class="sec-para-main">Chrome dev tools are very handy when you want to check which styles are
+            currently
+            applied to your element
+            and
+            also if you want to change some style in the page just to experiment how that might look,then you
+            can
+            also
+            do
+            that with dev tools.</p>
+    </article>
+    <article id="Lec80">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 80: Inline styles and important</span></h2>
+        </header>
+        <p class="sec-para-main">If a style is applied with important property then it will take precedence over
+            any
+            conflicting style
+            applied
+            on
+            the same element. Inline styles takes precedence over ID selectors. Generally it is not a good idea
+            to
+            use
+            either of them for styling your page as they might cause some problems when you want to change some
+            style in
+            your HTML page.</p>
+    </article>
+    <article id="Lec81">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 81: CSS inheritance</span></h2>
+        </header>
+        <p class="sec-para-main">If you haven't explicitly defined some style on your elements then it might be
+            possible that they will
+            inherit
+            the style from the nearest parent element but not all styles are inheritable and if set on parent
+            then
+            they won't make any change on the child element.</p>
+    </article>

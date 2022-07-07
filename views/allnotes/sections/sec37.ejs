@@ -1,0 +1,319 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 37: Connecting to Mongo with Mongoose</h1>
+        <nav class="sec-nav-li" id="sec35-nav">
+            <ul>
+                <li><a href="#Lec379">Lecture 379</a></li>
+                <li><a href="#Lec380">Lecture 380</a></li>
+                <li><a href="#Lec381">Lecture 381</a></li>
+                <li><a href="#Lec382">Lecture 382</a></li>
+                <li><a href="#Lec383">Lecture 383</a></li>
+                <li><a href="#Lec384">Lecture 384</a></li>
+                <li><a href="#Lec385">Lecture 385</a></li>
+                <li><a href="#Lec386">Lecture 386</a></li>
+                <li><a href="#Lec387">Lecture 387</a></li>
+                <li><a href="#Lec388">Lecture 388</a></li>
+                <li><a href="#Lec389">Lecture 389</a></li>
+                <li><a href="#Lec390">Lecture 390</a></li>
+                <li><a href="#Lec391">Lecture 391</a></li>
+                <li><a href="#Lec392">Lecture 392</a></li>
+                <li><a href="#Lec393">Lecture 393</a></li>
+                <li><a href="#Lec394">Lecture 394</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec379">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 379: What matters in this section ?</span></h2>
+        </header>
+        <p class="sec-para-main">This section is our intro to mongoose, mongoose helps us to connect MongoDB with
+            Node. Our main focus will be learning about the role of ORM/ODM's, mongoose CRUD functionalities, how to
+            define a model and what is schema constraints. </p>
+    </article>
+    <article id="Lec380">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 380: What is Mongoose ?</span></h2>
+        </header>
+        <p class="sec-para-main">Mongoose is an ODM(Object document mapper) which is used to connect MongoDB with
+            node. Although we can use basic drivers to connect our mongo database with node but we are opting for
+            mongoose because it gives us extra functionalities and makes it easier to do some operations on
+            database.</p>
+    </article>
+    <article id="Lec381">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 381: Connecting Mongoose to Mongo</span></h2>
+        </header>
+        <p class="sec-para-main">To integrate mongoose in our application we install it and then use the following
+            code in our main javascript file to activate it -</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/test')
+</pre></code>
+        </div>
+        <p class="sec-para-main">Here <span class="keyword">27017</span> is port of MongoDB where MongoDb
+            stores database by default and <span class="keyword">test</span> here stands for the name of the
+            database it could be replaced by any other database that you want to use.</p>
+    </article>
+    <article id="Lec382">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 382: Out first Mongoose Model</span></h2>
+        </header>
+        <p class="sec-para-main">To interact with our database mongoose use Models, models contains methods and
+            functionalities of their own to make interaction with the database easier. Models use schema to define
+            the structure of the javascript object i.e. key-value pairs where key refers to the name of the property
+            and value refers to the type of the property, this forces the database to accept a particular type of
+            object only. A sample of how this is achieved -</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const movieSchema = new mongoose.Schema({name: String, rating: Number});  <span class="code-comment">//Defining a Schema</span>
+const Movie = new mongoose.model("Movie", movieSchema);                   <span class="code-comment">//Defining a Model</span>
+cont pushpa = new Movie ({ name: "Pushpa" , rating: 9.6});                <span class="code-comment">//Defining an instance of Movie model</span>
+pushpa.save();                                                            <span class="code-comment">//Saving a movie in our database</span>
+</pre></code>
+        </div>
+        <p class="sec-para-main">The name of the model you define need to have it's first letter capital and it also
+            needs to be of singular form, this will in turn make a collection with pluralized form of the Model
+            name, in our case a collection named movies is formed. <span class="command-tags">.save()</span> method
+            is used to save the object to our database, without this method our object won't be saved in the
+            database. </p>
+    </article>
+    <article id="Lec383">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 383: Insert Many</span></h2>
+        </header>
+        <p class="sec-para-main">To insert multiple documents in our collection at once we use <span
+                class="command-tags">.insertMany()</span> method on our model and to insert multiple documents we
+            put them in an array, each object seperated by a comma. They will be automatically saved, we don't need
+            to call <span class="command-tags">.save()</span> to save these objects in our database. <span
+                class="command-tags">.insertMany()</span> method return a promise. Sample which Colt used in the
+            lecture(<a
+                href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22086050#questions/15507440">By
+                Rubén Edmundo in Udemy Q/A</a>) - </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+Movie.insertMany([
+    { title: 'Amelie', year: 2001, score: 8.3, rating: 'R'},
+    { title: 'Alien', year: 1979, score: 8.1, rating: 'R'},
+    { title: 'The Iron Giant', year: 1999, score: 7.5, rating: 'PG'},
+    { title: 'Stand By Me', year: 1986, score: 8.6, rating: 'R'},
+    { title: 'Moonrise Kingdom', year: 2012, score: 7.3, rating: 'PG-13'}
+])</pre></code>
+        </div>
+    </article>
+    <article id="Lec384">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 384: Finding with Mongoose</span></h2>
+        </header>
+        <p class="sec-para-main">To find data with mongoose we use <span class="command-tags">.find()</span>, <span
+                class="command-tags">.findOne()</span> and <span class="command-tags">.findById()</span> method.
+            This gives us back a <span class="backend-tags">mongoose query</span> object to which we can attach a
+            <span class="command-tags">.then()</span> method to extract the data out of it. Although it's a thenable
+            object but it's not a promise.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+Movie.findOne({ name: "American Beauty" }).then(data => console.log(data))      <span class="code-comment">//Finding by a single query</span>
+Movie.findById("622b48a01c1b828407e7754e").then(data => console.log(data))      <span class="code-comment">//Finding by ID</span>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec385">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 385: Updating with Mongoose</span></h2>
+        </header>
+        <p class="sec-para-main">We have several methods to update a document in mongoose, the common ones with just
+            plain update word are - <span class="backend-tags">.updateOne</span> and
+            <span class="backend-tags">.updateMany()</span>. They are also thenables which gives us back the
+            information of how many fields were updated but they don't give us the actual changed value back. There
+            are also other methods which can update the document and also gives us back the updated query. One we
+            are introduced to in this lecture is <span class="backend-tags">.findOneAndUpdate()</span> which will
+            give us back the new updated object if we set the option new to true. <span class="keyword">new:
+                true</span> <a href="https://mongoosejs.com/docs/api/model.html#model_Model.findOneAndUpdate">Docs
+                for .findOneAndUpdate()</a>
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+Movie.updateOne({ name: "American Beauty" }, { rating: 7.3 }).then(data => console.log(data));                          
+Movie.findOneAndUpdate({ name: "American Beauty" }, { rating: 7.7 }, { new: true }).then(data => console.log(data));    
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec386">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 386: Deleting with Mongoose</span></h2>
+        </header>
+        <p class="sec-para-main">We have two kinds of methods when we want to delete the documents, ones which
+            return the information like how many objects were deleted and others which gives us back the deleted
+            objects. Ones we were introduced in this lecture are - <span class="command-tags">.remove()</span> ,
+            <span class="command-tags">.deleteMany()</span> and <span class="command-tags">.findOneAndDelete()</span>.
+            Out of three only <span class="command-tags">.findOneAndDelete()</span> gives us back the deleted object,
+            other two only
+            gives us info about the number of objects deleted.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+Movie.remove({ name: "Dear Comrade" }).then(data => console.log(data));
+Movie.findOneAndDelete({ name: "Dear Comrade" }).then(data => console.log(data));
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec387">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 387: Mongoose Schema validations</span></h2>
+        </header>
+        <p class="sec-para-main">Uptil now we were just short typing all the properties of our schema but we can
+            also add additional validations in our schema properties to follow a certain pattern, to do so we use an
+            object with key value pairs instead of short typing the properties and their types. This allows us to
+            use different attributes to add to the schema, the one we are introduced to in this lecture is <span
+                class="backend-tags">required</span> when set to <span class="keyword">true</span> it won't allow us
+            to leave that property blank when creating a new instance of the model. Example - </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const movieSchema = new mongoose.Schema({
+    name: String,
+    rating: {
+        type: Number,
+        required: true
+    },
+    popularity: String
+})
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec388">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 388: Additional Schema Constraints</span></h2>
+        </header>
+        <p class="sec-para-main">In the previous lecture we set <span class="keyword">required</span> constraint on
+            our property which was available for all data types but there are certain constraints which can only be
+            set for specific data types like <span class="backend-tags">min</span> and <span
+                class="backend-tags">max</span> can only be used on Number types and <span
+                class="backend-tags">minLength</span> and <span class="backend-tags">maxLength</span> can only be
+            used for string types. </p>
+        <div class="src-link">
+            <p>Docs -</p>
+            <ul>
+                <li><a href="https://mongoosejs.com/docs/schematypes.html#schematype-options">Docs for
+                        schemaTypes-Options</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec389">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 389: Validating Mongoose Updates</span></h2>
+        </header>
+        <p class="sec-para-main">To make sure that properties follow the validators while updating as well we set a
+            property <span class="backend-tags">{ runValidators: true}</span> as third option while updating our
+            properties, this makes sure that properties are being updated while following the set constraints.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const movieSchema = new mongoose.Schema({
+    name: String,
+    rating: {
+        type: Number,
+        required: true,
+        min: 0
+    },
+    popularity: String
+})
+
+Movie.findOneAndUpdate({ name: "American Beauty" }, { rating: -4 }, { runValidators: true })
+        .then(data => console.log(data));
+
+<span class="code-comment">//This code won't update the rating of the movie
+as there is a min attribute of rating which is set to 0</span>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec390">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 390: Mongoose Validation Errors</span></h2>
+        </header>
+        <p class="sec-para-main">Till now we were using the default error message while validating a property type
+            but we can also set up our custom error message while declaring a property. We achieve this by declaring
+            an attribute's first value as value of the constraint that you want to set and the second value will
+            contain the error message which will be displayed if that constraint isn't followed. Colt also tells us
+            about the <span class="backend-tags">enum</span> constraint which allows us to set value of a property
+            to some specific values only which you set up in an array.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const movieSchema = new mongoose.Schema({
+    name: String,
+    rating: {
+        type: Number,
+        required: true,
+        min: [0, "Rating has to be greater than 0"]
+    },
+    popularity: String
+})
+
+<span class="code-comment">//If you try to set the rating to be less than 0 in a movie instance
+   then the message "Rating has to be greater than 0" will be displayed</span>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec391">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 391: Model Instance Methods</span></h2>
+        </header>
+        <p class="sec-para-main">Methods which are attached to the instances of the model rather than the model
+            itself are know as model instance methods. Although there are already methods for each instance but
+            you can also create a custom method for each instance of your model. To do so we use the syntax <span
+                class="backend-tags">movieSchema.methods.subtitles</span> where <span class="keyword">movieSchema</span>
+            stands for the schema and <span class="keyword">.subtitles</span>
+            stands for the function name. One thing to keep in mind is that it is advised to use traditional way to
+            declare a function i.e. function foo(){ //code here }; rather than arrow function to avoid hassles with
+            the value of <span class="keyword">this</span>, the value of this in traditional function refers to the
+            instance of the document/model so you can easily alter the properties of the instance.
+        </p>
+    </article>
+    <article id="Lec392">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 392: Adding Model Static Methods</span></h2>
+        </header>
+        <p class="sec-para-main">Model static methods are attached to the model itself rather than the instances,
+            they are usually used as a fancy way to update, find or delete something. For e.g. if you want to update
+            all the movie ratings to 10 then instead of declaring a instance method and calling it on each instance
+            individually we can make a model static method which updates the ratings of all the instances of movies
+            to 10.
+        </p>
+    </article>
+    <article id="Lec393">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 393: Mongoose Virtuals</span></h2>
+        </header>
+        <p class="sec-para-main">Mongoose virtuals are used when you want to create a property that exists solely on
+            the javascript side and doesn't take any space in the database ,there is a getter method in the
+            virtuals e.g. <span class="backend-tags">movieSchema.virtual('review').get(function () { //your code
+                here })</span> which is used to create a property whose value is usually derived from the existing
+            data in the database. There is also a set method which can be used to set(change) the existing values of
+            the instances in the database. </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+//code for set method 
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://mongoosejs.com/docs/guide.html#virtuals">Docs for virtuals</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec394">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 394: Defining Mongoose Middleware</span></h2>
+        </header>
+        <p class="sec-para-main">Mongoose middlewares are used to run some code before or after some particular
+            mongoose method happens like saving, deleting or updating an instance of the model. For e.g. you can set
+            up a post delete middleware that will delete any documents which are dependent to the current instance
+            being deleted. </p>
+        <div class="src-link">
+            <p>Docs -</p>
+            <ul>
+                <li><a href="https://mongoosejs.com/docs/middleware.html#pre">Docs for pre-middleware</a></li>
+                <li><a href="https://mongoosejs.com/docs/middleware.html#post">Docs for post-middleware</a></li>
+            </ul>
+        </div>
+    </article>

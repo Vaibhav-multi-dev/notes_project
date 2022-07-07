@@ -1,0 +1,102 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 57: YelpCamp- Styles Clean up</h1>
+        <nav class="sec-nav-li" id="sec57-nav">
+            <ul>
+                <li><a href="#Lec555">Lecture 555</a></li>
+                <li><a href="#Lec556">Lecture 556</a></li>
+                <li><a href="#Lec557">Lecture 557</a></li>
+                <li><a href="#Lec558">Lecture 558</a></li>
+                <li><a href="#Lec559">Lecture 559</a></li>
+                <li><a href="#Lec560">Lecture 560</a></li>
+                <li><a href="#Lec561">Lecture 561</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec555">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 555: Styling Home page</span></h2>
+        </header>
+        <p class="sec-para-main">Colt just styles the home page mostly copying and pastiing the code from bootstrap.
+        </p>
+    </article>
+    <article id="Lec556">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 556: Additional home page styling</span></h2>
+        </header>
+        <p class="sec-para-main">We make some more changes to our home page like adding a background image and
+            changing it's text shadow and other styling changes to make our home page look better.</p>
+    </article>
+    <article id="Lec557">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 557: Styling Login form</span></h2>
+        </header>
+        <p class="sec-para-main">I just imitated the code that Colt wrote but at the end if you want the button to
+            wrap the whole container then you need to use grid as pointed out by Louli in Udemy Q/A.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+&ltdiv class="d-grid gap-2">
+    &ltbutton class="btn btn-success btn-block">Login&lt/button>
+&lt/div>                      
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://getbootstrap.com/docs/5.0/components/buttons/#block-buttons">Docs for block
+                        buttons</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec558">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 558: Styling Register form</span></h2>
+        </header>
+        <p class="sec-para-main">Just copy the whole code from the login form and replace the form part with your
+            register one.</p>
+    </article>
+    <article id="Lec559">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 559: Spacing campgrounds</span></h2>
+        </header>
+        <p class="sec-para-main">Fixed the card margin bottom on our index page, so that each campground have some
+            space between them.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code to put in your campground index page -</p>
+&ltdiv class="card mb-3">
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec560">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 560: Removing inline map styles</span></h2>
+        </header>
+        <p class="sec-para-main">We shift the styles which we defined for our maps inline into a separate
+            stylesheet.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+#cluster-map {
+    width: 100%;
+    height: 400px
+}
+
+#map {
+    width: 400px;
+    height: 290px
+}
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec561">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 561: Adding map controls</span></h2>
+        </header>
+        <p class="sec-para-main">No we add map control to both of our pages index as well as the show page for
+            campgrounds.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+map.addControl(new mapboxgl.NavigationControl());
+</pre></code>
+        </div>
+    </article>

@@ -1,0 +1,367 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 51: YelpCamp: Adding in Authentication</h1>
+        <nav class="sec-nav-li" id="sec51-nav">
+            <ul>
+                <li><a href="#Lec505">Lecture 505</a></li>
+                <li><a href="#Lec506">Lecture 506</a></li>
+                <li><a href="#Lec507">Lecture 507</a></li>
+                <li><a href="#Lec508">Lecture 508</a></li>
+                <li><a href="#Lec509">Lecture 509</a></li>
+                <li><a href="#Lec510">Lecture 510</a></li>
+                <li><a href="#Lec511">Lecture 511</a></li>
+                <li><a href="#Lec512">Lecture 512</a></li>
+                <li><a href="#Lec513">Lecture 513</a></li>
+                <li><a href="#Lec514">Lecture 514</a></li>
+                <li><a href="#Lec515">Lecture 515</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec505">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 505: Introduction to Passport</span></h2>
+        </header>
+        <p class="sec-para-main">Passport is a library which helps us in authentication of users. It is easy to
+            implement and can be helpful if you later wish to add other login strategies like Google,facebook,
+            twitter login.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Node commands to install passport -</p>
+npm i passport passport-local passport-local-mongoose 
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a
+                        href="https://stackoverflow.com/questions/46644366/what-is-passport-initialize-nodejs-express/46645936#46645936">SO
+                        for passporrt Initialize</a></li>
+                <li><a
+                        href="https://stackoverflow.com/questions/22052258/what-does-passport-session-middleware-do/28994045#28994045">So
+                        for passport Session</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec506">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 506: Creating our User model</span></h2>
+        </header>
+        <p class="sec-para-main">We make a User model for our app and only add email field to it, username and
+            password field will be automatically added to the Schema by <span
+                class="keyword">passport-local-mongoose</span>. We use method <span
+                class="backend-tags">.plugin()</span> to attach passport-local-mongoose to our Schema which will
+            automatically add username and password field to it, on top of that it will add some method of it's own.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code to add Passport Local Mongoose as a plugin -</p>
+UserSchema.plugin(passportLocalMongoose)
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://github.com/saintedlama/passport-local-mongoose#usage">Check Docs to know how to
+                        implement passport-local-mongoose</a> for our User model</li>
+                <li><a href="https://github.com/saintedlama/passport-local-mongoose#api-documentation">Docs for
+                        passport-local-mongoose methods</a></li>
+                <li>Check Zarko's answer to this thread <a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22346418#questions/13526256">to
+                        know how unique property works</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec507">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 507: Configuring Passport</span></h2>
+        </header>
+        <p class="sec-para-main">Now we integrate Passport into our app. For that we start by requiring passport and
+            passport-local. After that we initialize to use the passport, then use passport.session() to run the
+            passport session so you don't need to login everytime. After that we use <span
+                class="backend-tags">.authenticate()</span> method with LocalStrategy to verify the user. <span
+                class="keyword">.Authenticate()</span> method comes with passport-local-mongoose and is attached to
+            the User model with the <span class="backend-tags">.plugin()</span> method. Then we use serialize method
+            to store the user session and deserialize method to get the user details out of a session. After this we
+            set up a fake route to create a user and then register it with our application using <span
+                class="backend-tags">.register()</span> method in the route to register a new user in our database.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate())); <span class="code-comment">//Using a LocalStrategy to authenticate users</span>
+passport.serializeUser(User.serialize()); <span class="code-comment">//Serialize is used to store info about a User</span>
+passport.deserializeUser(User.deserialize()); <span class="code-comment">//Deserialize is used to retrieve info about a User</span>
+
+<p>Route to make a new user -</p>
+app.get('/fakeuser', async (req, res) => {
+    const fakeUser = new User({ username: "Vaibhav", email: "livelong20@gmail.com" }); <span class="code-comment">//Making an instance of an user</span>
+    const myUser = await User.register(fakeUser, 'password') <span class="code-comment">//Method used to hash a stored password on a user object</span>
+    res.send(myUser);
+})
+</pre></code>
+        </div>
+        <div class="extra-info">
+            <p>Note: Except initialize() and .session() . Most of the methods which we have used in our main app
+                comes from passport-local-mongooose.</p>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a
+                        href="https://stackoverflow.com/questions/19948816/passport-js-error-failed-to-serialize-user-into-session">Serialize
+                        and Deserialize SO</a></li>
+                <li><a href="https://github.com/saintedlama/passport-local-mongoose#configure-passportpassport-local">Docs
+                        for passport-local-mongoose</a></li>
+                <li>Check <a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22346426#questions/16800402">Zarko's
+                        thread for more on how each passport query works</a></li>
+
+            </ul>
+        </div>
+    </article>
+    <article id="Lec508">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 508: Register form</span></h2>
+        </header>
+        <p class="sec-para-main">Nothing new we just make a form to register our user, in the form we add username,
+            email and password fields to register the user. We sepearete the logic for making a new user into a
+            separate router file like we did for campgrounds and reviews earlier.</p>
+    </article>
+    <article id="Lec509">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 509: Register route logic</span></h2>
+        </header>
+        <p class="sec-para-main">Now we set up a post route to register a user. For this we use the method <span
+                class="backend-tags">User.register()</span> to register a new user. We wrap the whole logic to make
+            a new user with try and catch because we wanted to use the custom error message displayed by
+            <span class="keyword">passport-local-mongoose</span> instead of the error generated by wrapAsync
+            middleware .
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Route to register a new User -</p>
+router.post('/register', async (req, res) => {
+    try {
+        const { username, email, password } = req.body;
+        const newUser = new User({ username, email });
+        const registeredUser = await User.register(newUser, password);
+        req.flash('success', "User registered successfully");
+        res.redirect('/campgrounds');
+    } catch (e) {
+        req.flash('error', e.message);
+        console.dir(e);
+        res.redirect('/register')
+    }
+})
+</pre></code>
+        </div>
+        <div class="extra-info">
+            <p>Note: Some people are facing trouble when they do not receive the desired error when registering with
+                already used email and that is because username and password errors are generated by
+                passport-local-mongoose while error generated by emails are handled by mongoDB.
+            </p>
+        </div>
+        <div class="src-link">
+            <p>Sources</p>
+            <ul>
+                <li>Check <a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22346430#questions/13078992">Zarko's
+                        answer on Udemy
+                        Q/A</a></li>
+                <li><a
+                        href="https://stackoverflow.com/questions/38945608/custom-error-messages-with-mongoose/38946126#38946126">SO
+                        for custom error message</a></li>
+                <li><a href="https://mongoosejs.com/docs/middleware.html#error-handling-middleware">Docs for error
+                        handling middleware</a></li>
+                <li><a href="https://github.com/saintedlama/passport-local-mongoose#error-messages">Docs for
+                        passport-local-mongoose error messages</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec510">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 510: Login Routes</span></h2>
+        </header>
+        <p class="sec-para-main">Now we create a route to login our user. In the post route we add a middleware with
+            passport.authenticate('local') strategy to verify the user with "LocalStrategy" and give some other
+            options to modify the strategy through which we can redirect the user to another page if login fails and
+            also flash a failure message while doing so.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Middleware to add in our Login(post) route -</p>
+passport.authenticate('local', { failureFlash: true, failureRedirect: '/route'})
+<p>Logic of the login route -</p>
+router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), async (req, res) => {
+    req.flash('success', "Logged in successfully");
+    res.redirect('/campgrounds');
+})
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec511">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 511: isLoggedIn Middleware</span></h2>
+        </header>
+        <p class="sec-para-main">We now add a middleware to check if the user is logged in or not before he goes on
+            to make a new campground, delete or edit one and the same is replicated for reviews model as well.
+            We kind of implement the same functionality as we did earlier when we stored the <span
+                class="keyword">id</span> of the signed user in our session. To do so with passport we make a
+            middleware function to authenticate the user. We use the method <span
+                class="backend-tags">req.isAuthenticated()</span> to check if the user is logged in or not.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code to check if the user is verified or not -</p>
+module.exports.isLoggedIn = async function (req, res, next) {
+    if (!req.isAuthenticated()) {
+        req.flash('error', "Please login first");
+        return res.redirect('/login');
+    }
+    else {
+        next();
+    }
+}
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22346436#questions/13883784">Check
+                        Louli's answer</a> on this udemy thread for more clarification of why are we structuring our
+                    app this way.</li>
+                <li>Check <a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22346436#questions/14930406">Louli's
+                        answer in Udemy Q/A</a></li>
+                <li><a
+                        href="https://github.com/jaredhanson/passport/blob/a892b9dc54dce34b7170ad5d73d8ccfba87f4fcf/lib/passport/http/request.js#L74">GitRepo
+                        for passport authenticate</a>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec512">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 512: Adding Logout</span></h2>
+        </header>
+        <p class="sec-para-main">We use <span class="backend-tags">req.logout()</span> method to logout the user and
+            also add link in our navbar to register, login or logout the user.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+app.get('/logout', (req,res) =>{
+    req.logout();
+    req.flash('success', 'Successfully logged out');
+})
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec513">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 513: currentUser Helper</span></h2>
+        </header>
+        <p class="sec-para-main">Now we display the link to register, login or logout on the navbar based on whether
+            the user is logged in or not. We use the method <span class="backend-tags">req.user</span> to achieve
+            that objective, it deserializes the user object from the database. So it it contains the user
+            info(username, email) then we show the logout link else we only display the login and register link on
+            the navbar. We attach the output of <span class="keyword">req.user</span> into <span
+                class="keyword">res.locals</span> to make it accessible to every view of the app.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Adding req.user to locals -</p>
+app.use((req, res, next) => {
+    res.locals.successMsg = req.flash('success');
+    res.locals.errorMsg = req.flash('error');
+    res.locals.currentUser = req.user;
+    next();
+})
+<p>Navbar logic to check if the user is logged in or not -</p>
+&lt% if(!currentUser) {%>
+    &lta class="nav-link" href="/register">Register&lt/a>
+    &lta class="nav-link" href="/login">Login&lt/a>
+    &lt% } else{%>
+        &lta class="nav-link" href="/logout">Logout&lt/a>
+        &lt% } %>
+<span class="code-comment"></span>
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec514">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 514: Fixing Register Route</span></h2>
+        </header>
+        <p class="sec-para-main">Up till now when we register the user, we need to login separately which is not
+            usual behaviour of a website when logging someone in. To automatically login a user when registering we
+            use the method <span class="backend-tags">req.login()</span>. We don't need to use this method on the
+            routes where <span class="backend-tags">passport.authenticate()</span> is used as it automatically
+            invokes the req.login() method.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+router.post('/register', async (req, res, next) => {
+    try {
+        const { username, email, password } = req.body;
+        const newUser = new User({ username, email });
+        const registeredUser = await User.register(newUser, password);
+        req.login(registeredUser, function (err) {
+            if (err) { return next(err); }
+            req.flash('success', "User registered successfully");
+            res.redirect('/campgrounds');
+        });
+    } catch (e) {
+        req.flash('error', e.message);
+        console.dir(e);
+        res.redirect('/register')
+    }
+})
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec515">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 515: ReturnTo behaviour</span></h2>
+        </header>
+        <p class="sec-para-main">Uptil now whenever we were trying to make a new campground/review, delete or edit
+            one without logging in then we were redirected to the campgrounds page which isn't the
+            usual behaviour. So to avoid it, we make use of <span class="keyword">req.session</span> in post Login
+            route to store the originalUrl from where the user came from instead of the campgrounds page and then
+            redirect it to there. </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Logic for POST login route -</p>
+router.post('/login', passport.authenticate('local', 
+{ failureFlash: true, failureRedirect: '/login', keepSessionInfo: true }), 
+async (req, res) => {
+    req.flash('success', "Logged in successfully");
+    const redirectUrl = req.session.returnTo || '/campgrounds';
+    delete req.session.returnTo;
+    res.redirect(redirectUrl);
+})
+<p>Code for isLoggedIn middleware -</p>
+module.exports.isLoggedIn = async function (req, res, next) {
+    if (!req.isAuthenticated()) {
+        req.session.returnTo = req.originalUrl;
+        req.flash('error', "Please login first");
+        return res.redirect('/login');
+    }
+    else {
+        next();
+    }
+}
+</pre></code>
+            <div class="extra-info">
+                <p>Note: Instead of using isLoggedIn middleware to store the value of the originalUrl, we can also
+                    make use of <span class="backend-tags">app.use()</span> middleware to store the value of
+                    returnTo variable.
+                </p>
+            </div>
+            <div class="src-link">
+                <p>Sources -</p>
+                <ul>
+                    <li>Check <a href="https://www.youtube.com/watch?v=g7SaXCYCgXU">Ian's video on redirectUrl</a>
+                        for more info</li>
+                </ul>
+            </div>
+        </div>
+    </article>

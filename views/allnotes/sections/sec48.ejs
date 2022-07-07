@@ -1,0 +1,160 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 48: Express Session & Flash</h1>
+        <nav class="sec-nav-li" id="sec48-nav">
+            <ul>
+                <li><a href="#Lec479">Lecture 479</a></li>
+                <li><a href="#Lec480">Lecture 480</a></li>
+                <li><a href="#Lec481">Lecture 481</a></li>
+                <li><a href="#Lec482">Lecture 482</a></li>
+                <li><a href="#Lec483">Lecture 483</a></li>
+                <li><a href="#Lec484">Lecture 484</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec479">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 479: What matters in this section?</span></h2>
+        </header>
+        <p class="sec-para-main">This section introduces us to sessions and flash messages. Our main focus in this
+            section will be on sessions.</p>
+    </article>
+    <article id="Lec480">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 480: Introduction to Express sessions</span></h2>
+        </header>
+        <p class="sec-para-main">Sessions serves the same purpose as cookies as in they also make the HTTP request
+            stateful. Sessions are used to store data on the server-side instead of the client's browser. They work
+            hand in hand with cookies. When user make some changes that needs to be retained for his next visit we
+            store the information on the server side. The session sends back a cookie(with session ID) to the
+            client's browser to uniquely identify the user and send back the data when required on user's next
+            visit. Sessions differs from Cookie in these ways - They are more secure than cookies as they are stored
+            on the server side hence the chances of being tampered with are lowered down. A browser can only store a
+            limited number of cookies and the size of data is also restricted.
+        </p>
+    </article>
+    <article id="Lec481">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 481: Express sessions</span></h2>
+        </header>
+        <p class="sec-para-main">To integrate session in our app we install <span class="keyword">express-session</span>
+            package. We require and use it in a middleware so that we
+            have a <span class="keyword">session</span> property in each of our <span class="keyword">req</span>
+            object. Even without adding anything to the session and just implementing the session package, it sends
+            back a cookie containing session ID which which uniquely identifies the user. This sessionID is then
+            sent to server on subsequent requests to retrieve any data that was stored on the server side by
+            this ID. Session stores it's data on the server side in <span class="keyword">MemoryStore</span> but
+            in live time applications you will use some short-term database like <span class="keyword">redis</span>.
+            Although there are lot of options through which you can configure sessions but right now we are just
+            using a secret key to secure the session, the secret key is used to verify if sessionID has been
+            tampered with or not like it did in the case of cookies.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code to integrate session in your application -</p>
+const session = require('express-session');
+app.use(session({secret: "mysecret"}));   <span class="code-comment">//now you get access to req.session object</span>
+
+<p>A simple route to check if our session is working or not -</p>
+app.get('/sessionCheck', (req, res) => {
+    if (req.session.visitCount) {
+        req.session.visitCount += 1;
+    } else {
+        req.session.visitCount = 1;
+    }
+    res.send(`You have visited this page ${req.session.visitCount} times`);
+})
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec482">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 482: More Express sessions</span></h2>
+        </header>
+        <p class="sec-para-main">Colt tells us about two more configuration options for sessions i.e. <span
+                class="keyword">saveUninitialized</span> and <span class="keyword">resave</span>. We don't use their
+            default value as they been deprecated. saveUninitialized is usually set to false because we don't want
+            empty objects in our session store i.e. if we did not modify the session then we do not want to save a
+            new instance of it thereby just congesting the session side database. resave values depends on the
+            server you are using, if the server implements the touch command then set the resave value to false else
+            set it to true. If the server you are using doesn't automatically update the last time you have used the
+            session then resave needs to be set to true because touch command updates the last time you
+            accessed the session hence keeping it alive otherwise it will be deleted after some time and your
+            data will be gone as every session has an expiry age. The way session is set up right now is that if you
+            reset the browser then your session will be reset because we are just using <span
+                class="keyword">MemoryStore</span> to store the data and not actual server side database.</p>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a
+                        href="
+                        https://stackoverflow.com/questions/40381401/when-to-use-saveuninitialized-and-resave-in-express-session">SO
+                        on session options</a>
+                </li>
+                <li><a href="https://github.com/expressjs/session#sessiontouch">session touch command</a></li>
+                <li><a href="https://github.com/expressjs/session#resave">session resave</a></li>
+                <li><a href="https://github.com/expressjs/session#saveuninitialized">session saveUninitialized</a>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec483">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 483: Intro to flash</span></h2>
+        </header>
+        <p class="sec-para-main">Flash messages are used to flash a message after a certain action takes place
+            that could be creation of something new, deleting something, logging in etc. They only have a brief
+            duration for which they are displayed. Flash messages are stored in sessions. To display a falsh message
+            we use the method <span class="backend-tags">req.flash('key','message')</span> where key could be
+            info,success etc and message would be the message you want to associate with that key and then the key
+            is used to display the message on specific routes.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+req.flash('success', "Product made successfully"); <span class="code-comment">//Setting a flash message under success key in req.flash() method</span>
+res.render('index', {messages: req.flash('success')}) <span class="code-comment">//Accessing message stored inside req.flash('success')</span>
+
+<p>Example of the above codes in farm routes -</p>
+app.get('/farms', async (req, res) => {
+    const farms = await Farm.find({});
+    res.render('farms/index.ejs', { farms, messages: req.flash('success') })
+})
+app.post('/farms', validateSchema, async (req, res) => {
+    const { name, city, email } = req.body;
+    const farm = new Farm({ name, city, email });
+    await farm.save();
+    req.flash('success', "Farm made successfully");
+    res.redirect('/farms')
+})
+
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://github.com/jaredhanson/connect-flash">Docs for connect-flash</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec484">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 484: Res.Locals & Flash</span></h2>
+        </header>
+        <p class="sec-para-main">In this lecture, Colt introduces us to the <span class="keyword">local</span>
+            variables that are available to us on every request under <span class="backend-tags">res.locals</span>
+            property. Now we make use of the <span class="backend-tags">app.use()</span> middleware to add the
+            message we get from <span class="backend-tags">req.flash()</span> to the <span
+                class="backend-tags">res.locals</span> property.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+app.use((req,res,next) =>{
+    res.locals.myName: "Rohan"  <span class="code-comment">//Setting a property myName value to Rohan</span>
+    res.locals.messages = req.flash('success'); <span class="code-comment">//Setting the value of messages to the message we recieve from req.flash('success')</span>
+})
+</pre></code>
+        </div>
+        <div class="extra-info">
+            <p>Note: You don't need to pass the messages to the res.render() anymore as it will be available as a
+                local variable to all the routes.</p>
+        </div>
+    </article>

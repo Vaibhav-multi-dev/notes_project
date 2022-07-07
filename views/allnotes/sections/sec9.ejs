@@ -1,0 +1,162 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="css-sec-heading">Section 9: Other assorted useful CSS properties</h1>
+        <nav class="sec-nav-li" id="sec9-nav">
+            <ul>
+                <li><a href="#Lec91">Lecture 91</a></li>
+                <li><a href="#Lec92">Lecture 92</a></li>
+                <li><a href="#Lec93">Lecture 93</a></li>
+                <li><a href="#Lec94">Lecture 94</a></li>
+                <li><a href="#Lec95">Lecture 95</a></li>
+                <li><a href="#Lec96">Lecture 96</a></li>
+                <li><a href="#Lec97">Lecture 97</a></li>
+                <li><a href="#Lec98">Lecture 98</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec91">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 91: What matters in this section?</span></h2>
+        </header>
+        <p class="sec-para-main">Our main focus in this section will be on transitioning elements and positioning
+            them. Opacity and alpha,
+            google fonts and transforming elements is also discussed.</p>
+    </article>
+    <article id="Lec92">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 92: Opacity & The Alpha Channel</span></h2>
+        </header>
+        <p class="sec-para-main"> <span class="css-tags">Opacity and alpha channel</span> both deal with the
+            transparency of the elements but are a bit different from each other.Alpha channels could be in rgba or
+            hexadecimal colors although it's more
+            common to use them in rgba combination because of ease of use. Alpha channels have a <span
+                class="keyword">value of 0 to 1 </span> in rgba , 1 being fully transparent while 0 being none. For
+            hexadecimal it adds two additional character after the initial 6 character combination, these two
+            characters define the transparency of the element it ranges from 00 to FF, FF being fully transparent
+            while 00 being none. Opacity is used to indicate transparency as well but it affects the whole container
+            not just the element it was styled on it <span class="keyword">value ranges from 0 to 1</span>
+        </p>
+        <code class="code-snippet"><pre>
+<h3>Setting background color with RGBA.
+</h3>background-color: rgba(255,255,255,0.6);
+<h3>Setting background color with hexadecimal
+</h3>background-color: #ffff0fec;<span class="code-comment">//'ec' defines the transparency of the background-color</span>
+        </pre></code>
+    </article>
+    <article id="Lec93">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 93: Position property</span></h2>
+        </header>
+        <p class="sec-para-main">Position properties are used to position elements in a document, it can also be
+            used to take an element out of normal document flow and place it relative to the parent or the root
+            element.There are 5 position properties -</p>
+        <ul>
+            <li>Static -
+                <p>It is the default position on every element in HTML if not specified otherwise. properties like
+                    <span class="keyword">top, left, right, bottom</span> doesn't work on <span
+                        class="css-tags">static</span> position. It follows the normal document flow.
+                </p>
+            </li>
+            <li>Relative -
+                <p>A relative positioned element is placed relatively to it's original position, properties like
+                    <span class="keyword">top, left, right, bottom</span> takes effect on relatively positioned
+                    elements, if any value is specified then the element is removed from the document flow and
+                    placed
+                    accordingly.
+                </p>
+            </li>
+            <li>Absolute -
+                <p><span class="css-tags">Absolute</span> position elements are removed from the normal document
+                    flow
+                    and are placed according to the nearest positioned element i.e element having position set to be
+                    other than static. If no parent element has the position static then they are placed according
+                    to
+                    the <span class="html-tags">&lthtml></span> element.</p>
+            </li>
+            <li>Fixed -
+                <p>Fixed elements are also removed from the documnet flow and are placed according to the <span
+                        class="html-tags">&lthtml></span> element, it doesn't matter if they have a positioned
+                    parent or
+                    not. The <span class="css-tags">fixed</span> element maintains the position they are placed in
+                    throughout the document even when you scroll the page.</p>
+            </li>
+            <li>Sticky -
+                <p>Sticky element is like a combination of <span class="css-tags">relative</span> and <span
+                        class="css-tags">fixed</span> position. It is placed relative to where it was supposed to be
+                    in
+                    document flow and when the user scrolls then it becomes a fixed element but there is a little
+                    caveat
+                    here unlike the fixed element which remains at the same place throughout the document, sticky
+                    elements only remain fixed till the reach the end of their nearest positioned element.</p>
+            </li>
+        </ul>
+        <p>See <a href="https://www.youtube.com/watch?v=jx5jmI0UlXU">WebDevsimplified video on CSS position
+            </a> and <a href="https://codepen.io/vaibhav-multi-dev/pen/ExWZVmG">my codepen</a> for futher
+            examples on how each of them work.</p>
+    </article>
+    <article id="Lec94">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 94: CSS transitions</span></h2>
+        </header>
+        <p class="sec-para-main">CSS transition is used to transition an element on it's state change usually done
+            by
+            pseudo-classes like <span class="css-tags">:hover :active</span> atc. It is a shorthand for multiple
+            transition
+            properties, you can define the property which is going to be affected,
+            the duration of the transition, delay and timing-function i.e how is transition going to change
+            over the specified duration.
+            Although you can set the the transition-property to change all the properties but it is recommended
+            to single out the properties you are transitioning as to avoid later conflicts which might arise if you
+            want to style things differently.<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition">MDN
+                on CSS transition</a>
+        </p>
+    </article>
+    <article id="Lec95">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 95: The power of CSS transforms</span></h2>
+        </header>
+        <p class="sec-para-main"><span class="css-tags">Transform</span> property lets you scale,skew,rotate and
+            translate an element.
+            These
+            properties can be used individually or together on an element. All these properties can be applied
+            seperately on X and Y axis or both. An exception is skew that when you define skew with one value then
+            it
+            will be applied on X axis only. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform">MDN</a>
+            for transform.</p>
+        <p class="notes">Transform cannot be used on inline elements or to be more specific non-replaced inline
+            elements. <span class="src-link">Source -<a
+                    href="https://stackoverflow.com/questions/14883250/css-transform-doesnt-work-on-inline-elements">SO1</a>
+                <a href="https://stackoverflow.com/questions/64262996/transform-skew-anchor-tag-background-only">SO2</a>
+                <a href="https://stackoverflow.com/questions/12468176/what-is-a-non-replaced-inline-element">SO
+                    about non-replaced inline element</a>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform#:~:text=Warning:">MDN</a>
+                <a href="https://drafts.csswg.org/css-display/#replaced-element">W3C on replaced elements</a></span>
+        </p>
+    </article>
+    <article id="Lec97">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 97: The truth about background</span></h2>
+        </header>
+        <p class="sec-para-main">You can also set background to be an image rather than just a color and also adjust
+            how your background
+            looks
+            like on the page by changing properties like background size,position,repeat. In using the shorthand one
+            thing to keep in mind is that background size always comes after background position separated by /. <a
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/background">MDN on background</a></p>
+    </article>
+    <article id="Lec98">
+        <header class="css-article-header">
+            <h2><span class="css-lec-heading">Lecture 98: Google Fonts</span></h2>
+        </header>
+        <p class="sec-para-main">You can visit <a href="https://fonts.google.com/">Google fonts</a> to use free
+            fonts for your website, to use a specific font, you need to select a specified weight and style from the
+            available fonts and then put the <span class="html-tags">&ltlink></span> tag generated there in the
+            <span class="html-tags">&lthead></span> tag of you webpage. If you use a font-weight that
+            is not available then the browser will use the closest
+            available weight to the specified weight, you can also combine fonts of multiple types. <a
+                href="https://dev.to/masakudamatsu/loading-google-fonts-and-any-other-web-fonts-as-fast-as-possible-in-early-2021-4f5o">Article
+                on linking fonts</a> (By Mateus in <a
+                href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/21917728#questions/15064700">Udemy
+                Q/A</a> )
+        </p>
+    </article>

@@ -1,0 +1,192 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="js-sec-heading">Section 25: DOM events</h1>
+        <nav class="sec-nav-li" id="sec25-nav">
+            <ul>
+                <li><a href="#Lec254">Lecture 254</a></li>
+                <li><a href="#Lec255">Lecture 255</a></li>
+                <li><a href="#Lec256">Lecture 256</a></li>
+                <li><a href="#Lec257">Lecture 257</a></li>
+                <li><a href="#Lec258">Lecture 258</a></li>
+                <li><a href="#Lec259">Lecture 259</a></li>
+                <li><a href="#Lec260">Lecture 260</a></li>
+                <li><a href="#Lec261">Lecture 261</a></li>
+                <li><a href="#Lec262">Lecture 262</a></li>
+                <li><a href="#Lec263">Lecture 263</a></li>
+                <li><a href="#Lec264">Lecture 264</a></li>
+                <li><a href="#Lec265">Lecture 265</a></li>
+                <li><a href="#Lec266">Lecture 266</a></li>
+                <li><a href="#Lec267">Lecture 267</a></li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex59">Exercise 59</a>
+                </li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex60">Exercise 60</a>
+                </li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex61">Exercise 61</a>
+                </li>
+                <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex62">Exercise 62</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec254">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 254: What matters in this section ?</span></h2>
+        </header>
+        <p class="sec-para-main">This section introduces DOM events to us, they are used whenever user interacts
+            with the page like hovering over an element, submitting a form and other events.</p>
+    </article>
+    <article id="Lec255">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 255: Intro to events</span></h2>
+        </header>
+        <p class="sec-para-main">Events are some actions which you do when a user interacts with your page like
+            selecting something, clicking, hovering etc. For e.g. On <a href="https://unsplash.com/">unsplash.com</a>
+            there is infinte scrolling style which will keep the
+            images loading in a batch as the user keeps on scrolling the page.</p>
+    </article>
+    <article id="Lec256">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 256: Inline events</span></h2>
+        </header>
+        <p class="sec-para-main">Inline events are put directly into the HTML elements and executed whenever user
+            takes the specified action on the element. Although it's the easiest method to apply, it has it's
+            drawbacks, first is that it makes the HTML markup longer, second and more important is that you won't be
+            able to replicate code easily to other elements. Also it becomes a bit hard to type multiple lines of
+            code in a HTML element on a event.
+        </p>
+    </article>
+    <article id="Lec257">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 257: The onClick property</span></h2>
+        </header>
+        <p class="sec-para-main"><span class="js-tags">onClick</span> property is used to execute event on an
+            element whose function is fully written in javascript file. To use onClick we attach it to a selected
+            element in our js file and then write a function inside it which executes when the selected event takes
+            place. Usually we write anonymous functions for onClick properties.</p>
+    </article>
+    <article id="Lec258">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 258: addEventListener</span></h2>
+        </header>
+        <p class="sec-para-main"><span class="js-tags">addEventListener</span> is the <strong>recommended</strong>
+            method out of three to attach an event to an element. It supersedes the onclick method in the sense that
+            you can attach multiple functions on an addEventListener while onClick property only accepts one
+            function if you write another then it will overwrite the previous function. On top of that
+            addEventListener also gives you an extra attribute through which you can modify a bit of how your
+            function works. Check SO on <a
+                href="https://stackoverflow.com/questions/6348494/addeventlistener-vs-onclick/6348597#6348597">addeventlistener-vs-onclick</a>
+            for more info. (By <a
+                href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22051266#questions/15583076">Zarko
+                in Udemy Q/A</a> )
+        </p>
+        <div class="article-example">
+            <code class="code-snippet">
+                    <pre>
+
+                    </pre>
+                </code>
+        </div>
+    </article>
+    <article id="Lec259">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 259: Random color exercise</span></h2>
+        </header>
+        <p class="sec-para-main"></p>
+    </article>
+    <article id="Lec260">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 260: Events & the keyword 'this'</span></h2>
+        </header>
+        <p class="sec-para-main"><span class="keyword">this</span> in the addEventListener context refers to the
+            element from where the event took place. for e.g. If you have added an addEventListener on multiple
+            buttons, then <span class="keyword">this</span> keyword inside it's callback function will refer to the
+            specific button pressed.
+        </p>
+    </article>
+    <article id="Lec261">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 261: Keyboard Events & Event Objects</span></h2>
+        </header>
+        <p class="sec-para-main">In the callback function of an addEventListener() event object is passed
+            automatically which contains the information about the specific event which took place for e.g. if it's
+            a mouse event then it will contain properties like mouse pointer location in coordinates, if it's a
+            keyboard event then it will contain info about the key pressed etc. Mainly there are two keyboard events
+            <span class="value-tags">keyup</span> and <span class="value-tags">keydown</span> , keydown is fired
+            whenever you press a key and keyup is fired whenever you release a key. It contains info like
+            <span class="value-tags">code</span> and <span class="value-tags">key</span> which gives us detail about
+            the keypressed, code tells us at which position in the layout key was pressed while key will tell us the
+            value that was denoted by the keypress rather than the actual key on the keyboard.
+        </p>
+    </article>
+    <article id="Lec262">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 262: (NEW VERSION)Form Events & PreventDefault</span></h2>
+        </header>
+        <p class="sec-para-main">prevent default is used on a form to prevent it from submitting to the set action
+            attribute and make changes on the main page where the form exists. To prevent a form from submitting we
+            add an event listener on a form's submit action and use prevent default on it's event object. Example -
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>For a form with an id form -</p>
+const form = document.querySelector("#form");
+
+form.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    console.log("Form submission prevented");
+})</pre></code>
+        </div>
+    </article>
+    <article id="Lec263">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 263: (NEW VERSION) Practice With Form Events &
+                    PreventDefault</span></h2>
+        </header>
+        <p class="sec-para-main"> See this <a href="https://codepen.io/vaibhav-multi-dev/pen/vYewOMK">CodePen for
+                formPrevention demo</a>. Please note that it is a bit different from what Colt shows in his video
+            but it serves the same purpose, also I have added an extra functionality to prevent submission of an
+            empty list item. </p>
+    </article>
+    <article id="Lec265">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 265: Input & Change Events</span></h2>
+        </header>
+        <p class="sec-para-main"><span class="js-tags">input and change events</span> both are affected by the
+            change in input box. <span class="js-tags">change</span> event triggers when you blur away from the
+            input box i.e. click somewhere outside the input box. <span class="js-tags">input</span> event is
+            triggered whenever there is a change in the input box in the form of <span
+                class="keyword">keydown,keyup</span>, copying/pasting text or even using speech-to-text.</p>
+    </article>
+    <article id="Lec266">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 266: Event Bubbling</span></h2>
+        </header>
+        <p class="sec-para-main">Event bubbling refers to the fact that your parent element event handlers are also
+            triggered if you trigger the event handler of it's child, it will trigger event handler up to the root
+            element from which it descends. To stop this from happening we use <span
+                class="js-tags">event.stopPropagation()</span> </p>
+    </article>
+    <article id="Lec267">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 267: Event delegation</span></h2>
+        </header>
+        <p class="sec-para-main"> Event delegation is used when you want to add event listener to multiple elements
+            of a parent element, then instead of adding eventListener to them individually we attach an event
+            listener on the parent element and target the children element through that. <a
+                href="https://javascript.info/event-delegation">Javacript info event delegation</a> <a
+                href="https://javascript.info/logical-operators#and-finds-the-first-falsy-value">Logical operator
+                Javascript info</a> <a
+                href="https://gomakethings.com/why-is-javascript-event-delegation-better-than-attaching-events-to-each-element/">GoMakeThings
+                article on why event delegation is better</a>
+            <a href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22051302#questions/13858962">Button
+                suggestion by Louli</a>
+            <a href="https://codepen.io/vaibhav-multi-dev/pen/gOGJVPj">Codepen for my program</a>
+        </p>
+    </article>
+
+    <article id="sec25-summary">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Important links and Formulas</span></h2>
+        </header>
+        <h3>Important links -</h3>
+    </article>

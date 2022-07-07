@@ -1,0 +1,121 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 53: YelpCamp- Controller & Star ratings</h1>
+        <nav class="sec-nav-li" id="sec53-nav">
+            <ul>
+                <li><a href="#Lec522">Lecture 522</a></li>
+                <li><a href="#Lec523">Lecture 523</a></li>
+                <li><a href="#Lec524">Lecture 524</a></li>
+                <li><a href="#Lec525">Lecture 525</a></li>
+                <li><a href="#Lec526">Lecture 526</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec522">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 522: Refactoring to campgrounds Controller</span></h2>
+        </header>
+        <p class="sec-para-main">In this section Colt introduces us to the <span class="keyowrd">MVC</span> pattern
+            which stands for Model, Views, controller. This pattern is followed to make the reading of the code
+            easier and to separate the logic for all the routes into a separate controller file. Then we import and
+            use the logic in our routes file with a reasonable name so it becomes easier to identify what exactly
+            your route does instead of going through the whole code. In this lecture we only did this for our
+            campgrounds model.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<h3>Examples of couple of Routes -</h3>
+<p>Controller File -</p>
+const Campground = require('../models/campgrounds');
+
+module.exports.index = async (req, res) => {
+    const allCamps = await Campground.find({});
+    res.render('campgrounds/index.ejs', { allCamps });
+}
+
+module.exports.renderNewForm = (req, res) => {
+    res.render('campgrounds/new');
+}
+
+<p>Campground Routes file -</p>
+router.get('/', campgrounds.index);
+
+router.get('/new', isLoggedIn, campgrounds.renderNewForm);
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec523">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 523: Adding a Reviews controller</span></h2>
+        </header>
+        <p class="sec-para-main">Now we replicate the same for reviews and user routes like we did for campgrounds
+            in the previous lecture.</p>
+    </article>
+    <article id="Lec524">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 524: A fancy way to restructure routes</span></h2>
+        </header>
+        <p class="sec-para-main">Now we use <span class="backend-tags">router.route()</span> to combine all our
+            routes with the same URL into a single route. The routes may have a different verb like (GET,PUT,POST)
+            but all will be attached to a single route only.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Example for using .route for our cmapground routes -</p>
+router.route('/:id')
+    .get(wrapAsync(campgrounds.showCampground))
+    .put(isLoggedIn, isOwner, validateCamp, wrapAsync(campgrounds.updateCampground))
+    .delete(isLoggedIn, isOwner, wrapAsync(campgrounds.deleteCampground))
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec525">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 525: Displaying star ratings</span></h2>
+        </header>
+        <p class="sec-para-main">We now replace the rating for our reviews with stars instead of written numbers.
+            For this purpose we use starability css. We copy the contents of the starability css into a file and
+            then import it to use in our show page of the campground. We also implement the logic to only show the
+            specific number of stars as there are in the review.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Logic for showing stars in the reviews -</p>
+&ltp class="starability-result" data-rating="&lt%= review.rating%>">
+    Rated: &lt%= review.rating%> stars
+&lt/p>
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://github.com/LunarLogic/starability">Docs for starability</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec526">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 526: Star rating form</span></h2>
+        </header>
+        <p class="sec-para-main">To display the rating form in stars instead of the slider we integrate the code
+            of starability css on our show page.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+&ltdiv class="mb-3">
+    &ltfieldset class="starability-basic">
+        &ltlegend>Leave a review:&lt/legend>
+        &ltinput type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1"
+                                checked aria-label="No rating." />
+        &ltinput type="radio" id="first-rate1" name="review[rating]" value="1" />
+        &ltlabel for="first-rate1" title="Terrible">1 star</label>
+        &ltinput type="radio" id="first-rate2" name="review[rating]" value="2" />
+        &ltlabel for="first-rate2" title="Not good">2 stars</label>
+        &ltinput type="radio" id="first-rate3" name="review[rating]" value="3" />
+        &ltlabel for="first-rate3" title="Average">3 stars</label>
+        &ltinput type="radio" id="first-rate4" name="review[rating]" value="4" />
+        &ltlabel for="first-rate4" title="Very good">4 stars</label>
+        &ltinput type="radio" id="first-rate5" name="review[rating]" value="5" />
+        &ltlabel for="first-rate5" title="Amazing">5 stars</label>
+    &lt/fieldset>
+&lt/div>
+</pre></code>
+        </div>
+    </article>

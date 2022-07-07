@@ -1,0 +1,139 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 30: Mastering the terminal</h1>
+        <nav class="sec-nav-li" id="sec30-nav">
+            <ul>
+                <li><a href="#Lec302">Lecture 302</a></li>
+                <li><a href="#Lec303">Lecture 303</a></li>
+                <li><a href="#Lec304">Lecture 304</a></li>
+                <li><a href="#Lec305">Lecture 305</a></li>
+                <li><a href="#Lec306">Lecture 306</a></li>
+                <li><a href="#Lec307">Lecture 307</a></li>
+                <li><a href="#Lec308">Lecture 308</a></li>
+                <li><a href="#Lec309">Lecture 309</a></li>
+                <li><a href="#Lec310">Lecture 310</a></li>
+                <li><a href="#Lec311">Lecture 311</a></li>
+                <li><a href="#Lec312">Lecture 312</a></li>
+                <li><a href="#Lec313">Lecture 313</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec302">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 302: What matters in this section?</span></h2>
+        </header>
+        <p class="sec-para-main">This section is primarily focused on terminal commands. Terminal commands are used
+            while using node and also while performing some operations through console. The main takeway of this
+            section is to learn how to use the commands and remember the basic use cases of them.</p>
+    </article>
+    <article id="Lec303">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 303: Backend Overview</span></h2>
+        </header>
+        <p class="sec-para-main">Up till now we were building static websites but from this section onwards
+            we shift our focus towards building dynamic websites. Static websites doesn't change much doesn't matter
+            how many time we request them (a bit of change is possible due to API requests) but dynamic websites can
+            change it's outlook based on the input received from somewhere else or from some other kind of data.
+        </p>
+    </article>
+    <article id="Lec304">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 304: A pep talk on terminal</span></h2>
+        </header>
+        <p class="sec-para-main">Colt talks about how should we practice and remember the basics of terminal
+            commands like how to make a new file and a folder. Learning terminal commands can save you some time
+            compared to doing the same task with GUI.</p>
+    </article>
+    <article id="Lec305">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 305: Why Do We Need To Know Terminal Commands?</span></h2>
+        </header>
+        <p class="sec-para-main">There are three reasons to know about the terminal commands - </p>
+        <div class="list-content">
+            <ol>
+                <li>Speed - Terminal gives us speed to do multiple tasks at once. A task which might require 5 or 6
+                    clicks can be done with a single line of code in terminal.</li>
+                <li>Access - Terminal gives us access to files and folders and to some actions which might not be
+                    available to us when we view them via GUI.</li>
+                <li>Tools - There are some tools like Node, express etc. which require us to use terminal to use
+                    them properly.</li>
+            </ol>
+        </div>
+        <p class="sec-para-main">We are also introduced to two new terminologies in this section - terminal and
+            shell. Terminal is the program, the text based interface in which we type while shell is the software
+            which is running inside the terminal, the two most popular shells are zshell and bash.</p>
+    </article>
+    <article id="Lec307">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 307: The Basics: LS & PWD</span></h2>
+        </header>
+        <p class="sec-para-main">We get introduced to two commands here - ls and pwd. <span
+                class="command-tags">ls</span> stands for list, it list all the documents and folders in the current
+            directory. <span class="command-tags">pwd</span> stands for present working directory it lists the
+            current path of the directory user is in.</p>
+    </article>
+    <article id="Lec308">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 308: Changing directories</span></h2>
+        </header>
+        <p class="sec-para-main">cd is used to change directories in the terminal. You can type an
+            absolute or a relative path to jump to a directory. To jump into a specific directory we type <span
+                class="command-tags">cd</span> followed by the directory name to jump into that directory. To go
+            back a
+            directory we use the command <span class="command-tags">cd ..</span></p>
+        <p class="notes">Note: Always remember to put a space after typing out <span class="command-tags">cd</span>
+            , it is also possible to cd into nested folders.</p>
+    </article>
+    <article id="Lec309">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 309: Relative Vs. Absolute Paths</span></h2>
+        </header>
+        <p class="sec-para-main">Relative paths are accessed in relation to the current directory. Absolute paths on
+            the other hand starts with <span class="command-tags">/</span> which stands for root directory, followed
+            by the whole path of the directory. Absolute paths can be accessed from any directory while to access a
+            relative path you need to be in a folder near the directory you want to access.</p>
+    </article>
+    <article id="Lec310">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 310: Making directories</span></h2>
+        </header>
+        <p class="sec-para-main">To make a new directory we use the command <span class="command-tags">mkdir</span>
+            followed by the directory name. To make multiple directories, we separate the multiple directories
+            name with a space between them. It is also possible to make a new directory inside a existing folder
+            by using mkdir command.
+        </p>
+    </article>
+    <article id="Lec311">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 311: Man pages & Flags</span></h2>
+        </header>
+        <p class="sec-para-main">For mac users - we use the command <span class="command-tags">man</span> followed
+            by the command whose manual you want to access, it will give you all the information about a certain
+            command, what it does, the flags you can use with it and other useful information. For windows users
+            - we use the command <span class="command-tags">--help</span> to access man page of a command.
+            (tested on Gitbash) . Flags can be used to provide added functionality to a command for e.g. to list all
+            the contents of a directory in a long format we use the command <span class="command-tags">ls -l</span>.
+        </p>
+    </article>
+    <article id="Lec312">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 312: The touch command</span></h2>
+        </header>
+        <p class="sec-para-main">Touch command is usually used to make files, to make a file with <span
+                class="command-tags">touch</span> command we use the command touch followed by the file name and
+            it's extension. Multiple files can be made using this method. Although it's common use is to make files,
+            it's intended use is to change the access and modifcation time of the files.</p>
+    </article>
+    <article id="Lec313">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 313: Removing files and folders</span></h2>
+        </header>
+        <p class="sec-para-main">To remove a file we use the command <span class="command-tags">rm</span> followed
+            by the filename and to remove a folder we use the command <span class="command-tags">rmdir</span>
+            followed by the name of the folder. One thing to keep in mind is that rmdir can only be used on empty
+            folders. For a folder with some content we use the command <span class="command-tags">rmdir</span> with
+            flag <span class="keyword">-rf</span> where <span class="keyword">r</span> stands for recursive that
+            means it goes back to the heirarchy of the folders and <span class="keyword">-f</span> stands for force
+            that means delete all the files without asking for user's confirmation.
+        </p>
+    </article>

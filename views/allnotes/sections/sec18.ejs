@@ -1,0 +1,242 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="js-sec-heading">Section 18: JavaScript objects</h1>
+        <nav class="sec-nav-li" id="sec18-nav">
+            <ul>
+                <li><a href="#Lec184">Lecture 184</a></li>
+                <li><a href="#Lec185">Lecture 185</a></li>
+                <li><a href="#Lec186">Lecture 186</a></li>
+                <li><a href="#Lec187">Lecture 187</a></li>
+                <li><a href="#Lec188">Lecture 188</a></li>
+                <li><a href="#Lec189">Lecture 189</a></li>
+                <li> Coding exercise solutions -
+                    <ul>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex29">Exercise
+                                29</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex30">Exercise
+                                30</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec184">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 184: What matters in this section</span></h2>
+
+        </header>
+        <p class="sec-para-main">This section is a short one in which we learn how to create objects, how to modify
+            and access them ,their importance and how to nest them with arrays.</p>
+    </article>
+    <article id="Lec185">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 185:Intro to Object literals</span></h2>
+
+        </header>
+        <p class="sec-para-main">Objects are unordered data collections, they consist of a bunch of
+            properties, properties are just key value-pairs, where key is used to extract the value.
+            Unlike arrays whose data is accessed by index, objects data value is accessed through key.
+            Objects are used when you want to store data which might not make sense of it's own and need a label to
+            identify, they are also passed by reference like arrays.</p>
+    </article>
+    <article id="Lec186">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 186: Creating Object literals</span></h2>
+
+        </header>
+        <p class="sec-para-main">We use curly braces {} to create an object literal, inside it we can use key value
+            pair to hold data. Key can only be of string type while values could be of any data type. You don't need
+            to explicitly set the key to be of string type, JavaScript converts that key to string type for you. An
+            object can contain different types of data together.
+        </p>
+    </article>
+    <article id="Lec187">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 187: Accessing data out of objects</span></h2>
+
+        </header>
+        <p class="sec-para-main">There are two methods to access data out of objects -</p>
+        <div class="sec-content-segregation">
+            <ol>
+                <li>Dot notation -
+                    <p>A <i>dot .</i> is placed after the object and then the property name(key) is
+                        specified to access the value of the key in the object. A limitation of using this method is
+                        that only valid identifierName can be used as a key that means any key that is not
+                        alphanumeric
+                        or doesn't start with $ or _ won't work with dot notation. You can use Dot notation
+                        as follows.
+                    </p>
+                    <div class="article-example">
+                        <code class="code-snippet"><pre>
+const myObj = {
+    null: "I am null",
+    undefined: 34,
+    true: false,
+    What: "up",
+    12: "Twelve"
+}
+
+myObj.null      <span class="code-comment">//"I am null" </span>
+myObj.undefined <span class="code-comment">//34 </span>
+myObj.true      <span class="code-comment">//false </span>
+myObj.What      <span class="code-comment">//"up" </span>
+myObj.12        <span class="code-comment">//Uncaught SyntaxError: Unexpected number </span>
+myObj[12]       <span class="code-comment">//"Twelve" </span>
+myObj["12"]     <span class="code-comment">//"Twelve" </span>
+</pre></code>
+                    </div>
+                    <p>Here every key works with dot notation except 12 because even though the key is converted
+                        into a
+                        string it is still not a valid identifier name, we use bracket notation to work around that.
+                        It
+                        is not recommended to use null, undefined or booleans as keys in JavaScript object because
+                        they
+                        are reserved keywords. You can see the whole list of reserved keywords on <a
+                            href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#keywords">MDN</a>
+                    </p>
+                </li>
+                <li>Square Bracket -
+                    <p>While using square brackets to access element in an object, JavasScript evaluates
+                        the expression inside the brackets. This is useful if you want to access value in an object
+                        with <strong>non</strong> identifierName as a propertyname(key) or using a variable as a
+                        key.
+                        You can see how to use Square brackets notation in the example that follows.
+                    </p>
+                    <div class="article-example">
+                        <code class="code-snippet"><pre>
+const othObj = {
+"hyphen-key": 67,
+99: "Ninety nine",
+'spaced key': "I have extra space"
+}
+
+othObj.hyphen-key       <span class="code-comment">//Uncaught ReferenceError: key is not defined </span>
+othObj[hyphen-key]      <span class="code-comment">//Uncaught ReferenceError: hyphen is not defined </span>
+othObj['hyphen-key']    <span class="code-comment">//67 </span>
+
+othObj[spaced key]      <span class="code-comment">//Uncaught SyntaxError: Unexpected identifier </span>
+othObj.spaced key       <span class="code-comment">//Uncaught SyntaxError: Unexpected identifier </span>
+othObj['spaced key']    <span class="code-comment">//"I have extra space" </span>
+
+othObj.99       <span class="code-comment">//Uncaught SyntaxError: Unexpected number</span>
+othObj[99]      <span class="code-comment">//"Ninety nine"</span>
+othObj['99']    <span class="code-comment">//"Ninety nine"</span>
+</pre></code>
+                    </div>
+
+                    <p>You can only access the value of hyphen-key and spaced key in the above example by using
+                        square bracket notation and single/double quotes around the key. Without the quotes
+                        JavaScript will look for a variable named the same as key and dot notation won't
+                        work because it is not a valid identifier name.</p>
+
+                    <p>You can see how Square Brackets evaluates expression in the example below</p>
+                    <div class="article-example">
+                        <code class="code-snippet"> <pre>
+const numObj = { 36: "Thirty-six" } <span class="code-comment">//Initializing an object </span>
+numObj[12 * 3]                      <span class="code-comment">//"Thirty-six"</span>
+let myNum = 6;                      <span class="code-comment">//Declaring a variable myNum</span>
+numObj[myNum * 6]                   <span class="code-comment">//"Thirty-six" <span class="code-comment"></span>
+</pre></code>
+                    </div>
+                </li>
+            </ol>
+            <p>An important distinction to keep in mind is that even though JavaScript Objects always
+                convert their keys to strings. It will only work with Dot notation if it's a valid
+                identifier name as dot notation doesn't evaluate expression like square brackets do as
+                you can see in the example below
+            </p>
+            <div class="article-example">
+                <code class="code-snippet"><pre>
+const newObj = { "1": 2 }
+newObj.1    <span class="code-comment">//Uncaught SyntaxError: Unexpected number </span>
+newObj.'1'  <span class="code-comment">//Uncaught SyntaxError: Unexpected string </span>
+newObj[1]   <span class="code-comment">//2 </span>
+newObj['1'] <span class="code-comment">//2 </span>
+</pre></code>
+            </div>
+            <p>Even though 1 was set explicitly as a string, it wasn't accessible by Dot notation because it wasn't
+                a valid identifier name. Some people prefer Dot notation over square brackets because of more
+                clarity
+                while reading compared to square brackets. You can read more about it on
+                <a href="https://tc39.es/ecma262/#sec-property-accessors">ECMA script</a> language specification.
+                This <a
+                    href="https://stackoverflow.com/questions/6066846/keys-in-javascript-objects-can-only-be-strings/6067160#6067160">StackOverflow</a>
+                answer is also very good to understand how keys behave in JavaScript objects.
+            </p>
+        </div>
+    </article>
+    <article id="Lec188">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 188: Modifying Objects</span></h2>
+
+        </header>
+        <p class="sec-para-main">The syntax for modifying objects is similar to accessing an object. You use a
+            bracket or dot notation after the object and then specify a key name. If it's an old key then it will
+            change the existing value of the key inside the object or if it's new then a new key value pair
+            will be added inside the object.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const grades = {"Vaibhav": 99, "Mohit": 78, "Shyam": 56}; <span class="code-comment">// Declaring an array</span>
+<h3>Adding new properties -</h3>
+grades.lakshya = 44  <span class="code-comment">//{Vaibhav: 99, Mohit: 78, Shyam: 56, lakshya: 44}</span> 
+grades['anu']  = 83  <span class="code-comment"> //{Vaibhav: 99, Mohit: 78, Shyam: 56, lakshya: 44, anu: 83}</span>
+<h3>Modifying property -</h3> 
+grades.Mohit   = 32  <span class="code-comment"> //{Vaibhav: 99, Mohit: 32, Shyam: 56, lakshya: 44, anu: 83}</span> 
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec189">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 189: Nesting Arrays & Objects</span></h2>
+
+        </header>
+        <p class="sec-para-main">Nesting an array and an object can be a bit complex but is very common way of
+            arranging data in many popular website.</p>
+        <h3>An example of nesting arrays and objects -</h3>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const finalsMarksheet = 
+[
+{ 
+name: "Bobby",
+percentage: 87,
+status: "Promoted",
+subMarks: [
+{ English: 95,
+status: "pass" },
+{ Maths: 75,
+status: "pass" },
+{ Physics: 91,
+status: "pass" }
+] },
+{ 
+name: "Hemant",
+percentage: 43,
+status: "Promoted",
+subMarks: [
+{ English: 39,
+ status: "pass" },
+{ Maths: 43,
+status: "pass" },
+{ Physics: 47,
+status: "pass" }
+] },
+{
+name: "Pawar",
+percentage: 21,
+status: "Failed",
+subMarks: [
+{ English: 34,
+status: "pass" },
+{ Maths: 15,
+status: "fail" },
+{ Physics: 14,
+status: "fail" }
+] }
+]
+<h4>Accessing elements inside a nested array of objects:</h4>
+finalsMarksheet[1].subMarks[2] <span class="code-comment"> //{Physics: 47, status: "pass"}</span>
+finalsMarksheet[0].subMarks[1].status <span class="code-comment"> //"pass"</span>
+        </pre></code>
+        </div>
+    </article>

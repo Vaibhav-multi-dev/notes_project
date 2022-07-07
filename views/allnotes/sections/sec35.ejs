@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="D:\Web_Development\Notes_project\baseFile.css">
+    <link rel="stylesheet" href="../styleSheets/backendStyle.css">
+    <title>Section 35</title>
+</head>
+
+<body>
+    <section id="sec35" class="backend-section">
+        <header>
+            <h1 class="backend-sec-heading">Section 35: Defining RESTful routes</h1>
+            <nav class="sec-nav-li" id="sec35-nav">
+                <ul>
+                    <li><a href="#Lec352">Lecture 352</a></li>
+                    <li><a href="#Lec353">Lecture 353</a></li>
+                    <li><a href="#Lec354">Lecture 354</a></li>
+                    <li><a href="#Lec355">Lecture 355</a></li>
+                    <li><a href="#Lec356">Lecture 356</a></li>
+                    <li><a href="#Lec357">Lecture 357</a></li>
+                    <li><a href="#Lec358">Lecture 358</a></li>
+                    <li><a href="#Lec359">Lecture 359</a></li>
+                    <li><a href="#Lec360">Lecture 360</a></li>
+                    <li><a href="#Lec361">Lecture 361</a></li>
+                    <li><a href="#Lec362">Lecture 362</a></li>
+                    <li><a href="#Lec363">Lecture 363</a></li>
+                    <li><a href="#Lec364">Lecture 364</a></li>
+                    <li><a href="#Lec365">Lecture 365</a></li>
+                </ul>
+            </nav>
+        </header>
+        <article id="Lec352">
+            <header class="backend-article-header">
+                <h2><span class="backend-lec-heading">Lecture 352: What matters in this section?</span></h2>
+            </header>
+            <p class="sec-para-main">This section's main focus is on the key differences between GET and POST requests
+                and how do we send the data from a form in express and use that data in a POST request, we also
+                learn gow RESTful routes are structured.</p>
+        </article>
+        <article id="Lec353">
+            <header class="backend-article-header">
+                <h2><span class="backend-lec-heading">Lecture 353: Get Vs. Post Requests</span></h2>
+            </header>
+            <p class="sec-para-main">We discuss Get and Post requests in this lecture -</p>
+            <ul>
+                <li>Get request-
+                    <ol>
+                        <li>It is used to retreive data, searching queries etc.</li>
+                        <li>GET requests doesn't alter the webpage's backend in any way.</li>
+                        <li>The form queries we submit through a get request is visible in the URL and can be bookmarked
+                            for easier access.</li>
+                        <li>Limited amount of information can be sent through GET requests.</li>
+                    </ol>
+                </li>
+                <li>Post request-
+                    <ol>
+                        <li>It is used to send data over a server, it has a body which contains data. That data could
+                            be in format of JSON, plain text etc.</li>
+                        <li>It can be used to alter the webpage's backend.</li>
+                        <li>Large amount of data can be sent through PoSt request.</li>
+                    </ol>
+                </li>
+            </ul>
+            <p class="notes">Note: Get, Post and other form of requests are just a way of naming convention their uses
+                can be interchanged.</p>
+        </article>
+        <article id="Lec354">
+            <header class="backend-article-header">
+                <h2><span class="backend-lec-heading">Lecture 354: Defining Express Post Routes</span></h2>
+            </header>
+            <p class="sec-para-main">The gist of this video was to inform that GET and POST requests are different from
+                one another in express even when they have same path location.</p>
+        </article>
+        <article id="Lec355">
+            <header class="backend-article-header">
+                <h2><span class="backend-lec-heading">Lecture 355: Parsing the request body</span></h2>
+            </header>
+            <p class="sec-para-main">On every POST request we have a <span class="keyword">req.body</span> which
+                contains the body of the form data that was sent. We need to parse the body data before using it for
+                parsing form data we use <span class="backend-tags">express.urlencoded()</span> within app.use(). For
+                parsing <span class="keyword">JSON</span> type of data we use <span
+                    class="backend-tags">express.json()</span>. </p>
+        </article>
+        <article id="Lec356">
+            <header class="backend-article-header">
+                <h2><span class="backend-lec-heading">Lecture 356: Intro to REST</span></h2>
+            </header>
+            <p class="sec-para-main">REST stands for <span class="keyword">Representational State Transfer</span>. When
+                there is some resource in your application that you want to expose to achieve
+                <span class="keyword">CRUD</span> functionality through HTTP requests then you follow the REST
+                architecture. REST is stateless i.e. the next request doesn't know anything about the previous request.
+                It follows a client-server architecture model, it doesn't differentiates between who is requesting
+                something whether it is a browser or a service like Postman. It follows a uniform based interface and
+                it's most relevant for our purpose, it means that it follows the concept of using the same URL with
+                different HTTP verbs to do different operations. For e.g. - If there's a URL like
+                <span class="backend-tags">http://www.myexample.com/example</span> then if you wish to see the whole
+                list of example using GET or to create a new example using POST then this same URL can be used for both
+                these purposes.
+            </p>
+            <div class="src-link">
+                <ul>
+                    <li><a href="https://www.youtube.com/watch?v=6sUbt-Qp6Pg">WebDevSimplified video on REST</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Representational_state_transfer">Wikipedia for REST</a>
+                    </li>
+                    <li><a href=""></a></li>
+                </ul>
+            </div>
+        </article>
+        <article id="Lec357">
+            <header class="backend-article-header">
+                <h2><span class="backend-lec-heading">Lecture 357: RESTful comments overview</span></h2>
+            </header>
+            <p class="sec-para-main">Colt introduces us to the fake comment API that we are going to build over next few
+                lectures. He uses <span class="keyword">/comments</span> as the base URL to expose the resouce with
+                different types of verbs.</p>
+        </article>
+        <article id="Lec358">
+            <header class="backend-article-header">
+                <h2><span class="backend-lec-heading">Lecture 358: RESTful Comments Index</span></h2>
+            </header>
+            <p class="sec-para-main">We make a GET HTTP route <span class="backend-tags">app.get('/comments')</span> to
+                display all/multiple comments on a page. The page which is responsible for showing us comments is
+                located at views/comments/index.ejs, we do this to mkae sure the views directory isn't cluttered. This
+                is just one way of deploying CRUD functionality, you can also use other routes if it suits you better.
+            </p>
+        </article>
+        <article id="Lec359">
+            <header class="backend-article-header">
+                <h2><span class="backend-lec-heading">Lecture 359: RESTful Comments New</span></h2>
+            </header>
+            <p class="sec-para-main">To post a new comment in our fake data, we make two routes one GET route to display
+                a form which will contain comment data and another POST route to post the new comment data. In form
+                we need to change the method to POST and action attribute should be same as the POST route for new
+                comment else it won't work.</p>
+        </article>
+        <article id="Lec360">
+            <header class="backend-article-header">
+                <h2><span class="backend-lec-heading">Lecture 360: Express redirects</span></h2>
+            </header>
+            <p class="sec-para-main">We use <span class="backend-tags">res.redirect()</span> after making the POST
+                request to make a new comment to redirect ourselves to the comments page. We do this to avoid sending
+                same request over again and again, if we send a request but didn't redirect then
+                that same request is sent again on refreshing the page.</p>
+        </article>
+        <article id="Lec361">
+            <header class="backend-article-header">
+                <h2><span class="backend-lec-heading">Lecture 361: RESTful Comments Show</span></h2>
+            </header>
+            <p class="sec-para-main">To see details of a specific resource (in our case user comment), we make the show
+                route. Show route contains an <span class="keyword">unique identifier</span>(id) which is attached to a
+                specific comment and is used to identify it. ID can be numeric, string or mixture of both. The route
+                which we used in the lecture is <span class="backend-tags">app.get('/comments/:id')</span>, we can also
+                use another path to view the details of a single resource. </p>
+        </article>
+        <article id="Lec362">
+            <header class="backend-article-header">
+                <h2><span class="backend-lec-heading">Lecture 362: UUID packages</span></h2>
+            </header>
+            <p class="sec-para-main">Uptil now our method of viewing a comment details worked by setting the ID's
+                manually as we aren't using any database yet but this poses a problem when we make a new comment as that
+                comment won't make an ID by default and setting id every time can be a tedious task. To overcome this
+                problem we install a package named <span class="keyword">UUID</span>. This package is used to generate
+                an id dynamically for every comment which is created on the go and also the ones which were already
+                there. </p>
+        </article>
+        <article id="Lec363">
+            <header class="backend-article-header">
+                <h2><span class="backend-lec-heading">Lecture 363: RESTful Comments Update</span></h2>
+            </header>
+            <p class="sec-para-main">In this lecture we learn how to update a specific comment. We are introduced to two
+                new methods in this lecture - <span class="keyword">PUT</span> and <span class="keyword">PATCH</span>.
+                PUT is used when you want to update every part of a resource in short replace whole of it. PATCH on the
+                other hand is used when you want to partially fix a part of a resource. To update the comment we send
+                the comment to update through postman.
+            </p>
+        </article>
+        <article id="Lec364">
+            <header class="backend-article-header">
+                <h2><span class="backend-lec-heading">Lecture 364: Express methods override</span></h2>
+            </header>
+            <p class="sec-para-main">To change the comments through form we use another GET route which takes us to a
+                page with pre filled information of the comments and through that we make a PATCH request to change the
+                comment. The problem is that form only supports GET and POST method, so to
+                overcome this problem we install <span class="backend-tags">method-override</span> package which allows
+                us to change the method of the form in the form action attribute itself by making use of a query string.
+                So our form action attribute looks like - <i>&ltform method="POST" action="/comments/<%=comment.id%>
+                        ?_method=PATCH">&lt/form></i>. We also need to use middleware <span
+                    class="keyword">app.use(methodOverride('_method'))</span> on our main page to make sure the form
+                attribute works without any hassle.
+            </p>
+        </article>
+        <article id="Lec365">
+            <header class="backend-article-header">
+                <h2><span class="backend-lec-heading">Lecture 365: RESTful Comments Delete</span></h2>
+            </header>
+            <p class="sec-para-main">To delete a comment we use <span class="keyword">DELETE</span> HTTP request. We add
+                the delete button on the view page of a particular comment with it's form attribute as &ltform
+                method="post" action="/comments/<%=comment.id%>?_method=delete">&ltbutton>Delete&lt/button>&lt/form>. To
+                    update the comments array, we use <span class="backend-tags">comments = comments.filter(c =>
+                        c.id !== id);</span> on our DELETE request which makes us a new array which contains all the
+                    comments except the one we deleted, it also makes sure that we follow the principle of immutability.
+            </p>
+        </article>
+    </section>
+</body>

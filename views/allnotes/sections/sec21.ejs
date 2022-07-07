@@ -1,0 +1,294 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="js-sec-heading">Section 21: Leveling up our functions</h1>
+        <nav class="sec-nav-li" id="sec21-nav">
+            <ul>
+                <li><a href="#Lec209">Lecture 209</a></li>
+                <li><a href="#Lec210">Lecture 210</a></li>
+                <li><a href="#Lec211">Lecture 211</a></li>
+                <li><a href="#Lec212">Lecture 212</a></li>
+                <li><a href="#Lec213">Lecture 213</a></li>
+                <li><a href="#Lec214">Lecture 214</a></li>
+                <li><a href="#Lec215">Lecture 215</a></li>
+                <li><a href="#Lec216">Lecture 216</a></li>
+                <li><a href="#Lec217">Lecture 217</a></li>
+                <li><a href="#Lec218">Lecture 218</a></li>
+                <ul>Coding Exercise Solutions -
+                    <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex44">Exercise
+                            44</a>
+                    </li>
+                    <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex45">Exercise
+                            45</a>
+                    </li>
+                    <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex46">Exercise
+                            46</a>
+                    </li>
+                </ul>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec209">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 209: What matters in this section </span></h2>
+
+        </header>
+        <p class="sec-para-main">We are upgrading our functions knowledge in this section. Scoping of
+            functions,function
+            expressions and
+            higher order fuctions is what we will be focusing on.</p>
+    </article>
+    <article id="Lec210">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 210: Function Scope</span></h2>
+
+        </header>
+        <p class="sec-para-main">Colt covers the concept of function scope in this lecture which changes depending
+            on where the
+            variable
+            is declared. Colt mainly covers three points -
+        <div class="list-content">
+            <ul>
+                <li>Variables that are declared inside a function are accessible from inside a function only.
+                    They are
+                    not available to use outside the function. If you try to access the variable outside of the
+                    function
+                    then you will get an error.</li>
+                <li> If two variable exists with same name inside and outside of the
+                    function, then the function will refer to the variable closest to the function, in this case
+                    the
+                    variable inside the function.</li>
+                <li>It is also possible to declare a variable in the global scope and change it's value by using
+                    a
+                    function but it is not recommended to do so as functions are more of output generators and
+                    don't
+                    affect the code around them unless their value is returned and stored into a variable.</li>
+            </ul>
+        </div>
+        </p>
+        <p class="sec-para-main">Check this <a href="https://codepen.io/vaibhav-multi-dev/pen/xxqBrZm">CodeSnippet</a>
+            to see it in action or copy the raw code below into a JS file and experiment it on your own to
+            explore further -</p>
+        <code class="code-snippet">
+                    <pre>
+let level = "It's over 9000!!";
+
+function powerLevel() {
+    let level = "Vegeta, What does the scouter say about his power level?";
+    console.log(level);
+}
+
+powerLevel();
+console.log(level);
+                    </pre>
+                </code>
+        <p class="sec-para-main">In the code above, first <span class="js-tags">powerLevel()</span> function will
+            run and you will
+            get the
+            value of
+            <span class="value-tags">level</span> present inside the function
+            in <span class="js-tags">console.log(level)</span>, then when we go to next line of code <span
+                class="js-tags">console.log(level)</span> value will have the value of <span
+                class="value-tags">level</span> defined in the global scope.
+        </p>
+    </article>
+    <article id="Lec211">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 211: Block Scope</span></h2>
+        </header>
+        <p class="sec-para-main">Block refers to the code that is placed inside curly braces (excluding functions),
+            mostly we are
+            reffering to conditionals(if, else) and loops(for,while) when we are talking about block code.
+            Block
+            scoped variables are those variables which are accessible inside block and not outside of it. A
+            variable declared with <span class="keyword">let or const</span> are block scoped while
+            variables
+            declared with <span class="keyword">var</span> keyword are not i.e. it can be accessed outside
+            the
+            code block as well. </p>
+    </article>
+    <article id="Lec212">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 212: Lexical Scope</span></h2>
+        </header>
+        <p class="sec-para-main">If you have a nested function then the child function can access the variable
+            declared in the
+            parent/grandparent function but not the other way round. This is called lexical scoping.</p>
+    </article>
+    <article id="Lec213">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 213: Function Expressions</span></h2>
+        </header>
+        <p class="sec-para-main">Functions can also be stored in a variable and then called up from there instead of
+            defining it
+            with a
+            name with the function keyword.Functions are just values which
+            can be passed, stored or passed as an argument in another function.</p>
+        <code>
+                <pre class="code-snippet">
+<h3>Function defined with a name -</h3>
+function multiply(a,b){
+    return a*b;
+}
+<h3>Function expression -</h3>
+const multiply = function(a,b){
+    return a*b;
+}
+                    </pre>
+                </code>
+        <p class="notes">Function declared with a name are hoisted to the top while functions declared
+            inside an
+            variable are not. Check <a
+                href="http://adripofjavascript.com/blog/drips/variable-and-function-hoisting.html">this</a>
+            article
+            and <a
+                href="https://www.digitalocean.com/community/tutorials/understanding-hoisting-in-javascript#hoisting-functions">this</a>
+            article for more understanding.</p>
+    </article>
+    <article id="Lec214">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 214: Higher order functions</span></h2>
+        </header>
+        <p class="sec-para-main">Higher order functions are those functions who either accept a function as an
+            argument or return
+            a
+            function as an argument. A function can be passed as an argument to another method or function
+            which
+            accept a function as an argument but one thing to keep in mind while doing so is that you
+            shouldn't call
+            the passed function inside the parenthesis of the receiver function otherwise instead of
+            function being
+            passed as an argument the value which is returned from the function will be passed in. For e.g.
+            consider
+            the following code from Colt's lecture -</p>
+        <code>
+    <pre class="code-snippet">
+const randomNum = function () {
+    const num = Math.floor(Math.random() * 6) + 1;
+    console.log(num);
+}
+
+function rollDieTwice(func) {
+    func()
+    func()
+}
+rollDieTwice(randomNum)
+    </pre>
+</code>
+        <p class="sec-para-main">Here if you pass <span class="js-tags">rollDieTwice(randomNum())</span> instead of
+            <span class="js-tags">rollDieTwice(randomNum)</span> like we did in code above then you will get
+            an
+            error because the returned value of the <span class="keyword">randomNum()</span> will be passed
+            instead of the function itself.
+        </p>
+    </article>
+    <article id="Lec215">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 215: Returning functions</span></h2>
+        </header>
+        <p class="sec-para-main">Functions can also be returned like values even inside a function itself. Example -
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+function greet(name){
+    return function (){
+        console.log(`HELLO ${name}`);
+    }
+}
+
+<h3>There are two ways to execute this function -</h3>
+
+<p>First way -</p>
+greet("Ankur")()
+<span class="code-comment">//HELLO Ankur</span>
+
+<p>Second way- </p>
+const callPerson = greet("Ankur")
+callPerson()
+<span class="code-comment">//HELLO Ankur</span></pre></code>
+        </div>
+    </article>
+    <article id="Lec216">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 216: Defining methods</span></h2>
+        </header>
+        <p class="sec-para-main">Methods are function which are defined as a property inside an object. Example -
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+const math = {
+    PI: 3.14,
+    square: function (num){
+        return num ** 2; 
+    },
+    cube: function (num){
+        return num ** 3; 
+    }
+}
+<p>Shorthand for declaring methods -</p>
+const math = {
+    PI: 3.14,
+    square (num){
+        return num ** 2; 
+    },
+    cube (num){
+        return num ** 3; 
+    }
+}
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec217">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 217: 'this' Keyword</span></h2>
+        </header>
+        <p class="sec-para-main">'this' keyword changes it's values depending on it's invocation context, if it is
+            called from inside an object where it was declared then it will refer to that object, but if you
+            assign the object to a variable and then call it from that variable then it will refer to the window
+            object. window object is the topmost object of any webpage, it contains all the other methods inside it.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Calling from inside an object</p>
+const guestInfo = {
+    name : "Samar",
+    occupation : "marketing manager",
+    welcomeGuest(){
+        return `Hello ${this.name}, please come in`
+    }
+}
+guestInfo.welcomeGuest()  <span class="code-comment">//'Hello Samar, please come in'</span>
+<p>Assigning method to a variable and then calling it</p>
+let myGuest = guestInfo.welcomeGuest
+console.log(myGuest)
+<span class="code-comment">ƒ welcomeGuest(){
+        return `Hello ${this.name}, please come in`
+    }</span>
+myGuest() <span class="code-comment">//'Hello , please come in'</span></pre></code>
+        </div>
+    </article>
+    <article id="Lec218">
+        <header class="js-article-header">
+            <h2><span class="js-lec-heading">Lecture 218: Using try/catch</span></h2>
+        </header>
+        <p class="sec-para-main">try/catch is used to try an expression and catch the error if there is one while
+            executing the statement. They are used when you are expecting to running a piece of code which you
+            suspect might cause error while it may seem stupid at this moment as to why won't you fix the error
+            beforehand but there will be some code in the upcoming lessonms which will show you that sometimes
+            there are always uncertainity whether you will get the required data or not like asking for some
+            resource from a website which is no longer functional. Example-
+        </p>
+        <div class="article-example">
+            <code class="code-snippet">
+                    <pre>
+try{
+    3.toLowerCase();
+} catch(err){
+    console.log(err);
+}</pre></code>
+        </div>
+        <p class="sec-para-main">In the above code you can see that there is an <span class="var-tags">err</span>
+            argument passed in the catch statement. That is the name of the error(if any) which is passed to catch
+            if code inside our try statement fails to execute. <a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch">MDN
+                for try/catch</a> </p>
+    </article>

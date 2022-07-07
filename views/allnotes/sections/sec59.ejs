@@ -1,0 +1,147 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 59: YelpCamp - Deploying</h1>
+        <nav class="sec-nav-li" id="sec59-nav">
+            <ul>
+                <li><a href="#Lec569">Lecture 569</a></li>
+                <li><a href="#Lec570">Lecture 570</a></li>
+                <li><a href="#Lec571">Lecture 571</a></li>
+                <li><a href="#Lec572">Lecture 572</a></li>
+                <li><a href="#Lec573">Lecture 573</a></li>
+                <li><a href="#Lec574">Lecture 574</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec569">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 569: Setting up Mongo Atlas</span></h2>
+        </header>
+        <p class="sec-para-main">Now we use a online database called mongoDB atlas for deploying our application. We
+            keep the database for production and deployment separately so that we can make changes to our
+            development database without affecting the overall application. After initially setting up the mongoDB
+            atlas (creating username, password, whitelisting ip address etc.) we put the URL to connect to the
+            database in our ain index file and replace the field <span class="keyword">&ltpassword></span> with the
+            password we set up while creating mongoDB atlas username. Then instead of connecting to the local
+            database we connect to the databse online. We store the mongoDB atlas Url in our <span
+                class="keyword">.env</span> file.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code for our main index file -</p>
+const dbUrl = process.env.DB_URL;
+
+mongoose.connect(dbUrl)
+    .then(() => {
+        console.log("Connection Open");
+    })
+    .catch((err) => {
+        console.log("Connection Failed!!");
+        console.log(err);
+    })
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec570">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 570: Using Mongo for our session store</span></h2>
+        </header>
+        <p class="sec-para-main">Now we use mongo to store our session data instead of the application memory which
+            is the default location to store the session data. We use a package called <span
+                class="keyword">connect-mongo</span> to achieve this functionality. Please keep in mind that we
+            haven't changed the location of the database we are just changing the place where we store the session
+            data and nothing else.</p>
+        <div class="extra-info">Note: connect-mongo package has been updated since last time so if you want to
+            follow along with Colt then you need to download the older version of this package or you might need to
+            change your code to suit the latest update of the package.</div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://github.com/jdesboeufs/connect-mongo">Docs for connect-mongo</a></li>
+                <li><a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22361206#questions/14175216">Udemy
+                        thread for connect-mongo version</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec571">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 571: Heroku Setup</span></h2>
+        </header>
+        <p class="sec-para-main">No we use a server to store, serve and host our application using heroku. We
+            install Heroku CLI from it's documentation to use heroku commands in our terminal.</p>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a href="https://www.heroku.com/">Heroku main page</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec572">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 572: Pushing to Heroku</span></h2>
+        </header>
+        <p class="sec-para-main">In this lecture we push our code to heroku, to do so we first make an app with the
+            command <span class="backend-tags">heroku create</span> this makes an URL for us(a place to deploy our
+            app). After this we make couple of changes to our main index file we switch the database back to <span
+                class="keyword">process.env.DB_URL</span> and have the local mongo DB server database as a backup
+            and change the secret key in session and mongo store we create to <span
+                class="keyword">process.env.SECRET</span>, this secret key will be defined in heroku servers. After
+            this we git initialize our repository with the command <span class="backend-tags">git init</span> and
+            then check if remote server of heroku is available with the command <span class="backend-tags">git
+                remote -v</span>, if there's not a remote server then you can see the link in the Sources for the
+            solution. After that we add, commit and push all our files to heroku server. Also make sure you make a
+            <span class="keyword">.gitignore</span> file and add node_modules and .env to it so that both of these
+            files aren't uploaded when you upload your files to heroku.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Commands to use in your terminal -</p>
+heroku create
+git init
+git remote -v  <span class="code-comment">//To check if the rmeote server is established</span>
+git add . <span class="code-comment">//To add all our files</span>
+git commit -m "Git message here" <span class="code-comment">//To commit our files to push with a message</span>
+git push heroku master <span class="code-comment">//To push our files to heroku servers</span>
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li>Check this <a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22361220#questions/13143620">thread
+                        for git remote errors</a></li>
+                <li><a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22361220#questions/13078722">git
+                        init Udemy Q/A</a></li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec573">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 573: Fixing Heroku Errors</span></h2>
+        </header>
+        <p class="sec-para-main">No we fix a couple of errors in heroku. First we add a start script in our
+            package.json file and then we add a port with <span class="backend-tags">process.env.PORT</span> instead
+            of hardcoding the port number, after this we add and commit all our files again.</p>
+        <div class="article-exampl">
+            <code class="code-snippet"><pre>
+<p>Code for package.json file -</p>
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+<p>Code for our mian index file -</p>
+const port = process.env.PORT || 3000;
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec574">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 574: Configuring Heroku Env variables</span></h2>
+        </header>
+        <p class="sec-para-main">Now we add all our config variables defined in .env files in our herkou server by
+            going to heroku server settings and adding them one by one. We also make changes to network access
+            for our mongo atlas database to everyone so it can also be accessed by heroku servers as heroku server
+            keeps on changing the IP address that it uses. After this when our app is deployed we check if it works
+            as expected by trying to register and logging in by existing user and even by making a new campground.
+        </p>
+    </article>

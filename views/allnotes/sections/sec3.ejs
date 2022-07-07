@@ -1,0 +1,282 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="html-sec-heading">Section 3: HTML - The Essentials</h1>
+        <nav class="sec-nav-li" id="sec3-nav">
+            <ul>
+                <li><a href="#Lec18">Lecture 18</a></li>
+                <li><a href="#Lec19">Lecture 19</a></li>
+                <li><a href="#Lec20">Lecture 20</a></li>
+                <li><a href="#Lec21">Lecture 21</a></li>
+                <li><a href="#Lec22">Lecture 22</a></li>
+                <li><a href="#Lec23">Lecture 23</a></li>
+                <li><a href="#Lec24">Lecture 24</a></li>
+                <li><a href="#Lec25">Lecture 25</a></li>
+                <li><a href="#Lec26">Lecture 26</a></li>
+                <li><a href="#Lec27">Lecture 27</a></li>
+                <li><a href="#Lec28">Lecture 28</a></li>
+                <li><a href="#Lec29">Lecture 29</a></li>
+                <li><a href="#Lec30">Lecture 30</a></li>
+                <li>Coding Exercise Solutions -
+                    <ul>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex1"
+                                target="_blank" rel="noreferrer noopener"> Exercise 1</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex2"
+                                target="_blank" rel="noreferrer noopener"> Exercise 2</a></li>
+                        <li><a href="D:\Web_Development\Notes_project\Coding_Exercises\codingExer.html#Ex3"
+                                target="_blank" rel="noreferrer noopener"> Exercise 3</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec18">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 18: What matters in this section</span></h2>
+        </header>
+        <p class="sec-para-main">This is the first section in which we discuss about HTML, so everything we
+            learn
+            here is quite crucial. Paragraph elements,heading elements,HTML boiler plate, images, comments etc.
+            are
+            things which are used extensively in every web page we encounter on a daily basis. </p>
+    </article>
+    <article id="Lec19">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 19: Introduction to HTML </span></h2>
+        </header>
+        <p class="sec-para-main">HTML is a markup language not a full programming language. It stands for
+            <i>Hyper
+                Text Markup
+                Language</i>.
+            HTML was originally developed for marking research papers. The main idea behind developing HTML was
+            to
+            indicate how the document should be presented and structured in a browser i.e how to make a text
+            bold,
+            italize etc, it is done by using HTML tags. HTML adds annotations to a simple text. HTML
+            holds the content, the very basic of your website. HTML is used to indicate to the browser to
+            how it should format the document. Web browsers make sense of HTML tags and display it.
+        </p>
+    </article>
+    <article id="Lec20">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 20: Our first HTML page(B tag intro)</span></h2>
+        </header>
+        <p class="sec-para-main"> In our first HTML page we get introduced to <code class="html-tags">&ltb></code>
+            tag which is used
+            to
+            indicate that whatever is inside the tag should be displayed in bold. To bold a text just use <code
+                class="html-tags">&ltb></code> tag and some text inside it. The syntax for <code
+                class="html-tags">&ltb></code> tag is -
+            "<code class="html-tags">&ltb></code>some text<code class="html-tags">&lt/b></code>"
+        </p>
+        <section class="extra-info">
+            <h3>Extra Info-</h3>
+            <p>Bold tag <code class="html-tags">&ltb></code> does not contain any semantic significance, it is
+                just used to style an element as bold. Whereas <code class="html-tags">&ltstrong></code> tag
+                specifies to the browser that this element is important and should be stressed. It all makes a
+                difference when using with screen reader. Same goes for <code class="html-tags">&lti></code> and
+                <code class="html-tags">&ltem></code> tags in HTML. Put simply, when you use <code
+                    class="html-tags">&ltb></code> tag to style your element you are just bolding the
+                text but when you use <code class="html-tags">&ltstrong></code> tag then you are indicating to
+                the browser that this element is important and should be stressed. Although visually both the
+                elements might look same but they have semantical differences. Also if you need to style more than a
+                single word in between your elements then it's better to use CSS for that, it separates HTML for
+                content and CSS for styling this is called separation of concern which we will learn about later in
+                the course.
+                <span class="src-link">
+                    <span>Source -</span> <a
+                        href="https://stackoverflow.com/questions/271743/whats-the-difference-between-b-and-strong-i-and-em">SO</a>
+                    <a href="https://www.w3.org/International/questions/qa-b-and-i-tags#quickanswer">W3C</a>
+                </span>
+            </p>
+        </section>
+    </article>
+    <article id="Lec21">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 21: Mozilla Development Network</span></h2>
+        </header>
+        <p class="sec-para-main">MDN is a good site to refer for various HTML and other web related queries you
+            might have, it is not
+            the
+            official documentation for HTML,CSS or JS but it is a reliable source to learn from as it is a
+            resource
+            maintained by the developers, for the developers.
+        </p>
+    </article>
+    <article id="Lec22">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 22: Paragraph Elements</span></h2>
+        </header>
+        <p class="sec-para-main">Paragraph elements are block level elements represented by <code
+                class="html-tags">&ltp></code>, they
+            are
+            primarily used for containing text but can be embedded with other elements as well. Anything that
+            comes
+            after <code class="html-tags">&ltp></code> some text <code class="html-tags">&lt/p></code> tags
+            starts on a new line. <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p">MDN</a>
+            for
+            p element.
+        </p>
+    </article>
+    <article id="Lec23">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 23: Heading elements</span></h2>
+        </header>
+        <p class="sec-para-main">Usually every webpage only consists of one h1 tag. Heading tags(h1-h6) are put
+            on webpage in order i.e. don't use h3 before you have used h2. Heading tags are used for organizing the
+            webpage rather than just styling the text.</p>
+        <aside class="extra-info-aside">Some times you might break the heading order to display content,
+            like when inside a section or an article.</aside>
+        <div class="src-link">
+            <p>Source -</p>
+            <ul>
+                <li><a href="https://html.spec.whatwg.org/multipage/sections.html#rank">HTMLspecs</a></li>
+                <li><a href="https://stackoverflow.com/questions/21640903/proper-use-of-html-heading-tags">SO</a>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec24">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 24: Intro to chrome inspector</span></h2>
+        </header>
+        <p class="sec-para-main">Chrome inspector can be used to study the underlying structure of a webpage and
+            how
+            the elements are
+            arranged and styled in a particular webpage. Right click anywhere on a webpage and select inspect
+            and it
+            will show the position of that element in the document.</p>
+    </article>
+    <article id="Lec25">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 25: HTML boilerplate</span></h2>
+        </header>
+        <p class="sec-para-main">HTML boilerplate is like the skeleton of the page, as it gives structure to the
+            page. First element
+            of
+            Boilerplate is <code class="html-tags">&lt!DOCTYPE html></code> which tells the broswer that the
+            document is a HTML document without it the browser may <span class="i-word">interpret</span> your
+            document differently. Second element is <code class="html-tags">&lthtml></code> tag, although it is
+            not
+            necessary to put this tag as it is implicitly put by the browser. But still it's a good practice to
+            keep
+            it if you share your code then it is read easily.<code class="html-tags">&lthtml></code> tag
+            contains
+            <code class="html-tags">&lthead></code>
+            and
+            <code class="html-tags">&ltbody></code> tag inside it. <code class="html-tags">&lthead></code> tag
+            contains metadata about the document i.e. links to your stylesheets, external font-file etc. It also
+            contains the title of the document which is displayed on the tab of the page. The body tag can
+            contains
+            rest of the content displayed on your webpage. Although it is not necessary to include all these
+            tags , but it is a good practice to include them to avoid misinterpretation by any browser and to
+            make things easier for other developers.
+            <span class="src-link">
+                <span>Source -</span>
+                <a href="https://html.spec.whatwg.org/#optional-tags">HTML spec</a>
+                <a
+                    href="https://stackoverflow.com/questions/5641997/is-it-necessary-to-write-head-body-and-html-tags">SO1</a>
+                <a href="https://stackoverflow.com/questions/6076432/why-do-i-need-a-doctype-what-does-it-do">SO2</a>
+            </span>
+        </p>
+    </article>
+    <article id="Lec26">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 26: VS code Tip: Auto-format</span></h2>
+        </header>
+        <p class="sec-para-main">To auto-format your code on every save, go to settings by pressing ctrl + , on
+            a
+            windows machine to
+            access the settings and then search for format and then select the tick box for format on save. This
+            wil
+            automatically format your code on every save, this won't change how your page looks like in a
+            browser.Although it is recommended by Colt and I also use it, mind you it might give you
+            unexpected results
+            sometimes, for e.g - If you place your two divs in one line next to each other then it will shift
+            the
+            other
+            div to
+            the
+            next line which in turn will create a whitespace between the two tags when displayed in browser and
+            even
+            if
+            you
+            place them back on the same line they will go back to the next line automatically on save. You can
+            counter
+            this
+            effect by commenting and placing the closing tag of first div at the start of the next div. So
+            altough
+            it is
+            a
+            great extension without any doubt but sometimes you might run into unexpected results if you are not
+            careful
+            while using this extension.
+        </p>
+    </article>
+    <article id="Lec27">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 27: List elements</span></h2>
+        </header>
+        <p class="sec-para-main">There are two types of lists- ordered <code class="html-tags">&ltol></code> and
+            unordered<code class="html-tags">&ltul></code>. Unordered lists place it's list elements<code
+                class="html-tags">&ltli></code> in bullet
+            points while ordered lists store their elements in a numerical order. It is also possible to nest
+            lists
+            inside one another or other elements inside the lists.</p>
+    </article>
+    <article id="Lec28">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 28: Anchor tags</span></h2>
+        </header>
+        <p class="sec-para-main">Anchor tags <code class="html-tags">&lta></code> is used to link to a
+            webpage,file,
+            or some location
+            on the same page.It contains an href attribute which contains the link location. Attribute is
+            information which we can pass in an element tag. We use "http://www" before a website address for an
+            external/internet link to indicate that we are using HTTP protocol and not file protocol.
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a">MDN for <code
+                    class="html-tags">&lta></code> tag</a>
+        </p>
+    </article>
+    <article id="Lec29">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 29: Images</span></h2>
+        </header>
+        <p class="sec-para-main">
+            We put images in our HTML page using <code class="html-tags">&ltimg></code> tag, it is a self
+            enclosing
+            tag
+            which contains a src attribute which defines the location of our image, image could be a local file
+            on
+            our
+            computer or some image hosted somewhere on web. There is also an alt attribute for <code
+                class="html-tags">&ltimg></code>
+            tag which specifies what the image is, in case the link gets broken or someone is using a screen
+            reader.
+        </p>
+        <section class="extra-info">
+            <h3>Extra Info-</h3>
+            <p><a
+                    href="https://stackoverflow.com/questions/39372619/is-it-still-relevant-to-specify-width-and-heigth-attribute-on-images-in-html/39563913">SO1</a>
+                <a
+                    href="https://stackoverflow.com/questions/640190/image-width-height-as-an-attribute-or-in-css">SO2</a>
+                <a
+                    href="https://stackoverflow.com/questions/2549296/whats-the-difference-between-reflow-and-repaint">SO3</a>
+                <a
+                    href="https://stackoverflow.com/questions/32217863/seo-impact-on-specifying-image-width-and-height-for-responsive-website">SO4</a>
+                <a
+                    href="https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/">SmashMagazine</a>
+                <a
+                    href="https://medium.com/swlh/what-the-heck-is-repaint-and-reflow-in-the-browser-b2d0fb980c08">Medium</a>
+            </p>
+        </section>
+    </article>
+    <article id="Lec30">
+        <header class="html-article-header">
+            <h2><span class="html-lec-heading">Lecture 30: Comments</span></h2>
+        </header>
+        <p class="sec-para-main">Comments are not displayed in the browser and are just used to make notes while
+            coding so you can
+            remember it for later or for someone else who might access your file later. You put a comment by
+            wrapping your text within <code class="html-tags">&lt!--comment text--></code>
+        </p>
+    </article>

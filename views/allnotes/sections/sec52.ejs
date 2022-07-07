@@ -1,0 +1,227 @@
+<% layout('layouts/boilerplate')%>
+    <header>
+        <h1 class="backend-sec-heading">Section 52: YelpCamp - Basic Authorization</h1>
+        <nav class="sec-nav-li" id="sec52-nav">
+            <ul>
+                <li><a href="#Lec516">Lecture 516</a></li>
+                <li><a href="#Lec517">Lecture 517</a></li>
+                <li><a href="#Lec518">Lecture 518</a></li>
+                <li><a href="#Lec519">Lecture 519</a></li>
+                <li><a href="#Lec520">Lecture 520</a></li>
+                <li><a href="#Lec521">Lecture 521</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Lec516">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 516: Adding an author to Campground</span></h2>
+        </header>
+        <p class="sec-para-main">Now we associate each campground with a particular user. To do so ,firstly we make
+            changes to our campground Schema to add one more field named author which refers to the user by it's ID.
+            Then we single out an ID of a user and add it to the seeds file under the author field so that every
+            campground has an author associated with it. Then in the show route of the campground we populate the
+            page with author as well and not just reviews. In the show page of the campgrounds, we add one more
+            field to display the user name who made the campground. Also when we make a new campground we associate
+            it with the currently logged in user.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Show route of the campgrounds - </p>
+router.get('/:id', wrapAsync(async (req, res, next) => {
+    const camp = await Campground.findById(req.params.id)
+                .populate('review').populate('author'); <span class="code-comment">//Populating authors in the campground</span>
+    if (!camp) {
+        req.flash('error', "Cannot find the campground");
+        return res.redirect('/campgrounds');
+    }
+    res.render('campgrounds/show.ejs', { camp });
+}))
+<p>Field to add to your campground Schema -</p>
+author: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+}
+<p>Changes in our seeds file -</p>
+const seedDB = async () => {
+    await Campground.deleteMany({});
+    for (let i = 0; i < 50; i++) {
+        const random1000 = Math.floor(Math.random() * 1000);
+        const price = Math.floor(Math.random() * 30) + 9;
+        const camp = new Campground({
+            author: '62aad28e13fcb780f2eaf69a', <span class="code-comment">//Adding Id of the author to associate with campground</span>
+            title: `${randElemArr(descriptors)}, ${randElemArr(places)}`,
+            location: `${cities[random1000].city} , ${cities[random1000].state}`,
+            image: 'https://source.unsplash.com/collection/483251',
+            description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+            Eius autem, rerum nostrum quasi, voluptate praesentium
+            necessitatibus illum inventore culpa corporis omnis distinctio placeat 
+            cum! Expedita consequuntur voluptatibus nam
+            quidem perferendis.`,
+            price
+        })
+        await camp.save();
+    }
+}
+<p>Post route for the campground -</p>
+router.post('/', isLoggedIn, validateCamp, wrapAsync(async (req, res) => {
+    const camp = new Campground(req.body.campground);
+    camp.author = req.user._id; <span class="code-comment">//Adding currently logged in user to camp.author</span>
+    await camp.save()
+    req.flash('success', "Successfully made a new campground");
+    res.redirect(`/campgrounds/${camp._id}`)
+}))
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec517">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 517: Showing and hiding edit/Delete</span></h2>
+        </header>
+        <p class="sec-para-main">Now we add some logic to hide the edit and delete button of a campground.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+&lt% if(currentUser && camp.author._id.equals(currentUser._id)){ %>
+    &ltdiv class="card-body">
+        &lta href="/campgrounds/<%=camp._id%>/edit" class="card-link btn btn-info">Edit</a>
+        &ltform action="/campgrounds/<%=camp._id%>?_method=DELETE" method="POST" class="d-inline">
+            &ltbutton class="card-link btn btn-danger">Delete</button>
+        &lt/form>
+    &lt/div>
+    &lt% } %>
+</pre></code>
+        </div>
+        <div class="extra-info">
+            <p>Note: We use <span class="keyword">.equals()</span> instead of <span class="keyword">===</span>
+                because MongoID is an object and when we use '===' we only compare their references and not the ID
+                itself. Also we use <span class="keyword">currentUser &&</span> to short circuit our code, if there
+                is no current user then the statement after <span class="keyword">&&</span> won't be executed.</p>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li>Check<a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22346398#questions/13073528">Akshay's
+                        answer on this Udemy question</a>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article id="Lec518">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 518: Campground Permissions</span></h2>
+        </header>
+        <p class="sec-para-main">We add logic to our campgrounds so that only the campground author can edit or
+            delete the campground even from the backend side and not just hide the buttons like we did earlier.</p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Logic to add in our edit, and delete routes of the campground -</p>
+const camp = await Campground.findById(id);
+if (!camp.author._id.equals(req.user._id)) {
+    req.flash('error', "You don't have permission to make changes to this campground");
+    return res.redirect(`/campgrounds/${id}`);
+}
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec519">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 519: Authorization middleware</span></h2>
+        </header>
+        <p class="sec-para-main">We now clean up our code a little bit, we move the validation middlewares of
+            campgrounds and reviews into a single file. </p>
+    </article>
+    <article id="Lec520">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 520: Reviews Permission</span></h2>
+        </header>
+        <p class="sec-para-main">In this lecture we associate our review with a author like we did for campgrounds
+            earlier. Also we add a condition in our show campground route so that the form to post a review is only
+            visible if a user is logged in. </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Logic for our show route -</p>
+&lt% if(currentUser) {%>
+    &ltform action="/campgrounds/<%=camp._id%>/reviews" method="POST" class="mb-5" novalidate
+        class="validate-form">
+        &ltdiv class="card mb-3">
+            &lth5 class="card-title">Leave a Review:&lt/h5>
+            &ltlabel for="rating" class="form-label">Rating: &lt/label>
+            &ltinput type="range" class="form-range" min="1" max="5" id="rating" name="review[rating]">
+            &ltlabel for="body">Review: &lt/label>
+            &lttextarea class="form-control" id="body" name="review[body]" rows="4" required>&lt/textarea>
+        &lt/div>
+        &ltbutton class="btn btn-info">Submit your review&lt/button>
+    &lt/form>
+    <% } %>
+<p>Logic for review POST route -</p>
+router.post('/', isLoggedIn, validateReview, async (req, res) => {
+    const { id } = req.params;
+    const campground = await Campground.findById(id);
+    const review = new Review(req.body.review);
+    review.author = req.user._id;
+    campground.review.push(review);
+    await campground.save();
+    await review.save()
+    req.flash('success', "Successfully posted the review");
+    res.redirect(`/campgrounds/${id}`);
+})
+<p>Fields for the review Schema -</p>
+const reviewSchema = new Schema({
+    body: String,
+    rating: Number,
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
+})
+</pre></code>
+        </div>
+    </article>
+    <article id="Lec521">
+        <header class="backend-article-header">
+            <h2><span class="backend-lec-heading">Lecture 521: More reviews Authorization</span></h2>
+        </header>
+        <p class="sec-para-main">Now we show the author of each of the review in the show campgrounds page, protect
+            the delete route of the review so that only the review author can delete it and also hide the delete
+            button for review if the review author isn't logged in. For showing the review with it's author we
+            populate the author of the review in the show page of the campground using the <span
+                class="keyword">path</span> variable. To hide the delete button for the review if the review author
+            isn't logged in we use the same logic as we did earlier for the campground show page i.e. making use of
+            <span class="keyword">currentUser</span> variable and <span class="keyword">req.user._id</span> to
+            verify the currently logged in user. After that we protect the delete route of the review even from the
+            backend side, for that we write a middleware similar to what we did for campgrounds earlier.
+        </p>
+        <div class="article-example">
+            <code class="code-snippet"><pre>
+<p>Code to populate the author of the reviews -</p>
+const camp = await Campground.findById(req.params.id)
+                .populate({ path: 'review', populate: { path: 'author' } }) <span class="code-comment">//Populating review author</span>
+                .populate('author');
+<p>Code to hide/show the delete the review button -</p>
+&lt% if(currentUser && review.author._id.equals(currentUser._id)){ %>
+    &ltform action="/campgrounds/&lt%=camp._id%>/reviews/&lt%=review._id%>?_method=DELETE"
+        method="POST">
+        &ltbutton class="btn btn-danger btn-sm">Delete&lt/button>
+    &lt/form>
+    &lt% } %>
+<p>Code to verify the review author -</p>                
+module.exports.isReviewAuthor = async (req, res, next) => {
+    const { id, reviewId } = req.params;
+    const review = await Review.findById(reviewId);
+    if (!review.author._id.equals(req.user._id)) {
+        req.flash('error', "You don't have permission to do that");
+        return res.redirect(`/campgrounds/${id}`);
+    }
+    next();
+}
+</pre></code>
+        </div>
+        <div class="src-link">
+            <p>Sources -</p>
+            <ul>
+                <li><a
+                        href="https://stackoverflow.com/questions/18867628/mongoose-deep-population-populate-a-populated-field">SO
+                        for path variable in mongoDB</a></li>
+            </ul>
+        </div>
+    </article>
