@@ -11,30 +11,14 @@
 </head>
 
 <body>
-    <h1>Welcome to Web Development Notes</h1>
-    <div id="coding-jokes">
-        <p></p>
-    </div>
+    <h1 id="intro-title">Welcome to Web Development Notes</h1>
     <nav id="center-nav">
         <ul>
-            <li><a href="">Home</a></li>
-            <li><a href="">Notes</a></li>
             <li><a href="tips.html">Tips</a></li>
             <li><a href="resources.html">Resources</a></li>
             <li><a href="">About me</a></li>
         </ul>
     </nav>
-    <p>Jokes API -</p>
-    <ul>
-        <li>
-            <a href="https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,explicit&type=single">API_request</a>
-            <a href="https://sv443.net/jokeapi/v2/#url-parameters">Homepage</a>
-        </li>
-        <li>
-            <a href="https://github.com/15Dkatz/official_joke_api">GitRepo</a> of coding jokes. This is different than
-            the first one
-        </li>
-    </ul>
     <div id="section-options">
         <label for="topic">Display sections by topic:</label>
         <select name="topic" id="topic-selector">
@@ -115,12 +99,12 @@
             <a href="/section/59" target="_blank" rel="noreferrer noopener">Section 59</a>
         </section>
         <!-- Place for user own created sections -->
-        <section data-topic="user-section">
+        <!-- <section data-topic="user-section">
             <h2>My sections -</h2>
             <% for(section of userSections) {%>
                 <p>Section made by the user</p>
                 <% } %>
-        </section>
+        </section> -->
     </div>
     <script src="js/app.js"></script>
 </body>

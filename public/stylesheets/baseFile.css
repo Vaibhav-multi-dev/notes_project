@@ -184,3 +184,25 @@ p>a:hover {
     padding: 1rem;
     text-decoration: none;
 }
+
+#scrollUp {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    background-color: #0069ff;
+    border-radius: 18px;
+    bottom: 20px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+    opacity: 1;
+    padding: 11px 0 9px;
+    right: 20px;
+    margin-bottom: 3rem;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    -webkit-transition: background .2s ease;
+    transition: background .2s ease;
+    width: 140px;
+}

@@ -46,6 +46,10 @@ app.get('/section/view/:id', async (req, res) => {
     res.send(foundSection);
 })
 
+app.get('/tips', (req, res) => {
+    res.render('allnotes/tips');
+})
+
 app.get('/section/jump', (req, res) => {
     const { secId: id } = (req.query);
     res.redirect(`/section/${id}`);
