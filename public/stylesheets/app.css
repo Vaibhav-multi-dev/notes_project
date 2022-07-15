@@ -18,11 +18,16 @@ body {
     left: 40%;
 }
 
+#center-nav {
+    padding: 1em 0;
+}
+
 #center-nav>ul {
     display: flex;
     list-style: none;
     justify-content: space-around;
     background-color: rgb(26, 91, 132);
+    padding: 1em 0;
 }
 
 #center-nav li {

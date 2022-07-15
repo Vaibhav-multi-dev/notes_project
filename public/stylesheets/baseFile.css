@@ -189,6 +189,35 @@ p>a:hover {
     text-decoration: none;
 }
 
+#center-nav {
+    padding: 1rem 0;
+}
+
+#center-nav>ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    background-color: rgb(26, 91, 132);
+    padding: 1em 0;
+}
+
+#center-nav li {
+    font-size: 1.3rem;
+}
+
+#center-nav a {
+    color: rgb(156, 232, 235);
+    text-decoration: none;
+    transition: all 0.5s ease-in;
+}
+
+#center-nav a:hover {
+    color: darkcyan;
+    background-color: rgb(231, 189, 160);
+    border-radius: 7px;
+    padding: 0 0.5rem;
+}
+
 #scrollUp {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;

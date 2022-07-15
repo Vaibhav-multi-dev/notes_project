@@ -21,131 +21,152 @@
 </head>
 
 <body>
-    <h1 class="heading-font">Tips and Advice for Web Development</h1>
-    <nav>
-        <ul>
-            <li><a href="#tip-general">General</a></li>
-            <li><a href="#tip-html">HTML</a></li>
-            <li><a href="#tip-css">CSS</a></li>
-            <li><a href="#tip-js">JavaScript</a></li>
-        </ul>
-    </nav>
-    <section id="tip-general">
-        <h2 class="tip-heading">General</h2>
-        <ol class="general-list">
-            <li>Equate web development with driving, once you get the hang of basics then the best way to
-                remember the concepts and to improve your skills is by practice only. Fail, Fail big time but don't stop
-                trying new stuff. </li>
-            <li>Check this <a
-                    href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22504682#questions/12789033/">link
-                    for colt's slide tools</a></li>
-            <li><a
-                    href="https://stackoverflow.com/questions/4781077/html5-best-practices-section-header-aside-article-elements">Best
-                    practice section,header,article,aside etc</a></li>
-        </ol>
-    </section>
-    <section id="tip-html">
-        <h2 class="tip-heading">HTML</h2>
-        <ol class="tips-list">
-            <li>To know when to use bold tags read from these sources
-                <span class="tip-source">Sources: <a
-                        href="https://stackoverflow.com/questions/2243074/is-it-ok-to-use-strong-in-place-of-b-blindly">Source
-                        1</a>, <a href="https://html.com/tags/b/">Source 2</a>, <a
-                        href="https://stackoverflow.com/questions/649305/alternative-to-the-html-bold-tag#:~:text=If%20you%20don%27t%20want%20to%20stress%20importance%2C%20use,make%20sense%20to%20have%20an%20entire%20paragraph%20emphasized.">Source
-                        3</a></span>
-            </li>
-            <li>If you want to preserve whitespace in your document then use <code>&ltpre></code> tag around your text
-                whose whitespace you want to be intact. You can also use CSS selector { white-space: pre; } to do the
-                same. <span class="tip-source">Sources: <a
-                        href="https://stackoverflow.com/questions/8994516/html-css-best-practice-for-preserving-white-space-on-certain-elements">StackOverflow</a>,
-                    <a
-                        href="https://stackoverflow.com/questions/9492249/render-a-string-in-html-and-preserve-spaces-and-linebreaks">StackOverflow</a>
-                </span></li>
-            <li>You can use &amplt to actually display tags like <code>&ltb></code> without browser rendering it. If you
-                want to
-                display that what you are writing is actually an HTML code use <code>&ltcode></code> tag and if you want
-                to preserve
-                whitespace of your code then use <code>&ltpre></code> tag as well. Do not use <code>&lttextarea></code>
-                or
-                <code>&ltxmp></code> to display the tags as they might break in some conditions.<span
-                    class="tip-source">Sources: <a
-                        href="https://stackoverflow.com/questions/2820453/display-html-snippets-in-html">StackOverflow</a>,
-                    <a href="https://www.webmasterworld.com/forum13/3900.htm">Source2</a></span>
-            </li>
-            <li>Do not use heading elements for subheadings. <span class="tip-source">Sources: <a
-                        href="https://www.w3.org/TR/2014/CR-html5-20140204/common-idioms.html#sub-head">Source1</a>
-                </span> </li>
-            <li>A section may have a heading of it's own and might contain nested sections and articles within it.</li>
-            <li>Certain elements called root sectioning elements have section outlines of their own and they do not
-                interfere with the section outline of their ancestor section elements - body,blockquote,td are some of
-                these elements.</li>
-            <li>Sectioning content elements are considered subsections of nearest root sectioning element or any other
-                sectioning content element.</li>
-            <li>h1–h6 elements must not be used to markup subheadings, subtitles, alternative titles and taglines unless
-                intended to be the heading for a new section or subsection. <span class="tip-source">Sources: <a
-                        href="https://www.w3.org/TR/html52/common-idioms-without-dedicated-elements.html#common-idioms-without-dedicated-elements">Source
-                        1</a></span></li>
-            <li>When you place two or more inline/inline-block elements who don't have any padding or
-                margin of their own in separate lines in your HTML markup then you might end up with whitespace between
-                two elements, this is because inline elements respects the whitespace in the markup. You can read about
-                these on Stackoverflow <a
-                    href="https://stackoverflow.com/questions/19038799/why-is-there-an-unexplainable-gap-between-these-inline-block-div-elements">Post1</a>
-                <a
-                    href="https://stackoverflow.com/questions/5078239/how-do-i-remove-the-space-between-inline-inline-block-elements">Post2</a>
-                to know how to work around this.
-            </li>
-            <li>If you want to have a default value for options or kind of a placeholder, then read this <a
-                    href="https://stackoverflow.com/questions/3518002/how-can-i-set-the-default-value-for-an-html-select-element">post</a>
-                on Stackoveflow.</li>
-        </ol>
-    </section>
-    <section id="tip-css" class="web-tips">
-        <h2 class="tip-heading">CSS</h2>
-        <ol class="tips-list">
-            <li>To know about how position works in CSS, refer to these sources-
-                <ul>
-                    <li><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning">MDN
-                            Positioning
-                            intro</a></li>
-                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position">MDN position property</a>
-                    </li>
-                    <li>An <a href="https://alistapart.com/article/css-positioning-101/">article</a> on positioning by a
-                        list apart.
-                    </li>
-                    <li>An youtube <a href="https://www.youtube.com/watch?v=jx5jmI0UlXU">video</a> about different
-                        position properties.</li>
-                    <li>Watch <a href="https://www.youtube.com/watch?v=lUaw-AA9HnA">this</a> video to know when to use
-                        absolute positioning.</li>
-                    <li>Read these two articles on MDN to learn about content flow - <a
-                            href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flow_Layout/Block_and_Inline_Layout_in_Normal_Flow">Article1</a>
+    <%- include('../partials/header.ejs') %>
+        <h1 class="heading-font">Tips and Advice for Web Development</h1>
+        <nav>
+            <ul>
+                <li><a href="#tip-general">General</a></li>
+                <li><a href="#tip-html">HTML</a></li>
+                <li><a href="#tip-css">CSS</a></li>
+                <li><a href="#tip-js">JavaScript</a></li>
+            </ul>
+        </nav>
+        <section id="tip-general">
+            <h2 class="tip-heading">General</h2>
+            <ol class="general-list">
+                <li>Equate web development with driving, once you get the hang of basics then the best way to
+                    remember the concepts and to improve your skills is by practice only. Fail, Fail big time but don't
+                    stop
+                    trying new stuff. </li>
+                <li>Check this <a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22504682#questions/12789033/">link
+                        for colt's slide tools</a></li>
+                <li><a
+                        href="https://stackoverflow.com/questions/4781077/html5-best-practices-section-header-aside-article-elements">Best
+                        practice section,header,article,aside etc</a></li>
+            </ol>
+        </section>
+        <section id="tip-html">
+            <h2 class="tip-heading">HTML</h2>
+            <ol class="tips-list">
+                <li>To know when to use bold tags read from these sources
+                    <span class="tip-source">Sources: <a
+                            href="https://stackoverflow.com/questions/2243074/is-it-ok-to-use-strong-in-place-of-b-blindly">Source
+                            1</a>, <a href="https://html.com/tags/b/">Source 2</a>, <a
+                            href="https://stackoverflow.com/questions/649305/alternative-to-the-html-bold-tag#:~:text=If%20you%20don%27t%20want%20to%20stress%20importance%2C%20use,make%20sense%20to%20have%20an%20entire%20paragraph%20emphasized.">Source
+                            3</a></span>
+                </li>
+                <li>If you want to preserve whitespace in your document then use <code>&ltpre></code> tag around your
+                    text
+                    whose whitespace you want to be intact. You can also use CSS selector { white-space: pre; } to do
+                    the
+                    same. <span class="tip-source">Sources: <a
+                            href="https://stackoverflow.com/questions/8994516/html-css-best-practice-for-preserving-white-space-on-certain-elements">StackOverflow</a>,
                         <a
-                            href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flow_Layout/In_Flow_and_Out_of_Flow">Article2</a>
-                    </li>
-                </ul>
-            </li>
-            <li>This <a href="https://css-tricks.com/how-to-tame-line-height-in-css/">article</a> explains a lot about
-                how line-height works.</li>
-            <li>It's better to learn basic CSS first before jumping on to learn bootstrap and other frameworks as they
-                might make you dependent on them.</li>
-        </ol>
-    </section>
-    <section id="tip-js">
-        <h2 class="tip-heading">Javascript</h2>
-        <ul class="tips-list">
-            <li>To understand the concept of call stack and execution context you can read these two articles from
-                Javascripttutorial. <a href="https://www.javascripttutorial.net/javascript-execution-context/">Execution
-                    context</a> <a href="https://www.javascripttutorial.net/javascript-call-stack/">Call Stack</a>. And
-                <a
-                    href="https://www.freecodecamp.org/news/understanding-the-javascript-call-stack-861e41ae61d4/">this</a>
-                from freeCodeCamp
-            </li>
-            <li>An <a href="https://javascript.info/debugging-chrome">article</a> to understand Debugging in a better
-                way. <a href="https://developer.chrome.com/docs/devtools/javascript/reference/">Chrome reference</a>
-            </li>
-            <li>querySelector can be used to select any DOM element, it doesn't need to be necessarily a document
-                object.</li>
-        </ul>
-    </section>
+                            href="https://stackoverflow.com/questions/9492249/render-a-string-in-html-and-preserve-spaces-and-linebreaks">StackOverflow</a>
+                    </span></li>
+                <li>You can use &amplt to actually display tags like <code>&ltb></code> without browser rendering it. If
+                    you
+                    want to
+                    display that what you are writing is actually an HTML code use <code>&ltcode></code> tag and if you
+                    want
+                    to preserve
+                    whitespace of your code then use <code>&ltpre></code> tag as well. Do not use
+                    <code>&lttextarea></code>
+                    or
+                    <code>&ltxmp></code> to display the tags as they might break in some conditions.<span
+                        class="tip-source">Sources: <a
+                            href="https://stackoverflow.com/questions/2820453/display-html-snippets-in-html">StackOverflow</a>,
+                        <a href="https://www.webmasterworld.com/forum13/3900.htm">Source2</a></span>
+                </li>
+                <li>Do not use heading elements for subheadings. <span class="tip-source">Sources: <a
+                            href="https://www.w3.org/TR/2014/CR-html5-20140204/common-idioms.html#sub-head">Source1</a>
+                    </span> </li>
+                <li>A section may have a heading of it's own and might contain nested sections and articles within it.
+                </li>
+                <li>Certain elements called root sectioning elements have section outlines of their own and they do not
+                    interfere with the section outline of their ancestor section elements - body,blockquote,td are some
+                    of
+                    these elements.</li>
+                <li>Sectioning content elements are considered subsections of nearest root sectioning element or any
+                    other
+                    sectioning content element.</li>
+                <li>h1–h6 elements must not be used to markup subheadings, subtitles, alternative titles and taglines
+                    unless
+                    intended to be the heading for a new section or subsection. <span class="tip-source">Sources: <a
+                            href="https://www.w3.org/TR/html52/common-idioms-without-dedicated-elements.html#common-idioms-without-dedicated-elements">Source
+                            1</a></span></li>
+                <li>When you place two or more inline/inline-block elements who don't have any padding or
+                    margin of their own in separate lines in your HTML markup then you might end up with whitespace
+                    between
+                    two elements, this is because inline elements respects the whitespace in the markup. You can read
+                    about
+                    these on Stackoverflow <a
+                        href="https://stackoverflow.com/questions/19038799/why-is-there-an-unexplainable-gap-between-these-inline-block-div-elements">Post1</a>
+                    <a
+                        href="https://stackoverflow.com/questions/5078239/how-do-i-remove-the-space-between-inline-inline-block-elements">Post2</a>
+                    to know how to work around this.
+                </li>
+                <li>If you want to have a default value for options or kind of a placeholder, then read this <a
+                        href="https://stackoverflow.com/questions/3518002/how-can-i-set-the-default-value-for-an-html-select-element">post</a>
+                    on Stackoveflow.</li>
+            </ol>
+        </section>
+        <section id="tip-css" class="web-tips">
+            <h2 class="tip-heading">CSS</h2>
+            <ol class="tips-list">
+                <li>To know about how position works in CSS, refer to these sources-
+                    <ul>
+                        <li><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning">MDN
+                                Positioning
+                                intro</a></li>
+                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position">MDN position
+                                property</a>
+                        </li>
+                        <li>An <a href="https://alistapart.com/article/css-positioning-101/">article</a> on positioning
+                            by a
+                            list apart.
+                        </li>
+                        <li>An youtube <a href="https://www.youtube.com/watch?v=jx5jmI0UlXU">video</a> about different
+                            position properties.</li>
+                        <li>Watch <a href="https://www.youtube.com/watch?v=lUaw-AA9HnA">this</a> video to know when to
+                            use
+                            absolute positioning.</li>
+                        <li>Read these two articles on MDN to learn about content flow - <a
+                                href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flow_Layout/Block_and_Inline_Layout_in_Normal_Flow">Article1</a>
+                            <a
+                                href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flow_Layout/In_Flow_and_Out_of_Flow">Article2</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>This <a href="https://css-tricks.com/how-to-tame-line-height-in-css/">article</a> explains a lot
+                    about
+                    how line-height works.</li>
+                <li>It's better to learn basic CSS first before jumping on to learn bootstrap and other frameworks as
+                    they
+                    might make you dependent on them.</li>
+            </ol>
+        </section>
+        <section id="tip-js">
+            <h2 class="tip-heading">Javascript</h2>
+            <ul class="tips-list">
+                <li>To understand the concept of call stack and execution context you can read these two articles from
+                    Javascripttutorial. <a
+                        href="https://www.javascripttutorial.net/javascript-execution-context/">Execution
+                        context</a> <a href="https://www.javascripttutorial.net/javascript-call-stack/">Call Stack</a>.
+                    And
+                    <a
+                        href="https://www.freecodecamp.org/news/understanding-the-javascript-call-stack-861e41ae61d4/">this</a>
+                    from freeCodeCamp
+                </li>
+                <li>An <a href="https://javascript.info/debugging-chrome">article</a> to understand Debugging in a
+                    better
+                    way. <a href="https://developer.chrome.com/docs/devtools/javascript/reference/">Chrome reference</a>
+                </li>
+                <li>querySelector can be used to select any DOM element, it doesn't need to be necessarily a document
+                    object.</li>
+            </ul>
+        </section>
 </body>
 
 </html>

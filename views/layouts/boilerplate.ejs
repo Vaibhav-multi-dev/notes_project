@@ -24,10 +24,11 @@
 </head>
 
 <body>
-    <section id="sec<%=id%>" class="backend-section">
-        <%- body %>
-    </section>
-    <%- include('../partials/footer.ejs') %>
+    <%- include('../partials/header.ejs') %>
+        <section id="sec<%=id%>" class="backend-section">
+            <%- body %>
+        </section>
+        <%- include('../partials/footer.ejs') %>
 </body>
 
 </html>

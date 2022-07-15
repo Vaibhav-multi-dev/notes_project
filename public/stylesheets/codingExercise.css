@@ -40,7 +40,26 @@ code {
     padding-left: 0;
     display: flex;
     list-style: none;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: space-around;
+}
+
+#nav-bar-exercise li {
+    padding: 1em;
+    margin: 1em;
+    border: 3px solid black;
+    border-radius: 8px;
+    background-color: cyan;
+    width: 4%;
+}
+
+#nav-bar-exercise a {
+    text-decoration: none;
+    background-color: #0069ff;
+    padding: 0.5em 1em;
+    color: #fff;
+    border-radius: 6px;
 }
 
 .sol-box {

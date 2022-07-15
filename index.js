@@ -30,7 +30,7 @@ app.get('/home', async (req, res) => {
     res.render('allnotes/index');
 })
 
-app.get('/codingEx', (req, res) => {
+app.get('/codingExercises', (req, res) => {
     res.render('allnotes/codingExer');
 })
 
