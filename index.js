@@ -30,6 +30,10 @@ app.get('/home', async (req, res) => {
     res.render('allnotes/index');
 })
 
+app.get('/codingEx', (req, res) => {
+    res.render('allnotes/codingExer');
+})
+
 app.get('/section/trial', async (req, res) => {
     const newSection = new Section({ title: "Test section", num: 45, lectures: 6, sectype: 'html' });
     await newSection.save();
@@ -47,7 +51,15 @@ app.get('/section/view/:id', async (req, res) => {
 })
 
 app.get('/tips', (req, res) => {
-    res.render('allnotes/tips');
+    res.render('allnotes/tips.ejs');
+})
+
+app.get('/resources', (req, res) => {
+    res.render('allnotes/resources')
+})
+
+app.get('/aboutme', (req, res) => {
+    res.render('extras/aboutme')
 })
 
 app.get('/section/jump', (req, res) => {

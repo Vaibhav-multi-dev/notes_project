@@ -4,6 +4,10 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+.heading-font {
+    font-family: 'Dancing Script', cursive;
+}
+
 h2 {
     padding-left: 0.8em;
     /* background-color: turquoise; */
