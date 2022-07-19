@@ -19,35 +19,12 @@ app.set('views', path.join(__dirname, '/views')); //making views accessible from
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true })); //Used to parse form data
 
-app.get('/home', async (req, res) => {
-    //  First check if there is a logged in user or not
-    // To check if there is user made sections or not
-    // const userSection = await Section.find({ _id: "62c6bb343e6fcaacef7deff9" });
-    const userSections = await Section.find({});
-    if (userSections.length) {
-        return res.render('allnotes/index', { userSections });
-    }
+app.get('/home', (req, res) => {
     res.render('allnotes/index');
 })
 
 app.get('/codingExercises', (req, res) => {
     res.render('allnotes/codingExer');
-})
-
-app.get('/section/trial', async (req, res) => {
-    const newSection = new Section({ title: "Test section", num: 45, lectures: 6, sectype: 'html' });
-    await newSection.save();
-    res.send("Section made successfully");
-})
-
-// Link to test route -
-// http://localhost:8080/section/view/62c6bb343e6fcaacef7deff9
-
-app.get('/section/view/:id', async (req, res) => {
-    console.log(req.params.id);
-    const { id } = req.params;
-    const foundSection = await Section.findById(id);
-    res.send(foundSection);
 })
 
 app.get('/tips', (req, res) => {
@@ -65,18 +42,6 @@ app.get('/aboutme', (req, res) => {
 app.get('/section/jump', (req, res) => {
     const { secId: id } = (req.query);
     res.redirect(`/section/${id}`);
-})
-
-app.get('/section/new', (req, res) => {
-    res.render('allnotes/newSection.ejs')
-})
-
-app.post('/section', async (req, res) => {
-    const { title, num, lectures, sectype } = req.body.section;
-    const mySection = new Section({ title, num, lectures, sectype });
-    console.log(mySection);
-    await mySection.save();
-    res.send(mySection);
 })
 
 app.get('/section/:id', (req, res) => {
