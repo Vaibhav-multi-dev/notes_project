@@ -2,15 +2,15 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const ejsMate = require('ejs-mate');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/notesTest')
-    .then(() => console.log("Database connected"))
-    .catch(error => handleError(error));
+// mongoose.connect('mongodb://localhost:27017/notesTest')
+//     .then(() => console.log("Database connected"))
+//     .catch(error => handleError(error));
 
-mongoose.connection.on('error', err => {
-    logError(err);
-});
+// mongoose.connection.on('error', err => {
+//     logError(err);
+// });
 
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
