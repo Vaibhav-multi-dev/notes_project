@@ -19,6 +19,9 @@ app.set('views', path.join(__dirname, '/views')); //making views accessible from
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true })); //Used to parse form data
 
+app.get('/', (req, res) => {
+    res.render('allnotes/index');
+})
 app.get('/home', (req, res) => {
     res.render('allnotes/index');
 })
