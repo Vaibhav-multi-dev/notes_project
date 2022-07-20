@@ -3,7 +3,6 @@ const app = express();
 const path = require('path');
 const ejsMate = require('ejs-mate');
 const mongoose = require('mongoose');
-const Section = require('./models/section');
 
 mongoose.connect('mongodb://localhost:27017/notesTest')
     .then(() => console.log("Database connected"))

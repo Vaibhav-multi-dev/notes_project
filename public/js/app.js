@@ -1,10 +1,5 @@
-const topics = document.querySelectorAll("[data-topic]");
 const topicSelector = document.querySelector("#topic-selector");
-const allTopics = document.querySelectorAll(".section-selector  a")
 const topicSections = document.querySelectorAll(".section-selector section");
-
-// topics[0].dataset.topic
-// allTopics[0].dataset.topic
 
 topicSelector.addEventListener('change', (e) => {
     console.log(e.target.value);
