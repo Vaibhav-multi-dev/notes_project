@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const ejsMate = require('ejs-mate');
+const port = process.env.PORT || 8080;
 // const mongoose = require('mongoose');
 
 // mongoose.connect('mongodb://localhost:27017/notesTest')
@@ -53,6 +54,6 @@ app.use((err, req, res, next) => {
     res.send("Unavailable");
 })
 
-app.listen(8080, () => {
-    console.log("Listening on 8080");
+app.listen(port, () => {
+    console.log(`Listening on ${port}`);
 })
